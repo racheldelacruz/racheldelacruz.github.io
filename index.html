@@ -70,6 +70,16 @@
     body.dark .glass-border-animate {
       border-color: rgba(255,255,255,0.08);
     }
+    body.dark .iprofile-logo .logo-icon {
+      background: rgba(107, 129, 150, 0.15);
+      border-color: rgba(107, 129, 150, 0.2);
+    }
+    body.dark .iprofile-logo .logo-text {
+      color: #e0e0d6;
+    }
+    body.dark .iprofile-logo .logo-tagline {
+      color: #8a8a80;
+    }
 
     a { text-decoration: none; color: inherit; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
@@ -831,18 +841,6 @@
       display: block;
       margin-top: 2px;
     }
-    .edu-section-header, .cert-section-header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 16px;
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-    .edu-section-header .header-icon, .cert-section-header .header-icon {
-      font-size: 1.4rem;
-    }
 
     /* ===== TESTIMONIALS ===== */
     .rec-card {
@@ -895,9 +893,120 @@
     .section { padding: 50px 0 30px; border-bottom: 1px solid var(--ink-border); }
     .flex-wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; align-items: center; }
 
+    /* ===== iPROFILE LOGO ABOVE FOOTER ===== */
+    .iprofile-section {
+      padding: 40px 0 20px;
+      text-align: center;
+      border-top: 1px solid var(--ink-border);
+    }
+    .iprofile-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 32px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 60px;
+      border: 1px solid rgba(74, 74, 74, 0.06);
+      transition: var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+    .iprofile-logo::before {
+      content: '';
+      position: absolute;
+      top: -2px; left: -2px; right: -2px; bottom: -2px;
+      border-radius: 62px;
+      background: conic-gradient(from 0deg, transparent, rgba(109,129,150,0.1), transparent, rgba(109,129,150,0.2), transparent);
+      z-index: -1;
+      animation: borderSpin 6s linear infinite;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      pointer-events: none;
+    }
+    .iprofile-logo:hover::before { opacity: 1; }
+    .iprofile-logo::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border-radius: 60px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: -1;
+    }
+    .iprofile-logo:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(109, 129, 150, 0.15);
+    }
+    .iprofile-logo .logo-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(109, 129, 150, 0.1);
+      border: 2px solid rgba(109, 129, 150, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--ink-blue-gray);
+      animation: logoIconPulse 3s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes logoIconPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(109,129,150,0.1); }
+      50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(109,129,150,0.15); }
+    }
+    .iprofile-logo .logo-text {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink-charcoal);
+    }
+    .iprofile-logo .logo-text .highlight {
+      color: var(--ink-blue-gray);
+    }
+    .iprofile-logo .logo-tagline {
+      font-size: 0.75rem;
+      color: #6b6b60;
+      letter-spacing: 1.5px;
+      font-weight: 400;
+      display: block;
+      margin-top: -2px;
+    }
+    .iprofile-logo .logo-divider {
+      width: 1px;
+      height: 36px;
+      background: var(--ink-border);
+      flex-shrink: 0;
+    }
+    @media (max-width: 600px) {
+      .iprofile-logo {
+        flex-direction: column;
+        padding: 20px 24px;
+        gap: 10px;
+        border-radius: 32px;
+      }
+      .iprofile-logo .logo-divider {
+        width: 60px;
+        height: 1px;
+      }
+      .iprofile-logo .logo-text {
+        font-size: 1.3rem;
+      }
+      .iprofile-logo .logo-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+      }
+    }
+
     /* ===== FOOTER ===== */
     footer {
-      padding: 30px 0 20px;
+      padding: 20px 0 30px;
       text-align: center;
       color: #6b6b60;
       font-size: 0.85rem;
@@ -1308,9 +1417,23 @@
       </section>
     </main>
 
+    <!-- ===== iPROFILE LOGO ABOVE FOOTER ===== -->
+    <div class="iprofile-section">
+      <div class="container">
+        <div class="iprofile-logo fade-up">
+          <div class="logo-icon">iP</div>
+          <div class="logo-divider"></div>
+          <div>
+            <div class="logo-text">i<span class="highlight">Profile</span></div>
+            <span class="logo-tagline">Connecting Your Digital Identity</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- ===== FOOTER ===== -->
     <footer>
-      <div class="container">© 2026 iProfile by LJL Digital Hub</div>
+      <div class="container">© 2026 iProfile by LJL Digital Hub · 🤖 Virtual Assistant</div>
     </footer>
   </div>
 
