@@ -264,6 +264,7 @@
       margin-bottom: 0.25rem;
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
     }
     .section-title .accent { color: var(--ink-blue-gray); }
@@ -273,6 +274,9 @@
       font-size: 0.95rem;
       margin-bottom: 2rem;
       max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
     }
 
     /* ===== NAVBAR ===== */
@@ -394,13 +398,15 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
+      justify-content: center;
       gap: 40px;
+      text-align: center;
     }
-    .hero-content { flex: 1 1 360px; }
+    .hero-content { flex: 1 1 360px; text-align: center; }
     .hero-content h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: -0.03em; color: var(--ink-charcoal); }
     .hero-content .subhead { font-size: 1.2rem; font-weight: 500; color: var(--ink-blue-gray); margin: 4px 0 8px; }
-    .hero-content .location { display: flex; align-items: center; gap: 6px; color: #6b6b60; font-size: 0.95rem; }
-    .hero-badge-group { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 20px; }
+    .hero-content .location { display: flex; align-items: center; justify-content: center; gap: 6px; color: #6b6b60; font-size: 0.95rem; }
+    .hero-badge-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 16px 0 20px; }
     .badge {
       padding: 6px 16px;
       border-radius: 40px;
@@ -472,6 +478,7 @@
       transition: var(--transition-smooth);
       position: relative;
       overflow: hidden;
+      text-align: center;
     }
     .summary-card::before {
       content: '';
@@ -501,13 +508,60 @@
       box-shadow: var(--shadow-lg);
       border-color: rgba(109, 129, 150, 0.15);
     }
+    .summary-card p { margin: 0 auto; }
 
-    /* ===== TIMELINE ===== */
+    /* ===== EXPERIENCE - CENTERED WITH ANIMATION ===== */
+    #experience {
+      position: relative;
+      overflow: hidden;
+    }
+    #experience .experience-container {
+      position: relative;
+      z-index: 2;
+    }
+    .exp-particles {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .exp-particle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(109, 129, 150, 0.06);
+      animation: expFloat 15s ease-in-out infinite;
+    }
+    .exp-particle:nth-child(1) { left: 8%; animation-delay: 0s; width: 10px; height: 10px; }
+    .exp-particle:nth-child(2) { left: 20%; animation-delay: 1.5s; width: 5px; height: 5px; }
+    .exp-particle:nth-child(3) { left: 32%; animation-delay: 3s; width: 12px; height: 12px; }
+    .exp-particle:nth-child(4) { left: 44%; animation-delay: 0.8s; width: 6px; height: 6px; }
+    .exp-particle:nth-child(5) { left: 56%; animation-delay: 2.2s; width: 8px; height: 8px; }
+    .exp-particle:nth-child(6) { left: 68%; animation-delay: 3.5s; width: 5px; height: 5px; }
+    .exp-particle:nth-child(7) { left: 80%; animation-delay: 1s; width: 10px; height: 10px; }
+    .exp-particle:nth-child(8) { left: 92%; animation-delay: 2.8s; width: 6px; height: 6px; }
+    .exp-particle:nth-child(9) { left: 14%; top: 30%; animation-delay: 4s; width: 7px; height: 7px; }
+    .exp-particle:nth-child(10) { left: 50%; top: 20%; animation-delay: 1.2s; width: 9px; height: 9px; }
+    .exp-particle:nth-child(11) { left: 75%; top: 40%; animation-delay: 2.5s; width: 5px; height: 5px; }
+    .exp-particle:nth-child(12) { left: 35%; top: 15%; animation-delay: 3.8s; width: 8px; height: 8px; }
+    @keyframes expFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.15; }
+      25% { transform: translate(25px, -50px) scale(1.4); opacity: 0.5; }
+      50% { transform: translate(-15px, -90px) scale(0.7); opacity: 0.2; }
+      75% { transform: translate(35px, -60px) scale(1.2); opacity: 0.4; }
+    }
+
     .timeline {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 24px;
       margin-top: 20px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .timeline-item {
       background: var(--glass-bg);
@@ -515,17 +569,37 @@
       -webkit-backdrop-filter: blur(10px);
       border: 1px solid rgba(74, 74, 74, 0.06);
       border-radius: 18px;
-      padding: 22px 26px;
-      transition: var(--transition-smooth);
+      padding: 24px 28px;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
       position: relative;
       overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px) scale(0.98);
+      animation: expSlideIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      text-align: left;
     }
+    .timeline-item:nth-child(1) { animation-delay: 0.05s; }
+    .timeline-item:nth-child(2) { animation-delay: 0.10s; }
+    .timeline-item:nth-child(3) { animation-delay: 0.15s; }
+    .timeline-item:nth-child(4) { animation-delay: 0.20s; }
+    .timeline-item:nth-child(5) { animation-delay: 0.25s; }
+    .timeline-item:nth-child(6) { animation-delay: 0.30s; }
+    .timeline-item:nth-child(7) { animation-delay: 0.35s; }
+    .timeline-item:nth-child(8) { animation-delay: 0.40s; }
+    .timeline-item:nth-child(9) { animation-delay: 0.45s; }
+    .timeline-item:nth-child(10) { animation-delay: 0.50s; }
+
+    @keyframes expSlideIn {
+      0% { opacity: 0; transform: translateY(30px) scale(0.98); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
     .timeline-item::before {
       content: '';
       position: absolute;
       top: -2px; left: -2px; right: -2px; bottom: -2px;
       border-radius: 20px;
-      background: conic-gradient(from 0deg, transparent, rgba(109,129,150,0.1), transparent, rgba(109,129,150,0.18), transparent);
+      background: conic-gradient(from 0deg, transparent, rgba(109,129,150,0.1), transparent, rgba(109,129,150,0.2), transparent);
       z-index: -1;
       animation: borderSpin 7s linear infinite;
       opacity: 0;
@@ -544,15 +618,33 @@
       z-index: -1;
     }
     .timeline-item:hover {
-      transform: translateX(6px);
-      border-color: rgba(109, 129, 150, 0.2);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-6px) scale(1.01) !important;
+      border-color: rgba(109, 129, 150, 0.3);
+      box-shadow: 0 12px 40px rgba(109, 129, 150, 0.12), 0 0 60px rgba(109, 129, 150, 0.04);
     }
-    .tl-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; }
+    .timeline-item .tl-glow {
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at center, rgba(109,129,150,0.03), transparent 70%);
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      z-index: 0;
+    }
+    .timeline-item:hover .tl-glow {
+      opacity: 1;
+      animation: glowPulse 2s ease-in-out infinite;
+    }
+    @keyframes glowPulse {
+      0%, 100% { transform: scale(1); opacity: 0.3; }
+      50% { transform: scale(1.2); opacity: 0.6; }
+    }
+    .tl-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; position: relative; z-index: 1; }
     .tl-title { font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 6px; }
     .tl-org { font-weight: 500; color: var(--ink-blue-gray); }
     .tl-date { font-size: 0.8rem; color: #6b6b60; background: rgba(107, 129, 150, 0.08); padding: 4px 12px; border-radius: 40px; }
-    .tl-desc { margin-top: 8px; color: #4a4a42; font-size: 0.92rem; }
+    .tl-desc { margin-top: 8px; color: #4a4a42; font-size: 0.92rem; position: relative; z-index: 1; }
 
     /* ===== SKILLS SECTION - EYE CATCHING ANIMATION ===== */
     #skills {
@@ -562,6 +654,7 @@
     #skills .skills-container {
       position: relative;
       z-index: 2;
+      text-align: center;
     }
     .skills-particles {
       position: absolute;
@@ -675,6 +768,8 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
+      max-width: 700px;
+      margin: 0 auto;
     }
     .edu-item, .cert-item {
       background: var(--glass-bg);
@@ -739,6 +834,7 @@
     .edu-section-header, .cert-section-header {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
       margin-bottom: 16px;
       font-weight: 600;
@@ -760,6 +856,9 @@
       transition: var(--transition-smooth);
       position: relative;
       overflow: hidden;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .rec-card::before {
       content: '';
@@ -794,7 +893,7 @@
 
     /* ===== SECTION ===== */
     .section { padding: 50px 0 30px; border-bottom: 1px solid var(--ink-border); }
-    .flex-wrap { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .flex-wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; align-items: center; }
 
     /* ===== FOOTER ===== */
     footer {
@@ -877,6 +976,7 @@
       .glass-box { padding: 20px 18px; }
       .skill-chip { padding: 10px 18px; font-size: 0.8rem; }
       .edu-grid, .cert-grid { grid-template-columns: 1fr; }
+      .timeline-item { padding: 18px 20px; }
     }
   </style>
 </head>
@@ -956,7 +1056,7 @@
             <span class="badge">🤝 Stakeholder Communication</span>
             <span class="badge">🧠 AI Fluency</span>
           </div>
-          <div style="margin: 12px 0 8px; display: flex; flex-wrap: wrap; gap: 8px;">
+          <div style="margin: 12px 0 8px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;">
             <a href="#contact" class="btn">📩 Get in touch</a>
             <a href="#experience" class="btn btn-outline">📊 View experience</a>
           </div>
@@ -968,98 +1068,124 @@
 
       <!-- ===== ABOUT ===== -->
       <div class="summary-card fade-up">
-        <p style="font-size: 1rem; max-width: 800px;">
+        <p style="font-size: 1rem; max-width: 800px; margin: 0 auto;">
           <strong>🤖 Versatile Project Manager &amp; Virtual Assistant</strong> with extensive experience across customer service, healthcare (clinical/technical), and project management. Strong background in resort construction, operations, and stakeholder communication. Skilled in risk management, budget control, and cross-functional team leadership. 
           <br><br>
           Over the course of my career, I have accumulated extensive experience across various industries, including customer service, clerical roles, and technical/clinical positions within a healthcare setting. This exposure has equipped me with a versatile skill set and a profound understanding of the intricacies associated with different professional domains. As a diligent and hard-working individual, I have a strong desire to continually expand my skills and apply them effectively to my current responsibilities. Having a firm grasp of business strategy greatly aids me in accomplishing my tasks. I take pride in my ability to derive fulfillment from every positive outcome, am tenacious in seeking innovative solutions, and ensure all stakeholders are well-informed.
         </p>
       </div>
 
-      <!-- ===== EXPERIENCE ===== -->
+      <!-- ===== EXPERIENCE - CENTERED WITH ANIMATION ===== -->
       <section id="experience" class="section">
-        <h2 class="section-title fade-up"><span class="icon">💼</span> Experience <span class="accent">·</span></h2>
-        <div class="section-sub fade-up">Full project lifecycle & cross-functional leadership</div>
-        <div class="timeline">
-          <div class="timeline-item fade-up">
-            <div class="tl-header">
-              <span class="tl-title">🏗️ Project Manager – Resort Construction & Management</span>
-              <span class="tl-org">Arcadia Resorts, Laguna</span>
-              <span class="tl-date">Nov 2025 – Present</span>
+        <div class="exp-particles">
+          <div class="exp-particle"></div>
+          <div class="exp-particle"></div>
+          <div class="exp-particle"></div>
+          <div class="exp-particle"></div>
+          <div class="exp-particle"></div>
+          <div class="exp-particle"></div>
+          <div class="exp-particle"></div>
+          <div class="exp-particle"></div>
+          <div class="exp-particle"></div>
+          <div class="exp-particle"></div>
+          <div class="exp-particle"></div>
+          <div class="exp-particle"></div>
+        </div>
+        <div class="experience-container">
+          <h2 class="section-title fade-up"><span class="icon">💼</span> Experience <span class="accent">·</span></h2>
+          <div class="section-sub fade-up">Full project lifecycle & cross-functional leadership</div>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="tl-glow"></div>
+              <div class="tl-header">
+                <span class="tl-title">🏗️ Project Manager – Resort Construction & Management</span>
+                <span class="tl-org">Arcadia Resorts, Laguna</span>
+                <span class="tl-date">Nov 2025 – Present</span>
+              </div>
+              <div class="tl-desc">
+                Lead the full lifecycle of resort development projects—from pre‑construction planning to operational handover. Define scope, budget, schedule; coordinate with architects, engineers, designers, and contractors. Oversee day‑to‑day site progress, quality control, safety, and building codes. Serve as primary contact between ownership, design teams, crews, and local authorities. Proactively identify risks, manage change orders, and resolve conflicts.
+              </div>
             </div>
-            <div class="tl-desc">
-              Lead the full lifecycle of resort development projects—from pre‑construction planning to operational handover. Define scope, budget, schedule; coordinate with architects, engineers, designers, and contractors. Oversee day‑to‑day site progress, quality control, safety, and building codes. Serve as primary contact between ownership, design teams, crews, and local authorities. Proactively identify risks, manage change orders, and resolve conflicts.
+            <div class="timeline-item">
+              <div class="tl-glow"></div>
+              <div class="tl-header">
+                <span class="tl-title">👥 Customer Support Team Lead</span>
+                <span class="tl-org">Zoomo</span>
+                <span class="tl-date">Jan 2024 – Present</span>
+              </div>
+              <div class="tl-desc">Led support teams and oversaw escalation management for the North American region.</div>
             </div>
-          </div>
-          <div class="timeline-item fade-up">
-            <div class="tl-header">
-              <span class="tl-title">👥 Customer Support Team Lead</span>
-              <span class="tl-org">Zoomo</span>
-              <span class="tl-date">Jan 2024 – Present</span>
+            <div class="timeline-item">
+              <div class="tl-glow"></div>
+              <div class="tl-header">
+                <span class="tl-title">🛡️ Customer Support Specialist – Escalation</span>
+                <span class="tl-org">Zoomo</span>
+                <span class="tl-date">Jan 2021 – Jan 2024</span>
+              </div>
+              <div class="tl-desc">Specialized in North America customer support, handling complex escalated cases.</div>
             </div>
-            <div class="tl-desc">Led support teams and oversaw escalation management for the North American region.</div>
-          </div>
-          <div class="timeline-item fade-up">
-            <div class="tl-header">
-              <span class="tl-title">🛡️ Customer Support Specialist – Escalation</span>
-              <span class="tl-org">Zoomo</span>
-              <span class="tl-date">Jan 2021 – Jan 2024</span>
+            <div class="timeline-item">
+              <div class="tl-glow"></div>
+              <div class="tl-header">
+                <span class="tl-title">🌏 Online English Teacher</span>
+                <span class="tl-org">Engoo</span>
+                <span class="tl-date">Dec 2016 – Jan 2021</span>
+              </div>
+              <div class="tl-desc">Taught English to students from Japan, Korea, Vietnam, Taiwan, Russia, and other nationalities.</div>
             </div>
-            <div class="tl-desc">Specialized in North America customer support, handling complex escalated cases.</div>
-          </div>
-          <div class="timeline-item fade-up">
-            <div class="tl-header">
-              <span class="tl-title">🌏 Online English Teacher</span>
-              <span class="tl-org">Engoo</span>
-              <span class="tl-date">Dec 2016 – Jan 2021</span>
+            <div class="timeline-item">
+              <div class="tl-glow"></div>
+              <div class="tl-header">
+                <span class="tl-title">📞 Customer Service Representative</span>
+                <span class="tl-org">TeleTech Philippines</span>
+                <span class="tl-date">Nov 2015 – Apr 2017</span>
+              </div>
+              <div class="tl-desc">Managed Telstra AU residential billing, mobility, and sales.</div>
             </div>
-            <div class="tl-desc">Taught English to students from Japan, Korea, Vietnam, Taiwan, Russia, and other nationalities.</div>
-          </div>
-          <div class="timeline-item fade-up">
-            <div class="tl-header">
-              <span class="tl-title">📞 Customer Service Representative</span>
-              <span class="tl-org">TeleTech Philippines</span>
-              <span class="tl-date">Nov 2015 – Apr 2017</span>
+            <div class="timeline-item">
+              <div class="tl-glow"></div>
+              <div class="tl-header">
+                <span class="tl-title">📞 Customer Service Representative</span>
+                <span class="tl-org">SYKES Philippines</span>
+                <span class="tl-date">Sep 2014 – Oct 2015</span>
+              </div>
+              <div class="tl-desc">Handled AT&T Prepaid Mobility.</div>
             </div>
-            <div class="tl-desc">Managed Telstra AU residential billing, mobility, and sales.</div>
-          </div>
-          <div class="timeline-item fade-up">
-            <div class="tl-header">
-              <span class="tl-title">📞 Customer Service Representative</span>
-              <span class="tl-org">SYKES Philippines</span>
-              <span class="tl-date">Sep 2014 – Oct 2015</span>
+            <div class="timeline-item">
+              <div class="tl-glow"></div>
+              <div class="tl-header">
+                <span class="tl-title">🩺 Monitor Clerk Assistant / Telemetrist</span>
+                <span class="tl-org">American Hospital Dubai</span>
+                <span class="tl-date">Feb 2010 – Feb 2011</span>
+              </div>
+              <div class="tl-desc">Performed telemetry monitoring (Basic ECG) for ICU, CICU, and WARD.</div>
             </div>
-            <div class="tl-desc">Handled AT&T Prepaid Mobility.</div>
-          </div>
-          <div class="timeline-item fade-up">
-            <div class="tl-header">
-              <span class="tl-title">🩺 Monitor Clerk Assistant / Telemetrist</span>
-              <span class="tl-org">American Hospital Dubai</span>
-              <span class="tl-date">Feb 2010 – Feb 2011</span>
+            <div class="timeline-item">
+              <div class="tl-glow"></div>
+              <div class="tl-header">
+                <span class="tl-title">🩺 Healthcare Assistant</span>
+                <span class="tl-org">American Hospital Dubai</span>
+                <span class="tl-date">Feb 2009 – Feb 2010</span>
+              </div>
+              <div class="tl-desc">Provided support in Intensive Care and Cardiac Intensive Care Units.</div>
             </div>
-            <div class="tl-desc">Performed telemetry monitoring (Basic ECG) for ICU, CICU, and WARD.</div>
-          </div>
-          <div class="timeline-item fade-up">
-            <div class="tl-header">
-              <span class="tl-title">🩺 Healthcare Assistant</span>
-              <span class="tl-org">American Hospital Dubai</span>
-              <span class="tl-date">Feb 2009 – Feb 2010</span>
+            <div class="timeline-item">
+              <div class="tl-glow"></div>
+              <div class="tl-header">
+                <span class="tl-title">📋 Sales Representative / Secretary</span>
+                <span class="tl-org">Time General Trading LLC, Sharjah, UAE</span>
+                <span class="tl-date">Aug 2008 – Jan 2009</span>
+              </div>
             </div>
-            <div class="tl-desc">Provided support in Intensive Care and Cardiac Intensive Care Units.</div>
-          </div>
-          <div class="timeline-item fade-up">
-            <div class="tl-header">
-              <span class="tl-title">📋 Sales Representative / Secretary</span>
-              <span class="tl-org">Time General Trading LLC, Sharjah, UAE</span>
-              <span class="tl-date">Aug 2008 – Jan 2009</span>
+            <div class="timeline-item">
+              <div class="tl-glow"></div>
+              <div class="tl-header">
+                <span class="tl-title">🏥 Nursing Attendant</span>
+                <span class="tl-org">Philippine General Hospital</span>
+                <span class="tl-date">Jul 2006 – Jun 2008</span>
+              </div>
+              <div class="tl-desc">Served in the Post‑Anesthesia Care Unit, OB Admitting Section, and OB ER.</div>
             </div>
-          </div>
-          <div class="timeline-item fade-up">
-            <div class="tl-header">
-              <span class="tl-title">🏥 Nursing Attendant</span>
-              <span class="tl-org">Philippine General Hospital</span>
-              <span class="tl-date">Jul 2006 – Jun 2008</span>
-            </div>
-            <div class="tl-desc">Served in the Post‑Anesthesia Care Unit, OB Admitting Section, and OB ER.</div>
           </div>
         </div>
       </section>
@@ -1169,7 +1295,7 @@
       <!-- ===== CONTACT ===== -->
       <section id="contact" class="section" style="border-bottom: none;">
         <h2 class="section-title fade-up"><span class="icon">📬</span> Contact <span class="accent">·</span></h2>
-        <div class="glass-box fade-up" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center;">
+        <div class="glass-box fade-up" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; align-items: center; text-align: center;">
           <div>
             <p style="margin: 6px 0;"><strong>📍</strong> Laguna, Calabarzon, Philippines</p>
             <p style="margin: 6px 0;"><strong>📧</strong> <a href="mailto:rachel.delacruz@example.com" style="color:var(--ink-blue-gray);">rachel.delacruz@example.com</a></p>
