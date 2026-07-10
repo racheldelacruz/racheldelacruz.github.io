@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    /* ===== INK WASH PALETTE (ORIGINAL) ===== */
+    /* ===== INK WASH PALETTE ===== */
     :root {
       --ink-charcoal: #4A4A4A;
       --ink-cool-gray: #CBCBCB;
@@ -86,23 +86,24 @@
     body.dark .glass-border-animate {
       border-color: rgba(255,255,255,0.08);
     }
-    body.dark .holographic-hud {
+    body.dark .energy-orb {
       background: radial-gradient(circle at 30% 30%, rgba(109,129,150,0.08), rgba(109,129,150,0.02));
       box-shadow: 0 0 80px rgba(109,129,150,0.08), inset 0 0 100px rgba(109,129,150,0.02);
     }
-    body.dark .holographic-hud .hud-ring {
+    body.dark .orb-ring {
       border-color: rgba(109,129,150,0.12);
     }
-    body.dark .holographic-hud .hud-image-wrapper {
+    body.dark .orb-image-wrapper {
       border-color: rgba(109,129,150,0.2);
       box-shadow: 0 0 40px rgba(109,129,150,0.1), inset 0 0 40px rgba(109,129,150,0.05);
     }
-    body.dark .holographic-hud .data-indicator {
+    body.dark .orb-data {
       color: rgba(109,129,150,0.7);
       text-shadow: 0 0 15px rgba(109,129,150,0.3);
     }
-    body.dark .holographic-hud .radar-sweep::before {
-      background: linear-gradient(90deg, rgba(109,129,150,0), rgba(109,129,150,0.6), rgba(109,129,150,0));
+    body.dark .orb-particle {
+      background: rgba(109,129,150,0.3);
+      box-shadow: 0 0 10px rgba(109,129,150,0.2);
     }
 
     a { text-decoration: none; color: inherit; }
@@ -710,14 +711,14 @@
       background: rgba(109, 129, 150, 0.15);
     }
 
-    /* ===== HOLOGRAPHIC HERO AVATAR ===== */
+    /* ===== ENERGY ORB AVATAR ===== */
     .hero-avatar {
       -webkit-flex: 0 0 280px;
       flex: 0 0 280px;
       max-width: 100%;
       text-align: center;
     }
-    .holographic-hud {
+    .energy-orb {
       position: relative;
       display: inline-block;
       width: 280px;
@@ -726,7 +727,27 @@
       background: radial-gradient(circle at 30% 30%, rgba(109, 129, 150, 0.05), rgba(109, 129, 150, 0.02));
       box-shadow: 0 0 60px rgba(109, 129, 150, 0.08), inset 0 0 80px rgba(109, 129, 150, 0.02);
     }
-    .holographic-hud .hud-ring {
+
+    /* Orb Core Glow */
+    .orb-core-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 85%;
+      height: 85%;
+      border-radius: 50%;
+      background: radial-gradient(circle at center, rgba(109, 129, 150, 0.08), transparent 70%);
+      animation: corePulse 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes corePulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.5; }
+      50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+    }
+
+    /* Orb Rings */
+    .orb-ring {
       position: absolute;
       border-radius: 50%;
       border: 1.5px solid rgba(109, 129, 150, 0.12);
@@ -736,42 +757,42 @@
       animation: ringRotate 20s linear infinite;
       pointer-events: none;
     }
-    .holographic-hud .hud-ring:nth-child(1) {
+    .orb-ring:nth-child(2) {
       width: 260px;
       height: 260px;
       border-color: rgba(109, 129, 150, 0.08);
       animation-duration: 25s;
     }
-    .holographic-hud .hud-ring:nth-child(2) {
+    .orb-ring:nth-child(3) {
       width: 230px;
       height: 230px;
       border-color: rgba(109, 129, 150, 0.1);
       animation-duration: 18s;
       animation-direction: reverse;
     }
-    .holographic-hud .hud-ring:nth-child(3) {
+    .orb-ring:nth-child(4) {
       width: 200px;
       height: 200px;
       border-color: rgba(109, 129, 150, 0.12);
       animation-duration: 22s;
     }
-    .holographic-hud .hud-ring:nth-child(4) {
+    .orb-ring:nth-child(5) {
       width: 170px;
       height: 170px;
-      border-color: rgba(109, 129, 150, 0.08);
-      animation-duration: 15s;
-      animation-direction: reverse;
-    }
-    .holographic-hud .hud-ring:nth-child(5) {
-      width: 140px;
-      height: 140px;
       border: 2px dashed rgba(109, 129, 150, 0.08);
       animation-duration: 30s;
     }
-    .holographic-hud .hud-ring:nth-child(6) {
+    .orb-ring:nth-child(6) {
+      width: 140px;
+      height: 140px;
+      border-color: rgba(109, 129, 150, 0.06);
+      animation-duration: 15s;
+      animation-direction: reverse;
+    }
+    .orb-ring:nth-child(7) {
       width: 110px;
       height: 110px;
-      border-color: rgba(109, 129, 150, 0.06);
+      border-color: rgba(109, 129, 150, 0.08);
       animation-duration: 12s;
     }
     @keyframes ringRotate {
@@ -779,7 +800,45 @@
       100% { transform: translate(-50%, -50%) rotate(360deg); }
     }
 
-    .holographic-hud .radar-sweep {
+    /* Energy Particles */
+    .orb-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: visible;
+    }
+    .orb-particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(109, 129, 150, 0.25);
+      box-shadow: 0 0 8px rgba(109, 129, 150, 0.15);
+      animation: particleOrbit 8s linear infinite;
+    }
+    .orb-particle:nth-child(8) { top: 10%; left: 50%; animation-delay: 0s; }
+    .orb-particle:nth-child(9) { top: 30%; left: 85%; animation-delay: 1s; width: 6px; height: 6px; }
+    .orb-particle:nth-child(10) { top: 60%; left: 5%; animation-delay: 2s; }
+    .orb-particle:nth-child(11) { top: 85%; left: 40%; animation-delay: 0.5s; width: 5px; height: 5px; }
+    .orb-particle:nth-child(12) { top: 20%; left: 10%; animation-delay: 1.5s; width: 7px; height: 7px; }
+    .orb-particle:nth-child(13) { top: 70%; left: 90%; animation-delay: 2.5s; }
+    .orb-particle:nth-child(14) { top: 45%; left: 95%; animation-delay: 3s; width: 5px; height: 5px; }
+    .orb-particle:nth-child(15) { top: 50%; left: 2%; animation-delay: 0.8s; }
+    .orb-particle:nth-child(16) { top: 5%; left: 80%; animation-delay: 1.8s; width: 6px; height: 6px; }
+    .orb-particle:nth-child(17) { top: 90%; left: 70%; animation-delay: 2.8s; }
+    @keyframes particleOrbit {
+      0% { transform: rotate(0deg) translateX(80px) rotate(0deg) scale(1); opacity: 0.8; }
+      25% { opacity: 1; transform: rotate(90deg) translateX(85px) rotate(-90deg) scale(1.2); }
+      50% { transform: rotate(180deg) translateX(75px) rotate(-180deg) scale(0.8); opacity: 0.5; }
+      75% { opacity: 1; transform: rotate(270deg) translateX(85px) rotate(-270deg) scale(1.2); }
+      100% { transform: rotate(360deg) translateX(80px) rotate(-360deg) scale(1); opacity: 0.8; }
+    }
+
+    /* Radar Sweep */
+    .orb-radar {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -790,46 +849,48 @@
       overflow: hidden;
       pointer-events: none;
     }
-    .holographic-hud .radar-sweep::before {
+    .orb-radar::before {
       content: '';
       position: absolute;
       top: 50%;
       left: 50%;
       width: 50%;
       height: 2px;
-      background: linear-gradient(90deg, rgba(109, 129, 150, 0), rgba(109, 129, 150, 0.6), rgba(109, 129, 150, 0));
+      background: linear-gradient(90deg, rgba(109, 129, 150, 0), rgba(109, 129, 150, 0.5), rgba(109, 129, 150, 0));
       transform-origin: 0% 50%;
       animation: radarSweep 4s ease-in-out infinite;
-      box-shadow: 0 0 20px rgba(109, 129, 150, 0.2);
+      box-shadow: 0 0 20px rgba(109, 129, 150, 0.15);
     }
     @keyframes radarSweep {
-      0% { transform: rotate(0deg) scaleX(1); opacity: 0.3; }
-      50% { transform: rotate(180deg) scaleX(1.2); opacity: 1; }
-      100% { transform: rotate(360deg) scaleX(1); opacity: 0.3; }
+      0% { transform: rotate(0deg) scaleX(1); opacity: 0.2; }
+      50% { transform: rotate(180deg) scaleX(1.2); opacity: 0.8; }
+      100% { transform: rotate(360deg) scaleX(1); opacity: 0.2; }
     }
 
-    .holographic-hud .data-indicator {
+    /* Data Indicators */
+    .orb-data {
       position: absolute;
       font-size: 0.5rem;
       font-family: 'JetBrains Mono', monospace;
-      color: rgba(109, 129, 150, 0.6);
+      color: rgba(109, 129, 150, 0.5);
       letter-spacing: 0.5px;
-      text-shadow: 0 0 10px rgba(109, 129, 150, 0.2);
+      text-shadow: 0 0 10px rgba(109, 129, 150, 0.15);
       pointer-events: none;
-      animation: indicatorPulse 2s ease-in-out infinite;
+      animation: dataPulse 2s ease-in-out infinite;
     }
-    .holographic-hud .data-indicator:nth-child(8) { top: 8%; right: 15%; animation-delay: 0s; }
-    .holographic-hud .data-indicator:nth-child(9) { bottom: 12%; left: 10%; animation-delay: 0.5s; }
-    .holographic-hud .data-indicator:nth-child(10) { top: 45%; left: 6%; animation-delay: 1s; }
-    .holographic-hud .data-indicator:nth-child(11) { bottom: 30%; right: 8%; animation-delay: 1.5s; }
-    .holographic-hud .data-indicator:nth-child(12) { top: 20%; left: 12%; animation-delay: 0.8s; }
-    .holographic-hud .data-indicator:nth-child(13) { bottom: 8%; right: 20%; animation-delay: 1.2s; }
-    @keyframes indicatorPulse {
+    .orb-data:nth-child(18) { top: 8%; right: 15%; animation-delay: 0s; }
+    .orb-data:nth-child(19) { bottom: 12%; left: 10%; animation-delay: 0.5s; }
+    .orb-data:nth-child(20) { top: 45%; left: 6%; animation-delay: 1s; }
+    .orb-data:nth-child(21) { bottom: 30%; right: 8%; animation-delay: 1.5s; }
+    .orb-data:nth-child(22) { top: 20%; left: 12%; animation-delay: 0.8s; }
+    .orb-data:nth-child(23) { bottom: 8%; right: 20%; animation-delay: 1.2s; }
+    @keyframes dataPulse {
       0%, 100% { opacity: 0.4; transform: scale(0.9); }
       50% { opacity: 1; transform: scale(1.1); }
     }
 
-    .holographic-hud .hud-image-wrapper {
+    /* Center Image */
+    .orb-image-wrapper {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -841,17 +902,18 @@
       border: 2px solid rgba(109, 129, 150, 0.2);
       box-shadow: 0 0 30px rgba(109, 129, 150, 0.08), inset 0 0 30px rgba(109, 129, 150, 0.05);
       transition: all 0.5s ease;
+      z-index: 2;
     }
-    .holographic-hud .hud-image-wrapper img {
+    .orb-image-wrapper img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.6s ease;
     }
-    .holographic-hud .hud-image-wrapper:hover img {
+    .orb-image-wrapper:hover img {
       transform: scale(1.05);
     }
-    .holographic-hud .hud-image-wrapper::after {
+    .orb-image-wrapper::after {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -860,61 +922,56 @@
       pointer-events: none;
     }
 
-    .holographic-hud .glow-pulse {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: radial-gradient(circle at center, rgba(109, 129, 150, 0.03), transparent 70%);
-      animation: glowPulseHUD 3s ease-in-out infinite;
-      pointer-events: none;
-    }
-    @keyframes glowPulseHUD {
-      0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.3; }
-      50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
-    }
-
-    .holographic-hud .corner-label {
+    /* Corner Labels */
+    .orb-label {
       position: absolute;
       font-size: 0.45rem;
       font-family: 'JetBrains Mono', monospace;
-      color: rgba(109, 129, 150, 0.4);
+      color: rgba(109, 129, 150, 0.35);
       letter-spacing: 1px;
       text-transform: uppercase;
       pointer-events: none;
     }
-    .holographic-hud .corner-label.tl { top: 5%; left: 8%; }
-    .holographic-hud .corner-label.tr { top: 5%; right: 8%; }
-    .holographic-hud .corner-label.bl { bottom: 5%; left: 8%; }
-    .holographic-hud .corner-label.br { bottom: 5%; right: 8%; }
+    .orb-label.tl { top: 5%; left: 8%; }
+    .orb-label.tr { top: 5%; right: 8%; }
+    .orb-label.bl { bottom: 5%; left: 8%; }
+    .orb-label.br { bottom: 5%; right: 8%; }
 
     @media (max-width: 700px) {
       .hero-avatar {
         -webkit-flex: 0 0 220px;
         flex: 0 0 220px;
       }
-      .holographic-hud {
+      .energy-orb {
         width: 220px;
         height: 220px;
       }
-      .holographic-hud .hud-ring:nth-child(1) { width: 200px; height: 200px; }
-      .holographic-hud .hud-ring:nth-child(2) { width: 175px; height: 175px; }
-      .holographic-hud .hud-ring:nth-child(3) { width: 150px; height: 150px; }
-      .holographic-hud .hud-ring:nth-child(4) { width: 125px; height: 125px; }
-      .holographic-hud .hud-ring:nth-child(5) { width: 100px; height: 100px; }
-      .holographic-hud .hud-ring:nth-child(6) { width: 80px; height: 80px; }
-      .holographic-hud .hud-image-wrapper {
+      .orb-ring:nth-child(2) { width: 200px; height: 200px; }
+      .orb-ring:nth-child(3) { width: 175px; height: 175px; }
+      .orb-ring:nth-child(4) { width: 150px; height: 150px; }
+      .orb-ring:nth-child(5) { width: 125px; height: 125px; }
+      .orb-ring:nth-child(6) { width: 100px; height: 100px; }
+      .orb-ring:nth-child(7) { width: 80px; height: 80px; }
+      .orb-image-wrapper {
         width: 75px;
         height: 75px;
       }
-      .holographic-hud .data-indicator {
+      .orb-data {
         font-size: 0.4rem;
       }
-      .holographic-hud .corner-label {
+      .orb-label {
         font-size: 0.35rem;
+      }
+      .orb-particle {
+        width: 3px;
+        height: 3px;
+      }
+      @keyframes particleOrbit {
+        0% { transform: rotate(0deg) translateX(60px) rotate(0deg) scale(1); }
+        25% { transform: rotate(90deg) translateX(65px) rotate(-90deg) scale(1.2); }
+        50% { transform: rotate(180deg) translateX(55px) rotate(-180deg) scale(0.8); }
+        75% { transform: rotate(270deg) translateX(65px) rotate(-270deg) scale(1.2); }
+        100% { transform: rotate(360deg) translateX(60px) rotate(-360deg) scale(1); }
       }
     }
 
@@ -1505,7 +1562,7 @@
       .navbar {
         padding-top: calc(14px + env(safe-area-inset-top));
       }
-      .holographic-hud .hud-image-wrapper img {
+      .energy-orb .orb-image-wrapper img {
         -webkit-user-select: none;
         user-select: none;
       }
@@ -1524,7 +1581,7 @@
     .hero-bg-canvas .code-snippet {
       will-change: transform, opacity;
     }
-    .logo img, .holographic-hud .hud-ring {
+    .logo img, .energy-orb .orb-ring {
       will-change: transform;
     }
   </style>
@@ -1681,39 +1738,53 @@
           </div>
         </div>
 
-        <!-- ===== HOLOGRAPHIC HERO AVATAR ===== -->
+        <!-- ===== AI CORE ENERGY ORB AVATAR ===== -->
         <div class="hero-avatar fade-up">
-          <div class="holographic-hud">
-            <!-- Glow pulse -->
-            <div class="glow-pulse"></div>
+          <div class="energy-orb">
+            <!-- Core Glow -->
+            <div class="orb-core-glow"></div>
             
             <!-- Rotating Rings -->
-            <div class="hud-ring"></div>
-            <div class="hud-ring"></div>
-            <div class="hud-ring"></div>
-            <div class="hud-ring"></div>
-            <div class="hud-ring"></div>
-            <div class="hud-ring"></div>
+            <div class="orb-ring"></div>
+            <div class="orb-ring"></div>
+            <div class="orb-ring"></div>
+            <div class="orb-ring"></div>
+            <div class="orb-ring"></div>
+            <div class="orb-ring"></div>
+            
+            <!-- Energy Particles -->
+            <div class="orb-particles">
+              <div class="orb-particle"></div>
+              <div class="orb-particle"></div>
+              <div class="orb-particle"></div>
+              <div class="orb-particle"></div>
+              <div class="orb-particle"></div>
+              <div class="orb-particle"></div>
+              <div class="orb-particle"></div>
+              <div class="orb-particle"></div>
+              <div class="orb-particle"></div>
+              <div class="orb-particle"></div>
+            </div>
             
             <!-- Radar Sweep -->
-            <div class="radar-sweep"></div>
+            <div class="orb-radar"></div>
             
             <!-- Data Indicators -->
-            <span class="data-indicator">◉ 98%</span>
-            <span class="data-indicator">✦ 4.8</span>
-            <span class="data-indicator">⬡ 15+</span>
-            <span class="data-indicator">◈ 24/7</span>
-            <span class="data-indicator">⏣ 5★</span>
-            <span class="data-indicator">◐ 100%</span>
+            <span class="orb-data">◉ 98%</span>
+            <span class="orb-data">✦ 4.8</span>
+            <span class="orb-data">⬡ 15+</span>
+            <span class="orb-data">◈ 24/7</span>
+            <span class="orb-data">⏣ 5★</span>
+            <span class="orb-data">◐ 100%</span>
             
             <!-- Corner Labels -->
-            <span class="corner-label tl">● SYSTEM</span>
-            <span class="corner-label tr">● ONLINE</span>
-            <span class="corner-label bl">● SECURE</span>
-            <span class="corner-label br">● ACTIVE</span>
+            <span class="orb-label tl">● SYSTEM</span>
+            <span class="orb-label tr">● ONLINE</span>
+            <span class="orb-label bl">● SECURE</span>
+            <span class="orb-label br">● ACTIVE</span>
             
             <!-- Center Image -->
-            <div class="hud-image-wrapper">
+            <div class="orb-image-wrapper">
               <img src="IMG_20260710_160150_773.jpg" alt="Rachel De La Cruz" />
             </div>
           </div>
