@@ -20,19 +20,15 @@
       --ink-blue-gray: #6D8196;
       --ink-dark: #2a2a2a;
       --ink-light-bg: #f8f8f0;
-      --ink-border: rgba(74, 74, 74, 0.18);
-      --glass-bg: rgba(255, 255, 227, 0.18);
-      --glass-border: rgba(109, 129, 150, 0.25);
+      --ink-border: rgba(74, 74, 74, 0.15);
+      --glass-bg: rgba(255, 255, 227, 0.15);
+      --glass-border: rgba(109, 129, 150, 0.2);
       --shadow-sm: 0 4px 20px rgba(0,0,0,0.03);
       --shadow-lg: 0 12px 40px rgba(0,0,0,0.08);
       --transition-smooth: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
       --glow-color: rgba(109, 129, 150, 0.3);
       --safe-area-inset-top: env(safe-area-inset-top, 0px);
       --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
-      --hud-cyan: #6D8196;
-      --hud-blue: #5a7a8c;
-      --hud-purple: #8a7a9a;
-      --hud-glow: rgba(109, 129, 150, 0.3);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -119,7 +115,7 @@
       transition: width 0.1s linear;
     }
 
-    /* ===== BOOTLOAD ANIMATION - VIRTUAL ASSISTANT THEME ===== */
+    /* ===== BOOTLOAD ANIMATION ===== */
     .boot-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -338,16 +334,16 @@
     }
     body.dark .section-sub { color: #a0a098; }
 
-    /* ===== NAVBAR ===== */
+    /* ===== NAVBAR - SINGLE LANE ===== */
     .navbar {
       display: -webkit-flex;
       display: flex;
-      -webkit-justify-content: space-between;
-      justify-content: space-between;
       -webkit-align-items: center;
       align-items: center;
-      padding: 14px 24px;
-      padding-top: calc(14px + var(--safe-area-inset-top));
+      -webkit-justify-content: space-between;
+      justify-content: space-between;
+      padding: 10px 20px;
+      padding-top: calc(10px + var(--safe-area-inset-top));
       background: rgba(255, 255, 227, 0.45);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
@@ -356,78 +352,171 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      -webkit-flex-wrap: wrap;
-      flex-wrap: wrap;
       gap: 12px;
+      -webkit-flex-wrap: nowrap;
+      flex-wrap: nowrap;
     }
     body.dark .navbar {
       background: rgba(26, 26, 22, 0.85);
       border-bottom-color: rgba(255,255,255,0.06);
     }
-    .logo {
+
+    .navbar-left {
       display: -webkit-flex;
       display: flex;
       -webkit-align-items: center;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
+      -webkit-flex-shrink: 0;
+      flex-shrink: 0;
     }
-    .logo img {
-      height: 40px;
+    .navbar-left .logo-img {
+      height: 32px;
       width: auto;
-      border-radius: 8px;
+      border-radius: 6px;
       object-fit: contain;
-      transition: transform 0.3s ease;
       background: transparent !important;
       mix-blend-mode: multiply;
     }
-    .logo img:hover {
-      transform: scale(1.05);
-    }
-    body.dark .logo img {
+    body.dark .navbar-left .logo-img {
       mix-blend-mode: screen;
       filter: brightness(1.1);
     }
-    .logo .logo-divider {
+    .navbar-left .logo-divider {
       width: 1px;
-      height: 36px;
+      height: 28px;
       background: var(--ink-border);
       -webkit-flex-shrink: 0;
       flex-shrink: 0;
     }
-    .nav-links {
+    .navbar-left .brand-text {
       display: -webkit-flex;
       display: flex;
-      gap: 6px;
-      list-style: none;
-      -webkit-flex-wrap: wrap;
-      flex-wrap: wrap;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      line-height: 1.1;
     }
-    .nav-links a {
-      padding: 8px 14px;
-      border-radius: 40px;
-      font-weight: 500;
+    .navbar-left .brand-text .name {
+      font-weight: 700;
       font-size: 0.85rem;
-      transition: 0.2s;
       color: var(--ink-charcoal);
+    }
+    .navbar-left .brand-text .name .highlight {
+      color: var(--ink-blue-gray);
+    }
+    .navbar-left .brand-text .tagline {
+      font-size: 0.5rem;
+      font-weight: 400;
+      color: #6b6b60;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    body.dark .navbar-left .brand-text .name { color: #e0e0d6; }
+    body.dark .navbar-left .brand-text .tagline { color: #8a8a80; }
+
+    .navbar-center {
       display: -webkit-flex;
       display: flex;
       -webkit-align-items: center;
       align-items: center;
-      gap: 4px;
-      -webkit-tap-highlight-color: transparent;
+      gap: 6px;
+      -webkit-flex: 1;
+      flex: 1;
+      -webkit-justify-content: center;
+      justify-content: center;
+      min-width: 0;
+      overflow: hidden;
     }
-    .nav-links a:hover { background: rgba(109, 129, 150, 0.1); color: var(--ink-blue-gray); }
-    .nav-links a.active { background: rgba(109, 129, 150, 0.15); color: var(--ink-blue-gray); font-weight: 600; }
-    body.dark .nav-links a { color: #cbcbcb; }
-    body.dark .nav-links a:hover { background: rgba(109, 129, 150, 0.2); color: #FFFFE3; }
-    body.dark .nav-links a.active { background: rgba(109, 129, 150, 0.25); color: #FFFFE3; }
+    .promo-badge {
+      display: -webkit-inline-flex;
+      display: inline-flex;
+      -webkit-align-items: center;
+      align-items: center;
+      gap: 6px;
+      background: rgba(109, 129, 150, 0.08);
+      padding: 3px 14px 3px 10px;
+      border-radius: 40px;
+      font-size: 0.65rem;
+      font-weight: 500;
+      color: var(--ink-blue-gray);
+      border: 1px solid rgba(109, 129, 150, 0.12);
+      white-space: nowrap;
+    }
+    .promo-badge .promo-icon {
+      font-size: 0.7rem;
+      animation: promoPulse 2s ease-in-out infinite;
+    }
+    .promo-badge .highlight-text {
+      color: #d4a853;
+      font-weight: 700;
+    }
+    .promo-badge .cta-arrow {
+      display: inline-block;
+      animation: arrowBounce 1.5s ease-in-out infinite;
+    }
+    @keyframes promoPulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.15); opacity: 1; }
+    }
+    @keyframes arrowBounce {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(4px); }
+    }
+    body.dark .promo-badge {
+      background: rgba(109, 129, 150, 0.12);
+      border-color: rgba(109, 129, 150, 0.2);
+      color: #a0a098;
+    }
+
+    .navbar-right {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-align-items: center;
+      align-items: center;
+      gap: 6px;
+      -webkit-flex-shrink: 0;
+      flex-shrink: 0;
+    }
+    .va-badge {
+      display: -webkit-inline-flex;
+      display: inline-flex;
+      -webkit-align-items: center;
+      align-items: center;
+      gap: 4px;
+      background: rgba(109, 129, 150, 0.08);
+      padding: 3px 10px 3px 8px;
+      border-radius: 40px;
+      font-size: 0.6rem;
+      font-weight: 500;
+      color: var(--ink-blue-gray);
+      border: 1px solid rgba(109, 129, 150, 0.12);
+      white-space: nowrap;
+    }
+    .va-badge .pulse-dot {
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #6D8196;
+      animation: pulse-dot 1.8s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.6); }
+    }
+    body.dark .va-badge {
+      background: rgba(109, 129, 150, 0.12);
+      border-color: rgba(109, 129, 150, 0.2);
+      color: #a0a098;
+    }
+
     .hamburger, #themeToggle {
       background: transparent;
       border: 1px solid var(--ink-border);
       border-radius: 40px;
-      width: 40px;
-      height: 40px;
-      font-size: 1.2rem;
+      width: 34px;
+      height: 34px;
+      font-size: 1rem;
       cursor: pointer;
       display: -webkit-flex;
       display: flex;
@@ -445,72 +534,105 @@
     .hamburger { display: none; }
     #themeToggle:hover { background: rgba(109, 129, 150, 0.1); }
 
-    /* ===== PROMOTION SCROLLER ===== */
-    .promo-scroller {
+    /* Mobile nav links - hidden by default, shown on hamburger */
+    .nav-links {
+      display: none;
       width: 100%;
-      overflow: hidden;
-      background: linear-gradient(90deg, rgba(109, 129, 150, 0.08), rgba(109, 129, 150, 0.15), rgba(109, 129, 150, 0.08));
-      padding: 6px 0;
-      border-bottom: 1px solid var(--ink-border);
-      position: -webkit-sticky;
-      position: sticky;
-      top: 0;
-      z-index: 49;
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      gap: 2px;
+      padding: 10px 0 4px;
+      list-style: none;
+      border-top: 1px solid var(--ink-border);
+      margin-top: 4px;
     }
-    body.dark .promo-scroller {
-      background: linear-gradient(90deg, rgba(109,129,150,0.05), rgba(109,129,150,0.1), rgba(109,129,150,0.05));
-      border-bottom-color: rgba(255,255,255,0.05);
-    }
-    .promo-scroller .promo-track {
+    .nav-links.show {
       display: -webkit-flex;
       display: flex;
-      white-space: nowrap;
-      animation: scrollPromo 20s linear infinite;
-      width: max-content;
     }
-    .promo-scroller .promo-item {
-      display: -webkit-inline-flex;
-      display: inline-flex;
+    .nav-links a {
+      padding: 8px 14px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.85rem;
+      transition: 0.2s;
+      color: var(--ink-charcoal);
+      display: -webkit-flex;
+      display: flex;
       -webkit-align-items: center;
       align-items: center;
-      gap: 8px;
-      padding: 0 40px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--ink-blue-gray);
-      letter-spacing: 0.3px;
+      gap: 4px;
+      -webkit-tap-highlight-color: transparent;
     }
-    .promo-scroller .promo-item .promo-icon {
-      font-size: 1rem;
-      animation: promoPulse 2s ease-in-out infinite;
-    }
-    .promo-scroller .promo-item .highlight-text {
-      color: #d4a853;
-      font-weight: 700;
-    }
-    .promo-scroller .promo-item .cta-arrow {
-      display: inline-block;
-      animation: arrowBounce 1.5s ease-in-out infinite;
-    }
-    @keyframes scrollPromo {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    @keyframes promoPulse {
-      0%, 100% { transform: scale(1); opacity: 0.7; }
-      50% { transform: scale(1.2); opacity: 1; }
-    }
-    @keyframes arrowBounce {
-      0%, 100% { transform: translateX(0); }
-      50% { transform: translateX(6px); }
-    }
-    body.dark .promo-scroller .promo-item {
-      color: #a0a098;
+    .nav-links a:hover { background: rgba(109, 129, 150, 0.1); color: var(--ink-blue-gray); }
+    .nav-links a.active { background: rgba(109, 129, 150, 0.12); color: var(--ink-blue-gray); font-weight: 600; }
+    body.dark .nav-links a { color: #cbcbcb; }
+    body.dark .nav-links a:hover { background: rgba(109, 129, 150, 0.2); color: #FFFFE3; }
+    body.dark .nav-links a.active { background: rgba(109, 129, 150, 0.25); color: #FFFFE3; }
+
+    @media (max-width: 700px) {
+      .navbar {
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+        padding: 8px 16px;
+        gap: 6px;
+      }
+      .navbar-center {
+        -webkit-order: 3;
+        order: 3;
+        -webkit-flex: 1 1 100%;
+        flex: 1 1 100%;
+        -webkit-justify-content: center;
+        justify-content: center;
+      }
+      .promo-badge {
+        font-size: 0.55rem;
+        padding: 2px 10px 2px 8px;
+      }
+      .navbar-left .logo-img {
+        height: 28px;
+      }
+      .navbar-left .brand-text .name {
+        font-size: 0.75rem;
+      }
+      .navbar-left .brand-text .tagline {
+        font-size: 0.45rem;
+      }
+      .hamburger {
+        display: -webkit-flex;
+        display: flex;
+      }
+      .va-badge {
+        font-size: 0.5rem;
+        padding: 2px 8px 2px 6px;
+      }
+      #themeToggle {
+        width: 30px;
+        height: 30px;
+        font-size: 0.9rem;
+      }
     }
 
-    /* ===== GLASS BOX WITH TRANSPARENT BORDER ANIMATION ===== */
+    @media (max-width: 480px) {
+      .navbar-left .logo-img {
+        height: 24px;
+      }
+      .navbar-left .brand-text .name {
+        font-size: 0.65rem;
+      }
+      .navbar-left .brand-text .tagline {
+        font-size: 0.4rem;
+      }
+      .promo-badge {
+        font-size: 0.5rem;
+        padding: 2px 8px 2px 6px;
+      }
+      .promo-badge .promo-icon {
+        font-size: 0.55rem;
+      }
+    }
+
+    /* ===== GLASS BOX ===== */
     .glass-box {
       position: relative;
       background: rgba(255, 255, 227, 0.15);
@@ -544,9 +666,7 @@
       transition: opacity 0.6s ease;
       pointer-events: none;
     }
-    .glass-box:hover::before {
-      opacity: 1;
-    }
+    .glass-box:hover::before { opacity: 1; }
     .glass-box::after {
       content: '';
       position: absolute;
@@ -728,7 +848,6 @@
       box-shadow: 0 0 60px rgba(109, 129, 150, 0.08), inset 0 0 80px rgba(109, 129, 150, 0.02);
     }
 
-    /* Orb Core Glow */
     .orb-core-glow {
       position: absolute;
       top: 50%;
@@ -746,7 +865,6 @@
       50% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
     }
 
-    /* Orb Rings */
     .orb-ring {
       position: absolute;
       border-radius: 50%;
@@ -800,7 +918,6 @@
       100% { transform: translate(-50%, -50%) rotate(360deg); }
     }
 
-    /* Energy Particles */
     .orb-particles {
       position: absolute;
       top: 0;
@@ -837,7 +954,6 @@
       100% { transform: rotate(360deg) translateX(80px) rotate(-360deg) scale(1); opacity: 0.8; }
     }
 
-    /* Radar Sweep */
     .orb-radar {
       position: absolute;
       width: 100%;
@@ -867,7 +983,6 @@
       100% { transform: rotate(360deg) scaleX(1); opacity: 0.2; }
     }
 
-    /* Data Indicators */
     .orb-data {
       position: absolute;
       font-size: 0.5rem;
@@ -889,7 +1004,6 @@
       50% { opacity: 1; transform: scale(1.1); }
     }
 
-    /* Center Image */
     .orb-image-wrapper {
       position: absolute;
       top: 50%;
@@ -922,7 +1036,6 @@
       pointer-events: none;
     }
 
-    /* Corner Labels */
     .orb-label {
       position: absolute;
       font-size: 0.45rem;
@@ -1473,38 +1586,6 @@
     }
     body.dark footer { color: #8a8a80; }
 
-    /* ===== VIRTUAL ASSISTANT BADGE ===== */
-    .assistant-badge {
-      display: -webkit-inline-flex;
-      display: inline-flex;
-      -webkit-align-items: center;
-      align-items: center;
-      gap: 6px;
-      background: rgba(109, 129, 150, 0.08);
-      padding: 4px 14px 4px 10px;
-      border-radius: 40px;
-      font-size: 0.7rem;
-      font-weight: 500;
-      color: var(--ink-blue-gray);
-      border: 1px solid rgba(109, 129, 150, 0.15);
-    }
-    body.dark .assistant-badge {
-      background: rgba(109, 129, 150, 0.12);
-      border-color: rgba(109, 129, 150, 0.2);
-      color: #cbcbcb;
-    }
-    .assistant-badge .pulse-dot {
-      display: inline-block;
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: #6D8196;
-      animation: pulse-dot 1.8s ease-in-out infinite;
-    }
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.7); }
-    }
-
     /* ===== FADE UP ANIMATION ===== */
     .fade-up {
       opacity: 0;
@@ -1540,9 +1621,6 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 700px) {
-      .nav-links { display: none; width: 100%; -webkit-flex-direction: column; flex-direction: column; gap: 4px; padding: 12px 0; }
-      .nav-links.show { display: -webkit-flex; display: flex; }
-      .hamburger { display: -webkit-flex; display: flex; }
       .hero { -webkit-flex-direction: column-reverse; flex-direction: column-reverse; text-align: center; }
       .hero-content h1 { font-size: 2.1rem; }
       .section-title { font-size: 1.6rem; }
@@ -1554,13 +1632,12 @@
       .skill-chip { padding: 10px 18px; font-size: 0.8rem; }
       .edu-grid, .cert-grid { -ms-grid-columns: 1fr; grid-template-columns: 1fr; }
       .timeline-item { padding: 18px 20px; }
-      .promo-scroller .promo-item { font-size: 0.7rem; padding: 0 20px; }
     }
 
     /* ===== iOS SPECIFIC FIXES ===== */
     @supports (-webkit-touch-callout: none) {
       .navbar {
-        padding-top: calc(14px + env(safe-area-inset-top));
+        padding-top: calc(10px + env(safe-area-inset-top));
       }
       .energy-orb .orb-image-wrapper img {
         -webkit-user-select: none;
@@ -1581,7 +1658,7 @@
     .hero-bg-canvas .code-snippet {
       will-change: transform, opacity;
     }
-    .logo img, .energy-orb .orb-ring {
+    .logo-img, .energy-orb .orb-ring {
       will-change: transform;
     }
   </style>
@@ -1591,7 +1668,7 @@
   <!-- ===== SCROLL PROGRESS ===== -->
   <div id="scrollProgress"></div>
 
-  <!-- ===== BOOTLOAD OVERLAY - VIRTUAL ASSISTANT THEME ===== -->
+  <!-- ===== BOOTLOAD OVERLAY ===== -->
   <div class="boot-overlay" id="bootOverlay">
     <div class="boot-terminal">
       <div class="boot-avatar">
@@ -1628,61 +1705,39 @@
     </div>
   </div>
 
-  <!-- ===== PROMOTION SCROLLER ===== -->
-  <div class="promo-scroller">
-    <div class="promo-track">
-      <span class="promo-item">
-        <span class="promo-icon">🏖️</span>
-        <span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span>
-        <span class="cta-arrow">→</span>
-      </span>
-      <span class="promo-item">
-        <span class="promo-icon">✨</span>
-        <span>Luxury resort experience in <span class="highlight-text">Laguna</span></span>
-        <span class="cta-arrow">→</span>
-      </span>
-      <span class="promo-item">
-        <span class="promo-icon">🏖️</span>
-        <span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span>
-        <span class="cta-arrow">→</span>
-      </span>
-      <span class="promo-item">
-        <span class="promo-icon">✨</span>
-        <span>Luxury resort experience in <span class="highlight-text">Laguna</span></span>
-        <span class="cta-arrow">→</span>
-      </span>
-      <span class="promo-item">
-        <span class="promo-icon">🏖️</span>
-        <span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span>
-        <span class="cta-arrow">→</span>
-      </span>
-      <span class="promo-item">
-        <span class="promo-icon">✨</span>
-        <span>Luxury resort experience in <span class="highlight-text">Laguna</span></span>
-        <span class="cta-arrow">→</span>
-      </span>
-      <span class="promo-item">
-        <span class="promo-icon">🏖️</span>
-        <span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span>
-        <span class="cta-arrow">→</span>
-      </span>
-      <span class="promo-item">
-        <span class="promo-icon">✨</span>
-        <span>Luxury resort experience in <span class="highlight-text">Laguna</span></span>
-        <span class="cta-arrow">→</span>
-      </span>
-    </div>
-  </div>
-
   <!-- ===== MAIN CONTENT ===== -->
   <div id="mainContent" style="opacity:0; transition: opacity 0.6s ease;">
-    <!-- ===== NAVBAR ===== -->
-    <div class="navbar">
-      <div class="logo">
-        <img src="1783599597236~2.jpg" alt="Rachel De La Cruz Logo" />
-        <div class="logo-divider"></div>
-        <img src="IMG_8292.jpeg" alt="Company Logo" />
+    <!-- ===== NAVBAR - SINGLE LANE ===== -->
+    <nav class="navbar">
+      <!-- Left: Logo + Brand -->
+      <div class="navbar-left">
+        <img src="1783599597236~2.jpg" alt="Logo" class="logo-img" />
+        <span class="logo-divider"></span>
+        <div class="brand-text">
+          <span class="name">i<span class="highlight">Profile</span></span>
+          <span class="tagline">Connecting Your Digital Identity</span>
+        </div>
       </div>
+
+      <!-- Center: Promotion Badge -->
+      <div class="navbar-center">
+        <span class="promo-badge">
+          <span class="promo-icon">🏖️</span>
+          <span><span class="highlight-text">Villa Arcadia</span></span>
+          <span class="cta-arrow">→</span>
+        </span>
+      </div>
+
+      <!-- Right: VA Badge + Controls -->
+      <div class="navbar-right">
+        <span class="va-badge">
+          <span class="pulse-dot"></span> VA active
+        </span>
+        <button class="hamburger" id="hamburger">☰</button>
+        <button id="themeToggle">🌙</button>
+      </div>
+
+      <!-- Mobile Navigation Links -->
       <ul class="nav-links" id="navLinks">
         <li><a href="#profile" class="active">👤 Profile</a></li>
         <li><a href="#experience">💼 Experience</a></li>
@@ -1692,17 +1747,11 @@
         <li><a href="#testimonials">⭐ Testimonials</a></li>
         <li><a href="#contact">📬 Contact</a></li>
       </ul>
-      <div style="display: -webkit-flex; display: flex; gap: 8px;">
-        <span class="assistant-badge"><span class="pulse-dot"></span> VA active</span>
-        <button class="hamburger" id="hamburger">☰</button>
-        <button id="themeToggle">🌙</button>
-      </div>
-    </div>
+    </nav>
 
     <main class="container">
       <!-- ===== HERO ===== -->
       <section id="profile" class="hero">
-        <!-- Virtual Assistant Background Animation -->
         <div class="hero-bg-canvas">
           <div class="grid-line horizontal"></div>
           <div class="grid-line horizontal"></div>
@@ -1741,18 +1790,13 @@
         <!-- ===== AI CORE ENERGY ORB AVATAR ===== -->
         <div class="hero-avatar fade-up">
           <div class="energy-orb">
-            <!-- Core Glow -->
             <div class="orb-core-glow"></div>
-            
-            <!-- Rotating Rings -->
             <div class="orb-ring"></div>
             <div class="orb-ring"></div>
             <div class="orb-ring"></div>
             <div class="orb-ring"></div>
             <div class="orb-ring"></div>
             <div class="orb-ring"></div>
-            
-            <!-- Energy Particles -->
             <div class="orb-particles">
               <div class="orb-particle"></div>
               <div class="orb-particle"></div>
@@ -1765,25 +1809,17 @@
               <div class="orb-particle"></div>
               <div class="orb-particle"></div>
             </div>
-            
-            <!-- Radar Sweep -->
             <div class="orb-radar"></div>
-            
-            <!-- Data Indicators -->
             <span class="orb-data">◉ 98%</span>
             <span class="orb-data">✦ 4.8</span>
             <span class="orb-data">⬡ 15+</span>
             <span class="orb-data">◈ 24/7</span>
             <span class="orb-data">⏣ 5★</span>
             <span class="orb-data">◐ 100%</span>
-            
-            <!-- Corner Labels -->
             <span class="orb-label tl">● SYSTEM</span>
             <span class="orb-label tr">● ONLINE</span>
             <span class="orb-label bl">● SECURE</span>
             <span class="orb-label br">● ACTIVE</span>
-            
-            <!-- Center Image -->
             <div class="orb-image-wrapper">
               <img src="IMG_20260710_160150_773.jpg" alt="Rachel De La Cruz" />
             </div>
@@ -1800,7 +1836,7 @@
         </p>
       </div>
 
-      <!-- ===== EXPERIENCE - CENTERED WITH ANIMATION ===== -->
+      <!-- ===== EXPERIENCE ===== -->
       <section id="experience" class="section">
         <div class="exp-particles">
           <div class="exp-particle"></div>
@@ -1915,7 +1951,7 @@
         </div>
       </section>
 
-      <!-- ===== SKILLS - EYE CATCHING ANIMATION ===== -->
+      <!-- ===== SKILLS ===== -->
       <section id="skills" class="section">
         <div class="skills-particles">
           <div class="particle"></div>
@@ -1957,7 +1993,7 @@
         </div>
       </section>
 
-      <!-- ===== EDUCATION - SPLIT SECTION ===== -->
+      <!-- ===== EDUCATION ===== -->
       <section id="education" class="section">
         <h2 class="section-title fade-up"><span class="icon">🎓</span> Education <span class="accent">·</span></h2>
         <div class="section-sub fade-up">Academic background & professional training</div>
@@ -1977,7 +2013,7 @@
         </div>
       </section>
 
-      <!-- ===== CERTIFICATIONS - SPLIT SECTION ===== -->
+      <!-- ===== CERTIFICATIONS ===== -->
       <section id="certifications" class="section">
         <h2 class="section-title fade-up"><span class="icon">📜</span> Certifications <span class="accent">·</span></h2>
         <div class="section-sub fade-up">Licenses & professional credentials</div>
@@ -2184,19 +2220,13 @@
       fadeObserver.observe(el);
     });
 
-    // ===== DETECT PLATFORM FOR CONSISTENCY =====
+    // ===== DETECT PLATFORM =====
     (function detectPlatform() {
       var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
                   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
       var isAndroid = /Android/.test(navigator.userAgent);
       
-      if (isIOS) {
-        document.documentElement.classList.add('platform-ios');
-        document.querySelectorAll('.btn, .nav-links a, .hamburger, #themeToggle').forEach(function(el) {
-          el.style.webkitTapHighlightColor = 'transparent';
-        });
-      } else if (isAndroid) {
-        document.documentElement.classList.add('platform-android');
+      if (isIOS || isAndroid) {
         document.querySelectorAll('.btn, .nav-links a, .hamburger, #themeToggle').forEach(function(el) {
           el.style.webkitTapHighlightColor = 'transparent';
         });
