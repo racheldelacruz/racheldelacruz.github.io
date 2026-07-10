@@ -345,6 +345,67 @@
     .hamburger { display: none; }
     #themeToggle:hover { background: rgba(107, 129, 150, 0.1); }
 
+    /* ===== PROMOTION SCROLLER ===== */
+    .promo-scroller {
+      width: 100%;
+      overflow: hidden;
+      background: linear-gradient(90deg, rgba(109, 129, 150, 0.08), rgba(109, 129, 150, 0.15), rgba(109, 129, 150, 0.08));
+      padding: 6px 0;
+      border-bottom: 1px solid var(--ink-border);
+      position: sticky;
+      top: 0;
+      z-index: 49;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    .promo-scroller .promo-track {
+      display: flex;
+      white-space: nowrap;
+      animation: scrollPromo 20s linear infinite;
+      width: max-content;
+    }
+    .promo-scroller .promo-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 40px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--ink-blue-gray);
+      letter-spacing: 0.3px;
+    }
+    .promo-scroller .promo-item .promo-icon {
+      font-size: 1rem;
+      animation: promoPulse 2s ease-in-out infinite;
+    }
+    .promo-scroller .promo-item .highlight-text {
+      color: #d4a853;
+      font-weight: 700;
+    }
+    .promo-scroller .promo-item .cta-arrow {
+      display: inline-block;
+      animation: arrowBounce 1.5s ease-in-out infinite;
+    }
+    @keyframes scrollPromo {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes promoPulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.2); opacity: 1; }
+    }
+    @keyframes arrowBounce {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(6px); }
+    }
+    body.dark .promo-scroller {
+      background: linear-gradient(90deg, rgba(107,129,150,0.05), rgba(107,129,150,0.12), rgba(107,129,150,0.05));
+      border-bottom-color: rgba(255,255,255,0.05);
+    }
+    body.dark .promo-scroller .promo-item {
+      color: #a0a098;
+    }
+
     /* ===== GLASS BOX WITH TRANSPARENT BORDER ANIMATION ===== */
     .glass-box {
       position: relative;
@@ -1206,6 +1267,7 @@
       .skill-chip { padding: 10px 18px; font-size: 0.8rem; }
       .edu-grid, .cert-grid { grid-template-columns: 1fr; }
       .timeline-item { padding: 18px 20px; }
+      .promo-scroller .promo-item { font-size: 0.7rem; padding: 0 20px; }
     }
   </style>
 </head>
@@ -1248,6 +1310,52 @@
         <div class="ready-text"><span class="check">●</span> SYSTEM ONLINE</div>
         <div class="ready-sub">virtual assistant · project management · 15+ years</div>
       </div>
+    </div>
+  </div>
+
+  <!-- ===== PROMOTION SCROLLER ===== -->
+  <div class="promo-scroller">
+    <div class="promo-track">
+      <span class="promo-item">
+        <span class="promo-icon">🏖️</span>
+        <span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span>
+        <span class="cta-arrow">→</span>
+      </span>
+      <span class="promo-item">
+        <span class="promo-icon">✨</span>
+        <span>Luxury resort experience in <span class="highlight-text">Laguna</span></span>
+        <span class="cta-arrow">→</span>
+      </span>
+      <span class="promo-item">
+        <span class="promo-icon">🏖️</span>
+        <span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span>
+        <span class="cta-arrow">→</span>
+      </span>
+      <span class="promo-item">
+        <span class="promo-icon">✨</span>
+        <span>Luxury resort experience in <span class="highlight-text">Laguna</span></span>
+        <span class="cta-arrow">→</span>
+      </span>
+      <span class="promo-item">
+        <span class="promo-icon">🏖️</span>
+        <span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span>
+        <span class="cta-arrow">→</span>
+      </span>
+      <span class="promo-item">
+        <span class="promo-icon">✨</span>
+        <span>Luxury resort experience in <span class="highlight-text">Laguna</span></span>
+        <span class="cta-arrow">→</span>
+      </span>
+      <span class="promo-item">
+        <span class="promo-icon">🏖️</span>
+        <span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span>
+        <span class="cta-arrow">→</span>
+      </span>
+      <span class="promo-item">
+        <span class="promo-icon">✨</span>
+        <span>Luxury resort experience in <span class="highlight-text">Laguna</span></span>
+        <span class="cta-arrow">→</span>
+      </span>
     </div>
   </div>
 
