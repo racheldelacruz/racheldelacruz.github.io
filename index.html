@@ -449,18 +449,47 @@
       -webkit-flex-shrink: 0;
       flex-shrink: 0;
     }
-    .navbar-left .logo-img {
+
+    /* ===== NEW LOGO WRAPPER WITH SHINE ANIMATION ===== */
+    .logo-wrapper {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      border-radius: 6px;
+      line-height: 0;
+    }
+    .logo-wrapper::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -60%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+      animation: shineLogo 30s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+    @keyframes shineLogo {
+      0% { left: -60%; }
+      5% { left: 100%; }
+      100% { left: 100%; }
+    }
+
+    .logo-img {
       height: 30px;
       width: auto;
       border-radius: 6px;
       object-fit: contain;
       background: transparent !important;
       mix-blend-mode: multiply;
+      display: block;
     }
-    body.dark .navbar-left .logo-img {
+    body.dark .logo-img {
       mix-blend-mode: screen;
       filter: brightness(1.1);
     }
+
     .navbar-left .brand-text {
       display: -webkit-flex;
       display: flex;
@@ -476,7 +505,7 @@
       position: relative;
       overflow: hidden;
     }
-    /* Shine animation for iProfile logo */
+    /* Shine animation for iProfile text (kept as requested) */
     .navbar-left .brand-text .name::before {
       content: '';
       position: absolute;
@@ -679,7 +708,7 @@
         display: -webkit-flex;
         display: flex;
       }
-      .navbar-left .logo-img {
+      .logo-img {
         height: 24px;
       }
       .navbar-left .brand-text .name {
@@ -707,7 +736,7 @@
     }
 
     @media (max-width: 480px) {
-      .navbar-left .logo-img {
+      .logo-img {
         height: 20px;
       }
       .navbar-left .brand-text .name {
@@ -1853,7 +1882,9 @@
     <nav class="navbar">
       <!-- Left: Logo + iProfile + Villa Arcadia -->
       <div class="navbar-left">
-        <img src="1783599597236~2.jpg" alt="Logo" class="logo-img" />
+        <span class="logo-wrapper">
+          <img src="1783726853698~2.jpg" alt="Logo" class="logo-img" />
+        </span>
         <div class="brand-text">
           <span class="name">i<span class="highlight">Profile</span></span>
           <span class="divider">·</span>
