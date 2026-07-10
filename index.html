@@ -435,23 +435,108 @@
       border-color: var(--ink-blue-gray);
       background: rgba(107, 129, 150, 0.15);
     }
+
+    /* New profile picture style: Full-width image with corner accent */
     .hero-avatar {
-      flex: 0 0 180px;
+      flex: 0 0 280px;
+      max-width: 100%;
       text-align: center;
+      position: relative;
     }
-    .hero-avatar img {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
+    .hero-avatar .image-wrapper {
+      position: relative;
+      display: inline-block;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s ease;
+      border: 3px solid rgba(109, 129, 150, 0.2);
+      background: var(--ink-ivory);
+      line-height: 0;
+    }
+    .hero-avatar .image-wrapper:hover {
+      transform: scale(1.02) translateY(-6px);
+      box-shadow: 0 20px 60px rgba(109, 129, 150, 0.2);
+    }
+    .hero-avatar .image-wrapper img {
+      width: 280px;
+      height: 280px;
       object-fit: cover;
-      border: 4px solid var(--ink-blue-gray);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.06);
-      animation: avatarFloat 5s ease-in-out infinite;
+      display: block;
+      transition: transform 0.6s ease;
     }
-    @keyframes avatarFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+    .hero-avatar .image-wrapper:hover img {
+      transform: scale(1.04);
     }
+    /* Animated corner accent */
+    .hero-avatar .corner-accent {
+      position: absolute;
+      bottom: -6px;
+      right: -6px;
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, transparent 50%, var(--ink-blue-gray) 50%);
+      clip-path: polygon(100% 0, 0 100%, 100% 100%);
+      opacity: 0.5;
+      transition: opacity 0.4s ease, transform 0.6s ease;
+      animation: cornerPulse 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .hero-avatar .image-wrapper:hover .corner-accent {
+      opacity: 0.9;
+      transform: scale(1.1) rotate(4deg);
+    }
+    @keyframes cornerPulse {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.05); }
+    }
+    /* Floating badge over the image */
+    .hero-avatar .floating-badge {
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      background: rgba(255, 255, 227, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(109, 129, 150, 0.2);
+      padding: 6px 16px 6px 12px;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ink-blue-gray);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      animation: badgeFloat 4s ease-in-out infinite;
+      letter-spacing: 0.3px;
+      z-index: 2;
+    }
+    .hero-avatar .floating-badge .pulse-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #6fcf97;
+      animation: pulse-dot 1.8s ease-in-out infinite;
+    }
+    @keyframes badgeFloat {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50% { transform: translateY(-8px) rotate(2deg); }
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.6); }
+    }
+    body.dark .hero-avatar .floating-badge {
+      background: rgba(26, 26, 22, 0.92);
+      color: #cbcbcb;
+      border-color: rgba(255,255,255,0.08);
+    }
+    body.dark .hero-avatar .image-wrapper {
+      border-color: rgba(255,255,255,0.1);
+    }
+
     .btn {
       display: inline-block;
       padding: 12px 28px;
@@ -1032,10 +1117,6 @@
       background: #6fcf97;
       animation: pulse-dot 1.8s ease-in-out infinite;
     }
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.7); }
-    }
 
     /* ===== FADE UP ANIMATION ===== */
     .fade-up {
@@ -1075,8 +1156,10 @@
       .hamburger { display: flex; }
       .hero { flex-direction: column-reverse; text-align: center; }
       .hero-content h1 { font-size: 2.1rem; }
-      .hero-avatar { flex: 0 0 140px; }
-      .hero-avatar img { width: 140px; height: 140px; }
+      .hero-avatar { flex: 0 0 220px; }
+      .hero-avatar .image-wrapper img { width: 220px; height: 220px; }
+      .hero-avatar .floating-badge { font-size: 0.65rem; padding: 4px 12px 4px 8px; top: -6px; left: -6px; }
+      .hero-avatar .corner-accent { width: 50px; height: 50px; bottom: -4px; right: -4px; }
       .section-title { font-size: 1.6rem; }
       .tl-header { flex-direction: column; gap: 4px; }
       .boot-terminal { padding: 24px 18px; }
@@ -1171,8 +1254,13 @@
           </div>
         </div>
         <div class="hero-avatar fade-up">
-          <!-- Profile picture updated to use your local image -->
-          <img src="IMG_20260710_160150_773.jpg" alt="Rachel De La Cruz" />
+          <div class="image-wrapper">
+            <img src="IMG_20260710_160150_773.jpg" alt="Rachel De La Cruz" />
+            <div class="corner-accent"></div>
+            <div class="floating-badge">
+              <span class="pulse-dot"></span> Available for hire
+            </div>
+          </div>
         </div>
       </section>
 
