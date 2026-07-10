@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rachel Dela Cruz · Project Manager & VA</title>
+  <title>Rachel De La Cruz · Project Manager & VA</title>
   <meta name="description" content="Project Manager with extensive experience across customer service, healthcare, and resort construction." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -82,18 +82,18 @@
       transition: width 0.1s linear;
     }
 
-    /* ===== BOOTLOAD ANIMATION ===== */
+    /* ===== BOOTLOAD ANIMATION - VIRTUAL ASSISTANT THEME ===== */
     .boot-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(255, 255, 227, 0.96);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: rgba(26, 26, 22, 0.98);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 9999;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
       font-family: 'JetBrains Mono', monospace;
     }
     .boot-overlay.hidden {
@@ -102,47 +102,68 @@
       pointer-events: none;
     }
     .boot-terminal {
-      max-width: 540px;
+      max-width: 560px;
       width: 92%;
-      background: rgba(26, 26, 22, 0.92);
-      border-radius: 20px;
-      padding: 28px 30px 24px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-      border: 1px solid rgba(107, 129, 150, 0.25);
-      animation: bootGlow 2s ease-in-out infinite alternate;
+      background: rgba(10, 10, 8, 0.92);
+      border-radius: 24px;
+      padding: 32px 34px 28px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(109,129,150,0.08);
+      border: 1px solid rgba(109, 129, 150, 0.2);
+      animation: bootPulse 3s ease-in-out infinite alternate;
+      position: relative;
+      overflow: hidden;
     }
-    @keyframes bootGlow {
-      0% { box-shadow: 0 20px 60px rgba(0,0,0,0.25), 0 0 40px rgba(107,129,150,0.05); }
-      100% { box-shadow: 0 20px 60px rgba(0,0,0,0.25), 0 0 60px rgba(107,129,150,0.12); }
+    .boot-terminal::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%; width: 200%; height: 200%;
+      background: conic-gradient(from 0deg, transparent, rgba(109,129,150,0.03), transparent, rgba(109,129,150,0.06), transparent);
+      animation: bootSpin 20s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes bootSpin { 100% { transform: rotate(360deg); } }
+    @keyframes bootPulse {
+      0% { box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 40px rgba(109,129,150,0.05); }
+      100% { box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 70px rgba(109,129,150,0.12); }
     }
     .boot-terminal .boot-header {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      position: relative;
+      z-index: 1;
     }
-    .boot-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
-    .boot-dot.red { background: #e05a5a; }
-    .boot-dot.amber { background: #d4a853; }
-    .boot-dot.green { background: #6fcf97; }
+    .boot-dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; transition: 0.3s; }
+    .boot-dot.red { background: #ff5f5f; box-shadow: 0 0 12px rgba(255,95,95,0.3); }
+    .boot-dot.amber { background: #ffb347; box-shadow: 0 0 12px rgba(255,179,71,0.3); }
+    .boot-dot.green { background: #5fcf8a; box-shadow: 0 0 12px rgba(95,207,138,0.3); animation: dotPulse 1.5s ease-in-out infinite; }
+    @keyframes dotPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
     .boot-title {
-      color: #a0a098;
-      font-size: 0.7rem;
-      letter-spacing: 2px;
-      margin-left: 6px;
+      color: #8a8a80;
+      font-size: 0.65rem;
+      letter-spacing: 2.5px;
+      margin-left: 8px;
       font-weight: 500;
+      text-transform: uppercase;
     }
+    .boot-title .va-icon { color: #6fcf97; margin-right: 6px; }
     .boot-logs {
       font-size: 0.7rem;
-      line-height: 1.9;
+      line-height: 2;
       color: #8a8a80;
-      max-height: 220px;
+      max-height: 240px;
       overflow-y: auto;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
     }
-    .boot-logs .log-line { opacity: 0; animation: logFade 0.15s forwards; }
+    .boot-logs::-webkit-scrollbar { width: 3px; }
+    .boot-logs::-webkit-scrollbar-track { background: transparent; }
+    .boot-logs::-webkit-scrollbar-thumb { background: rgba(109,129,150,0.3); border-radius: 10px; }
+    .boot-logs .log-line { opacity: 0; animation: logSlide 0.25s forwards; }
     .boot-logs .log-line:nth-child(1) { animation-delay: 0.1s; }
     .boot-logs .log-line:nth-child(2) { animation-delay: 0.3s; }
     .boot-logs .log-line:nth-child(3) { animation-delay: 0.5s; }
@@ -155,18 +176,83 @@
     .boot-logs .log-line:nth-child(10) { animation-delay: 1.9s; }
     .boot-logs .log-line:nth-child(11) { animation-delay: 2.1s; }
     .boot-logs .log-line:nth-child(12) { animation-delay: 2.3s; }
-    @keyframes logFade { to { opacity: 1; } }
+    .boot-logs .log-line:nth-child(13) { animation-delay: 2.5s; }
+    .boot-logs .log-line:nth-child(14) { animation-delay: 2.7s; }
+    @keyframes logSlide { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: translateX(0); } }
     .boot-logs .prompt { color: #6fcf97; }
     .boot-logs .ok { color: #6fcf97; }
     .boot-logs .info { color: #c0c0b6; }
-    .boot-logs .highlight { color: #d4a853; }
-    .boot-status-bar { height: 3px; background: rgba(255,255,255,0.06); border-radius: 4px; overflow: hidden; margin: 8px 0 6px; }
-    .boot-status-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #6D8196, #d4a853); border-radius: 4px; transition: width 0.3s ease; }
-    .boot-status-text { font-size: 0.6rem; color: #d4a853; text-align: right; letter-spacing: 1px; font-family: 'JetBrains Mono', monospace; }
-    .boot-ready { text-align: center; margin-top: 14px; opacity: 0; transition: opacity 0.5s ease; }
+    .boot-logs .highlight { color: #ffb347; }
+    .boot-logs .accent-text { color: #6D8196; }
+    .boot-status-bar { height: 4px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; margin: 10px 0 8px; position: relative; z-index: 1; }
+    .boot-status-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #6D8196, #d4a853, #6fcf97); border-radius: 4px; transition: width 0.4s ease; position: relative; }
+    .boot-status-fill::after {
+      content: '';
+      position: absolute;
+      right: 0; top: -2px; bottom: -2px;
+      width: 20px;
+      background: rgba(255,255,255,0.3);
+      filter: blur(4px);
+      animation: statusGlow 1s ease-in-out infinite;
+    }
+    @keyframes statusGlow { 0%,100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+    .boot-status-text {
+      font-size: 0.6rem;
+      color: #d4a853;
+      text-align: right;
+      letter-spacing: 1.5px;
+      font-family: 'JetBrains Mono', monospace;
+      position: relative;
+      z-index: 1;
+    }
+    .boot-ready {
+      text-align: center;
+      margin-top: 16px;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      position: relative;
+      z-index: 1;
+    }
     .boot-ready.show { opacity: 1; }
-    .boot-ready .ready-text { font-size: 1rem; font-weight: 600; color: #6fcf97; letter-spacing: 1px; }
-    .boot-ready .ready-sub { font-size: 0.65rem; color: #8a8a80; margin-top: 4px; }
+    .boot-ready .ready-text {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #6fcf97;
+      letter-spacing: 1.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .boot-ready .ready-text .check { animation: checkPop 0.6s ease; }
+    @keyframes checkPop { 0% { transform: scale(0); } 60% { transform: scale(1.3); } 100% { transform: scale(1); } }
+    .boot-ready .ready-sub {
+      font-size: 0.65rem;
+      color: #8a8a80;
+      margin-top: 4px;
+      letter-spacing: 2px;
+    }
+    .boot-terminal .boot-avatar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .boot-avatar-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(109,129,150,0.2), rgba(109,129,150,0.05));
+      border: 2px solid rgba(109,129,150,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      animation: avatarBootPulse 2s ease-in-out infinite;
+    }
+    @keyframes avatarBootPulse { 0%,100% { transform: scale(1); box-shadow: 0 0 20px rgba(109,129,150,0.1); } 50% { transform: scale(1.05); box-shadow: 0 0 40px rgba(109,129,150,0.2); } }
 
     /* ===== MAIN UI ===== */
     .section-title {
@@ -176,9 +262,10 @@
       margin-bottom: 0.25rem;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
     .section-title .accent { color: var(--ink-blue-gray); }
+    .section-title .icon { font-size: 1.6rem; }
     .section-sub {
       color: #6b6b60;
       font-size: 0.95rem;
@@ -218,6 +305,9 @@
       font-size: 0.85rem;
       transition: 0.2s;
       color: var(--ink-charcoal);
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
     .nav-links a:hover { background: rgba(107, 129, 150, 0.1); color: var(--ink-blue-gray); }
     .nav-links a.active { background: rgba(107, 129, 150, 0.12); color: var(--ink-blue-gray); font-weight: 600; }
@@ -318,6 +408,9 @@
       font-weight: 500;
       color: var(--ink-charcoal);
       transition: var(--transition-smooth);
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
     .badge:hover {
       transform: translateY(-2px);
@@ -352,6 +445,9 @@
       transition: var(--transition-smooth);
       background: var(--ink-blue-gray);
       color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
     .btn-outline {
       background: transparent;
@@ -451,7 +547,7 @@
       box-shadow: var(--shadow-lg);
     }
     .tl-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; }
-    .tl-title { font-weight: 700; font-size: 1.1rem; }
+    .tl-title { font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 6px; }
     .tl-org { font-weight: 500; color: var(--ink-blue-gray); }
     .tl-date { font-size: 0.8rem; color: #6b6b60; background: rgba(107, 129, 150, 0.08); padding: 4px 12px; border-radius: 40px; }
     .tl-desc { margin-top: 8px; color: #4a4a42; font-size: 0.92rem; }
@@ -466,7 +562,9 @@
       padding: 10px 22px;
       font-weight: 500;
       font-size: 0.9rem;
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       transition: var(--transition-smooth);
       position: relative;
     }
@@ -643,7 +741,7 @@
       .hero-avatar img { width: 140px; height: 140px; }
       .section-title { font-size: 1.6rem; }
       .tl-header { flex-direction: column; gap: 4px; }
-      .boot-terminal { padding: 20px 16px; }
+      .boot-terminal { padding: 24px 18px; }
       .boot-logs { font-size: 0.6rem; max-height: 160px; }
       #backToTop { bottom: 20px; right: 20px; width: 42px; height: 42px; font-size: 16px; }
       .glass-box { padding: 20px 18px; }
@@ -655,34 +753,39 @@
   <!-- ===== SCROLL PROGRESS ===== -->
   <div id="scrollProgress"></div>
 
-  <!-- ===== BOOTLOAD OVERLAY ===== -->
+  <!-- ===== BOOTLOAD OVERLAY - VIRTUAL ASSISTANT THEME ===== -->
   <div class="boot-overlay" id="bootOverlay">
     <div class="boot-terminal">
+      <div class="boot-avatar">
+        <div class="boot-avatar-circle">🤖</div>
+      </div>
       <div class="boot-header">
         <span class="boot-dot red"></span>
         <span class="boot-dot amber"></span>
         <span class="boot-dot green"></span>
-        <span class="boot-title">VA · SYSTEM INIT</span>
+        <span class="boot-title"><span class="va-icon">◆</span> VIRTUAL ASSISTANT · INIT</span>
       </div>
       <div class="boot-logs">
-        <div class="log-line"><span class="prompt">➜</span> <span class="info">loading virtual assistant kernel ...</span></div>
-        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">neural interface ready</span></div>
-        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">project management modules loaded</span></div>
+        <div class="log-line"><span class="prompt">➜</span> <span class="info">initializing neural core ...</span></div>
+        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">virtual assistant kernel loaded</span></div>
+        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">project management engine <span class="accent-text">v2.4</span></span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">stakeholder communication protocols</span></div>
-        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">risk assessment engine active</span></div>
-        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">cross-functional team sync established</span></div>
-        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">resort construction intelligence loaded</span></div>
-        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">healthcare domain knowledge integrated</span></div>
-        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">customer service optimization ready</span></div>
-        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">AI fluency &amp; agent skills online</span></div>
-        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">secure tunnel established</span></div>
-        <div class="log-line"><span class="prompt">➜</span> <span class="highlight">virtual assistant ready · Rachel De La Cruz</span></div>
+        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">risk assessment matrix active</span></div>
+        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">cross-functional team synchronization</span></div>
+        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">resort construction intelligence <span class="accent-text">· 15+ years</span></span></div>
+        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">healthcare domain integration <span class="accent-text">· clinical/technical</span></span></div>
+        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">customer service optimization engine</span></div>
+        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">AI fluency &amp; agent skills <span class="accent-text">· Anthropic certified</span></span></div>
+        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">secure communication tunnel established</span></div>
+        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">project management framework <span class="accent-text">· Google certified</span></span></div>
+        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">licensed midwife <span class="accent-text">· PRC #0138206</span></span></div>
+        <div class="log-line"><span class="prompt">➜</span> <span class="highlight">✦ virtual assistant ready · Rachel De La Cruz</span></div>
       </div>
       <div class="boot-status-text" id="bootStatusText">initializing ... 0%</div>
       <div class="boot-status-bar"><div class="boot-status-fill" id="bootStatusFill"></div></div>
       <div class="boot-ready" id="bootReady">
-        <div class="ready-text">● SYSTEM ONLINE</div>
-        <div class="ready-sub">virtual assistant · project management</div>
+        <div class="ready-text"><span class="check">●</span> SYSTEM ONLINE</div>
+        <div class="ready-sub">virtual assistant · project management · 15+ years</div>
       </div>
     </div>
   </div>
@@ -693,12 +796,12 @@
     <div class="navbar">
       <div class="logo">Rachel <span>·</span> PM <span class="assistant-tag">VA</span></div>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#profile" class="active">Profile</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#certifications">Certifications</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#profile" class="active">👤 Profile</a></li>
+        <li><a href="#experience">💼 Experience</a></li>
+        <li><a href="#skills">⚡ Skills</a></li>
+        <li><a href="#certifications">📜 Certifications</a></li>
+        <li><a href="#testimonials">⭐ Testimonials</a></li>
+        <li><a href="#contact">📬 Contact</a></li>
       </ul>
       <div style="display: flex; gap: 8px;">
         <span class="assistant-badge"><span class="pulse-dot"></span> VA active</span>
@@ -712,7 +815,7 @@
       <section id="profile" class="hero">
         <div class="hero-content fade-up">
           <h1>Rachel De La Cruz</h1>
-          <div class="subhead">Project Manager · Virtual Assistant</div>
+          <div class="subhead">🎯 Project Manager · Virtual Assistant</div>
           <div class="location">📍 Laguna, Calabarzon, Philippines</div>
           <div class="hero-badge-group">
             <span class="badge">🏗️ Resort Construction</span>
@@ -721,8 +824,8 @@
             <span class="badge">🧠 AI Fluency</span>
           </div>
           <div style="margin: 12px 0 8px; display: flex; flex-wrap: wrap; gap: 8px;">
-            <a href="#contact" class="btn">Get in touch</a>
-            <a href="#experience" class="btn btn-outline">View experience</a>
+            <a href="#contact" class="btn">📩 Get in touch</a>
+            <a href="#experience" class="btn btn-outline">📊 View experience</a>
           </div>
         </div>
         <div class="hero-avatar fade-up">
@@ -733,7 +836,7 @@
       <!-- ===== ABOUT ===== -->
       <div class="summary-card fade-up">
         <p style="font-size: 1rem; max-width: 800px;">
-          <strong>Versatile Project Manager &amp; Virtual Assistant</strong> with extensive experience across customer service, healthcare (clinical/technical), and project management. Strong background in resort construction, operations, and stakeholder communication. Skilled in risk management, budget control, and cross-functional team leadership. 
+          <strong>🤖 Versatile Project Manager &amp; Virtual Assistant</strong> with extensive experience across customer service, healthcare (clinical/technical), and project management. Strong background in resort construction, operations, and stakeholder communication. Skilled in risk management, budget control, and cross-functional team leadership. 
           <br><br>
           Over the course of my career, I have accumulated extensive experience across various industries, including customer service, clerical roles, and technical/clinical positions within a healthcare setting. This exposure has equipped me with a versatile skill set and a profound understanding of the intricacies associated with different professional domains. As a diligent and hard-working individual, I have a strong desire to continually expand my skills and apply them effectively to my current responsibilities. Having a firm grasp of business strategy greatly aids me in accomplishing my tasks. I take pride in my ability to derive fulfillment from every positive outcome, am tenacious in seeking innovative solutions, and ensure all stakeholders are well-informed.
         </p>
@@ -741,12 +844,12 @@
 
       <!-- ===== EXPERIENCE ===== -->
       <section id="experience" class="section">
-        <h2 class="section-title fade-up">Experience <span class="accent">·</span></h2>
+        <h2 class="section-title fade-up"><span class="icon">💼</span> Experience <span class="accent">·</span></h2>
         <div class="section-sub fade-up">Full project lifecycle & cross-functional leadership</div>
         <div class="timeline">
           <div class="timeline-item fade-up">
             <div class="tl-header">
-              <span class="tl-title">Project Manager – Resort Construction & Management</span>
+              <span class="tl-title">🏗️ Project Manager – Resort Construction & Management</span>
               <span class="tl-org">Arcadia Resorts, Laguna</span>
               <span class="tl-date">Nov 2025 – Present</span>
             </div>
@@ -756,7 +859,7 @@
           </div>
           <div class="timeline-item fade-up">
             <div class="tl-header">
-              <span class="tl-title">Customer Support Team Lead</span>
+              <span class="tl-title">👥 Customer Support Team Lead</span>
               <span class="tl-org">Zoomo</span>
               <span class="tl-date">Jan 2024 – Present</span>
             </div>
@@ -764,7 +867,7 @@
           </div>
           <div class="timeline-item fade-up">
             <div class="tl-header">
-              <span class="tl-title">Customer Support Specialist – Escalation</span>
+              <span class="tl-title">🛡️ Customer Support Specialist – Escalation</span>
               <span class="tl-org">Zoomo</span>
               <span class="tl-date">Jan 2021 – Jan 2024</span>
             </div>
@@ -772,7 +875,7 @@
           </div>
           <div class="timeline-item fade-up">
             <div class="tl-header">
-              <span class="tl-title">Online English Teacher</span>
+              <span class="tl-title">🌏 Online English Teacher</span>
               <span class="tl-org">Engoo</span>
               <span class="tl-date">Dec 2016 – Jan 2021</span>
             </div>
@@ -780,7 +883,7 @@
           </div>
           <div class="timeline-item fade-up">
             <div class="tl-header">
-              <span class="tl-title">Customer Service Representative</span>
+              <span class="tl-title">📞 Customer Service Representative</span>
               <span class="tl-org">TeleTech Philippines</span>
               <span class="tl-date">Nov 2015 – Apr 2017</span>
             </div>
@@ -788,7 +891,7 @@
           </div>
           <div class="timeline-item fade-up">
             <div class="tl-header">
-              <span class="tl-title">Customer Service Representative</span>
+              <span class="tl-title">📞 Customer Service Representative</span>
               <span class="tl-org">SYKES Philippines</span>
               <span class="tl-date">Sep 2014 – Oct 2015</span>
             </div>
@@ -796,7 +899,7 @@
           </div>
           <div class="timeline-item fade-up">
             <div class="tl-header">
-              <span class="tl-title">Monitor Clerk Assistant / Telemetrist</span>
+              <span class="tl-title">🩺 Monitor Clerk Assistant / Telemetrist</span>
               <span class="tl-org">American Hospital Dubai</span>
               <span class="tl-date">Feb 2010 – Feb 2011</span>
             </div>
@@ -804,7 +907,7 @@
           </div>
           <div class="timeline-item fade-up">
             <div class="tl-header">
-              <span class="tl-title">Healthcare Assistant</span>
+              <span class="tl-title">🩺 Healthcare Assistant</span>
               <span class="tl-org">American Hospital Dubai</span>
               <span class="tl-date">Feb 2009 – Feb 2010</span>
             </div>
@@ -812,14 +915,14 @@
           </div>
           <div class="timeline-item fade-up">
             <div class="tl-header">
-              <span class="tl-title">Sales Representative / Secretary</span>
+              <span class="tl-title">📋 Sales Representative / Secretary</span>
               <span class="tl-org">Time General Trading LLC, Sharjah, UAE</span>
               <span class="tl-date">Aug 2008 – Jan 2009</span>
             </div>
           </div>
           <div class="timeline-item fade-up">
             <div class="tl-header">
-              <span class="tl-title">Nursing Attendant</span>
+              <span class="tl-title">🏥 Nursing Attendant</span>
               <span class="tl-org">Philippine General Hospital</span>
               <span class="tl-date">Jul 2006 – Jun 2008</span>
             </div>
@@ -830,48 +933,48 @@
 
       <!-- ===== SKILLS ===== -->
       <section id="skills" class="section">
-        <h2 class="section-title fade-up">Skills <span class="accent">·</span></h2>
+        <h2 class="section-title fade-up"><span class="icon">⚡</span> Skills <span class="accent">·</span></h2>
         <div class="section-sub fade-up">Core competencies & technical expertise</div>
         <div class="flex-wrap" style="gap: 10px; margin-top: 8px;">
-          <span class="skill-chip fade-up">CRM</span>
-          <span class="skill-chip fade-up">Teaching</span>
-          <span class="skill-chip fade-up">Customer Service</span>
-          <span class="skill-chip fade-up">English</span>
-          <span class="skill-chip fade-up">Healthcare Professionals</span>
-          <span class="skill-chip fade-up">Midwifery</span>
-          <span class="skill-chip fade-up">Communication</span>
-          <span class="skill-chip fade-up">Healthcare</span>
-          <span class="skill-chip fade-up">English Teaching</span>
-          <span class="skill-chip fade-up">Invoicing</span>
-          <span class="skill-chip fade-up">Project Management</span>
-          <span class="skill-chip fade-up">Risk Management</span>
-          <span class="skill-chip fade-up">Construction Coordination</span>
-          <span class="skill-chip fade-up">AI Fluency</span>
-          <span class="skill-chip fade-up">Virtual Assistance</span>
+          <span class="skill-chip fade-up">📊 CRM</span>
+          <span class="skill-chip fade-up">📚 Teaching</span>
+          <span class="skill-chip fade-up">💬 Customer Service</span>
+          <span class="skill-chip fade-up">🌐 English</span>
+          <span class="skill-chip fade-up">🏥 Healthcare Professionals</span>
+          <span class="skill-chip fade-up">👶 Midwifery</span>
+          <span class="skill-chip fade-up">🗣️ Communication</span>
+          <span class="skill-chip fade-up">🏥 Healthcare</span>
+          <span class="skill-chip fade-up">📚 English Teaching</span>
+          <span class="skill-chip fade-up">📄 Invoicing</span>
+          <span class="skill-chip fade-up">📋 Project Management</span>
+          <span class="skill-chip fade-up">⚠️ Risk Management</span>
+          <span class="skill-chip fade-up">🏗️ Construction Coordination</span>
+          <span class="skill-chip fade-up">🧠 AI Fluency</span>
+          <span class="skill-chip fade-up">🤖 Virtual Assistance</span>
         </div>
       </section>
 
       <!-- ===== EDUCATION & CERTIFICATIONS ===== -->
       <section id="certifications" class="section">
-        <h2 class="section-title fade-up">Education & Certifications <span class="accent">·</span></h2>
+        <h2 class="section-title fade-up"><span class="icon">📜</span> Education & Certifications <span class="accent">·</span></h2>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 12px;">
           <div>
             <h3 style="font-weight: 600; font-size: 1rem;">🎓 Education</h3>
-            <div class="cert-item fade-up"><strong>Midwife (Associate/Diploma)</strong> Martinez Memorial Colleges <small>Jun 2003 – Mar 2006</small></div>
-            <div class="cert-item fade-up"><strong>Nursing (Bachelor's)</strong> Manila Central University <small>Jun 2003 – Mar 2004</small></div>
+            <div class="cert-item fade-up"><strong>👶 Midwife (Associate/Diploma)</strong> Martinez Memorial Colleges <small>Jun 2003 – Mar 2006</small></div>
+            <div class="cert-item fade-up"><strong>🏥 Nursing (Bachelor's)</strong> Manila Central University <small>Jun 2003 – Mar 2004</small></div>
           </div>
           <div>
             <h3 style="font-weight: 600; font-size: 1rem;">📜 Licenses & Certifications</h3>
-            <div class="cert-item fade-up"><strong>Anthropic AI</strong> <small>Jun 2026 · Introduction to Agent Skills, Claude Cowork, AI Capabilities, AI Fluency</small></div>
-            <div class="cert-item fade-up"><strong>Google Project Management</strong> <small>Jan 2022 · Project Initiation, Foundations</small></div>
-            <div class="cert-item fade-up"><strong>Licensed Midwife</strong> <small>PRC Philippines · ID: 0138206 (Apr 2006)</small></div>
+            <div class="cert-item fade-up"><strong>🤖 Anthropic AI</strong> <small>Jun 2026 · Introduction to Agent Skills, Claude Cowork, AI Capabilities, AI Fluency</small></div>
+            <div class="cert-item fade-up"><strong>📊 Google Project Management</strong> <small>Jan 2022 · Project Initiation, Foundations</small></div>
+            <div class="cert-item fade-up"><strong>📋 Licensed Midwife</strong> <small>PRC Philippines · ID: 0138206 (Apr 2006)</small></div>
           </div>
         </div>
       </section>
 
       <!-- ===== TESTIMONIALS ===== -->
       <section id="testimonials" class="section">
-        <h2 class="section-title fade-up">Recommendations <span class="accent">·</span></h2>
+        <h2 class="section-title fade-up"><span class="icon">⭐</span> Recommendations <span class="accent">·</span></h2>
         <div class="section-sub fade-up">What colleagues & partners say</div>
         <div class="rec-card fade-up">
           <div class="quote">“Rachel quickly became my trusted go-to person… Her attention to detail, relentless follow-through, problem-solving abilities, and dedication to the work allow her to operate at a higher level than most.”</div>
@@ -885,7 +988,7 @@
 
       <!-- ===== CONTACT ===== -->
       <section id="contact" class="section" style="border-bottom: none;">
-        <h2 class="section-title fade-up">Contact <span class="accent">·</span></h2>
+        <h2 class="section-title fade-up"><span class="icon">📬</span> Contact <span class="accent">·</span></h2>
         <div class="glass-box fade-up" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: space-between; align-items: center;">
           <div>
             <p style="margin: 6px 0;"><strong>📍</strong> Laguna, Calabarzon, Philippines</p>
@@ -901,7 +1004,7 @@
 
     <!-- ===== FOOTER ===== -->
     <footer>
-      <div class="container">© 2026 iProfile by LJL Digital Hub</div>
+      <div class="container">© 2026 iProfile by LJL Digital Hub · 🤖 Virtual Assistant</div>
     </footer>
   </div>
 
@@ -921,32 +1024,32 @@
 
       let progress = 0;
       const interval = setInterval(() => {
-        progress += 6 + Math.floor(Math.random() * 6);
+        progress += 5 + Math.floor(Math.random() * 5);
         if (progress >= 100) {
           progress = 100;
           clearInterval(interval);
           fill.style.width = '100%';
-          statusText.textContent = 'ready · 100%';
+          statusText.textContent = '✓ system ready · 100%';
           ready.classList.add('show');
           setTimeout(() => {
             overlay.classList.add('hidden');
             mainContent.style.opacity = '1';
             setTimeout(() => overlay.remove(), 700);
-          }, 500);
+          }, 600);
         } else {
           fill.style.width = progress + '%';
-          if (progress < 30) statusText.textContent = 'loading kernel ... ' + progress + '%';
-          else if (progress < 60) statusText.textContent = 'syncing modules ... ' + progress + '%';
-          else if (progress < 85) statusText.textContent = 'optimizing AI fluency ... ' + progress + '%';
-          else statusText.textContent = 'finalizing ... ' + progress + '%';
+          if (progress < 25) statusText.textContent = '⟳ loading neural core ... ' + progress + '%';
+          else if (progress < 50) statusText.textContent = '⟳ syncing modules ... ' + progress + '%';
+          else if (progress < 75) statusText.textContent = '⟳ optimizing AI fluency ... ' + progress + '%';
+          else statusText.textContent = '⟳ finalizing ... ' + progress + '%';
         }
-      }, 120);
+      }, 130);
 
       setTimeout(() => {
         if (!overlay.classList.contains('hidden')) {
           clearInterval(interval);
           fill.style.width = '100%';
-          statusText.textContent = 'ready · 100%';
+          statusText.textContent = '✓ system ready · 100%';
           ready.classList.add('show');
           setTimeout(() => {
             overlay.classList.add('hidden');
@@ -954,7 +1057,7 @@
             setTimeout(() => overlay.remove(), 700);
           }, 400);
         }
-      }, 5000);
+      }, 5500);
     })();
 
     // ===== SCROLL PROGRESS =====
