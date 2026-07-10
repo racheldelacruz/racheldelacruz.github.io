@@ -20,7 +20,7 @@
       --ink-blue-gray: #6D8196;
       --ink-dark: #2a2a2a;
       --ink-light-bg: #f8f8f0;
-      --ink-border: rgba(74, 74, 74, 0.15);
+      --ink-border: rgba(74, 74, 74, 0.12);
       --glass-bg: rgba(255, 255, 227, 0.15);
       --glass-border: rgba(109, 129, 150, 0.2);
       --shadow-sm: 0 4px 20px rgba(0,0,0,0.03);
@@ -52,6 +52,10 @@
     body.dark {
       background: #1a1a16;
       color: #e0e0d6;
+    }
+    body.dark .top-promo {
+      background: rgba(26, 26, 22, 0.9);
+      border-bottom-color: rgba(255,255,255,0.06);
     }
     body.dark .navbar {
       background: rgba(26, 26, 22, 0.85);
@@ -100,6 +104,16 @@
     body.dark .orb-particle {
       background: rgba(109,129,150,0.3);
       box-shadow: 0 0 10px rgba(109,129,150,0.2);
+    }
+    body.dark .promo-badge {
+      background: rgba(109, 129, 150, 0.12);
+      border-color: rgba(109, 129, 150, 0.2);
+      color: #a0a098;
+    }
+    body.dark .va-badge {
+      background: rgba(109, 129, 150, 0.12);
+      border-color: rgba(109, 129, 150, 0.2);
+      color: #a0a098;
     }
 
     a { text-decoration: none; color: inherit; }
@@ -334,6 +348,71 @@
     }
     body.dark .section-sub { color: #a0a098; }
 
+    /* ===== TOP PROMOTION BAR ===== */
+    .top-promo {
+      width: 100%;
+      overflow: hidden;
+      background: rgba(255, 255, 227, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 4px 0;
+      border-bottom: 1px solid var(--ink-border);
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      z-index: 51;
+    }
+    .top-promo .promo-track {
+      display: -webkit-flex;
+      display: flex;
+      white-space: nowrap;
+      animation: scrollPromo 25s linear infinite;
+      width: max-content;
+    }
+    .top-promo .promo-item {
+      display: -webkit-inline-flex;
+      display: inline-flex;
+      -webkit-align-items: center;
+      align-items: center;
+      gap: 8px;
+      padding: 0 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--ink-blue-gray);
+      letter-spacing: 0.5px;
+    }
+    .top-promo .promo-item .promo-icon {
+      font-size: 0.9rem;
+      animation: promoPulse 2s ease-in-out infinite;
+    }
+    .top-promo .promo-item .highlight-text {
+      color: #d4a853;
+      font-weight: 700;
+    }
+    .top-promo .promo-item .cta-arrow {
+      display: inline-block;
+      animation: arrowBounce 1.5s ease-in-out infinite;
+    }
+    @keyframes scrollPromo {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes promoPulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.15); opacity: 1; }
+    }
+    @keyframes arrowBounce {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(4px); }
+    }
+    body.dark .top-promo {
+      background: rgba(26, 26, 22, 0.85);
+      border-bottom-color: rgba(255,255,255,0.06);
+    }
+    body.dark .top-promo .promo-item {
+      color: #a0a098;
+    }
+
     /* ===== NAVBAR - SINGLE LANE ===== */
     .navbar {
       display: -webkit-flex;
@@ -342,15 +421,15 @@
       align-items: center;
       -webkit-justify-content: space-between;
       justify-content: space-between;
-      padding: 10px 20px;
-      padding-top: calc(10px + var(--safe-area-inset-top));
+      padding: 8px 20px;
+      padding-top: calc(8px + var(--safe-area-inset-top));
       background: rgba(255, 255, 227, 0.45);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--ink-border);
       position: -webkit-sticky;
       position: sticky;
-      top: 0;
+      top: 28px;
       z-index: 50;
       gap: 12px;
       -webkit-flex-wrap: nowrap;
@@ -366,12 +445,12 @@
       display: flex;
       -webkit-align-items: center;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       -webkit-flex-shrink: 0;
       flex-shrink: 0;
     }
     .navbar-left .logo-img {
-      height: 32px;
+      height: 30px;
       width: auto;
       border-radius: 6px;
       object-fit: contain;
@@ -382,19 +461,12 @@
       mix-blend-mode: screen;
       filter: brightness(1.1);
     }
-    .navbar-left .logo-divider {
-      width: 1px;
-      height: 28px;
-      background: var(--ink-border);
-      -webkit-flex-shrink: 0;
-      flex-shrink: 0;
-    }
     .navbar-left .brand-text {
       display: -webkit-flex;
       display: flex;
-      -webkit-flex-direction: column;
-      flex-direction: column;
-      line-height: 1.1;
+      -webkit-align-items: center;
+      align-items: center;
+      gap: 6px;
     }
     .navbar-left .brand-text .name {
       font-weight: 700;
@@ -404,22 +476,24 @@
     .navbar-left .brand-text .name .highlight {
       color: var(--ink-blue-gray);
     }
-    .navbar-left .brand-text .tagline {
-      font-size: 0.5rem;
-      font-weight: 400;
-      color: #6b6b60;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
+    .navbar-left .brand-text .divider {
+      color: var(--ink-border);
+      font-weight: 300;
+    }
+    .navbar-left .brand-text .villa {
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #d4a853;
     }
     body.dark .navbar-left .brand-text .name { color: #e0e0d6; }
-    body.dark .navbar-left .brand-text .tagline { color: #8a8a80; }
+    body.dark .navbar-left .brand-text .villa { color: #d4a853; }
 
     .navbar-center {
       display: -webkit-flex;
       display: flex;
       -webkit-align-items: center;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
       -webkit-flex: 1;
       flex: 1;
       -webkit-justify-content: center;
@@ -427,53 +501,43 @@
       min-width: 0;
       overflow: hidden;
     }
-    .promo-badge {
-      display: -webkit-inline-flex;
-      display: inline-flex;
+    .nav-links {
+      display: -webkit-flex;
+      display: flex;
+      gap: 2px;
+      list-style: none;
+      -webkit-flex-wrap: wrap;
+      flex-wrap: wrap;
+      -webkit-justify-content: center;
+      justify-content: center;
+    }
+    .nav-links a {
+      padding: 4px 10px;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.7rem;
+      transition: 0.2s;
+      color: var(--ink-charcoal);
+      display: -webkit-flex;
+      display: flex;
       -webkit-align-items: center;
       align-items: center;
-      gap: 6px;
-      background: rgba(109, 129, 150, 0.08);
-      padding: 3px 14px 3px 10px;
-      border-radius: 40px;
-      font-size: 0.65rem;
-      font-weight: 500;
-      color: var(--ink-blue-gray);
-      border: 1px solid rgba(109, 129, 150, 0.12);
+      gap: 3px;
+      -webkit-tap-highlight-color: transparent;
       white-space: nowrap;
     }
-    .promo-badge .promo-icon {
-      font-size: 0.7rem;
-      animation: promoPulse 2s ease-in-out infinite;
-    }
-    .promo-badge .highlight-text {
-      color: #d4a853;
-      font-weight: 700;
-    }
-    .promo-badge .cta-arrow {
-      display: inline-block;
-      animation: arrowBounce 1.5s ease-in-out infinite;
-    }
-    @keyframes promoPulse {
-      0%, 100% { transform: scale(1); opacity: 0.7; }
-      50% { transform: scale(1.15); opacity: 1; }
-    }
-    @keyframes arrowBounce {
-      0%, 100% { transform: translateX(0); }
-      50% { transform: translateX(4px); }
-    }
-    body.dark .promo-badge {
-      background: rgba(109, 129, 150, 0.12);
-      border-color: rgba(109, 129, 150, 0.2);
-      color: #a0a098;
-    }
+    .nav-links a:hover { background: rgba(109, 129, 150, 0.1); color: var(--ink-blue-gray); }
+    .nav-links a.active { background: rgba(109, 129, 150, 0.12); color: var(--ink-blue-gray); font-weight: 600; }
+    body.dark .nav-links a { color: #cbcbcb; }
+    body.dark .nav-links a:hover { background: rgba(109, 129, 150, 0.2); color: #FFFFE3; }
+    body.dark .nav-links a.active { background: rgba(109, 129, 150, 0.25); color: #FFFFE3; }
 
     .navbar-right {
       display: -webkit-flex;
       display: flex;
       -webkit-align-items: center;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
       -webkit-flex-shrink: 0;
       flex-shrink: 0;
     }
@@ -484,9 +548,9 @@
       align-items: center;
       gap: 4px;
       background: rgba(109, 129, 150, 0.08);
-      padding: 3px 10px 3px 8px;
+      padding: 2px 8px 2px 6px;
       border-radius: 40px;
-      font-size: 0.6rem;
+      font-size: 0.55rem;
       font-weight: 500;
       color: var(--ink-blue-gray);
       border: 1px solid rgba(109, 129, 150, 0.12);
@@ -494,8 +558,8 @@
     }
     .va-badge .pulse-dot {
       display: inline-block;
-      width: 5px;
-      height: 5px;
+      width: 4px;
+      height: 4px;
       border-radius: 50%;
       background: #6D8196;
       animation: pulse-dot 1.8s ease-in-out infinite;
@@ -514,9 +578,9 @@
       background: transparent;
       border: 1px solid var(--ink-border);
       border-radius: 40px;
-      width: 34px;
-      height: 34px;
-      font-size: 1rem;
+      width: 30px;
+      height: 30px;
+      font-size: 0.9rem;
       cursor: pointer;
       display: -webkit-flex;
       display: flex;
@@ -535,26 +599,26 @@
     #themeToggle:hover { background: rgba(109, 129, 150, 0.1); }
 
     /* Mobile nav links - hidden by default, shown on hamburger */
-    .nav-links {
+    .mobile-nav-links {
       display: none;
       width: 100%;
       -webkit-flex-direction: column;
       flex-direction: column;
       gap: 2px;
-      padding: 10px 0 4px;
+      padding: 8px 0 4px;
       list-style: none;
       border-top: 1px solid var(--ink-border);
       margin-top: 4px;
     }
-    .nav-links.show {
+    .mobile-nav-links.show {
       display: -webkit-flex;
       display: flex;
     }
-    .nav-links a {
-      padding: 8px 14px;
+    .mobile-nav-links a {
+      padding: 6px 14px;
       border-radius: 40px;
       font-weight: 500;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       transition: 0.2s;
       color: var(--ink-charcoal);
       display: -webkit-flex;
@@ -564,18 +628,19 @@
       gap: 4px;
       -webkit-tap-highlight-color: transparent;
     }
-    .nav-links a:hover { background: rgba(109, 129, 150, 0.1); color: var(--ink-blue-gray); }
-    .nav-links a.active { background: rgba(109, 129, 150, 0.12); color: var(--ink-blue-gray); font-weight: 600; }
-    body.dark .nav-links a { color: #cbcbcb; }
-    body.dark .nav-links a:hover { background: rgba(109, 129, 150, 0.2); color: #FFFFE3; }
-    body.dark .nav-links a.active { background: rgba(109, 129, 150, 0.25); color: #FFFFE3; }
+    .mobile-nav-links a:hover { background: rgba(109, 129, 150, 0.1); color: var(--ink-blue-gray); }
+    .mobile-nav-links a.active { background: rgba(109, 129, 150, 0.12); color: var(--ink-blue-gray); font-weight: 600; }
+    body.dark .mobile-nav-links a { color: #cbcbcb; }
+    body.dark .mobile-nav-links a:hover { background: rgba(109, 129, 150, 0.2); color: #FFFFE3; }
+    body.dark .mobile-nav-links a.active { background: rgba(109, 129, 150, 0.25); color: #FFFFE3; }
 
     @media (max-width: 700px) {
       .navbar {
         -webkit-flex-wrap: wrap;
         flex-wrap: wrap;
-        padding: 8px 16px;
-        gap: 6px;
+        padding: 6px 12px;
+        gap: 4px;
+        top: 24px;
       }
       .navbar-center {
         -webkit-order: 3;
@@ -585,50 +650,56 @@
         -webkit-justify-content: center;
         justify-content: center;
       }
-      .promo-badge {
-        font-size: 0.55rem;
-        padding: 2px 10px 2px 8px;
-      }
-      .navbar-left .logo-img {
-        height: 28px;
-      }
-      .navbar-left .brand-text .name {
-        font-size: 0.75rem;
-      }
-      .navbar-left .brand-text .tagline {
-        font-size: 0.45rem;
+      .nav-links {
+        display: none;
       }
       .hamburger {
         display: -webkit-flex;
         display: flex;
       }
+      .navbar-left .logo-img {
+        height: 24px;
+      }
+      .navbar-left .brand-text .name {
+        font-size: 0.7rem;
+      }
+      .navbar-left .brand-text .villa {
+        font-size: 0.65rem;
+      }
       .va-badge {
         font-size: 0.5rem;
-        padding: 2px 8px 2px 6px;
+        padding: 2px 6px 2px 5px;
       }
       #themeToggle {
-        width: 30px;
-        height: 30px;
-        font-size: 0.9rem;
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
+      }
+      .top-promo .promo-item {
+        font-size: 0.6rem;
+        padding: 0 20px;
+      }
+      .top-promo .promo-item .promo-icon {
+        font-size: 0.7rem;
       }
     }
 
     @media (max-width: 480px) {
       .navbar-left .logo-img {
-        height: 24px;
+        height: 20px;
       }
       .navbar-left .brand-text .name {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
       }
-      .navbar-left .brand-text .tagline {
-        font-size: 0.4rem;
-      }
-      .promo-badge {
-        font-size: 0.5rem;
-        padding: 2px 8px 2px 6px;
-      }
-      .promo-badge .promo-icon {
+      .navbar-left .brand-text .villa {
         font-size: 0.55rem;
+      }
+      .navbar-left .brand-text .divider {
+        font-size: 0.6rem;
+      }
+      .top-promo .promo-item {
+        font-size: 0.5rem;
+        padding: 0 14px;
       }
     }
 
@@ -701,7 +772,7 @@
 
     /* ===== HERO ===== */
     .hero {
-      padding: 50px 0 30px;
+      padding: 40px 0 30px;
       display: -webkit-flex;
       display: flex;
       -webkit-flex-wrap: wrap;
@@ -1637,7 +1708,10 @@
     /* ===== iOS SPECIFIC FIXES ===== */
     @supports (-webkit-touch-callout: none) {
       .navbar {
-        padding-top: calc(10px + env(safe-area-inset-top));
+        padding-top: calc(8px + env(safe-area-inset-top));
+      }
+      .top-promo {
+        padding-top: env(safe-area-inset-top);
       }
       .energy-orb .orb-image-wrapper img {
         -webkit-user-select: none;
@@ -1705,27 +1779,77 @@
     </div>
   </div>
 
+  <!-- ===== TOP PROMOTION BAR ===== -->
+  <div class="top-promo">
+    <div class="promo-track">
+      <span class="promo-item">
+        <span class="promo-icon">🏖️</span>
+        <span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span>
+        <span class="cta-arrow">→</span>
+      </span>
+      <span class="promo-item">
+        <span class="promo-icon">✨</span>
+        <span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span>
+        <span class="cta-arrow">→</span>
+      </span>
+      <span class="promo-item">
+        <span class="promo-icon">🏖️</span>
+        <span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span>
+        <span class="cta-arrow">→</span>
+      </span>
+      <span class="promo-item">
+        <span class="promo-icon">✨</span>
+        <span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span>
+        <span class="cta-arrow">→</span>
+      </span>
+      <span class="promo-item">
+        <span class="promo-icon">🏖️</span>
+        <span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span>
+        <span class="cta-arrow">→</span>
+      </span>
+      <span class="promo-item">
+        <span class="promo-icon">✨</span>
+        <span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span>
+        <span class="cta-arrow">→</span>
+      </span>
+      <span class="promo-item">
+        <span class="promo-icon">🏖️</span>
+        <span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span>
+        <span class="cta-arrow">→</span>
+      </span>
+      <span class="promo-item">
+        <span class="promo-icon">✨</span>
+        <span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span>
+        <span class="cta-arrow">→</span>
+      </span>
+    </div>
+  </div>
+
   <!-- ===== MAIN CONTENT ===== -->
   <div id="mainContent" style="opacity:0; transition: opacity 0.6s ease;">
     <!-- ===== NAVBAR - SINGLE LANE ===== -->
     <nav class="navbar">
-      <!-- Left: Logo + Brand -->
+      <!-- Left: Logo + iProfile + Villa Arcadia -->
       <div class="navbar-left">
         <img src="1783599597236~2.jpg" alt="Logo" class="logo-img" />
-        <span class="logo-divider"></span>
         <div class="brand-text">
           <span class="name">i<span class="highlight">Profile</span></span>
-          <span class="tagline">Connecting Your Digital Identity</span>
+          <span class="divider">·</span>
+          <span class="villa">Villa Arcadia</span>
         </div>
       </div>
 
-      <!-- Center: Promotion Badge -->
+      <!-- Center: Navigation Links -->
       <div class="navbar-center">
-        <span class="promo-badge">
-          <span class="promo-icon">🏖️</span>
-          <span><span class="highlight-text">Villa Arcadia</span></span>
-          <span class="cta-arrow">→</span>
-        </span>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#profile" class="active">👤 Profile</a></li>
+          <li><a href="#experience">💼 Experience</a></li>
+          <li><a href="#skills">⚡ Skills</a></li>
+          <li><a href="#education">🎓 Education</a></li>
+          <li><a href="#certifications">📜 Certifications</a></li>
+          <li><a href="#testimonials">⭐ Testimonials</a></li>
+          <li><a href="#contact">📬 Contact</a></li>
+        </ul>
       </div>
 
       <!-- Right: VA Badge + Controls -->
@@ -1737,8 +1861,8 @@
         <button id="themeToggle">🌙</button>
       </div>
 
-      <!-- Mobile Navigation Links -->
-      <ul class="nav-links" id="navLinks">
+      <!-- Mobile Navigation Links (hidden by default) -->
+      <ul class="mobile-nav-links" id="mobileNavLinks">
         <li><a href="#profile" class="active">👤 Profile</a></li>
         <li><a href="#experience">💼 Experience</a></li>
         <li><a href="#skills">⚡ Skills</a></li>
@@ -2152,20 +2276,20 @@
 
     // ===== HAMBURGER =====
     var hamburger = document.getElementById('hamburger');
-    var navLinks = document.getElementById('navLinks');
+    var mobileNavLinks = document.getElementById('mobileNavLinks');
     hamburger.addEventListener('click', function(e) {
       e.stopPropagation();
-      navLinks.classList.toggle('show');
+      mobileNavLinks.classList.toggle('show');
     });
     document.addEventListener('click', function(e) {
-      if (!navLinks.contains(e.target) && e.target !== hamburger) {
-        navLinks.classList.remove('show');
+      if (!mobileNavLinks.contains(e.target) && e.target !== hamburger) {
+        mobileNavLinks.classList.remove('show');
       }
     });
 
     // ===== SMOOTH SCROLL & ACTIVE NAV =====
-    var navLinksAll = document.querySelectorAll('.nav-links a');
-    navLinksAll.forEach(function(link) {
+    var allNavLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
+    allNavLinks.forEach(function(link) {
       link.addEventListener('click', function(e) {
         e.preventDefault();
         var targetId = link.getAttribute('href').slice(1);
@@ -2173,8 +2297,8 @@
         if (target) {
           target.scrollIntoView({ behavior: 'smooth' });
         }
-        navLinks.classList.remove('show');
-        navLinksAll.forEach(function(l) { l.classList.remove('active'); });
+        mobileNavLinks.classList.remove('show');
+        allNavLinks.forEach(function(l) { l.classList.remove('active'); });
         link.classList.add('active');
       });
     });
@@ -2186,7 +2310,7 @@
         var top = sec.offsetTop - 100;
         if (window.scrollY >= top) current = sec.getAttribute('id');
       });
-      navLinksAll.forEach(function(link) {
+      allNavLinks.forEach(function(link) {
         link.classList.remove('active');
         if (link.getAttribute('href') === '#' + current) link.classList.add('active');
       });
@@ -2227,7 +2351,7 @@
       var isAndroid = /Android/.test(navigator.userAgent);
       
       if (isIOS || isAndroid) {
-        document.querySelectorAll('.btn, .nav-links a, .hamburger, #themeToggle').forEach(function(el) {
+        document.querySelectorAll('.btn, .nav-links a, .hamburger, #themeToggle, .mobile-nav-links a').forEach(function(el) {
           el.style.webkitTapHighlightColor = 'transparent';
         });
       }
