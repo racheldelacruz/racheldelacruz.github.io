@@ -411,8 +411,95 @@
       justify-content: center;
       gap: 40px;
       text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-    .hero-content { flex: 1 1 360px; text-align: center; }
+    /* Virtual Assistant Background Animation */
+    .hero-bg-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-bg-canvas .grid-line {
+      position: absolute;
+      background: rgba(109, 129, 150, 0.04);
+    }
+    .hero-bg-canvas .grid-line.horizontal {
+      width: 100%;
+      height: 1px;
+      left: 0;
+      animation: gridPulse 4s ease-in-out infinite;
+    }
+    .hero-bg-canvas .grid-line.vertical {
+      height: 100%;
+      width: 1px;
+      top: 0;
+      animation: gridPulse 4s ease-in-out infinite 0.5s;
+    }
+    .hero-bg-canvas .grid-line:nth-child(1) { top: 15%; }
+    .hero-bg-canvas .grid-line:nth-child(2) { top: 45%; }
+    .hero-bg-canvas .grid-line:nth-child(3) { top: 75%; }
+    .hero-bg-canvas .grid-line:nth-child(4) { left: 20%; }
+    .hero-bg-canvas .grid-line:nth-child(5) { left: 50%; }
+    .hero-bg-canvas .grid-line:nth-child(6) { left: 80%; }
+
+    @keyframes gridPulse {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.7; }
+    }
+
+    .hero-bg-canvas .data-particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(109, 129, 150, 0.15);
+      animation: particleDrift 12s ease-in-out infinite;
+    }
+    .hero-bg-canvas .data-particle:nth-child(7) { top: 10%; left: 5%; animation-delay: 0s; }
+    .hero-bg-canvas .data-particle:nth-child(8) { top: 30%; left: 85%; animation-delay: 1s; width: 6px; height: 6px; }
+    .hero-bg-canvas .data-particle:nth-child(9) { top: 60%; left: 10%; animation-delay: 2s; }
+    .hero-bg-canvas .data-particle:nth-child(10) { top: 80%; left: 90%; animation-delay: 0.5s; width: 5px; height: 5px; }
+    .hero-bg-canvas .data-particle:nth-child(11) { top: 20%; left: 50%; animation-delay: 1.5s; width: 7px; height: 7px; }
+    .hero-bg-canvas .data-particle:nth-child(12) { top: 70%; left: 40%; animation-delay: 2.5s; }
+
+    @keyframes particleDrift {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+      25% { transform: translate(30px, -40px) scale(1.4); opacity: 0.6; }
+      50% { transform: translate(-20px, -70px) scale(0.8); opacity: 0.3; }
+      75% { transform: translate(40px, -30px) scale(1.2); opacity: 0.5; }
+    }
+
+    .hero-bg-canvas .code-snippet {
+      position: absolute;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      color: rgba(109, 129, 150, 0.06);
+      white-space: nowrap;
+      pointer-events: none;
+      animation: codeFloat 20s linear infinite;
+    }
+    .hero-bg-canvas .code-snippet:nth-child(13) { top: 5%; left: 2%; animation-delay: 0s; }
+    .hero-bg-canvas .code-snippet:nth-child(14) { top: 50%; left: 70%; animation-delay: -5s; }
+    .hero-bg-canvas .code-snippet:nth-child(15) { top: 85%; left: 15%; animation-delay: -10s; }
+    .hero-bg-canvas .code-snippet:nth-child(16) { top: 25%; left: 80%; animation-delay: -15s; }
+
+    @keyframes codeFloat {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+      50% { transform: translateY(-20px) rotate(2deg); opacity: 0.8; }
+      100% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+    }
+
+    .hero-content, .hero-avatar {
+      position: relative;
+      z-index: 1;
+    }
+
     .hero-content h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: -0.03em; color: var(--ink-charcoal); }
     .hero-content .subhead { font-size: 1.2rem; font-weight: 500; color: var(--ink-blue-gray); margin: 4px 0 8px; }
     .hero-content .location { display: flex; align-items: center; justify-content: center; gap: 6px; color: #6b6b60; font-size: 0.95rem; }
@@ -436,12 +523,10 @@
       background: rgba(107, 129, 150, 0.15);
     }
 
-    /* New profile picture style: Full-width image with corner accent */
     .hero-avatar {
       flex: 0 0 280px;
       max-width: 100%;
       text-align: center;
-      position: relative;
     }
     .hero-avatar .image-wrapper {
       position: relative;
@@ -468,7 +553,6 @@
     .hero-avatar .image-wrapper:hover img {
       transform: scale(1.04);
     }
-    /* Animated corner accent */
     .hero-avatar .corner-accent {
       position: absolute;
       bottom: -6px;
@@ -489,52 +573,6 @@
     @keyframes cornerPulse {
       0%, 100% { opacity: 0.4; transform: scale(1); }
       50% { opacity: 0.7; transform: scale(1.05); }
-    }
-    /* Floating badge over the image */
-    .hero-avatar .floating-badge {
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      background: rgba(255, 255, 227, 0.92);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border: 1px solid rgba(109, 129, 150, 0.2);
-      padding: 6px 16px 6px 12px;
-      border-radius: 40px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--ink-blue-gray);
-      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      animation: badgeFloat 4s ease-in-out infinite;
-      letter-spacing: 0.3px;
-      z-index: 2;
-    }
-    .hero-avatar .floating-badge .pulse-dot {
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #6fcf97;
-      animation: pulse-dot 1.8s ease-in-out infinite;
-    }
-    @keyframes badgeFloat {
-      0%, 100% { transform: translateY(0) rotate(-2deg); }
-      50% { transform: translateY(-8px) rotate(2deg); }
-    }
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.6); }
-    }
-    body.dark .hero-avatar .floating-badge {
-      background: rgba(26, 26, 22, 0.92);
-      color: #cbcbcb;
-      border-color: rgba(255,255,255,0.08);
-    }
-    body.dark .hero-avatar .image-wrapper {
-      border-color: rgba(255,255,255,0.1);
     }
 
     .btn {
@@ -1158,7 +1196,6 @@
       .hero-content h1 { font-size: 2.1rem; }
       .hero-avatar { flex: 0 0 220px; }
       .hero-avatar .image-wrapper img { width: 220px; height: 220px; }
-      .hero-avatar .floating-badge { font-size: 0.65rem; padding: 4px 12px 4px 8px; top: -6px; left: -6px; }
       .hero-avatar .corner-accent { width: 50px; height: 50px; bottom: -4px; right: -4px; }
       .section-title { font-size: 1.6rem; }
       .tl-header { flex-direction: column; gap: 4px; }
@@ -1238,6 +1275,26 @@
     <main class="container">
       <!-- ===== HERO ===== -->
       <section id="profile" class="hero">
+        <!-- Virtual Assistant Background Animation -->
+        <div class="hero-bg-canvas">
+          <div class="grid-line horizontal"></div>
+          <div class="grid-line horizontal"></div>
+          <div class="grid-line horizontal"></div>
+          <div class="grid-line vertical"></div>
+          <div class="grid-line vertical"></div>
+          <div class="grid-line vertical"></div>
+          <div class="data-particle"></div>
+          <div class="data-particle"></div>
+          <div class="data-particle"></div>
+          <div class="data-particle"></div>
+          <div class="data-particle"></div>
+          <div class="data-particle"></div>
+          <div class="code-snippet">const assistant = new VA()</div>
+          <div class="code-snippet">await initProject("resort")</div>
+          <div class="code-snippet">sync.stakeholders()</div>
+          <div class="code-snippet">optimize.workflow()</div>
+        </div>
+
         <div class="hero-content fade-up">
           <h1>Rachel De La Cruz</h1>
           <div class="subhead">🎯 Project Manager · Virtual Assistant</div>
@@ -1257,9 +1314,6 @@
           <div class="image-wrapper">
             <img src="IMG_20260710_160150_773.jpg" alt="Rachel De La Cruz" />
             <div class="corner-accent"></div>
-            <div class="floating-badge">
-              <span class="pulse-dot"></span> Available for hire
-            </div>
           </div>
         </div>
       </section>
