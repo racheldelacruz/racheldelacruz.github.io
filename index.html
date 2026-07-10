@@ -35,6 +35,7 @@
       line-height: 1.6;
       transition: background 0.3s, color 0.3s;
       min-height: 100vh;
+      overflow-x: hidden;
     }
     body.dark {
       background: #1a1a16;
@@ -552,27 +553,121 @@
     .tl-date { font-size: 0.8rem; color: #6b6b60; background: rgba(107, 129, 150, 0.08); padding: 4px 12px; border-radius: 40px; }
     .tl-desc { margin-top: 8px; color: #4a4a42; font-size: 0.92rem; }
 
-    /* ===== SKILLS ===== */
+    /* ===== SKILLS SECTION - EYE CATCHING ANIMATION ===== */
+    #skills {
+      position: relative;
+      overflow: hidden;
+    }
+    #skills .skills-container {
+      position: relative;
+      z-index: 2;
+    }
+    /* Animated background particles for skills */
+    .skills-particles {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(109, 129, 150, 0.08);
+      animation: floatParticle 12s ease-in-out infinite;
+    }
+    .particle:nth-child(1) { left: 5%; animation-delay: 0s; width: 8px; height: 8px; }
+    .particle:nth-child(2) { left: 15%; animation-delay: 1.2s; width: 4px; height: 4px; }
+    .particle:nth-child(3) { left: 25%; animation-delay: 2.5s; width: 10px; height: 10px; }
+    .particle:nth-child(4) { left: 35%; animation-delay: 0.8s; width: 5px; height: 5px; }
+    .particle:nth-child(5) { left: 45%; animation-delay: 1.8s; width: 7px; height: 7px; }
+    .particle:nth-child(6) { left: 55%; animation-delay: 3s; width: 4px; height: 4px; }
+    .particle:nth-child(7) { left: 65%; animation-delay: 0.5s; width: 9px; height: 9px; }
+    .particle:nth-child(8) { left: 75%; animation-delay: 2s; width: 5px; height: 5px; }
+    .particle:nth-child(9) { left: 85%; animation-delay: 1.5s; width: 6px; height: 6px; }
+    .particle:nth-child(10) { left: 95%; animation-delay: 2.8s; width: 8px; height: 8px; }
+    .particle:nth-child(11) { left: 10%; top: 20%; animation-delay: 3.5s; width: 5px; height: 5px; }
+    .particle:nth-child(12) { left: 50%; top: 15%; animation-delay: 1s; width: 7px; height: 7px; }
+    .particle:nth-child(13) { left: 80%; top: 30%; animation-delay: 2.2s; width: 4px; height: 4px; }
+    .particle:nth-child(14) { left: 30%; top: 10%; animation-delay: 3.2s; width: 6px; height: 6px; }
+    .particle:nth-child(15) { left: 70%; top: 8%; animation-delay: 0.3s; width: 9px; height: 9px; }
+    @keyframes floatParticle {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+      25% { transform: translate(20px, -40px) scale(1.3); opacity: 0.6; }
+      50% { transform: translate(-10px, -80px) scale(0.8); opacity: 0.3; }
+      75% { transform: translate(30px, -50px) scale(1.1); opacity: 0.5; }
+    }
+
     .skill-chip {
       background: var(--glass-bg);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       border: 1px solid rgba(74, 74, 74, 0.06);
       border-radius: 60px;
-      padding: 10px 22px;
+      padding: 12px 24px;
       font-weight: 500;
       font-size: 0.9rem;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      transition: var(--transition-smooth);
+      gap: 8px;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       position: relative;
+      cursor: default;
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+      animation: skillPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    .skill-chip:nth-child(1) { animation-delay: 0.05s; }
+    .skill-chip:nth-child(2) { animation-delay: 0.10s; }
+    .skill-chip:nth-child(3) { animation-delay: 0.15s; }
+    .skill-chip:nth-child(4) { animation-delay: 0.20s; }
+    .skill-chip:nth-child(5) { animation-delay: 0.25s; }
+    .skill-chip:nth-child(6) { animation-delay: 0.30s; }
+    .skill-chip:nth-child(7) { animation-delay: 0.35s; }
+    .skill-chip:nth-child(8) { animation-delay: 0.40s; }
+    .skill-chip:nth-child(9) { animation-delay: 0.45s; }
+    .skill-chip:nth-child(10) { animation-delay: 0.50s; }
+    .skill-chip:nth-child(11) { animation-delay: 0.55s; }
+    .skill-chip:nth-child(12) { animation-delay: 0.60s; }
+    .skill-chip:nth-child(13) { animation-delay: 0.65s; }
+    .skill-chip:nth-child(14) { animation-delay: 0.70s; }
+    .skill-chip:nth-child(15) { animation-delay: 0.75s; }
+
+    @keyframes skillPop {
+      0% { opacity: 0; transform: translateY(20px) scale(0.95); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
     }
     .skill-chip:hover {
-      border-color: rgba(109, 129, 150, 0.3);
-      background: rgba(255, 255, 227, 0.5);
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 4px 16px rgba(109, 129, 150, 0.12);
+      border-color: rgba(109, 129, 150, 0.4);
+      background: rgba(255, 255, 227, 0.6);
+      transform: translateY(-4px) scale(1.05) !important;
+      box-shadow: 0 8px 30px rgba(109, 129, 150, 0.15), 0 0 40px rgba(109, 129, 150, 0.05);
+    }
+    .skill-chip .skill-icon {
+      font-size: 1.1rem;
+      transition: transform 0.4s ease;
+    }
+    .skill-chip:hover .skill-icon {
+      transform: rotate(10deg) scale(1.2);
+    }
+    .skill-chip .skill-glow {
+      position: absolute;
+      top: -2px; left: -2px; right: -2px; bottom: -2px;
+      border-radius: 60px;
+      background: conic-gradient(from 0deg, transparent, rgba(109,129,150,0.1), transparent, rgba(109,129,150,0.2), transparent);
+      z-index: -1;
+      animation: skillGlowSpin 4s linear infinite;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .skill-chip:hover .skill-glow {
+      opacity: 1;
+    }
+    @keyframes skillGlowSpin {
+      100% { transform: rotate(360deg); }
     }
 
     /* ===== CERTIFICATIONS ===== */
@@ -664,7 +759,7 @@
 
     /* ===== SECTION ===== */
     .section { padding: 50px 0 30px; border-bottom: 1px solid var(--ink-border); }
-    .flex-wrap { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+    .flex-wrap { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 
     /* ===== FOOTER ===== */
     footer {
@@ -745,6 +840,7 @@
       .boot-logs { font-size: 0.6rem; max-height: 160px; }
       #backToTop { bottom: 20px; right: 20px; width: 42px; height: 42px; font-size: 16px; }
       .glass-box { padding: 20px 18px; }
+      .skill-chip { padding: 10px 18px; font-size: 0.8rem; }
     }
   </style>
 </head>
@@ -931,26 +1027,45 @@
         </div>
       </section>
 
-      <!-- ===== SKILLS ===== -->
+      <!-- ===== SKILLS - EYE CATCHING ANIMATION ===== -->
       <section id="skills" class="section">
-        <h2 class="section-title fade-up"><span class="icon">⚡</span> Skills <span class="accent">·</span></h2>
-        <div class="section-sub fade-up">Core competencies & technical expertise</div>
-        <div class="flex-wrap" style="gap: 10px; margin-top: 8px;">
-          <span class="skill-chip fade-up">📊 CRM</span>
-          <span class="skill-chip fade-up">📚 Teaching</span>
-          <span class="skill-chip fade-up">💬 Customer Service</span>
-          <span class="skill-chip fade-up">🌐 English</span>
-          <span class="skill-chip fade-up">🏥 Healthcare Professionals</span>
-          <span class="skill-chip fade-up">👶 Midwifery</span>
-          <span class="skill-chip fade-up">🗣️ Communication</span>
-          <span class="skill-chip fade-up">🏥 Healthcare</span>
-          <span class="skill-chip fade-up">📚 English Teaching</span>
-          <span class="skill-chip fade-up">📄 Invoicing</span>
-          <span class="skill-chip fade-up">📋 Project Management</span>
-          <span class="skill-chip fade-up">⚠️ Risk Management</span>
-          <span class="skill-chip fade-up">🏗️ Construction Coordination</span>
-          <span class="skill-chip fade-up">🧠 AI Fluency</span>
-          <span class="skill-chip fade-up">🤖 Virtual Assistance</span>
+        <div class="skills-particles">
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+        </div>
+        <div class="skills-container">
+          <h2 class="section-title fade-up"><span class="icon">⚡</span> Skills <span class="accent">·</span></h2>
+          <div class="section-sub fade-up">Core competencies & technical expertise</div>
+          <div class="flex-wrap" style="gap: 12px; margin-top: 8px;">
+            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">📊</span> CRM</span>
+            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">📚</span> Teaching</span>
+            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">💬</span> Customer Service</span>
+            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">🌐</span> English</span>
+            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">🏥</span> Healthcare Professionals</span>
+            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">👶</span> Midwifery</span>
+            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">🗣️</span> Communication</span>
+            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">🏥</span> Healthcare</span>
+            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">📚</span> English Teaching</span>
+            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">📄</span> Invoicing</span>
+            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">📋</span> Project Management</span>
+            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">⚠️</span> Risk Management</span>
+            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">🏗️</span> Construction Coordination</span>
+            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">🧠</span> AI Fluency</span>
+            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">🤖</span> Virtual Assistance</span>
+          </div>
         </div>
       </section>
 
