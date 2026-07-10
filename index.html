@@ -51,6 +51,7 @@
     body.dark .summary-card,
     body.dark .timeline-item,
     body.dark .cert-item,
+    body.dark .edu-item,
     body.dark .rec-card,
     body.dark .skill-chip,
     body.dark .glass-card {
@@ -562,7 +563,6 @@
       position: relative;
       z-index: 2;
     }
-    /* Animated background particles for skills */
     .skills-particles {
       position: absolute;
       top: 0; left: 0;
@@ -670,19 +670,24 @@
       100% { transform: rotate(360deg); }
     }
 
-    /* ===== CERTIFICATIONS ===== */
-    .cert-item {
+    /* ===== EDUCATION & CERTIFICATIONS - SPLIT SECTIONS ===== */
+    .edu-grid, .cert-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .edu-item, .cert-item {
       background: var(--glass-bg);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
       border-radius: 16px;
-      padding: 16px 18px;
+      padding: 18px 20px;
       border: 1px solid rgba(74, 74, 74, 0.06);
       transition: var(--transition-smooth);
       position: relative;
       overflow: hidden;
     }
-    .cert-item::before {
+    .edu-item::before, .cert-item::before {
       content: '';
       position: absolute;
       top: -2px; left: -2px; right: -2px; bottom: -2px;
@@ -694,8 +699,8 @@
       transition: opacity 0.6s ease;
       pointer-events: none;
     }
-    .cert-item:hover::before { opacity: 1; }
-    .cert-item::after {
+    .edu-item:hover::before, .cert-item:hover::before { opacity: 1; }
+    .edu-item::after, .cert-item::after {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -705,13 +710,43 @@
       -webkit-backdrop-filter: blur(8px);
       z-index: -1;
     }
-    .cert-item:hover {
-      transform: translateY(-3px);
-      border-color: rgba(109, 129, 150, 0.2);
+    .edu-item:hover, .cert-item:hover {
+      transform: translateY(-4px);
+      border-color: rgba(109, 129, 150, 0.25);
       box-shadow: var(--shadow-lg);
     }
-    .cert-item strong { display: block; font-weight: 600; }
-    .cert-item small { color: #6b6b60; font-size: 0.75rem; }
+    .edu-item .edu-icon, .cert-item .cert-icon {
+      font-size: 1.4rem;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .edu-item strong, .cert-item strong {
+      display: block;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .edu-item .edu-school, .cert-item .cert-org {
+      font-size: 0.85rem;
+      color: var(--ink-blue-gray);
+      font-weight: 500;
+    }
+    .edu-item small, .cert-item small {
+      color: #6b6b60;
+      font-size: 0.75rem;
+      display: block;
+      margin-top: 2px;
+    }
+    .edu-section-header, .cert-section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .edu-section-header .header-icon, .cert-section-header .header-icon {
+      font-size: 1.4rem;
+    }
 
     /* ===== TESTIMONIALS ===== */
     .rec-card {
@@ -841,6 +876,7 @@
       #backToTop { bottom: 20px; right: 20px; width: 42px; height: 42px; font-size: 16px; }
       .glass-box { padding: 20px 18px; }
       .skill-chip { padding: 10px 18px; font-size: 0.8rem; }
+      .edu-grid, .cert-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -895,6 +931,7 @@
         <li><a href="#profile" class="active">👤 Profile</a></li>
         <li><a href="#experience">💼 Experience</a></li>
         <li><a href="#skills">⚡ Skills</a></li>
+        <li><a href="#education">🎓 Education</a></li>
         <li><a href="#certifications">📜 Certifications</a></li>
         <li><a href="#testimonials">⭐ Testimonials</a></li>
         <li><a href="#contact">📬 Contact</a></li>
@@ -1069,20 +1106,48 @@
         </div>
       </section>
 
-      <!-- ===== EDUCATION & CERTIFICATIONS ===== -->
-      <section id="certifications" class="section">
-        <h2 class="section-title fade-up"><span class="icon">📜</span> Education & Certifications <span class="accent">·</span></h2>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 12px;">
-          <div>
-            <h3 style="font-weight: 600; font-size: 1rem;">🎓 Education</h3>
-            <div class="cert-item fade-up"><strong>👶 Midwife (Associate/Diploma)</strong> Martinez Memorial Colleges <small>Jun 2003 – Mar 2006</small></div>
-            <div class="cert-item fade-up"><strong>🏥 Nursing (Bachelor's)</strong> Manila Central University <small>Jun 2003 – Mar 2004</small></div>
+      <!-- ===== EDUCATION - SPLIT SECTION ===== -->
+      <section id="education" class="section">
+        <h2 class="section-title fade-up"><span class="icon">🎓</span> Education <span class="accent">·</span></h2>
+        <div class="section-sub fade-up">Academic background & professional training</div>
+        <div class="edu-grid">
+          <div class="edu-item fade-up">
+            <span class="edu-icon">👶</span>
+            <strong>Midwife (Associate/Diploma)</strong>
+            <span class="edu-school">Martinez Memorial Colleges</span>
+            <small>Jun 2003 – Mar 2006</small>
           </div>
-          <div>
-            <h3 style="font-weight: 600; font-size: 1rem;">📜 Licenses & Certifications</h3>
-            <div class="cert-item fade-up"><strong>🤖 Anthropic AI</strong> <small>Jun 2026 · Introduction to Agent Skills, Claude Cowork, AI Capabilities, AI Fluency</small></div>
-            <div class="cert-item fade-up"><strong>📊 Google Project Management</strong> <small>Jan 2022 · Project Initiation, Foundations</small></div>
-            <div class="cert-item fade-up"><strong>📋 Licensed Midwife</strong> <small>PRC Philippines · ID: 0138206 (Apr 2006)</small></div>
+          <div class="edu-item fade-up">
+            <span class="edu-icon">🏥</span>
+            <strong>Nursing (Bachelor's)</strong>
+            <span class="edu-school">Manila Central University</span>
+            <small>Jun 2003 – Mar 2004</small>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CERTIFICATIONS - SPLIT SECTION ===== -->
+      <section id="certifications" class="section">
+        <h2 class="section-title fade-up"><span class="icon">📜</span> Certifications <span class="accent">·</span></h2>
+        <div class="section-sub fade-up">Licenses & professional credentials</div>
+        <div class="cert-grid">
+          <div class="cert-item fade-up">
+            <span class="cert-icon">🤖</span>
+            <strong>Anthropic AI</strong>
+            <span class="cert-org">Certificate of Completion</span>
+            <small>Jun 2026 · Introduction to Agent Skills, Claude Cowork, AI Capabilities, AI Fluency</small>
+          </div>
+          <div class="cert-item fade-up">
+            <span class="cert-icon">📊</span>
+            <strong>Google Project Management</strong>
+            <span class="cert-org">Project Initiation: Starting a Successful Project</span>
+            <small>Jan 2022 · Foundations of Project Management</small>
+          </div>
+          <div class="cert-item fade-up">
+            <span class="cert-icon">📋</span>
+            <strong>Licensed Midwife</strong>
+            <span class="cert-org">Philippine Professional Regulation Commission</span>
+            <small>Apr 2006 · Credential ID: 0138206</small>
           </div>
         </div>
       </section>
