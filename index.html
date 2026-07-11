@@ -132,6 +132,9 @@
     body.dark .glass-border-animate {
       border-color: rgba(255,255,255,0.08);
     }
+    body.dark .gallery-slide .slide-overlay {
+      background: linear-gradient(180deg, transparent 40%, rgba(26,26,22,0.7));
+    }
 
     a { text-decoration: none; color: inherit; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
@@ -1573,6 +1576,176 @@
     body.dark .section { border-bottom-color: rgba(255,255,255,0.05); }
     .flex-wrap { display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; -webkit-justify-content: center; justify-content: center; gap: 12px; -webkit-align-items: center; align-items: center; }
 
+    /* ===== VILLA ARCADIA GALLERY ===== */
+    .gallery-section {
+      padding: 50px 0 40px;
+    }
+    .gallery-container {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+      background: rgba(255, 255, 227, 0.12);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(109, 129, 150, 0.15);
+    }
+    .gallery-slider {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      overflow: hidden;
+    }
+    .gallery-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transform: scale(0.95);
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+      pointer-events: none;
+    }
+    .gallery-slide.active {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+    .gallery-slide img,
+    .gallery-slide video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-slide video {
+      background: #1a1a16;
+    }
+    .gallery-slide .slide-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 30px 24px 20px;
+      background: linear-gradient(180deg, transparent 40%, rgba(74, 74, 74, 0.6));
+      color: #fff;
+      pointer-events: none;
+    }
+    .gallery-slide .slide-overlay .slide-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .gallery-slide .slide-overlay .slide-sub {
+      font-size: 0.8rem;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+    .gallery-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 227, 0.3);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--ink-charcoal);
+      font-size: 1.4rem;
+      cursor: pointer;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-align-items: center;
+      align-items: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      transition: all 0.4s ease;
+      z-index: 10;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .gallery-nav:hover {
+      background: rgba(255, 255, 227, 0.6);
+      transform: translateY(-50%) scale(1.1);
+    }
+    .gallery-nav.prev {
+      left: 16px;
+    }
+    .gallery-nav.next {
+      right: 16px;
+    }
+    body.dark .gallery-nav {
+      background: rgba(30, 30, 26, 0.5);
+      color: #e0e0d6;
+      border-color: rgba(255,255,255,0.08);
+    }
+    body.dark .gallery-nav:hover {
+      background: rgba(30, 30, 26, 0.8);
+    }
+    .gallery-dots {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-justify-content: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 0;
+      position: relative;
+      z-index: 5;
+    }
+    .gallery-dots .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(109, 129, 150, 0.25);
+      border: none;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+      padding: 0;
+    }
+    .gallery-dots .dot.active {
+      background: var(--ink-blue-gray);
+      transform: scale(1.2);
+      box-shadow: 0 0 12px rgba(109, 129, 150, 0.3);
+    }
+    .gallery-dots .dot:hover {
+      transform: scale(1.1);
+      background: rgba(109, 129, 150, 0.4);
+    }
+    body.dark .gallery-dots .dot {
+      background: rgba(255,255,255,0.15);
+    }
+    body.dark .gallery-dots .dot.active {
+      background: #6D8196;
+      box-shadow: 0 0 16px rgba(109, 129, 150, 0.3);
+    }
+
+    @media (max-width: 700px) {
+      .gallery-slider {
+        height: 280px;
+      }
+      .gallery-nav {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+      }
+      .gallery-nav.prev {
+        left: 10px;
+      }
+      .gallery-nav.next {
+        right: 10px;
+      }
+      .gallery-slide .slide-overlay .slide-title {
+        font-size: 0.9rem;
+      }
+      .gallery-slide .slide-overlay .slide-sub {
+        font-size: 0.7rem;
+      }
+    }
+
     /* ===== FOOTER ===== */
     footer {
       padding: 30px 0 40px;
@@ -1831,6 +2004,7 @@
           <li><a href="#education">🎓 Education</a></li>
           <li><a href="#certifications">📜 Certifications</a></li>
           <li><a href="#testimonials">⭐ Testimonials</a></li>
+          <li><a href="#gallery">🖼️ Gallery</a></li>
           <li><a href="#contact">📬 Contact</a></li>
         </ul>
       </div>
@@ -1850,6 +2024,7 @@
         <li><a href="#education">🎓 Education</a></li>
         <li><a href="#certifications">📜 Certifications</a></li>
         <li><a href="#testimonials">⭐ Testimonials</a></li>
+        <li><a href="#gallery">🖼️ Gallery</a></li>
         <li><a href="#contact">📬 Contact</a></li>
       </ul>
     </nav>
@@ -1897,7 +2072,6 @@
           </div>
         </div>
 
-        <!-- ===== SIMPLE PROFILE AVATAR ===== -->
         <div class="hero-avatar fade-up">
           <div class="profile-avatar">
             <img src="IMG_20260710_160150_773.jpg" alt="Rachel Dela Cruz" />
@@ -2131,6 +2305,107 @@
         </div>
       </section>
 
+      <!-- ===== VILLA ARCADIA GALLERY ===== -->
+      <section id="gallery" class="gallery-section">
+        <h2 class="section-title fade-up"><span class="icon">🖼️</span> Villa Arcadia <span class="accent">Gallery</span></h2>
+        <div class="section-sub fade-up">Explore the beauty and luxury of Villa Arcadia</div>
+        
+        <div class="gallery-container fade-up">
+          <div class="gallery-slider" id="gallerySlider">
+            <!-- Slide 1 -->
+            <div class="gallery-slide active" data-index="0">
+              <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&h=500&fit=crop" alt="Villa Exterior" />
+              <div class="slide-overlay">
+                <div class="slide-title">🏡 Villa Exterior</div>
+                <div class="slide-sub">Stunning modern architecture with tropical landscaping</div>
+              </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="gallery-slide" data-index="1">
+              <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=500&fit=crop" alt="Infinity Pool" />
+              <div class="slide-overlay">
+                <div class="slide-title">🏊 Infinity Pool</div>
+                <div class="slide-sub">Panoramic ocean views from our signature infinity pool</div>
+              </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="gallery-slide" data-index="2">
+              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=500&fit=crop" alt="Luxury Bedroom" />
+              <div class="slide-overlay">
+                <div class="slide-title">🛏️ Master Suite</div>
+                <div class="slide-sub">Elegant bedroom with panoramic glass walls</div>
+              </div>
+            </div>
+            <!-- Slide 4 -->
+            <div class="gallery-slide" data-index="3">
+              <img src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=800&h=500&fit=crop" alt="Living Room" />
+              <div class="slide-overlay">
+                <div class="slide-title">🛋️ Grand Living Room</div>
+                <div class="slide-sub">Spacious open-plan design with natural light</div>
+              </div>
+            </div>
+            <!-- Slide 5 -->
+            <div class="gallery-slide" data-index="4">
+              <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=500&fit=crop" alt="Garden" />
+              <div class="slide-overlay">
+                <div class="slide-title">🌿 Tropical Garden</div>
+                <div class="slide-sub">Lush gardens with native plants and water features</div>
+              </div>
+            </div>
+            <!-- Slide 6 -->
+            <div class="gallery-slide" data-index="5">
+              <img src="https://images.unsplash.com/photo-1571896349842-33c89434de2d?w=800&h=500&fit=crop" alt="Dining Area" />
+              <div class="slide-overlay">
+                <div class="slide-title">🍽️ Al Fresco Dining</div>
+                <div class="slide-sub">Outdoor dining with breathtaking sunset views</div>
+              </div>
+            </div>
+            <!-- Slide 7 -->
+            <div class="gallery-slide" data-index="6">
+              <video autoplay muted loop playsinline>
+                <source src="https://cdn.pixabay.com/video/2023/07/04/170581-846644295_large.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              <div class="slide-overlay">
+                <div class="slide-title">🎬 Villa Tour</div>
+                <div class="slide-sub">Virtual walkthrough of Villa Arcadia's main areas</div>
+              </div>
+            </div>
+            <!-- Slide 8 -->
+            <div class="gallery-slide" data-index="7">
+              <img src="https://images.unsplash.com/photo-1559599077-95605dcc7a6c?w=800&h=500&fit=crop" alt="Spa Area" />
+              <div class="slide-overlay">
+                <div class="slide-title">💆 Spa & Wellness</div>
+                <div class="slide-sub">Private spa with massage pavilion and sauna</div>
+              </div>
+            </div>
+            <!-- Slide 9 -->
+            <div class="gallery-slide" data-index="8">
+              <img src="https://images.unsplash.com/photo-1590069261209-f8e9b80d8cd3?w=800&h=500&fit=crop" alt="Sunset View" />
+              <div class="slide-overlay">
+                <div class="slide-title">🌅 Sunset Lounge</div>
+                <div class="slide-sub">Perfect spot to watch the sunset over the horizon</div>
+              </div>
+            </div>
+            <!-- Slide 10 -->
+            <div class="gallery-slide" data-index="9">
+              <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&h=500&fit=crop" alt="Night View" />
+              <div class="slide-overlay">
+                <div class="slide-title">✨ Night Ambiance</div>
+                <div class="slide-sub">Magical lighting and starry skies at Villa Arcadia</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Navigation Buttons -->
+          <button class="gallery-nav prev" id="galleryPrev" aria-label="Previous slide">‹</button>
+          <button class="gallery-nav next" id="galleryNext" aria-label="Next slide">›</button>
+          
+          <!-- Dots -->
+          <div class="gallery-dots" id="galleryDots"></div>
+        </div>
+      </section>
+
       <!-- ===== CONTACT ===== -->
       <section id="contact" class="section" style="border-bottom: none;">
         <h2 class="section-title fade-up"><span class="icon">📬</span> Contact <span class="accent">·</span></h2>
@@ -2191,6 +2466,142 @@
       }
 
       setTimeout(typeEffect, 300);
+    })();
+
+    // ============================================================
+    // ===== GALLERY SLIDER =====
+    // ============================================================
+    (function gallerySlider() {
+      var slides = document.querySelectorAll('.gallery-slide');
+      var dotsContainer = document.getElementById('galleryDots');
+      var prevBtn = document.getElementById('galleryPrev');
+      var nextBtn = document.getElementById('galleryNext');
+      var currentIndex = 0;
+      var totalSlides = slides.length;
+      var autoPlayInterval = null;
+      var isTransitioning = false;
+
+      // Create dots
+      slides.forEach(function(slide, index) {
+        var dot = document.createElement('button');
+        dot.className = 'dot' + (index === 0 ? ' active' : '');
+        dot.setAttribute('data-index', index);
+        dot.setAttribute('aria-label', 'Go to slide ' + (index + 1));
+        dot.addEventListener('click', function() {
+          goToSlide(index);
+        });
+        dotsContainer.appendChild(dot);
+      });
+
+      var dots = dotsContainer.querySelectorAll('.dot');
+
+      function goToSlide(index) {
+        if (isTransitioning) return;
+        if (index === currentIndex) return;
+        if (index < 0) index = totalSlides - 1;
+        if (index >= totalSlides) index = 0;
+
+        isTransitioning = true;
+        
+        // Remove active class from current slide and dot
+        slides[currentIndex].classList.remove('active');
+        dots[currentIndex].classList.remove('active');
+        
+        // Add active class to new slide and dot
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+        
+        currentIndex = index;
+
+        // Reset auto-play timer
+        resetAutoPlay();
+
+        setTimeout(function() {
+          isTransitioning = false;
+        }, 800);
+      }
+
+      function nextSlide() {
+        goToSlide(currentIndex + 1);
+      }
+
+      function prevSlide() {
+        goToSlide(currentIndex - 1);
+      }
+
+      function resetAutoPlay() {
+        if (autoPlayInterval) {
+          clearInterval(autoPlayInterval);
+          autoPlayInterval = null;
+        }
+        startAutoPlay();
+      }
+
+      function startAutoPlay() {
+        if (autoPlayInterval) clearInterval(autoPlayInterval);
+        autoPlayInterval = setInterval(nextSlide, 4000);
+      }
+
+      // Event listeners
+      prevBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        prevSlide();
+      });
+
+      nextBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        nextSlide();
+      });
+
+      // Touch/swipe support
+      var slider = document.getElementById('gallerySlider');
+      var touchStartX = 0;
+      var touchEndX = 0;
+
+      slider.addEventListener('touchstart', function(e) {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      slider.addEventListener('touchend', function(e) {
+        touchEndX = e.changedTouches[0].screenX;
+        var diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 40) {
+          if (diff > 0) {
+            nextSlide();
+          } else {
+            prevSlide();
+          }
+        }
+      }, { passive: true });
+
+      // Keyboard navigation
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowRight') nextSlide();
+        if (e.key === 'ArrowLeft') prevSlide();
+      });
+
+      // Start auto-play
+      startAutoPlay();
+
+      // Pause on hover
+      var galleryContainer = document.querySelector('.gallery-container');
+      galleryContainer.addEventListener('mouseenter', function() {
+        if (autoPlayInterval) {
+          clearInterval(autoPlayInterval);
+          autoPlayInterval = null;
+        }
+      });
+      galleryContainer.addEventListener('mouseleave', function() {
+        startAutoPlay();
+      });
+
+      // Expose for debugging
+      window.gallery = {
+        goToSlide: goToSlide,
+        next: nextSlide,
+        prev: prevSlide,
+        current: function() { return currentIndex; }
+      };
     })();
 
     // ============================================================
