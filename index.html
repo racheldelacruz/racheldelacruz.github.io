@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>Rachel Dela Cruz · Project Manager & VA</title>
   <meta name="description" content="Project Manager with extensive experience across customer service, healthcare, and resort construction." />
+  
+  <!-- ===== SOCIAL META TAGS ===== -->
+  <meta property="og:title" content="Rachel Dela Cruz · Project Manager & Virtual Assistant" />
+  <meta property="og:description" content="Project Manager with extensive experience across customer service, healthcare, and resort construction. Available for VA opportunities." />
+  <meta property="og:image" content="IMG_20260710_160150_773.jpg" />
+  <meta property="og:url" content="https://rachel-delacruz.example.com" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:site_name" content="Rachel Dela Cruz Portfolio" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Rachel Dela Cruz · Project Manager & VA" />
+  <meta name="twitter:description" content="Project Manager with extensive experience across customer service, healthcare, and resort construction." />
+  <meta name="twitter:image" content="IMG_20260710_160150_773.jpg" />
+  <link rel="canonical" href="https://rachel-delacruz.example.com" />
+  
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="theme-color" content="#FFFFE3" />
@@ -32,8 +46,15 @@
   <meta http-equiv="X-Frame-Options" content="DENY" />
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
   
+  <!-- ===== RESOURCE HINTS ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://images.unsplash.com" />
+  <link rel="preconnect" href="https://cdn.pixabay.com" />
+  
+  <!-- ===== PRECONNECT & PREFETCH ===== -->
+  <link rel="preload" as="image" href="IMG_20260710_160150_773.jpg" />
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   
   <style>
@@ -56,6 +77,7 @@
       --glow-color: rgba(109, 129, 150, 0.3);
       --safe-area-inset-top: env(safe-area-inset-top, 0px);
       --safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+      --focus-ring: 0 0 0 3px rgba(109, 129, 150, 0.4);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -75,6 +97,23 @@
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ===== FOCUS VISIBLE ===== */
+    :focus-visible {
+      outline: none;
+      box-shadow: var(--focus-ring);
+      border-radius: 8px;
+    }
+
+    /* ===== REDUCED MOTION ===== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
 
     /* ===== SECURITY BADGE ===== */
@@ -1310,6 +1349,8 @@
       border: none;
       box-shadow: 0 4px 20px rgba(0,0,0,0.12);
       transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+      align-items: center;
+      justify-content: center;
     }
     #backToTop:hover { 
       transform: translateY(-4px) scale(1.05); 
@@ -1361,15 +1402,15 @@
   <div class="boot-overlay" id="bootOverlay">
     <div class="boot-terminal">
       <div class="boot-avatar">
-        <div class="boot-avatar-circle">🤖</div>
+        <div class="boot-avatar-circle" aria-hidden="true">🤖</div>
       </div>
       <div class="boot-header">
-        <span class="boot-dot red"></span>
-        <span class="boot-dot amber"></span>
-        <span class="boot-dot green"></span>
-        <span class="boot-title"><span class="va-icon">◆</span> VIRTUAL ASSISTANT · INIT</span>
+        <span class="boot-dot red" aria-hidden="true"></span>
+        <span class="boot-dot amber" aria-hidden="true"></span>
+        <span class="boot-dot green" aria-hidden="true"></span>
+        <span class="boot-title"><span class="va-icon" aria-hidden="true">◆</span> VIRTUAL ASSISTANT · INIT</span>
       </div>
-      <div class="boot-logs">
+      <div class="boot-logs" aria-label="System initialization logs">
         <div class="log-line"><span class="prompt">➜</span> <span class="info">initializing neural core ...</span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">virtual assistant kernel loaded</span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">project management engine <span class="accent-text">v2.4</span></span></div>
@@ -1384,43 +1425,43 @@
       <div class="boot-status-text" id="bootStatusText">initializing ... 0%</div>
       <div class="boot-status-bar"><div class="boot-status-fill" id="bootStatusFill"></div></div>
       <div class="boot-ready" id="bootReady">
-        <div class="ready-text"><span class="check">●</span> SYSTEM ONLINE</div>
+        <div class="ready-text"><span class="check" aria-hidden="true">●</span> SYSTEM ONLINE</div>
         <div class="ready-sub">virtual assistant · project management · 15+ years</div>
       </div>
     </div>
   </div>
 
   <!-- ===== TOP PROMOTION BAR ===== -->
-  <div class="top-promo">
+  <div class="top-promo" aria-label="Promotional banner">
     <div class="promo-track">
-      <span class="promo-item"><span class="promo-icon">🏖️</span><span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span><span class="cta-arrow">→</span></span>
-      <span class="promo-item"><span class="promo-icon">✨</span><span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span><span class="cta-arrow">→</span></span>
-      <span class="promo-item"><span class="promo-icon">🏖️</span><span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span><span class="cta-arrow">→</span></span>
-      <span class="promo-item"><span class="promo-icon">✨</span><span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span><span class="cta-arrow">→</span></span>
-      <span class="promo-item"><span class="promo-icon">🏖️</span><span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span><span class="cta-arrow">→</span></span>
-      <span class="promo-item"><span class="promo-icon">✨</span><span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span><span class="cta-arrow">→</span></span>
-      <span class="promo-item"><span class="promo-icon">🏖️</span><span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span><span class="cta-arrow">→</span></span>
-      <span class="promo-item"><span class="promo-icon">✨</span><span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span><span class="cta-arrow">→</span></span>
+      <span class="promo-item"><span class="promo-icon" aria-hidden="true">🏖️</span><span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span><span class="cta-arrow" aria-hidden="true">→</span></span>
+      <span class="promo-item"><span class="promo-icon" aria-hidden="true">✨</span><span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span><span class="cta-arrow" aria-hidden="true">→</span></span>
+      <span class="promo-item"><span class="promo-icon" aria-hidden="true">🏖️</span><span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span><span class="cta-arrow" aria-hidden="true">→</span></span>
+      <span class="promo-item"><span class="promo-icon" aria-hidden="true">✨</span><span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span><span class="cta-arrow" aria-hidden="true">→</span></span>
+      <span class="promo-item"><span class="promo-icon" aria-hidden="true">🏖️</span><span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span><span class="cta-arrow" aria-hidden="true">→</span></span>
+      <span class="promo-item"><span class="promo-icon" aria-hidden="true">✨</span><span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span><span class="cta-arrow" aria-hidden="true">→</span></span>
+      <span class="promo-item"><span class="promo-icon" aria-hidden="true">🏖️</span><span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span><span class="cta-arrow" aria-hidden="true">→</span></span>
+      <span class="promo-item"><span class="promo-icon" aria-hidden="true">✨</span><span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span><span class="cta-arrow" aria-hidden="true">→</span></span>
     </div>
   </div>
 
   <!-- ===== MAIN CONTENT ===== -->
   <div id="mainContent" style="opacity:0; transition: opacity 0.8s ease;">
     <!-- ===== NAVBAR ===== -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
       <div class="navbar-left">
         <span class="logo-wrapper">
-          <img src="1783726853698~2.jpg" alt="Logo" class="logo-img" />
+          <img src="1783726853698~2.jpg" alt="Rachel Dela Cruz Logo" class="logo-img" width="42" height="42" />
         </span>
         <div class="brand-text">
           <span class="name">i<span class="highlight">Profile</span></span>
-          <span class="divider">·</span>
+          <span class="divider" aria-hidden="true">·</span>
           <span class="villa">Villa Arcadia</span>
         </div>
       </div>
       <div class="navbar-center">
         <ul class="nav-links" id="navLinks">
-          <li><a href="#profile" class="active">👤 Profile</a></li>
+          <li><a href="#profile" class="active" aria-current="page">👤 Profile</a></li>
           <li><a href="#experience">💼 Experience</a></li>
           <li><a href="#skills">⚡ Skills</a></li>
           <li><a href="#education">🎓 Education</a></li>
@@ -1431,9 +1472,9 @@
         </ul>
       </div>
       <div class="navbar-right">
-        <span class="va-badge"><span class="pulse-dot"></span> VA active</span>
-        <button class="hamburger" id="hamburger">☰</button>
-        <button id="themeToggle">🌙</button>
+        <span class="va-badge"><span class="pulse-dot" aria-hidden="true"></span> VA active</span>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+        <button id="themeToggle" aria-label="Toggle dark mode">🌙</button>
       </div>
       <ul class="mobile-nav-links" id="mobileNavLinks">
         <li><a href="#profile" class="active">👤 Profile</a></li>
@@ -1449,8 +1490,8 @@
 
     <main class="container">
       <!-- ===== HERO ===== -->
-      <section id="profile" class="hero">
-        <div class="hero-bg-canvas">
+      <section id="profile" class="hero" aria-labelledby="hero-heading">
+        <div class="hero-bg-canvas" aria-hidden="true">
           <div class="grid-line horizontal"></div>
           <div class="grid-line horizontal"></div>
           <div class="grid-line horizontal"></div>
@@ -1469,10 +1510,10 @@
           <div class="code-snippet">optimize.workflow()</div>
         </div>
         <div class="hero-content fade-up">
-          <h1>
+          <h1 id="hero-heading">
             <span class="name-wrapper" id="typedName">
               <span id="nameDisplay"></span>
-              <span class="cursor" id="cursor"></span>
+              <span class="cursor" id="cursor" aria-hidden="true"></span>
             </span>
           </h1>
           <div class="subhead">🎯 Project Manager · Virtual Assistant</div>
@@ -1490,7 +1531,7 @@
         </div>
         <div class="hero-avatar fade-up">
           <div class="profile-avatar">
-            <img src="IMG_20260710_160150_773.jpg" alt="Rachel Dela Cruz" />
+            <img src="IMG_20260710_160150_773.jpg" alt="Rachel Dela Cruz portrait" width="220" height="220" />
           </div>
         </div>
       </section>
@@ -1505,8 +1546,8 @@
       </div>
 
       <!-- ===== EXPERIENCE ===== -->
-      <section id="experience" class="section">
-        <h2 class="section-title fade-up"><span class="icon">💼</span> Experience <span class="accent">·</span></h2>
+      <section id="experience" class="section" aria-labelledby="experience-heading">
+        <h2 class="section-title fade-up" id="experience-heading"><span class="icon" aria-hidden="true">💼</span> Experience <span class="accent">·</span></h2>
         <div class="section-sub fade-up">Full project lifecycle & cross-functional leadership</div>
         <div class="timeline">
           <div class="timeline-item">
@@ -1592,41 +1633,41 @@
       </section>
 
       <!-- ===== SKILLS ===== -->
-      <section id="skills" class="section">
-        <h2 class="section-title fade-up"><span class="icon">⚡</span> Skills <span class="accent">·</span></h2>
+      <section id="skills" class="section" aria-labelledby="skills-heading">
+        <h2 class="section-title fade-up" id="skills-heading"><span class="icon" aria-hidden="true">⚡</span> Skills <span class="accent">·</span></h2>
         <div class="section-sub fade-up">Core competencies & technical expertise</div>
         <div class="flex-wrap" style="gap:12px;margin-top:8px;">
-          <span class="skill-chip"><span class="skill-icon">📊</span> CRM</span>
-          <span class="skill-chip"><span class="skill-icon">📚</span> Teaching</span>
-          <span class="skill-chip"><span class="skill-icon">💬</span> Customer Service</span>
-          <span class="skill-chip"><span class="skill-icon">🌐</span> English</span>
-          <span class="skill-chip"><span class="skill-icon">🏥</span> Healthcare Professionals</span>
-          <span class="skill-chip"><span class="skill-icon">👶</span> Midwifery</span>
-          <span class="skill-chip"><span class="skill-icon">🗣️</span> Communication</span>
-          <span class="skill-chip"><span class="skill-icon">🏥</span> Healthcare</span>
-          <span class="skill-chip"><span class="skill-icon">📚</span> English Teaching</span>
-          <span class="skill-chip"><span class="skill-icon">📄</span> Invoicing</span>
-          <span class="skill-chip"><span class="skill-icon">📋</span> Project Management</span>
-          <span class="skill-chip"><span class="skill-icon">⚠️</span> Risk Management</span>
-          <span class="skill-chip"><span class="skill-icon">🏗️</span> Construction Coordination</span>
-          <span class="skill-chip"><span class="skill-icon">🧠</span> AI Fluency</span>
-          <span class="skill-chip"><span class="skill-icon">🤖</span> Virtual Assistance</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">📊</span> CRM</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">📚</span> Teaching</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">💬</span> Customer Service</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🌐</span> English</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🏥</span> Healthcare Professionals</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">👶</span> Midwifery</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🗣️</span> Communication</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🏥</span> Healthcare</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">📚</span> English Teaching</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">📄</span> Invoicing</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">📋</span> Project Management</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">⚠️</span> Risk Management</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🏗️</span> Construction Coordination</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🧠</span> AI Fluency</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🤖</span> Virtual Assistance</span>
         </div>
       </section>
 
       <!-- ===== EDUCATION ===== -->
-      <section id="education" class="section">
-        <h2 class="section-title fade-up"><span class="icon">🎓</span> Education <span class="accent">·</span></h2>
+      <section id="education" class="section" aria-labelledby="education-heading">
+        <h2 class="section-title fade-up" id="education-heading"><span class="icon" aria-hidden="true">🎓</span> Education <span class="accent">·</span></h2>
         <div class="section-sub fade-up">Academic background & professional training</div>
         <div class="edu-grid">
           <div class="edu-item fade-up">
-            <span class="edu-icon">👶</span>
+            <span class="edu-icon" aria-hidden="true">👶</span>
             <strong>Midwife (Associate/Diploma)</strong>
             <span class="edu-school">Martinez Memorial Colleges</span>
             <small>Jun 2003 – Mar 2006</small>
           </div>
           <div class="edu-item fade-up">
-            <span class="edu-icon">🏥</span>
+            <span class="edu-icon" aria-hidden="true">🏥</span>
             <strong>Nursing (Bachelor's)</strong>
             <span class="edu-school">Manila Central University</span>
             <small>Jun 2003 – Mar 2004</small>
@@ -1635,24 +1676,24 @@
       </section>
 
       <!-- ===== CERTIFICATIONS ===== -->
-      <section id="certifications" class="section">
-        <h2 class="section-title fade-up"><span class="icon">📜</span> Certifications <span class="accent">·</span></h2>
+      <section id="certifications" class="section" aria-labelledby="certifications-heading">
+        <h2 class="section-title fade-up" id="certifications-heading"><span class="icon" aria-hidden="true">📜</span> Certifications <span class="accent">·</span></h2>
         <div class="section-sub fade-up">Licenses & professional credentials</div>
         <div class="cert-grid">
           <div class="cert-item fade-up">
-            <span class="cert-icon">🤖</span>
+            <span class="cert-icon" aria-hidden="true">🤖</span>
             <strong>Anthropic AI</strong>
             <span class="cert-org">Certificate of Completion</span>
             <small>Jun 2026 · Introduction to Agent Skills, Claude Cowork, AI Capabilities, AI Fluency</small>
           </div>
           <div class="cert-item fade-up">
-            <span class="cert-icon">📊</span>
+            <span class="cert-icon" aria-hidden="true">📊</span>
             <strong>Google Project Management</strong>
             <span class="cert-org">Project Initiation: Starting a Successful Project</span>
             <small>Jan 2022 · Foundations of Project Management</small>
           </div>
           <div class="cert-item fade-up">
-            <span class="cert-icon">📋</span>
+            <span class="cert-icon" aria-hidden="true">📋</span>
             <strong>Licensed Midwife</strong>
             <span class="cert-org">Philippine Professional Regulation Commission</span>
             <small>Apr 2006 · Credential ID: 0138206</small>
@@ -1661,8 +1702,8 @@
       </section>
 
       <!-- ===== TESTIMONIALS ===== -->
-      <section id="testimonials" class="section">
-        <h2 class="section-title fade-up"><span class="icon">⭐</span> Recommendations <span class="accent">·</span></h2>
+      <section id="testimonials" class="section" aria-labelledby="testimonials-heading">
+        <h2 class="section-title fade-up" id="testimonials-heading"><span class="icon" aria-hidden="true">⭐</span> Recommendations <span class="accent">·</span></h2>
         <div class="section-sub fade-up">What colleagues & partners say</div>
         <div class="rec-card fade-up">
           <div class="quote">"Rachel quickly became my trusted go-to person… Her attention to detail, relentless follow-through, problem-solving abilities, and dedication to the work allow her to operate at a higher level than most."</div>
@@ -1675,69 +1716,70 @@
       </section>
 
       <!-- ===== VILLA ARCADIA GALLERY ===== -->
-      <section id="gallery" class="gallery-section">
-        <h2 class="section-title fade-up"><span class="icon">🖼️</span> Villa Arcadia <span class="accent">Gallery</span></h2>
+      <section id="gallery" class="gallery-section" aria-labelledby="gallery-heading">
+        <h2 class="section-title fade-up" id="gallery-heading"><span class="icon" aria-hidden="true">🖼️</span> Villa Arcadia <span class="accent">Gallery</span></h2>
         <div class="section-sub fade-up">Explore the beauty and luxury of Villa Arcadia</div>
-        <div class="gallery-container fade-up">
+        <div class="gallery-container fade-up" role="region" aria-label="Image gallery">
           <div class="gallery-slider" id="gallerySlider">
             <div class="gallery-slide active" data-index="0">
-              <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&h=500&fit=crop" alt="Villa Exterior" />
+              <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&h=500&fit=crop" alt="Villa exterior with tropical landscaping" loading="lazy" decoding="async" width="800" height="500" />
               <div class="slide-overlay"><div class="slide-title">🏡 Villa Exterior</div><div class="slide-sub">Stunning modern architecture with tropical landscaping</div></div>
             </div>
             <div class="gallery-slide" data-index="1">
-              <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=500&fit=crop" alt="Infinity Pool" />
+              <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=500&fit=crop" alt="Infinity pool with panoramic ocean views" loading="lazy" decoding="async" width="800" height="500" />
               <div class="slide-overlay"><div class="slide-title">🏊 Infinity Pool</div><div class="slide-sub">Panoramic ocean views from our signature infinity pool</div></div>
             </div>
             <div class="gallery-slide" data-index="2">
-              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=500&fit=crop" alt="Luxury Bedroom" />
+              <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=500&fit=crop" alt="Master suite with panoramic glass walls" loading="lazy" decoding="async" width="800" height="500" />
               <div class="slide-overlay"><div class="slide-title">🛏️ Master Suite</div><div class="slide-sub">Elegant bedroom with panoramic glass walls</div></div>
             </div>
             <div class="gallery-slide" data-index="3">
-              <img src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=800&h=500&fit=crop" alt="Living Room" />
+              <img src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=800&h=500&fit=crop" alt="Grand living room with natural light" loading="lazy" decoding="async" width="800" height="500" />
               <div class="slide-overlay"><div class="slide-title">🛋️ Grand Living Room</div><div class="slide-sub">Spacious open-plan design with natural light</div></div>
             </div>
             <div class="gallery-slide" data-index="4">
-              <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=500&fit=crop" alt="Garden" />
+              <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=500&fit=crop" alt="Tropical garden with water features" loading="lazy" decoding="async" width="800" height="500" />
               <div class="slide-overlay"><div class="slide-title">🌿 Tropical Garden</div><div class="slide-sub">Lush gardens with native plants and water features</div></div>
             </div>
             <div class="gallery-slide" data-index="5">
-              <img src="https://images.unsplash.com/photo-1571896349842-33c89434de2d?w=800&h=500&fit=crop" alt="Dining Area" />
+              <img src="https://images.unsplash.com/photo-1571896349842-33c89434de2d?w=800&h=500&fit=crop" alt="Outdoor dining with sunset views" loading="lazy" decoding="async" width="800" height="500" />
               <div class="slide-overlay"><div class="slide-title">🍽️ Al Fresco Dining</div><div class="slide-sub">Outdoor dining with breathtaking sunset views</div></div>
             </div>
             <div class="gallery-slide" data-index="6">
-              <video autoplay muted loop playsinline>
+              <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&h=500&fit=crop" width="800" height="500">
                 <source src="https://cdn.pixabay.com/video/2023/07/04/170581-846644295_large.mp4" type="video/mp4" />
+                <source src="https://cdn.pixabay.com/video/2023/07/04/170581-846644295_large.webm" type="video/webm" />
               </video>
               <div class="slide-overlay"><div class="slide-title">🎬 Villa Tour</div><div class="slide-sub">Virtual walkthrough of Villa Arcadia's main areas</div></div>
             </div>
             <div class="gallery-slide" data-index="7">
-              <img src="https://images.unsplash.com/photo-1559599077-95605dcc7a6c?w=800&h=500&fit=crop" alt="Spa Area" />
+              <img src="https://images.unsplash.com/photo-1559599077-95605dcc7a6c?w=800&h=500&fit=crop" alt="Spa and wellness area" loading="lazy" decoding="async" width="800" height="500" />
               <div class="slide-overlay"><div class="slide-title">💆 Spa & Wellness</div><div class="slide-sub">Private spa with massage pavilion and sauna</div></div>
             </div>
             <div class="gallery-slide" data-index="8">
-              <img src="https://images.unsplash.com/photo-1590069261209-f8e9b80d8cd3?w=800&h=500&fit=crop" alt="Sunset View" />
+              <img src="https://images.unsplash.com/photo-1590069261209-f8e9b80d8cd3?w=800&h=500&fit=crop" alt="Sunset lounge overlooking horizon" loading="lazy" decoding="async" width="800" height="500" />
               <div class="slide-overlay"><div class="slide-title">🌅 Sunset Lounge</div><div class="slide-sub">Perfect spot to watch the sunset over the horizon</div></div>
             </div>
             <div class="gallery-slide" data-index="9">
-              <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&h=500&fit=crop" alt="Night View" />
+              <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&h=500&fit=crop" alt="Night ambiance with magical lighting" loading="lazy" decoding="async" width="800" height="500" />
               <div class="slide-overlay"><div class="slide-title">✨ Night Ambiance</div><div class="slide-sub">Magical lighting and starry skies at Villa Arcadia</div></div>
             </div>
           </div>
           <button class="gallery-nav prev" id="galleryPrev" aria-label="Previous slide">‹</button>
           <button class="gallery-nav next" id="galleryNext" aria-label="Next slide">›</button>
-          <div class="gallery-dots" id="galleryDots"></div>
+          <div class="gallery-dots" id="galleryDots" role="tablist" aria-label="Gallery navigation dots"></div>
         </div>
       </section>
 
       <!-- ===== CONTACT ===== -->
-      <section id="contact" class="section" style="border-bottom:none;">
-        <h2 class="section-title fade-up"><span class="icon">📬</span> Contact <span class="accent">·</span></h2>
+      <section id="contact" class="section" style="border-bottom:none;" aria-labelledby="contact-heading">
+        <h2 class="section-title fade-up" id="contact-heading"><span class="icon" aria-hidden="true">📬</span> Contact <span class="accent">·</span></h2>
         <div class="section-sub fade-up">Get in touch with Rachel</div>
         <div class="glass-box fade-up" style="display:flex;flex-wrap:wrap;gap:20px;justify-content:center;align-items:center;text-align:center;">
           <div>
             <p style="margin:6px 0;"><strong>📍</strong> Laguna, Calabarzon, Philippines</p>
             <p style="margin:6px 0;"><strong>📧</strong> <a href="mailto:rachel.delacruz@example.com" style="color:var(--ink-blue-gray);">rachel.delacruz@example.com</a></p>
-            <p style="margin:6px 0;"><strong>🔗</strong> <a href="#" style="color:var(--ink-blue-gray);">linkedin.com/in/rachel-delacruz</a></p>
+            <p style="margin:6px 0;"><strong>🔗</strong> <a href="https://linkedin.com/in/rachel-delacruz" target="_blank" rel="noopener" style="color:var(--ink-blue-gray);">linkedin.com/in/rachel-delacruz</a></p>
           </div>
           <div>
             <a href="#" class="btn">📄 Download Resume (PDF)</a>
@@ -1745,10 +1787,10 @@
         </div>
       </section>
 
-      <!-- ===== TAP & SAVE TO YOUR PHONE (MOVED BELOW CONTACT) ===== -->
+      <!-- ===== TAP & SAVE TO YOUR PHONE ===== -->
       <div class="summary-card fade-up wallet-section" style="margin:30px 0 20px;">
         <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;">
-          <span class="nfc-indicator"></span>
+          <span class="nfc-indicator" aria-hidden="true"></span>
           <strong style="font-size:1.1rem;">📱 Tap & Save to Your Phone</strong>
         </div>
         <p style="font-size:0.9rem;max-width:600px;margin:0 auto 16px;">
@@ -1757,23 +1799,23 @@
         </p>
         
         <div class="wallet-btn-container">
-          <button class="wallet-btn google-wallet" onclick="addToGoogleWallet()" title="Add to Google Wallet">
-            <span class="btn-icon">💳</span> Google Wallet
+          <button class="wallet-btn google-wallet" onclick="addToGoogleWallet()" aria-label="Add to Google Wallet">
+            <span class="btn-icon" aria-hidden="true">💳</span> Google Wallet
           </button>
-          <button class="wallet-btn apple-wallet" onclick="addToAppleWallet()" title="Add to Apple Wallet">
-            <span class="btn-icon">📱</span> Apple Wallet
+          <button class="wallet-btn apple-wallet" onclick="addToAppleWallet()" aria-label="Add to Apple Wallet">
+            <span class="btn-icon" aria-hidden="true">📱</span> Apple Wallet
           </button>
-          <button class="wallet-btn save-contact" onclick="downloadVCard()" title="Download Contact">
-            <span class="btn-icon">📥</span> Save Contact
+          <button class="wallet-btn save-contact" onclick="downloadVCard()" aria-label="Download contact">
+            <span class="btn-icon" aria-hidden="true">📥</span> Save Contact
           </button>
-          <button class="wallet-btn nfc-share" onclick="shareViaNFC()" title="Share via NFC">
-            <span class="btn-icon">📡</span> NFC Share
+          <button class="wallet-btn nfc-share" onclick="shareViaNFC()" aria-label="Share via NFC">
+            <span class="btn-icon" aria-hidden="true">📡</span> NFC Share
           </button>
-          <button class="wallet-btn qr-code" onclick="downloadQRContact()" title="QR Code">
-            <span class="btn-icon">📱</span> QR Code
+          <button class="wallet-btn qr-code" onclick="downloadQRContact()" aria-label="QR Code">
+            <span class="btn-icon" aria-hidden="true">📱</span> QR Code
           </button>
-          <button class="wallet-btn share-contact" onclick="shareContact()" title="Share">
-            <span class="btn-icon">🔗</span> Share
+          <button class="wallet-btn share-contact" onclick="shareContact()" aria-label="Share contact">
+            <span class="btn-icon" aria-hidden="true">🔗</span> Share
           </button>
         </div>
         
@@ -1787,11 +1829,11 @@
     </main>
 
     <!-- ===== FOOTER ===== -->
-    <footer>
+    <footer role="contentinfo">
       <div class="container">
         <div class="footer-content">
           <div class="footer-brand">2026 <span class="highlight">iProfile</span> by <span class="highlight">LJL Digital Hub</span></div>
-          <div class="footer-divider"></div>
+          <div class="footer-divider" aria-hidden="true"></div>
           <div class="footer-sub">🤖 Virtual Assistant · Project Management</div>
         </div>
       </div>
@@ -1799,25 +1841,25 @@
   </div>
 
   <!-- ===== SECURITY BADGE ===== -->
-  <div class="security-badge"><span class="lock-icon">🔒</span> SECURE · v1.0</div>
+  <div class="security-badge" aria-hidden="true"><span class="lock-icon">🔒</span> SECURE · v1.0</div>
 
   <!-- ===== NFC MODAL ===== -->
-  <div class="nfc-modal" id="nfcModal">
+  <div class="nfc-modal" id="nfcModal" role="dialog" aria-label="NFC sharing dialog">
     <div class="nfc-modal-content">
-      <button class="close-btn" onclick="closeNfcModal()">✕</button>
-      <div class="nfc-icon">📡</div>
+      <button class="close-btn" onclick="closeNfcModal()" aria-label="Close NFC dialog">✕</button>
+      <div class="nfc-icon" aria-hidden="true">📡</div>
       <h3>NFC Sharing</h3>
       <p>Bring your phone close to another NFC-enabled device to share Rachel's contact instantly.</p>
-      <div id="nfcStatus" style="font-size:0.85rem;color:#6b6b60;">Waiting for NFC tap...</div>
+      <div id="nfcStatus" style="font-size:0.85rem;color:#6b6b60;" role="status" aria-live="polite">Waiting for NFC tap...</div>
       <button class="wallet-btn" onclick="cancelNFCShare()" style="margin-top:16px;">Cancel</button>
     </div>
   </div>
 
   <!-- ===== TOAST ===== -->
-  <div class="toast" id="toast"></div>
+  <div class="toast" id="toast" role="alert" aria-live="polite"></div>
 
   <!-- ===== BACK TO TOP ===== -->
-  <button id="backToTop" title="Back to top">↑</button>
+  <button id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
 
   <script>
     // ============================================================
@@ -1855,7 +1897,9 @@ URL;TYPE=LinkedIn:${contactData.linkedin}
 ADR;TYPE=WORK:;;${contactData.address};;;
 PHOTO;VALUE=URL:${contactData.photoUrl}
 LOGO;VALUE=URL:${contactData.logoUrl}
-NOTE:Project Manager & Virtual Assistant\\nResort Construction & Management\\n15+ years experience
+BDAY:1987-01-01
+CATEGORIES:Project Management,Virtual Assistant,Resort Construction
+NOTE:Project Manager & Virtual Assistant\\nResort Construction & Management\\n15+ years experience\\nAI Fluency Certified
 REV:${new Date().toISOString()}
 END:VCARD`;
     }
@@ -1969,6 +2013,7 @@ END:VCARD`;
           statusEl.textContent = 'NFC sharing cancelled.';
         } else {
           statusEl.textContent = '❌ NFC sharing failed. Try again or use QR code.';
+          console.error('NFC Error:', error);
         }
       }
     }
@@ -1995,7 +2040,8 @@ END:VCARD`;
         }).then(() => showToast('✅ Shared successfully!', 'success')).catch(() => {});
       } else {
         navigator.clipboard.writeText(`${contactData.fullName}\n${contactData.jobTitle}\n${contactData.phone}\n${contactData.email}`)
-          .then(() => showToast('📋 Contact copied to clipboard!', 'success'));
+          .then(() => showToast('📋 Contact copied to clipboard!', 'success'))
+          .catch(() => showToast('❌ Failed to copy to clipboard.', 'error'));
       }
     }
 
@@ -2012,7 +2058,7 @@ END:VCARD`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      URL.revokeObjectURL(url);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
     }
 
     function showToast(message, type = '') {
@@ -2055,6 +2101,9 @@ END:VCARD`;
         const dot = document.createElement('button');
         dot.className = 'dot' + (index === 0 ? ' active' : '');
         dot.setAttribute('data-index', index);
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+        dot.setAttribute('aria-label', `Slide ${index + 1} of ${totalSlides}`);
         dot.addEventListener('click', () => goToSlide(index));
         dotsContainer.appendChild(dot);
       });
@@ -2067,8 +2116,10 @@ END:VCARD`;
         isTransitioning = true;
         slides[currentIndex].classList.remove('active');
         dots[currentIndex].classList.remove('active');
+        dots[currentIndex].setAttribute('aria-selected', 'false');
         slides[index].classList.add('active');
         dots[index].classList.add('active');
+        dots[index].setAttribute('aria-selected', 'true');
         currentIndex = index;
         resetAutoPlay();
         setTimeout(() => { isTransitioning = false; }, 800);
@@ -2150,18 +2201,19 @@ END:VCARD`;
       const scrollTop = window.scrollY || window.pageYOffset;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       scrollProgress.style.width = (scrollTop / docHeight) * 100 + '%';
-    });
+    }, { passive: true });
 
     // ============================================================
     // ===== THEME TOGGLE =====
     // ============================================================
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
-    if (localStorage.getItem('theme') === 'dark') { body.classList.add('dark'); themeToggle.textContent = '☀️'; }
+    if (localStorage.getItem('theme') === 'dark') { body.classList.add('dark'); themeToggle.textContent = '☀️'; themeToggle.setAttribute('aria-label', 'Toggle light mode'); }
     themeToggle.addEventListener('click', () => {
       body.classList.toggle('dark');
       const isDark = body.classList.contains('dark');
       themeToggle.textContent = isDark ? '☀️' : '🌙';
+      themeToggle.setAttribute('aria-label', isDark ? 'Toggle light mode' : 'Toggle dark mode');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
 
@@ -2170,8 +2222,17 @@ END:VCARD`;
     // ============================================================
     const hamburger = document.getElementById('hamburger');
     const mobileNavLinks = document.getElementById('mobileNavLinks');
-    hamburger.addEventListener('click', (e) => { e.stopPropagation(); mobileNavLinks.classList.toggle('show'); });
-    document.addEventListener('click', (e) => { if (!mobileNavLinks.contains(e.target) && e.target !== hamburger) mobileNavLinks.classList.remove('show'); });
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = mobileNavLinks.classList.toggle('show');
+      hamburger.setAttribute('aria-expanded', isOpen);
+    });
+    document.addEventListener('click', (e) => {
+      if (!mobileNavLinks.contains(e.target) && e.target !== hamburger) {
+        mobileNavLinks.classList.remove('show');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+    });
 
     // ============================================================
     // ===== SMOOTH SCROLL & ACTIVE NAV =====
@@ -2183,8 +2244,10 @@ END:VCARD`;
         const target = document.getElementById(link.getAttribute('href').slice(1));
         if (target) target.scrollIntoView({ behavior: 'smooth' });
         mobileNavLinks.classList.remove('show');
-        allNavLinks.forEach(l => l.classList.remove('active'));
+        hamburger.setAttribute('aria-expanded', 'false');
+        allNavLinks.forEach(l => { l.classList.remove('active'); l.removeAttribute('aria-current'); });
         link.classList.add('active');
+        link.setAttribute('aria-current', 'page');
       });
     });
 
@@ -2194,15 +2257,19 @@ END:VCARD`;
       sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 100) current = sec.getAttribute('id'); });
       allNavLinks.forEach(link => {
         link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+        link.removeAttribute('aria-current');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+          link.setAttribute('aria-current', 'page');
+        }
       });
-    });
+    }, { passive: true });
 
     // ============================================================
     // ===== BACK TO TOP =====
     // ============================================================
     const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => { backToTop.style.display = window.scrollY > 500 ? 'flex' : 'none'; });
+    window.addEventListener('scroll', () => { backToTop.style.display = window.scrollY > 500 ? 'flex' : 'none'; }, { passive: true });
     backToTop.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
     // ============================================================
