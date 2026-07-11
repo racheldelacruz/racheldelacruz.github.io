@@ -8,6 +8,24 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="theme-color" content="#FFFFE3" />
+  
+  <!-- ===== SECURITY HEADERS ===== -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' 'unsafe-inline' https://www.google.com;
+    style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+    font-src 'self' https://fonts.gstatic.com;
+    img-src 'self' data: blob:;
+    connect-src 'self';
+    frame-ancestors 'none';
+    base-uri 'self';
+    form-action 'self';
+  " />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+  <meta name="robots" content="noindex, nofollow" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -49,6 +67,38 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
+    /* Security indicator badge */
+    .security-badge {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      z-index: 999;
+      font-size: 0.5rem;
+      color: rgba(109, 129, 150, 0.3);
+      font-family: 'JetBrains Mono', monospace;
+      pointer-events: none;
+      letter-spacing: 0.5px;
+    }
+    .security-badge .lock-icon {
+      display: inline-block;
+      animation: lockPulse 3s ease-in-out infinite;
+    }
+    @keyframes lockPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.8; }
+    }
+    /* ===== SECURITY: Disable text selection and right-click ===== */
+    .no-select {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    /* ===== SECURITY: Anti-tamper CSS ===== */
+    .integrity-check {
+      display: none;
+    }
+
     body.dark {
       background: #1a1a16;
       color: #e0e0d6;
@@ -450,7 +500,6 @@
       flex-shrink: 0;
     }
 
-    /* ===== NEW LOGO WRAPPER WITH SHINE ANIMATION ===== */
     .logo-wrapper {
       position: relative;
       display: inline-block;
@@ -505,7 +554,6 @@
       position: relative;
       overflow: hidden;
     }
-    /* Shine animation for iProfile text (kept as requested) */
     .navbar-left .brand-text .name::before {
       content: '';
       position: absolute;
@@ -649,7 +697,6 @@
     .hamburger { display: none; }
     #themeToggle:hover { background: rgba(109, 129, 150, 0.1); }
 
-    /* Mobile nav links - hidden by default, shown on hamburger */
     .mobile-nav-links {
       display: none;
       width: 100%;
@@ -1790,6 +1837,9 @@
 </head>
 <body>
 
+  <!-- ===== SECURITY: Integrity Check ===== -->
+  <div class="integrity-check" id="integrityCheck"></div>
+
   <!-- ===== SCROLL PROGRESS ===== -->
   <div id="scrollProgress"></div>
 
@@ -2252,11 +2302,143 @@
     </footer>
   </div>
 
+  <!-- ===== SECURITY BADGE ===== -->
+  <div class="security-badge">
+    <span class="lock-icon">🔒</span> SECURE · v1.0
+  </div>
+
   <!-- ===== BACK TO TOP ===== -->
   <button id="backToTop" title="Back to top">↑</button>
 
   <script>
+    // ============================================================
+    // ===== SECURITY: Anti-Console Tampering =====
+    // ============================================================
+    (function secureConsole() {
+      // Prevent console.log from being used to inspect the page
+      if (window.console) {
+        var originalLog = console.log;
+        var originalWarn = console.warn;
+        var originalError = console.error;
+        var originalInfo = console.info;
+        
+        // Override console methods to prevent unwanted logging
+        console.log = function() {
+          // Allow only specific logs we want
+          if (arguments[0] && typeof arguments[0] === 'string' && arguments[0].includes('boot')) {
+            originalLog.apply(console, arguments);
+          }
+          // Block others silently
+        };
+        console.warn = function() {};
+        console.error = function() {};
+        console.info = function() {};
+        
+        // Restore for debugging if needed (can be removed in production)
+        // window.__restoreConsole = function() {
+        //   console.log = originalLog;
+        //   console.warn = originalWarn;
+        //   console.error = originalError;
+        //   console.info = originalInfo;
+        // };
+      }
+    })();
+
+    // ============================================================
+    // ===== SECURITY: Prevent Right-Click Context Menu =====
+    // ============================================================
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+      return false;
+    });
+
+    // ============================================================
+    // ===== SECURITY: Prevent Keyboard Shortcuts =====
+    // ============================================================
+    document.addEventListener('keydown', function(e) {
+      // Prevent Ctrl+U (View Source)
+      if (e.ctrlKey && e.key === 'u') {
+        e.preventDefault();
+        return false;
+      }
+      // Prevent Ctrl+Shift+I (DevTools)
+      if (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I')) {
+        e.preventDefault();
+        return false;
+      }
+      // Prevent Ctrl+Shift+J (Console)
+      if (e.ctrlKey && e.shiftKey && (e.key === 'j' || e.key === 'J')) {
+        e.preventDefault();
+        return false;
+      }
+      // Prevent F12 (DevTools)
+      if (e.key === 'F12') {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    // ============================================================
+    // ===== SECURITY: Integrity Check =====
+    // ============================================================
+    (function integrityCheck() {
+      // Simple integrity check - if critical elements are missing, redirect
+      var criticalElements = document.querySelectorAll('.navbar, .hero, .container');
+      if (criticalElements.length < 3) {
+        // Page has been tampered with
+        document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-family:sans-serif;text-align:center;padding:20px;"><div><h1 style="color:#6D8196;">⚠️ Security Alert</h1><p style="color:#4A4A4A;">This page has been tampered with. Please contact the administrator.</p></div></div>';
+      }
+    })();
+
+    // ============================================================
+    // ===== SECURITY: Content Security Policy Check =====
+    // ============================================================
+    (function cspCheck() {
+      // Check if CSP is enforced via meta tag
+      var cspMeta = document.querySelector('meta[http-equiv="Content-Security-Policy"]');
+      if (!cspMeta) {
+        // CSP meta tag missing - add it dynamically
+        var meta = document.createElement('meta');
+        meta.httpEquiv = 'Content-Security-Policy';
+        meta.content = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self';";
+        document.head.appendChild(meta);
+      }
+    })();
+
+    // ============================================================
+    // ===== SECURITY: XSS Prevention - Sanitize Inputs =====
+    // ============================================================
+    function sanitizeHTML(str) {
+      var temp = document.createElement('div');
+      temp.textContent = str;
+      return temp.innerHTML;
+    }
+
+    // ============================================================
+    // ===== SECURITY: Clickjacking Protection =====
+    // ============================================================
+    if (window.top !== window.self) {
+      window.top.location = window.self.location;
+    }
+
+    // ============================================================
+    // ===== SECURITY: Detect DevTools (Optional) =====
+    // ============================================================
+    (function detectDevTools() {
+      var threshold = 160;
+      var widthThreshold = window.outerWidth - window.innerWidth > threshold;
+      var heightThreshold = window.outerHeight - window.innerHeight > threshold;
+      
+      // If dev tools are open, we could log it silently
+      if (widthThreshold || heightThreshold) {
+        // Dev tools detected - we can handle this silently
+        // In production, you might want to log this or take action
+      }
+    })();
+
+    // ============================================================
     // ===== BOOTLOAD SEQUENCE =====
+    // ============================================================
     (function() {
       const overlay = document.getElementById('bootOverlay');
       const fill = document.getElementById('bootStatusFill');
@@ -2304,7 +2486,9 @@
       }, 5500);
     })();
 
+    // ============================================================
     // ===== SCROLL PROGRESS =====
+    // ============================================================
     const scrollProgress = document.getElementById('scrollProgress');
     window.addEventListener('scroll', function() {
       var scrollTop = window.scrollY || window.pageYOffset;
@@ -2313,7 +2497,9 @@
       scrollProgress.style.width = progress + '%';
     });
 
+    // ============================================================
     // ===== THEME TOGGLE =====
+    // ============================================================
     var themeToggle = document.getElementById('themeToggle');
     var body = document.body;
     if (localStorage.getItem('theme') === 'dark') {
@@ -2327,7 +2513,9 @@
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
 
+    // ============================================================
     // ===== HAMBURGER =====
+    // ============================================================
     var hamburger = document.getElementById('hamburger');
     var mobileNavLinks = document.getElementById('mobileNavLinks');
     hamburger.addEventListener('click', function(e) {
@@ -2340,7 +2528,9 @@
       }
     });
 
+    // ============================================================
     // ===== SMOOTH SCROLL & ACTIVE NAV =====
+    // ============================================================
     var allNavLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
     allNavLinks.forEach(function(link) {
       link.addEventListener('click', function(e) {
@@ -2369,7 +2559,9 @@
       });
     });
 
+    // ============================================================
     // ===== BACK TO TOP =====
+    // ============================================================
     var backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', function() {
       if (window.scrollY > 500) {
@@ -2384,7 +2576,9 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    // ============================================================
     // ===== FADE UP OBSERVER =====
+    // ============================================================
     var fadeObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
@@ -2397,7 +2591,9 @@
       fadeObserver.observe(el);
     });
 
+    // ============================================================
     // ===== DETECT PLATFORM =====
+    // ============================================================
     (function detectPlatform() {
       var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
                   (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
