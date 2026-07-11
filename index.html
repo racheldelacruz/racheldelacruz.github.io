@@ -127,6 +127,8 @@
     body.dark .tl-desc { color: #c0c0b6; }
     body.dark .rec-card .quote { color: #c0c0b6; }
     body.dark footer { color: #8a8a80; }
+    body.dark footer .highlight { color: #6D8196; }
+    body.dark footer .brand { color: #a0a098; }
     body.dark .boot-overlay { background: rgba(26, 26, 22, 0.97); }
     body.dark .glass-border-animate {
       border-color: rgba(255,255,255,0.08);
@@ -1738,13 +1740,66 @@
 
     /* ===== FOOTER ===== */
     footer {
-      padding: 20px 0 30px;
-      padding-bottom: calc(30px + var(--safe-area-inset-bottom));
+      padding: 30px 0 40px;
+      padding-bottom: calc(40px + var(--safe-area-inset-bottom));
       text-align: center;
-      color: #6b6b60;
-      font-size: 0.85rem;
+      border-top: 1px solid var(--ink-border);
+      margin-top: 20px;
     }
-    body.dark footer { color: #8a8a80; }
+    body.dark footer {
+      border-top-color: rgba(255,255,255,0.05);
+    }
+    footer .footer-content {
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-direction: column;
+      flex-direction: column;
+      -webkit-align-items: center;
+      align-items: center;
+      gap: 6px;
+    }
+    footer .footer-brand {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink-charcoal);
+      letter-spacing: 0.5px;
+    }
+    body.dark .footer-brand {
+      color: #e0e0d6;
+    }
+    footer .footer-brand .highlight {
+      color: var(--ink-blue-gray);
+      font-weight: 700;
+    }
+    body.dark .footer-brand .highlight {
+      color: #6D8196;
+    }
+    footer .footer-sub {
+      font-size: 0.75rem;
+      color: #6b6b60;
+      letter-spacing: 0.3px;
+    }
+    body.dark .footer-sub {
+      color: #8a8a80;
+    }
+    footer .footer-divider {
+      width: 40px;
+      height: 2px;
+      background: var(--ink-border);
+      border-radius: 2px;
+      margin: 4px 0;
+    }
+    body.dark .footer-divider {
+      background: rgba(255,255,255,0.08);
+    }
+    footer .footer-year {
+      font-size: 0.85rem;
+      color: var(--ink-charcoal);
+      font-weight: 500;
+    }
+    body.dark .footer-year {
+      color: #e0e0d6;
+    }
 
     /* ===== FADE UP ANIMATION ===== */
     .fade-up {
@@ -1796,6 +1851,8 @@
       .skill-chip { padding: 10px 18px; font-size: 0.8rem; }
       .edu-grid, .cert-grid { -ms-grid-columns: 1fr; grid-template-columns: 1fr; }
       .timeline-item { padding: 18px 20px; }
+      footer .footer-brand { font-size: 0.9rem; }
+      footer .footer-sub { font-size: 0.65rem; }
     }
 
     /* ===== iOS SPECIFIC FIXES ===== */
@@ -2296,7 +2353,15 @@
 
     <!-- ===== FOOTER ===== -->
     <footer>
-      <div class="container">© 2026 · Rachel De La Cruz · 🤖 Virtual Assistant</div>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-brand">
+            2026 <span class="highlight">iProfile</span> by <span class="highlight">LJL Digital Hub</span>
+          </div>
+          <div class="footer-divider"></div>
+          <div class="footer-sub">🤖 Virtual Assistant · Project Management</div>
+        </div>
+      </div>
     </footer>
   </div>
 
