@@ -13,14 +13,17 @@
   <link rel="icon" type="image/jpeg" href="1783726853698~2.jpg" />
   <link rel="apple-touch-icon" href="1783726853698~2.jpg" />
   
+  <!-- ===== PWA MANIFEST ===== -->
+  <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlJhY2hlbCBEZWxhIENydXoiLAogICJzaG9ydF9uYW1lIjogIlJhY2hlbCBEQyIsCiAgImRlc2NyaXB0aW9uIjogIlByb2plY3QgTWFuYWdlciAmIFZpcnR1YWwgQXNzaXN0YW50IiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNGRkZGRTMiLAogICJ0aGVtZV9jb2xvciI6ICIjNkQ4MTk2IiwKICAiaWNvbnMiOiBbeyJzcmMiOiAiMTc4MzcyNjg1MzY5OH4yLmpwZyIsICJzaXplcyI6ICIxOTJ4MTkyIn1dCn0=" />
+  
   <!-- ===== SECURITY HEADERS ===== -->
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
-    script-src 'self' 'unsafe-inline' https://www.google.com;
+    script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://api.qrserver.com;
     style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
     font-src 'self' https://fonts.gstatic.com;
-    img-src 'self' data: blob:;
-    connect-src 'self';
+    img-src 'self' data: blob: https:;
+    connect-src 'self' https://api.qrserver.com;
     frame-ancestors 'none';
     base-uri 'self';
     form-action 'self';
@@ -32,6 +35,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  
   <style>
     /* ===== INK WASH PALETTE ===== */
     :root {
@@ -135,6 +139,10 @@
     body.dark .gallery-slide .slide-overlay {
       background: linear-gradient(180deg, transparent 40%, rgba(26,26,22,0.7));
     }
+    body.dark .nfc-modal-content {
+      background: #2a2a26;
+      color: #e0e0d6;
+    }
 
     a { text-decoration: none; color: inherit; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
@@ -157,11 +165,8 @@
       background: rgba(26, 26, 22, 0.98);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      display: -webkit-flex;
       display: flex;
-      -webkit-align-items: center;
       align-items: center;
-      -webkit-justify-content: center;
       justify-content: center;
       z-index: 9999;
       transition: opacity 0.8s ease, visibility 0.8s ease;
@@ -204,9 +209,7 @@
       100% { box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 70px rgba(109,129,150,0.12); }
     }
     .boot-terminal .boot-header {
-      display: -webkit-flex;
       display: flex;
-      -webkit-align-items: center;
       align-items: center;
       gap: 12px;
       margin-bottom: 18px;
@@ -215,7 +218,7 @@
       position: relative;
       z-index: 1;
     }
-    .boot-dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; transition: 0.3s; -webkit-flex-shrink: 0; flex-shrink: 0; }
+    .boot-dot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; transition: 0.3s; flex-shrink: 0; }
     .boot-dot.red { background: #ff5f5f; box-shadow: 0 0 12px rgba(255,95,95,0.3); }
     .boot-dot.amber { background: #ffb347; box-shadow: 0 0 12px rgba(255,179,71,0.3); }
     .boot-dot.green { background: #6D8196; box-shadow: 0 0 12px rgba(109,129,150,0.3); animation: dotPulse 1.5s ease-in-out infinite; }
@@ -299,11 +302,8 @@
       font-weight: 600;
       color: #6D8196;
       letter-spacing: 1.5px;
-      display: -webkit-flex;
       display: flex;
-      -webkit-align-items: center;
       align-items: center;
-      -webkit-justify-content: center;
       justify-content: center;
       gap: 10px;
     }
@@ -316,11 +316,8 @@
       letter-spacing: 2px;
     }
     .boot-terminal .boot-avatar {
-      display: -webkit-flex;
       display: flex;
-      -webkit-align-items: center;
       align-items: center;
-      -webkit-justify-content: center;
       justify-content: center;
       margin-bottom: 16px;
       position: relative;
@@ -332,11 +329,8 @@
       border-radius: 50%;
       background: linear-gradient(135deg, rgba(109,129,150,0.2), rgba(109,129,150,0.05));
       border: 2px solid rgba(109,129,150,0.2);
-      display: -webkit-flex;
       display: flex;
-      -webkit-align-items: center;
       align-items: center;
-      -webkit-justify-content: center;
       justify-content: center;
       font-size: 1.6rem;
       animation: avatarBootPulse 2s ease-in-out infinite;
@@ -349,11 +343,8 @@
       font-weight: 700;
       letter-spacing: -0.02em;
       margin-bottom: 0.25rem;
-      display: -webkit-flex;
       display: flex;
-      -webkit-align-items: center;
       align-items: center;
-      -webkit-justify-content: center;
       justify-content: center;
       gap: 10px;
     }
@@ -368,7 +359,6 @@
       margin-right: auto;
       text-align: center;
     }
-    body.dark .section-sub { color: #a0a098; }
 
     /* ===== TOP PROMOTION BAR ===== */
     .top-promo {
@@ -379,13 +369,11 @@
       -webkit-backdrop-filter: blur(8px);
       padding: 4px 0;
       border-bottom: 1px solid var(--ink-border);
-      position: -webkit-sticky;
       position: sticky;
       top: 0;
       z-index: 51;
     }
     .top-promo .promo-track {
-      display: -webkit-flex;
       display: flex;
       white-space: nowrap;
       animation: scrollPromo 30s linear infinite;
@@ -393,9 +381,7 @@
       will-change: transform;
     }
     .top-promo .promo-item {
-      display: -webkit-inline-flex;
       display: inline-flex;
-      -webkit-align-items: center;
       align-items: center;
       gap: 8px;
       padding: 0 40px;
@@ -428,21 +414,11 @@
       0%, 100% { transform: translateX(0); }
       50% { transform: translateX(4px); }
     }
-    body.dark .top-promo {
-      background: rgba(26, 26, 22, 0.85);
-      border-bottom-color: rgba(255,255,255,0.06);
-    }
-    body.dark .top-promo .promo-item {
-      color: #a0a098;
-    }
 
-    /* ===== NAVBAR - ENLARGED & CLEARER ===== */
+    /* ===== NAVBAR ===== */
     .navbar {
-      display: -webkit-flex;
       display: flex;
-      -webkit-align-items: center;
       align-items: center;
-      -webkit-justify-content: space-between;
       justify-content: space-between;
       padding: 12px 24px;
       padding-top: calc(12px + var(--safe-area-inset-top));
@@ -450,27 +426,18 @@
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--ink-border);
-      position: -webkit-sticky;
       position: sticky;
       top: 28px;
       z-index: 50;
       gap: 16px;
-      -webkit-flex-wrap: nowrap;
       flex-wrap: nowrap;
       transition: background 0.4s ease;
     }
-    body.dark .navbar {
-      background: rgba(26, 26, 22, 0.85);
-      border-bottom-color: rgba(255,255,255,0.06);
-    }
 
     .navbar-left {
-      display: -webkit-flex;
       display: flex;
-      -webkit-align-items: center;
       align-items: center;
       gap: 12px;
-      -webkit-flex-shrink: 0;
       flex-shrink: 0;
     }
 
@@ -509,18 +476,14 @@
       display: block;
       transition: transform 0.4s ease;
     }
-    .logo-img:hover {
-      transform: scale(1.05);
-    }
+    .logo-img:hover { transform: scale(1.05); }
     body.dark .logo-img {
       mix-blend-mode: screen;
       filter: brightness(1.1);
     }
 
     .navbar-left .brand-text {
-      display: -webkit-flex;
       display: flex;
-      -webkit-align-items: center;
       align-items: center;
       gap: 8px;
     }
@@ -550,9 +513,7 @@
       5% { left: 100%; }
       100% { left: 100%; }
     }
-    .navbar-left .brand-text .name .highlight {
-      color: var(--ink-blue-gray);
-    }
+    .navbar-left .brand-text .name .highlight { color: var(--ink-blue-gray); }
     .navbar-left .brand-text .divider {
       color: var(--ink-border);
       font-weight: 300;
@@ -563,30 +524,21 @@
       font-size: 1rem;
       color: #d4a853;
     }
-    body.dark .navbar-left .brand-text .name { color: #e0e0d6; }
-    body.dark .navbar-left .brand-text .villa { color: #d4a853; }
 
     .navbar-center {
-      display: -webkit-flex;
       display: flex;
-      -webkit-align-items: center;
       align-items: center;
       gap: 4px;
-      -webkit-flex: 1;
       flex: 1;
-      -webkit-justify-content: center;
       justify-content: center;
       min-width: 0;
       overflow: hidden;
     }
     .nav-links {
-      display: -webkit-flex;
       display: flex;
       gap: 4px;
       list-style: none;
-      -webkit-flex-wrap: wrap;
       flex-wrap: wrap;
-      -webkit-justify-content: center;
       justify-content: center;
     }
     .nav-links a {
@@ -596,12 +548,9 @@
       font-size: 0.8rem;
       transition: all 0.3s ease;
       color: var(--ink-charcoal);
-      display: -webkit-flex;
       display: flex;
-      -webkit-align-items: center;
       align-items: center;
       gap: 4px;
-      -webkit-tap-highlight-color: transparent;
       white-space: nowrap;
       position: relative;
     }
@@ -623,23 +572,15 @@
     }
     .nav-links a:hover { background: rgba(109, 129, 150, 0.08); color: var(--ink-blue-gray); }
     .nav-links a.active { background: rgba(109, 129, 150, 0.12); color: var(--ink-blue-gray); font-weight: 600; }
-    body.dark .nav-links a { color: #cbcbcb; }
-    body.dark .nav-links a:hover { background: rgba(109, 129, 150, 0.15); color: #FFFFE3; }
-    body.dark .nav-links a.active { background: rgba(109, 129, 150, 0.2); color: #FFFFE3; }
 
     .navbar-right {
-      display: -webkit-flex;
       display: flex;
-      -webkit-align-items: center;
       align-items: center;
       gap: 8px;
-      -webkit-flex-shrink: 0;
       flex-shrink: 0;
     }
     .va-badge {
-      display: -webkit-inline-flex;
       display: inline-flex;
-      -webkit-align-items: center;
       align-items: center;
       gap: 6px;
       background: rgba(109, 129, 150, 0.08);
@@ -669,11 +610,6 @@
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.3; transform: scale(0.6); }
     }
-    body.dark .va-badge {
-      background: rgba(109, 129, 150, 0.12);
-      border-color: rgba(109, 129, 150, 0.2);
-      color: #a0a098;
-    }
 
     .hamburger, #themeToggle {
       background: transparent;
@@ -683,29 +619,22 @@
       height: 36px;
       font-size: 1.1rem;
       cursor: pointer;
-      display: -webkit-flex;
       display: flex;
-      -webkit-align-items: center;
       align-items: center;
-      -webkit-justify-content: center;
       justify-content: center;
       transition: all 0.3s ease;
       color: var(--ink-charcoal);
-      -webkit-tap-highlight-color: transparent;
-      -webkit-flex-shrink: 0;
       flex-shrink: 0;
     }
     .hamburger:hover, #themeToggle:hover {
       background: rgba(109, 129, 150, 0.08);
       transform: scale(1.05);
     }
-    body.dark .hamburger, body.dark #themeToggle { color: #cbcbcb; border-color: rgba(255,255,255,0.08); }
     .hamburger { display: none; }
 
     .mobile-nav-links {
       display: none;
       width: 100%;
-      -webkit-flex-direction: column;
       flex-direction: column;
       gap: 2px;
       padding: 8px 0 4px;
@@ -714,7 +643,6 @@
       margin-top: 4px;
     }
     .mobile-nav-links.show {
-      display: -webkit-flex;
       display: flex;
       animation: mobileSlideDown 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
     }
@@ -729,101 +657,12 @@
       font-size: 0.9rem;
       transition: all 0.3s ease;
       color: var(--ink-charcoal);
-      display: -webkit-flex;
       display: flex;
-      -webkit-align-items: center;
       align-items: center;
       gap: 4px;
-      -webkit-tap-highlight-color: transparent;
     }
     .mobile-nav-links a:hover { background: rgba(109, 129, 150, 0.1); color: var(--ink-blue-gray); }
     .mobile-nav-links a.active { background: rgba(109, 129, 150, 0.12); color: var(--ink-blue-gray); font-weight: 600; }
-    body.dark .mobile-nav-links a { color: #cbcbcb; }
-    body.dark .mobile-nav-links a:hover { background: rgba(109, 129, 150, 0.2); color: #FFFFE3; }
-    body.dark .mobile-nav-links a.active { background: rgba(109, 129, 150, 0.25); color: #FFFFE3; }
-
-    @media (max-width: 700px) {
-      .navbar {
-        -webkit-flex-wrap: wrap;
-        flex-wrap: wrap;
-        padding: 8px 16px;
-        gap: 6px;
-        top: 24px;
-      }
-      .navbar-center {
-        -webkit-order: 3;
-        order: 3;
-        -webkit-flex: 1 1 100%;
-        flex: 1 1 100%;
-        -webkit-justify-content: center;
-        justify-content: center;
-      }
-      .nav-links {
-        display: none;
-      }
-      .hamburger {
-        display: -webkit-flex;
-        display: flex;
-      }
-      .logo-img {
-        height: 32px;
-      }
-      .navbar-left .brand-text .name {
-        font-size: 0.85rem;
-      }
-      .navbar-left .brand-text .villa {
-        font-size: 0.8rem;
-      }
-      .navbar-left .brand-text .divider {
-        font-size: 0.85rem;
-      }
-      .va-badge {
-        font-size: 0.6rem;
-        padding: 3px 10px 3px 8px;
-      }
-      #themeToggle {
-        width: 32px;
-        height: 32px;
-        font-size: 1rem;
-      }
-      .top-promo .promo-item {
-        font-size: 0.6rem;
-        padding: 0 20px;
-      }
-      .top-promo .promo-item .promo-icon {
-        font-size: 0.7rem;
-      }
-      .nav-links a {
-        font-size: 0.7rem;
-        padding: 4px 10px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .logo-img {
-        height: 28px;
-      }
-      .navbar-left .brand-text .name {
-        font-size: 0.7rem;
-      }
-      .navbar-left .brand-text .villa {
-        font-size: 0.65rem;
-      }
-      .navbar-left .brand-text .divider {
-        font-size: 0.7rem;
-      }
-      .navbar-left .brand-text {
-        gap: 4px;
-      }
-      .top-promo .promo-item {
-        font-size: 0.5rem;
-        padding: 0 14px;
-      }
-      .va-badge {
-        font-size: 0.5rem;
-        padding: 2px 8px 2px 6px;
-      }
-    }
 
     /* ===== GLASS BOX ===== */
     .glass-box {
@@ -838,70 +677,13 @@
       transition: all 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
       overflow: hidden;
     }
-    .glass-box::before {
-      content: '';
-      position: absolute;
-      top: -2px; left: -2px; right: -2px; bottom: -2px;
-      border-radius: 26px;
-      background: conic-gradient(
-        from 0deg,
-        transparent,
-        rgba(109, 129, 150, 0.15),
-        transparent,
-        rgba(109, 129, 150, 0.3),
-        transparent,
-        rgba(109, 129, 150, 0.15),
-        transparent
-      );
-      z-index: -1;
-      animation: borderSpin 6s linear infinite;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-      pointer-events: none;
-    }
-    .glass-box:hover::before { opacity: 1; }
-    .glass-box::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      border-radius: 24px;
-      background: rgba(255, 255, 227, 0.12);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      z-index: -1;
-    }
-    @keyframes borderSpin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .glass-box:hover {
-      transform: translateY(-6px) scale(1.01);
-      box-shadow: 0 16px 50px rgba(109, 129, 150, 0.12), 0 0 80px rgba(109, 129, 150, 0.04);
-      border-color: rgba(109, 129, 150, 0.35);
-    }
-    body.dark .glass-box {
-      background: rgba(30, 30, 26, 0.35);
-      border-color: rgba(255,255,255,0.08);
-      box-shadow: 0 4px 30px rgba(0,0,0,0.2), inset 0 1px 0 rgba(0,212,255,0.03);
-    }
-    body.dark .glass-box::after {
-      background: rgba(30, 30, 26, 0.35);
-    }
-    body.dark .glass-box:hover {
-      border-color: rgba(109, 129, 150, 0.4);
-      box-shadow: 0 16px 50px rgba(0,0,0,0.3);
-    }
 
     /* ===== HERO ===== */
     .hero {
       padding: 40px 0 30px;
-      display: -webkit-flex;
       display: flex;
-      -webkit-flex-wrap: wrap;
       flex-wrap: wrap;
-      -webkit-align-items: center;
       align-items: center;
-      -webkit-justify-content: center;
       justify-content: center;
       gap: 40px;
       text-align: center;
@@ -990,12 +772,8 @@
       50% { transform: translateY(-25px) rotate(2deg); opacity: 0.7; }
     }
 
-    .hero-content, .hero-avatar {
-      position: relative;
-      z-index: 1;
-    }
+    .hero-content, .hero-avatar { position: relative; z-index: 1; }
 
-    /* ===== TYPING ANIMATION ===== */
     .hero-content .name-wrapper {
       display: inline-block;
       position: relative;
@@ -1026,7 +804,6 @@
       0%, 100% { text-shadow: 0 0 0 transparent; }
       50% { text-shadow: 0 0 20px rgba(109,129,150,0.08); }
     }
-    body.dark .hero-content h1 { color: #e0e0d6; }
     .hero-content .subhead { 
       font-size: 1.2rem; 
       font-weight: 500; 
@@ -1038,8 +815,8 @@
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-4px); }
     }
-    .hero-content .location { display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; -webkit-justify-content: center; justify-content: center; gap: 6px; color: #6b6b60; font-size: 0.95rem; }
-    .hero-badge-group { display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; -webkit-justify-content: center; justify-content: center; gap: 8px; margin: 16px 0 20px; }
+    .hero-content .location { display: flex; align-items: center; justify-content: center; gap: 6px; color: #6b6b60; font-size: 0.95rem; }
+    .hero-badge-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 16px 0 20px; }
     .badge {
       padding: 6px 16px;
       border-radius: 40px;
@@ -1049,16 +826,9 @@
       font-weight: 500;
       color: var(--ink-charcoal);
       transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
-      display: -webkit-flex;
       display: flex;
-      -webkit-align-items: center;
       align-items: center;
       gap: 4px;
-    }
-    body.dark .badge {
-      color: #e0e0d6;
-      background: rgba(109, 129, 150, 0.12);
-      border-color: rgba(109, 129, 150, 0.2);
     }
     .badge:hover {
       transform: translateY(-3px) scale(1.05);
@@ -1067,9 +837,8 @@
       box-shadow: 0 4px 15px rgba(109,129,150,0.15);
     }
 
-    /* ===== SIMPLE PROFILE AVATAR ===== */
+    /* ===== PROFILE AVATAR ===== */
     .hero-avatar {
-      -webkit-flex: 0 0 220px;
       flex: 0 0 220px;
       max-width: 100%;
       text-align: center;
@@ -1098,9 +867,7 @@
       display: block;
       transition: transform 0.6s ease;
     }
-    .profile-avatar:hover img {
-      transform: scale(1.05);
-    }
+    .profile-avatar:hover img { transform: scale(1.05); }
     .profile-avatar::before {
       content: '';
       position: absolute;
@@ -1124,9 +891,7 @@
       opacity: 0;
       transition: opacity 0.6s ease;
     }
-    .profile-avatar:hover::before {
-      opacity: 1;
-    }
+    .profile-avatar:hover::before { opacity: 1; }
     @keyframes glowSpin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
@@ -1147,18 +912,6 @@
       50% { transform: translateY(-10px); }
     }
 
-    @media (max-width: 700px) {
-      .hero-avatar {
-        -webkit-flex: 0 0 180px;
-        flex: 0 0 180px;
-      }
-      .profile-avatar {
-        width: 180px;
-        height: 180px;
-      }
-      .hero-content h1 { font-size: 2.1rem; }
-    }
-
     /* ===== BUTTONS ===== */
     .btn {
       display: inline-block;
@@ -1171,12 +924,9 @@
       transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
       background: var(--ink-blue-gray);
       color: #fff;
-      display: -webkit-inline-flex;
       display: inline-flex;
-      -webkit-align-items: center;
       align-items: center;
       gap: 8px;
-      -webkit-tap-highlight-color: transparent;
       position: relative;
       overflow: hidden;
     }
@@ -1192,10 +942,7 @@
       transform: translate(-50%, -50%);
       transition: width 0.6s ease, height 0.6s ease;
     }
-    .btn:active::after {
-      width: 200px;
-      height: 200px;
-    }
+    .btn:active::after { width: 200px; height: 200px; }
     .btn-outline {
       background: transparent;
       border: 2px solid var(--ink-blue-gray);
@@ -1203,6 +950,144 @@
     }
     .btn-outline:hover { background: var(--ink-blue-gray); color: #fff; transform: translateY(-3px) scale(1.02); }
     .btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 30px rgba(109, 129, 150, 0.25); }
+
+    /* ===== WALLET BUTTONS ===== */
+    .wallet-section {
+      text-align: center;
+      padding: 20px 0;
+    }
+    .wallet-btn-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .wallet-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+      white-space: nowrap;
+    }
+    .wallet-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    .wallet-btn.google-wallet {
+      background: linear-gradient(135deg, #000, #333);
+    }
+    .wallet-btn.apple-wallet {
+      background: linear-gradient(135deg, #000, #555);
+    }
+    .wallet-btn.save-contact {
+      background: linear-gradient(135deg, #4285f4, #34a853);
+    }
+    .wallet-btn.nfc-share {
+      background: linear-gradient(135deg, #6D8196, #4a5d6d);
+    }
+    .wallet-btn.qr-code {
+      background: linear-gradient(135deg, #333, #666);
+    }
+    .wallet-btn.share-contact {
+      background: linear-gradient(135deg, #6D8196, #4a5d6d);
+    }
+    .wallet-btn .btn-icon { font-size: 1.2rem; }
+
+    /* ===== NFC INDICATOR ===== */
+    .nfc-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #34a853;
+      animation: nfcPulse 1.5s ease-in-out infinite;
+      margin-right: 4px;
+    }
+    @keyframes nfcPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.6; }
+    }
+
+    /* ===== NFC MODAL ===== */
+    .nfc-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+    .nfc-modal.show { display: flex; }
+    .nfc-modal-content {
+      background: var(--ink-ivory);
+      border-radius: 24px;
+      padding: 32px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+    }
+    .nfc-modal .nfc-icon {
+      font-size: 4rem;
+      animation: nfcPulse 1.5s ease-in-out infinite;
+    }
+    .nfc-modal h3 { margin: 16px 0 8px; font-size: 1.2rem; }
+    .nfc-modal p { font-size: 0.9rem; color: #6b6b60; margin-bottom: 20px; }
+    .nfc-modal .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #333;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      z-index: 10001;
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      white-space: nowrap;
+      max-width: 90vw;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .toast.success { background: #34a853; }
+    .toast.error { background: #ea4335; }
 
     /* ===== SUMMARY CARD ===== */
     .summary-card {
@@ -1219,52 +1104,15 @@
       overflow: hidden;
       text-align: center;
     }
-    .summary-card::before {
-      content: '';
-      position: absolute;
-      top: -2px; left: -2px; right: -2px; bottom: -2px;
-      border-radius: 26px;
-      background: conic-gradient(from 0deg, transparent, rgba(109,129,150,0.12), transparent, rgba(109,129,150,0.25), transparent);
-      z-index: -1;
-      animation: borderSpin 8s linear infinite;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-      pointer-events: none;
-    }
-    .summary-card:hover::before { opacity: 1; }
-    .summary-card::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      border-radius: 24px;
-      background: rgba(255, 255, 227, 0.12);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      z-index: -1;
-    }
     .summary-card:hover {
       transform: translateY(-6px) scale(1.01);
       box-shadow: 0 16px 50px rgba(109, 129, 150, 0.1);
       border-color: rgba(109, 129, 150, 0.35);
     }
-    body.dark .summary-card {
-      background: rgba(30, 30, 26, 0.4);
-      border-color: rgba(109, 129, 150, 0.12);
-      box-shadow: 0 4px 30px rgba(0,0,0,0.2), inset 0 1px 0 rgba(0,212,255,0.03);
-    }
-    body.dark .summary-card::after {
-      background: rgba(30, 30, 26, 0.4);
-    }
-    body.dark .summary-card:hover {
-      border-color: rgba(109, 129, 150, 0.35);
-    }
-    .summary-card p { margin: 0 auto; }
 
-    /* ===== EXPERIENCE ===== */
+    /* ===== TIMELINE ===== */
     .timeline {
-      display: -webkit-flex;
       display: flex;
-      -webkit-flex-direction: column;
       flex-direction: column;
       gap: 24px;
       margin-top: 20px;
@@ -1303,74 +1151,18 @@
       0% { opacity: 0; transform: translateY(40px) scale(0.96); }
       100% { opacity: 1; transform: translateY(0) scale(1); }
     }
-
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      top: -2px; left: -2px; right: -2px; bottom: -2px;
-      border-radius: 20px;
-      background: conic-gradient(from 0deg, transparent, rgba(109,129,150,0.1), transparent, rgba(109,129,150,0.2), transparent);
-      z-index: -1;
-      animation: borderSpin 7s linear infinite;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-      pointer-events: none;
-    }
-    .timeline-item:hover::before { opacity: 1; }
-    .timeline-item::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      border-radius: 18px;
-      background: rgba(255, 255, 227, 0.1);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      z-index: -1;
-    }
     .timeline-item:hover {
       transform: translateY(-8px) scale(1.015) !important;
       border-color: rgba(109, 129, 150, 0.35);
       box-shadow: 0 16px 40px rgba(109, 129, 150, 0.1), 0 0 60px rgba(109, 129, 150, 0.03);
     }
-    body.dark .timeline-item {
-      background: rgba(30, 30, 26, 0.35);
-      border-color: rgba(109, 129, 150, 0.08);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15), inset 0 1px 0 rgba(0,212,255,0.03);
-    }
-    body.dark .timeline-item::after {
-      background: rgba(30, 30, 26, 0.35);
-    }
-    body.dark .timeline-item:hover {
-      border-color: rgba(109, 129, 150, 0.35);
-    }
-    .timeline-item .tl-glow {
-      position: absolute;
-      top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: radial-gradient(circle at center, rgba(109,129,150,0.03), transparent 70%);
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-      z-index: 0;
-    }
-    .timeline-item:hover .tl-glow {
-      opacity: 1;
-      animation: glowPulse 2.5s ease-in-out infinite;
-    }
-    @keyframes glowPulse {
-      0%, 100% { transform: scale(1); opacity: 0.2; }
-      50% { transform: scale(1.2); opacity: 0.5; }
-    }
-    .tl-header { display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; -webkit-justify-content: space-between; justify-content: space-between; -webkit-align-items: baseline; align-items: baseline; position: relative; z-index: 1; }
-    .tl-title { font-weight: 700; font-size: 1.1rem; display: -webkit-flex; display: flex; -webkit-align-items: center; align-items: center; gap: 6px; }
+    .tl-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; }
+    .tl-title { font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 6px; }
     .tl-org { font-weight: 500; color: var(--ink-blue-gray); }
-    body.dark .tl-org { color: #a0a098; }
     .tl-date { font-size: 0.8rem; color: #6b6b60; background: rgba(109, 129, 150, 0.06); padding: 4px 12px; border-radius: 40px; border: 1px solid rgba(109, 129, 150, 0.08); }
-    body.dark .tl-date { color: #b0b0a6; background: rgba(109, 129, 150, 0.08); border-color: rgba(109, 129, 150, 0.1); }
-    .tl-desc { margin-top: 8px; color: #4a4a42; font-size: 0.92rem; position: relative; z-index: 1; }
-    body.dark .tl-desc { color: #c0c0b6; }
+    .tl-desc { margin-top: 8px; color: #4a4a42; font-size: 0.92rem; }
 
-    /* ===== SKILLS ===== */
+    /* ===== SKILL CHIPS ===== */
     .skill-chip {
       background: rgba(255, 255, 227, 0.1);
       backdrop-filter: blur(10px);
@@ -1380,18 +1172,14 @@
       padding: 12px 24px;
       font-weight: 500;
       font-size: 0.9rem;
-      display: -webkit-inline-flex;
       display: inline-flex;
-      -webkit-align-items: center;
       align-items: center;
       gap: 8px;
       transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position: relative;
       cursor: default;
       opacity: 0;
       transform: translateY(30px) scale(0.95);
       animation: skillPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.02), inset 0 1px 0 rgba(255,255,255,0.15);
     }
     .skill-chip:nth-child(1) { animation-delay: 0.05s; }
     .skill-chip:nth-child(2) { animation-delay: 0.10s; }
@@ -1419,36 +1207,12 @@
       transform: translateY(-6px) scale(1.06) !important;
       box-shadow: 0 12px 35px rgba(109, 129, 150, 0.12);
     }
-    body.dark .skill-chip {
-      background: rgba(30, 30, 26, 0.3);
-      border-color: rgba(109, 129, 150, 0.08);
-      color: #cbcbcb;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15), inset 0 1px 0 rgba(0,212,255,0.03);
-    }
-    body.dark .skill-chip:hover {
-      border-color: rgba(109, 129, 150, 0.4);
-      background: rgba(109, 129, 150, 0.1);
-    }
     .skill-chip .skill-icon { font-size: 1.1rem; transition: transform 0.4s ease; }
     .skill-chip:hover .skill-icon { transform: rotate(12deg) scale(1.2); }
-    .skill-chip .skill-glow {
-      position: absolute;
-      top: -2px; left: -2px; right: -2px; bottom: -2px;
-      border-radius: 60px;
-      background: conic-gradient(from 0deg, transparent, rgba(109,129,150,0.08), transparent, rgba(109,129,150,0.15), transparent);
-      z-index: -1;
-      animation: skillGlowSpin 4s linear infinite;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-    .skill-chip:hover .skill-glow { opacity: 1; }
-    @keyframes skillGlowSpin { 100% { transform: rotate(360deg); } }
 
-    /* ===== EDUCATION & CERTIFICATIONS ===== */
+    /* ===== EDU / CERT GRID ===== */
     .edu-grid, .cert-grid {
-      display: -ms-grid;
       display: grid;
-      -ms-grid-columns: 1fr 16px 1fr;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       max-width: 700px;
@@ -1466,52 +1230,17 @@
       overflow: hidden;
       box-shadow: 0 2px 10px rgba(0,0,0,0.02), inset 0 1px 0 rgba(255,255,255,0.15);
     }
-    .edu-item::before, .cert-item::before {
-      content: '';
-      position: absolute;
-      top: -2px; left: -2px; right: -2px; bottom: -2px;
-      border-radius: 18px;
-      background: conic-gradient(from 0deg, transparent, rgba(109,129,150,0.08), transparent, rgba(109,129,150,0.15), transparent);
-      z-index: -1;
-      animation: borderSpin 10s linear infinite;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-      pointer-events: none;
-    }
-    .edu-item:hover::before, .cert-item:hover::before { opacity: 1; }
-    .edu-item::after, .cert-item::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      border-radius: 16px;
-      background: rgba(255, 255, 227, 0.1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      z-index: -1;
-    }
     .edu-item:hover, .cert-item:hover {
       transform: translateY(-5px) scale(1.02);
       border-color: rgba(109, 129, 150, 0.35);
       box-shadow: 0 12px 30px rgba(109, 129, 150, 0.08);
-    }
-    body.dark .edu-item, body.dark .cert-item {
-      background: rgba(30, 30, 26, 0.3);
-      border-color: rgba(109, 129, 150, 0.08);
-      color: #cbcbcb;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15), inset 0 1px 0 rgba(0,212,255,0.03);
-    }
-    body.dark .edu-item::after, body.dark .cert-item::after {
-      background: rgba(30, 30, 26, 0.3);
-    }
-    body.dark .edu-item:hover, body.dark .cert-item:hover {
-      border-color: rgba(109, 129, 150, 0.35);
     }
     .edu-item .edu-icon, .cert-item .cert-icon { font-size: 1.4rem; display: block; margin-bottom: 4px; }
     .edu-item strong, .cert-item strong { display: block; font-weight: 600; font-size: 0.95rem; }
     .edu-item .edu-school, .cert-item .cert-org { font-size: 0.85rem; color: var(--ink-blue-gray); font-weight: 500; }
     .edu-item small, .cert-item small { color: #6b6b60; font-size: 0.75rem; display: block; margin-top: 2px; }
 
-    /* ===== TESTIMONIALS ===== */
+    /* ===== REC CARD ===== */
     .rec-card {
       background: rgba(255, 255, 227, 0.1);
       backdrop-filter: blur(10px);
@@ -1521,65 +1250,20 @@
       border: 1.5px solid rgba(109, 129, 150, 0.12);
       margin-bottom: 16px;
       transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position: relative;
-      overflow: hidden;
       max-width: 700px;
       margin-left: auto;
       margin-right: auto;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.02), inset 0 1px 0 rgba(255,255,255,0.15);
-    }
-    .rec-card::before {
-      content: '';
-      position: absolute;
-      top: -2px; left: -2px; right: -2px; bottom: -2px;
-      border-radius: 22px;
-      background: conic-gradient(from 0deg, transparent, rgba(109,129,150,0.08), transparent, rgba(109,129,150,0.15), transparent);
-      z-index: -1;
-      animation: borderSpin 9s linear infinite;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-      pointer-events: none;
-    }
-    .rec-card:hover::before { opacity: 1; }
-    .rec-card::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      border-radius: 20px;
-      background: rgba(255, 255, 227, 0.1);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      z-index: -1;
     }
     .rec-card:hover {
       transform: translateY(-5px) scale(1.01);
       border-color: rgba(109, 129, 150, 0.35);
       box-shadow: 0 12px 30px rgba(109, 129, 150, 0.08);
     }
-    body.dark .rec-card {
-      background: rgba(30, 30, 26, 0.3);
-      border-color: rgba(109, 129, 150, 0.08);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15), inset 0 1px 0 rgba(0,212,255,0.03);
-    }
-    body.dark .rec-card::after {
-      background: rgba(30, 30, 26, 0.3);
-    }
-    body.dark .rec-card:hover {
-      border-color: rgba(109, 129, 150, 0.35);
-    }
     .rec-card .author { font-weight: 700; color: var(--ink-blue-gray); }
     .rec-card .quote { font-style: italic; color: #4a4a42; }
-    body.dark .rec-card .quote { color: #c0c0b6; }
 
-    /* ===== SECTION ===== */
-    .section { padding: 50px 0 30px; border-bottom: 1px solid var(--ink-border); }
-    body.dark .section { border-bottom-color: rgba(255,255,255,0.05); }
-    .flex-wrap { display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; -webkit-justify-content: center; justify-content: center; gap: 12px; -webkit-align-items: center; align-items: center; }
-
-    /* ===== VILLA ARCADIA GALLERY ===== */
-    .gallery-section {
-      padding: 50px 0 40px;
-    }
+    /* ===== GALLERY ===== */
+    .gallery-section { padding: 50px 0 40px; }
     .gallery-container {
       position: relative;
       max-width: 900px;
@@ -1614,16 +1298,13 @@
       transform: scale(1);
       pointer-events: auto;
     }
-    .gallery-slide img,
-    .gallery-slide video {
+    .gallery-slide img, .gallery-slide video {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
     }
-    .gallery-slide video {
-      background: #1a1a16;
-    }
+    .gallery-slide video { background: #1a1a16; }
     .gallery-slide .slide-overlay {
       position: absolute;
       bottom: 0;
@@ -1634,16 +1315,8 @@
       color: #fff;
       pointer-events: none;
     }
-    .gallery-slide .slide-overlay .slide-title {
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-    .gallery-slide .slide-overlay .slide-sub {
-      font-size: 0.8rem;
-      opacity: 0.85;
-      margin-top: 2px;
-    }
+    .gallery-slide .slide-overlay .slide-title { font-size: 1.1rem; font-weight: 600; letter-spacing: 0.5px; }
+    .gallery-slide .slide-overlay .slide-sub { font-size: 0.8rem; opacity: 0.85; margin-top: 2px; }
     .gallery-nav {
       position: absolute;
       top: 50%;
@@ -1658,38 +1331,18 @@
       color: var(--ink-charcoal);
       font-size: 1.4rem;
       cursor: pointer;
-      display: -webkit-flex;
       display: flex;
-      -webkit-align-items: center;
       align-items: center;
-      -webkit-justify-content: center;
       justify-content: center;
       transition: all 0.4s ease;
       z-index: 10;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
-    .gallery-nav:hover {
-      background: rgba(255, 255, 227, 0.6);
-      transform: translateY(-50%) scale(1.1);
-    }
-    .gallery-nav.prev {
-      left: 16px;
-    }
-    .gallery-nav.next {
-      right: 16px;
-    }
-    body.dark .gallery-nav {
-      background: rgba(30, 30, 26, 0.5);
-      color: #e0e0d6;
-      border-color: rgba(255,255,255,0.08);
-    }
-    body.dark .gallery-nav:hover {
-      background: rgba(30, 30, 26, 0.8);
-    }
+    .gallery-nav:hover { background: rgba(255, 255, 227, 0.6); transform: translateY(-50%) scale(1.1); }
+    .gallery-nav.prev { left: 16px; }
+    .gallery-nav.next { right: 16px; }
     .gallery-dots {
-      display: -webkit-flex;
       display: flex;
-      -webkit-justify-content: center;
       justify-content: center;
       gap: 8px;
       padding: 14px 0;
@@ -1711,40 +1364,10 @@
       transform: scale(1.2);
       box-shadow: 0 0 12px rgba(109, 129, 150, 0.3);
     }
-    .gallery-dots .dot:hover {
-      transform: scale(1.1);
-      background: rgba(109, 129, 150, 0.4);
-    }
-    body.dark .gallery-dots .dot {
-      background: rgba(255,255,255,0.15);
-    }
-    body.dark .gallery-dots .dot.active {
-      background: #6D8196;
-      box-shadow: 0 0 16px rgba(109, 129, 150, 0.3);
-    }
 
-    @media (max-width: 700px) {
-      .gallery-slider {
-        height: 280px;
-      }
-      .gallery-nav {
-        width: 36px;
-        height: 36px;
-        font-size: 1rem;
-      }
-      .gallery-nav.prev {
-        left: 10px;
-      }
-      .gallery-nav.next {
-        right: 10px;
-      }
-      .gallery-slide .slide-overlay .slide-title {
-        font-size: 0.9rem;
-      }
-      .gallery-slide .slide-overlay .slide-sub {
-        font-size: 0.7rem;
-      }
-    }
+    /* ===== SECTION ===== */
+    .section { padding: 50px 0 30px; border-bottom: 1px solid var(--ink-border); }
+    .flex-wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; align-items: center; }
 
     /* ===== FOOTER ===== */
     footer {
@@ -1754,54 +1377,13 @@
       border-top: 1px solid var(--ink-border);
       margin-top: 20px;
     }
-    body.dark footer {
-      border-top-color: rgba(255,255,255,0.05);
-    }
-    footer .footer-content {
-      display: -webkit-flex;
-      display: flex;
-      -webkit-flex-direction: column;
-      flex-direction: column;
-      -webkit-align-items: center;
-      align-items: center;
-      gap: 6px;
-    }
-    footer .footer-brand {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--ink-charcoal);
-      letter-spacing: 0.5px;
-    }
-    body.dark .footer-brand {
-      color: #e0e0d6;
-    }
-    footer .footer-brand .highlight {
-      color: var(--ink-blue-gray);
-      font-weight: 700;
-    }
-    body.dark .footer-brand .highlight {
-      color: #6D8196;
-    }
-    footer .footer-sub {
-      font-size: 0.75rem;
-      color: #6b6b60;
-      letter-spacing: 0.3px;
-    }
-    body.dark .footer-sub {
-      color: #8a8a80;
-    }
-    footer .footer-divider {
-      width: 40px;
-      height: 2px;
-      background: var(--ink-border);
-      border-radius: 2px;
-      margin: 4px 0;
-    }
-    body.dark .footer-divider {
-      background: rgba(255,255,255,0.08);
-    }
+    footer .footer-content { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    footer .footer-brand { font-size: 1rem; font-weight: 600; color: var(--ink-charcoal); letter-spacing: 0.5px; }
+    footer .footer-brand .highlight { color: var(--ink-blue-gray); font-weight: 700; }
+    footer .footer-sub { font-size: 0.75rem; color: #6b6b60; letter-spacing: 0.3px; }
+    footer .footer-divider { width: 40px; height: 2px; background: var(--ink-border); border-radius: 2px; margin: 4px 0; }
 
-    /* ===== FADE UP ANIMATION ===== */
+    /* ===== FADE UP ===== */
     .fade-up {
       opacity: 0;
       transform: translateY(40px);
@@ -1830,7 +1412,6 @@
       border: none;
       box-shadow: 0 4px 20px rgba(0,0,0,0.12);
       transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
-      -webkit-tap-highlight-color: transparent;
       will-change: transform, box-shadow;
     }
     #backToTop:hover { 
@@ -1840,60 +1421,41 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 700px) {
-      .hero { -webkit-flex-direction: column-reverse; flex-direction: column-reverse; text-align: center; }
+      .hero { flex-direction: column-reverse; text-align: center; }
       .section-title { font-size: 1.6rem; }
-      .tl-header { -webkit-flex-direction: column; flex-direction: column; gap: 4px; }
+      .tl-header { flex-direction: column; gap: 4px; }
       .boot-terminal { padding: 24px 18px; }
       .boot-logs { font-size: 0.6rem; max-height: 160px; }
       #backToTop { bottom: 20px; right: 20px; width: 42px; height: 42px; font-size: 16px; }
       .glass-box { padding: 20px 18px; }
       .skill-chip { padding: 10px 18px; font-size: 0.8rem; }
-      .edu-grid, .cert-grid { -ms-grid-columns: 1fr; grid-template-columns: 1fr; }
+      .edu-grid, .cert-grid { grid-template-columns: 1fr; }
       .timeline-item { padding: 18px 20px; }
-      footer .footer-brand { font-size: 0.9rem; }
-      footer .footer-sub { font-size: 0.65rem; }
+      .navbar { flex-wrap: wrap; padding: 8px 16px; gap: 6px; top: 24px; }
+      .navbar-center { order: 3; flex: 1 1 100%; justify-content: center; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .logo-img { height: 32px; }
+      .hero-avatar { flex: 0 0 180px; }
+      .profile-avatar { width: 180px; height: 180px; }
+      .hero-content h1 { font-size: 2.1rem; }
+      .gallery-slider { height: 280px; }
+      .gallery-nav { width: 36px; height: 36px; font-size: 1rem; }
+      .gallery-nav.prev { left: 10px; }
+      .gallery-nav.next { right: 10px; }
+      .wallet-btn { padding: 10px 16px; font-size: 0.75rem; }
     }
 
-    /* ===== iOS SPECIFIC FIXES ===== */
-    @supports (-webkit-touch-callout: none) {
-      .navbar {
-        padding-top: calc(12px + env(safe-area-inset-top));
-      }
-      .top-promo {
-        padding-top: env(safe-area-inset-top);
-      }
-      .profile-avatar img {
-        -webkit-user-select: none;
-        user-select: none;
-      }
-    }
-
-    /* ===== ANDROID SPECIFIC FIXES ===== */
-    @supports (-webkit-tap-highlight-color: transparent) and (not (-webkit-touch-callout: none)) {
-      .btn, .nav-links a, .hamburger, #themeToggle {
-        -webkit-tap-highlight-color: transparent;
-      }
-    }
-
-    /* ===== PERFORMANCE OPTIMIZATION ===== */
-    .hero-bg-canvas .grid-line,
-    .hero-bg-canvas .data-particle,
-    .hero-bg-canvas .code-snippet,
-    .logo-img,
-    .profile-avatar {
-      will-change: transform, opacity;
-    }
-    .timeline-item,
-    .skill-chip,
-    .fade-up {
-      will-change: transform, opacity;
+    @media (max-width: 480px) {
+      .logo-img { height: 28px; }
+      .navbar-left .brand-text .name { font-size: 0.7rem; }
+      .navbar-left .brand-text .villa { font-size: 0.65rem; }
+      .wallet-btn-container { gap: 8px; }
+      .wallet-btn { padding: 8px 14px; font-size: 0.7rem; }
     }
   </style>
 </head>
 <body>
-
-  <!-- ===== SECURITY: Integrity Check ===== -->
-  <div class="integrity-check" id="integrityCheck"></div>
 
   <!-- ===== SCROLL PROGRESS ===== -->
   <div id="scrollProgress"></div>
@@ -1915,15 +1477,12 @@
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">virtual assistant kernel loaded</span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">project management engine <span class="accent-text">v2.4</span></span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">stakeholder communication protocols</span></div>
-        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">risk assessment matrix active</span></div>
+        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">NFC & wallet pass modules</span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">cross-functional team synchronization</span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">resort construction intelligence <span class="accent-text">· 15+ years</span></span></div>
-        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">healthcare domain integration <span class="accent-text">· clinical/technical</span></span></div>
-        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">customer service optimization engine</span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">AI fluency &amp; agent skills <span class="accent-text">· Anthropic certified</span></span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">secure communication tunnel established</span></div>
-        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">project management framework <span class="accent-text">· Google certified</span></span></div>
-        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">licensed midwife <span class="accent-text">· PRC #0138206</span></span></div>
+        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">digital wallet integration ready</span></div>
         <div class="log-line"><span class="prompt">➜</span> <span class="highlight">✦ virtual assistant ready · Rachel Dela Cruz</span></div>
       </div>
       <div class="boot-status-text" id="bootStatusText">initializing ... 0%</div>
@@ -1938,46 +1497,14 @@
   <!-- ===== TOP PROMOTION BAR ===== -->
   <div class="top-promo">
     <div class="promo-track">
-      <span class="promo-item">
-        <span class="promo-icon">🏖️</span>
-        <span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span>
-        <span class="cta-arrow">→</span>
-      </span>
-      <span class="promo-item">
-        <span class="promo-icon">✨</span>
-        <span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span>
-        <span class="cta-arrow">→</span>
-      </span>
-      <span class="promo-item">
-        <span class="promo-icon">🏖️</span>
-        <span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span>
-        <span class="cta-arrow">→</span>
-      </span>
-      <span class="promo-item">
-        <span class="promo-icon">✨</span>
-        <span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span>
-        <span class="cta-arrow">→</span>
-      </span>
-      <span class="promo-item">
-        <span class="promo-icon">🏖️</span>
-        <span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span>
-        <span class="cta-arrow">→</span>
-      </span>
-      <span class="promo-item">
-        <span class="promo-icon">✨</span>
-        <span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span>
-        <span class="cta-arrow">→</span>
-      </span>
-      <span class="promo-item">
-        <span class="promo-icon">🏖️</span>
-        <span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span>
-        <span class="cta-arrow">→</span>
-      </span>
-      <span class="promo-item">
-        <span class="promo-icon">✨</span>
-        <span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span>
-        <span class="cta-arrow">→</span>
-      </span>
+      <span class="promo-item"><span class="promo-icon">🏖️</span><span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span><span class="cta-arrow">→</span></span>
+      <span class="promo-item"><span class="promo-icon">✨</span><span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span><span class="cta-arrow">→</span></span>
+      <span class="promo-item"><span class="promo-icon">🏖️</span><span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span><span class="cta-arrow">→</span></span>
+      <span class="promo-item"><span class="promo-icon">✨</span><span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span><span class="cta-arrow">→</span></span>
+      <span class="promo-item"><span class="promo-icon">🏖️</span><span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span><span class="cta-arrow">→</span></span>
+      <span class="promo-item"><span class="promo-icon">✨</span><span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span><span class="cta-arrow">→</span></span>
+      <span class="promo-item"><span class="promo-icon">🏖️</span><span><span class="highlight-text">Villa Arcadia</span> – Now Open for Booking</span><span class="cta-arrow">→</span></span>
+      <span class="promo-item"><span class="promo-icon">✨</span><span>Luxury Resort Experience in <span class="highlight-text">Laguna</span></span><span class="cta-arrow">→</span></span>
     </div>
   </div>
 
@@ -1995,7 +1522,6 @@
           <span class="villa">Villa Arcadia</span>
         </div>
       </div>
-
       <div class="navbar-center">
         <ul class="nav-links" id="navLinks">
           <li><a href="#profile" class="active">👤 Profile</a></li>
@@ -2008,15 +1534,11 @@
           <li><a href="#contact">📬 Contact</a></li>
         </ul>
       </div>
-
       <div class="navbar-right">
-        <span class="va-badge">
-          <span class="pulse-dot"></span> VA active
-        </span>
+        <span class="va-badge"><span class="pulse-dot"></span> VA active</span>
         <button class="hamburger" id="hamburger">☰</button>
         <button id="themeToggle">🌙</button>
       </div>
-
       <ul class="mobile-nav-links" id="mobileNavLinks">
         <li><a href="#profile" class="active">👤 Profile</a></li>
         <li><a href="#experience">💼 Experience</a></li>
@@ -2050,7 +1572,6 @@
           <div class="code-snippet">sync.stakeholders()</div>
           <div class="code-snippet">optimize.workflow()</div>
         </div>
-
         <div class="hero-content fade-up">
           <h1>
             <span class="name-wrapper" id="typedName">
@@ -2066,12 +1587,11 @@
             <span class="badge">🤝 Stakeholder Communication</span>
             <span class="badge">🧠 AI Fluency</span>
           </div>
-          <div style="margin: 12px 0 8px; display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; -webkit-justify-content: center; justify-content: center; gap: 8px;">
+          <div style="margin:12px 0 8px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;">
             <a href="#contact" class="btn">📩 Get in touch</a>
             <a href="#experience" class="btn btn-outline">📊 View experience</a>
           </div>
         </div>
-
         <div class="hero-avatar fade-up">
           <div class="profile-avatar">
             <img src="IMG_20260710_160150_773.jpg" alt="Rachel Dela Cruz" />
@@ -2081,167 +1601,159 @@
 
       <!-- ===== ABOUT ===== -->
       <div class="summary-card fade-up">
-        <p style="font-size: 1rem; max-width: 800px; margin: 0 auto;">
-          <strong>🤖 Versatile Project Manager &amp; Virtual Assistant</strong> with extensive experience across customer service, healthcare (clinical/technical), and project management. Strong background in resort construction, operations, and stakeholder communication. Skilled in risk management, budget control, and cross-functional team leadership. 
+        <p style="font-size:1rem;max-width:800px;margin:0 auto;">
+          <strong>🤖 Versatile Project Manager &amp; Virtual Assistant</strong> with extensive experience across customer service, healthcare (clinical/technical), and project management. Strong background in resort construction, operations, and stakeholder communication. Skilled in risk management, budget control, and cross-functional team leadership.
           <br><br>
-          Over the course of my career, I have accumulated extensive experience across various industries, including customer service, clerical roles, and technical/clinical positions within a healthcare setting. This exposure has equipped me with a versatile skill set and a profound understanding of the intricacies associated with different professional domains. As a diligent and hard-working individual, I have a strong desire to continually expand my skills and apply them effectively to my current responsibilities. Having a firm grasp of business strategy greatly aids me in accomplishing my tasks. I take pride in my ability to derive fulfillment from every positive outcome, am tenacious in seeking innovative solutions, and ensure all stakeholders are well-informed.
+          Over the course of my career, I have accumulated extensive experience across various industries, including customer service, clerical roles, and technical/clinical positions within a healthcare setting. This exposure has equipped me with a versatile skill set and a profound understanding of the intricacies associated with different professional domains.
         </p>
+      </div>
+
+      <!-- ===== NFC & DIGITAL WALLET SECTION ===== -->
+      <div class="summary-card fade-up wallet-section" style="margin:30px 0 20px;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;">
+          <span class="nfc-indicator"></span>
+          <strong style="font-size:1.1rem;">📱 Tap & Save to Your Phone</strong>
+        </div>
+        <p style="font-size:0.9rem;max-width:600px;margin:0 auto 16px;">
+          Add Rachel's contact to <strong>Google Wallet</strong>, <strong>Apple Wallet</strong>, or share via <strong>NFC</strong>. 
+          Download the vCard directly to your phone's address book.
+        </p>
+        
+        <div class="wallet-btn-container">
+          <button class="wallet-btn google-wallet" onclick="addToGoogleWallet()" title="Add to Google Wallet">
+            <span class="btn-icon">💳</span> Google Wallet
+          </button>
+          <button class="wallet-btn apple-wallet" onclick="addToAppleWallet()" title="Add to Apple Wallet">
+            <span class="btn-icon">📱</span> Apple Wallet
+          </button>
+          <button class="wallet-btn save-contact" onclick="downloadVCard()" title="Download Contact">
+            <span class="btn-icon">📥</span> Save Contact
+          </button>
+          <button class="wallet-btn nfc-share" onclick="shareViaNFC()" title="Share via NFC">
+            <span class="btn-icon">📡</span> NFC Share
+          </button>
+          <button class="wallet-btn qr-code" onclick="downloadQRContact()" title="QR Code">
+            <span class="btn-icon">📱</span> QR Code
+          </button>
+          <button class="wallet-btn share-contact" onclick="shareContact()" title="Share">
+            <span class="btn-icon">🔗</span> Share
+          </button>
+        </div>
+        
+        <div style="margin-top:12px;font-size:0.75rem;color:#6b6b60;">
+          <p>📞 <strong>Phone:</strong> <a href="tel:+639171234567" style="color:var(--ink-blue-gray);">+63 917 123 4567</a></p>
+          <p>📧 <strong>Email:</strong> <a href="mailto:rachel.delacruz@example.com" style="color:var(--ink-blue-gray);">rachel.delacruz@example.com</a></p>
+          <p>🔗 <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/rachel-delacruz" target="_blank" rel="noopener" style="color:var(--ink-blue-gray);">linkedin.com/in/rachel-delacruz</a></p>
+        </div>
       </div>
 
       <!-- ===== EXPERIENCE ===== -->
       <section id="experience" class="section">
-        <div class="exp-particles">
-          <div class="exp-particle"></div>
-          <div class="exp-particle"></div>
-          <div class="exp-particle"></div>
-          <div class="exp-particle"></div>
-          <div class="exp-particle"></div>
-          <div class="exp-particle"></div>
-          <div class="exp-particle"></div>
-          <div class="exp-particle"></div>
-          <div class="exp-particle"></div>
-          <div class="exp-particle"></div>
-          <div class="exp-particle"></div>
-          <div class="exp-particle"></div>
-        </div>
-        <div class="experience-container">
-          <h2 class="section-title fade-up"><span class="icon">💼</span> Experience <span class="accent">·</span></h2>
-          <div class="section-sub fade-up">Full project lifecycle & cross-functional leadership</div>
-          <div class="timeline">
-            <div class="timeline-item">
-              <div class="tl-glow"></div>
-              <div class="tl-header">
-                <span class="tl-title">🏗️ Project Manager – Resort Construction & Management</span>
-                <span class="tl-org">Arcadia Resorts, Laguna</span>
-                <span class="tl-date">Nov 2025 – Present</span>
-              </div>
-              <div class="tl-desc">
-                Lead the full lifecycle of resort development projects—from pre‑construction planning to operational handover. Define scope, budget, schedule; coordinate with architects, engineers, designers, and contractors. Oversee day‑to‑day site progress, quality control, safety, and building codes. Serve as primary contact between ownership, design teams, crews, and local authorities. Proactively identify risks, manage change orders, and resolve conflicts.
-              </div>
+        <h2 class="section-title fade-up"><span class="icon">💼</span> Experience <span class="accent">·</span></h2>
+        <div class="section-sub fade-up">Full project lifecycle & cross-functional leadership</div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="tl-header">
+              <span class="tl-title">🏗️ Project Manager – Resort Construction & Management</span>
+              <span class="tl-org">Arcadia Resorts, Laguna</span>
+              <span class="tl-date">Nov 2025 – Present</span>
             </div>
-            <div class="timeline-item">
-              <div class="tl-glow"></div>
-              <div class="tl-header">
-                <span class="tl-title">👥 Customer Support Team Lead</span>
-                <span class="tl-org">Zoomo</span>
-                <span class="tl-date">Jan 2024 – Present</span>
-              </div>
-              <div class="tl-desc">Led support teams and oversaw escalation management for the North American region.</div>
+            <div class="tl-desc">Lead the full lifecycle of resort development projects—from pre‑construction planning to operational handover. Define scope, budget, schedule; coordinate with architects, engineers, designers, and contractors.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-header">
+              <span class="tl-title">👥 Customer Support Team Lead</span>
+              <span class="tl-org">Zoomo</span>
+              <span class="tl-date">Jan 2024 – Present</span>
             </div>
-            <div class="timeline-item">
-              <div class="tl-glow"></div>
-              <div class="tl-header">
-                <span class="tl-title">🛡️ Customer Support Specialist – Escalation</span>
-                <span class="tl-org">Zoomo</span>
-                <span class="tl-date">Jan 2021 – Jan 2024</span>
-              </div>
-              <div class="tl-desc">Specialized in North America customer support, handling complex escalated cases.</div>
+            <div class="tl-desc">Led support teams and oversaw escalation management for the North American region.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-header">
+              <span class="tl-title">🛡️ Customer Support Specialist – Escalation</span>
+              <span class="tl-org">Zoomo</span>
+              <span class="tl-date">Jan 2021 – Jan 2024</span>
             </div>
-            <div class="timeline-item">
-              <div class="tl-glow"></div>
-              <div class="tl-header">
-                <span class="tl-title">🌏 Online English Teacher</span>
-                <span class="tl-org">Engoo</span>
-                <span class="tl-date">Dec 2016 – Jan 2021</span>
-              </div>
-              <div class="tl-desc">Taught English to students from Japan, Korea, Vietnam, Taiwan, Russia, and other nationalities.</div>
+            <div class="tl-desc">Specialized in North America customer support, handling complex escalated cases.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-header">
+              <span class="tl-title">🌏 Online English Teacher</span>
+              <span class="tl-org">Engoo</span>
+              <span class="tl-date">Dec 2016 – Jan 2021</span>
             </div>
-            <div class="timeline-item">
-              <div class="tl-glow"></div>
-              <div class="tl-header">
-                <span class="tl-title">📞 Customer Service Representative</span>
-                <span class="tl-org">TeleTech Philippines</span>
-                <span class="tl-date">Nov 2015 – Apr 2017</span>
-              </div>
-              <div class="tl-desc">Managed Telstra AU residential billing, mobility, and sales.</div>
+            <div class="tl-desc">Taught English to students from Japan, Korea, Vietnam, Taiwan, Russia, and other nationalities.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-header">
+              <span class="tl-title">📞 Customer Service Representative</span>
+              <span class="tl-org">TeleTech Philippines</span>
+              <span class="tl-date">Nov 2015 – Apr 2017</span>
             </div>
-            <div class="timeline-item">
-              <div class="tl-glow"></div>
-              <div class="tl-header">
-                <span class="tl-title">📞 Customer Service Representative</span>
-                <span class="tl-org">SYKES Philippines</span>
-                <span class="tl-date">Sep 2014 – Oct 2015</span>
-              </div>
-              <div class="tl-desc">Handled AT&T Prepaid Mobility.</div>
+            <div class="tl-desc">Managed Telstra AU residential billing, mobility, and sales.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-header">
+              <span class="tl-title">📞 Customer Service Representative</span>
+              <span class="tl-org">SYKES Philippines</span>
+              <span class="tl-date">Sep 2014 – Oct 2015</span>
             </div>
-            <div class="timeline-item">
-              <div class="tl-glow"></div>
-              <div class="tl-header">
-                <span class="tl-title">🩺 Monitor Clerk Assistant / Telemetrist</span>
-                <span class="tl-org">American Hospital Dubai</span>
-                <span class="tl-date">Feb 2010 – Feb 2011</span>
-              </div>
-              <div class="tl-desc">Performed telemetry monitoring (Basic ECG) for ICU, CICU, and WARD.</div>
+            <div class="tl-desc">Handled AT&T Prepaid Mobility.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-header">
+              <span class="tl-title">🩺 Monitor Clerk Assistant / Telemetrist</span>
+              <span class="tl-org">American Hospital Dubai</span>
+              <span class="tl-date">Feb 2010 – Feb 2011</span>
             </div>
-            <div class="timeline-item">
-              <div class="tl-glow"></div>
-              <div class="tl-header">
-                <span class="tl-title">🩺 Healthcare Assistant</span>
-                <span class="tl-org">American Hospital Dubai</span>
-                <span class="tl-date">Feb 2009 – Feb 2010</span>
-              </div>
-              <div class="tl-desc">Provided support in Intensive Care and Cardiac Intensive Care Units.</div>
+            <div class="tl-desc">Performed telemetry monitoring (Basic ECG) for ICU, CICU, and WARD.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-header">
+              <span class="tl-title">🩺 Healthcare Assistant</span>
+              <span class="tl-org">American Hospital Dubai</span>
+              <span class="tl-date">Feb 2009 – Feb 2010</span>
             </div>
-            <div class="timeline-item">
-              <div class="tl-glow"></div>
-              <div class="tl-header">
-                <span class="tl-title">📋 Sales Representative / Secretary</span>
-                <span class="tl-org">Time General Trading LLC, Sharjah, UAE</span>
-                <span class="tl-date">Aug 2008 – Jan 2009</span>
-              </div>
+            <div class="tl-desc">Provided support in Intensive Care and Cardiac Intensive Care Units.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-header">
+              <span class="tl-title">📋 Sales Representative / Secretary</span>
+              <span class="tl-org">Time General Trading LLC, Sharjah, UAE</span>
+              <span class="tl-date">Aug 2008 – Jan 2009</span>
             </div>
-            <div class="timeline-item">
-              <div class="tl-glow"></div>
-              <div class="tl-header">
-                <span class="tl-title">🏥 Nursing Attendant</span>
-                <span class="tl-org">Philippine General Hospital</span>
-                <span class="tl-date">Jul 2006 – Jun 2008</span>
-              </div>
-              <div class="tl-desc">Served in the Post‑Anesthesia Care Unit, OB Admitting Section, and OB ER.</div>
+          </div>
+          <div class="timeline-item">
+            <div class="tl-header">
+              <span class="tl-title">🏥 Nursing Attendant</span>
+              <span class="tl-org">Philippine General Hospital</span>
+              <span class="tl-date">Jul 2006 – Jun 2008</span>
             </div>
+            <div class="tl-desc">Served in the Post‑Anesthesia Care Unit, OB Admitting Section, and OB ER.</div>
           </div>
         </div>
       </section>
 
       <!-- ===== SKILLS ===== -->
       <section id="skills" class="section">
-        <div class="skills-particles">
-          <div class="particle"></div>
-          <div class="particle"></div>
-          <div class="particle"></div>
-          <div class="particle"></div>
-          <div class="particle"></div>
-          <div class="particle"></div>
-          <div class="particle"></div>
-          <div class="particle"></div>
-          <div class="particle"></div>
-          <div class="particle"></div>
-          <div class="particle"></div>
-          <div class="particle"></div>
-          <div class="particle"></div>
-          <div class="particle"></div>
-          <div class="particle"></div>
-        </div>
-        <div class="skills-container">
-          <h2 class="section-title fade-up"><span class="icon">⚡</span> Skills <span class="accent">·</span></h2>
-          <div class="section-sub fade-up">Core competencies & technical expertise</div>
-          <div class="flex-wrap" style="gap: 12px; margin-top: 8px;">
-            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">📊</span> CRM</span>
-            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">📚</span> Teaching</span>
-            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">💬</span> Customer Service</span>
-            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">🌐</span> English</span>
-            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">🏥</span> Healthcare Professionals</span>
-            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">👶</span> Midwifery</span>
-            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">🗣️</span> Communication</span>
-            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">🏥</span> Healthcare</span>
-            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">📚</span> English Teaching</span>
-            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">📄</span> Invoicing</span>
-            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">📋</span> Project Management</span>
-            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">⚠️</span> Risk Management</span>
-            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">🏗️</span> Construction Coordination</span>
-            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">🧠</span> AI Fluency</span>
-            <span class="skill-chip"><span class="skill-glow"></span><span class="skill-icon">🤖</span> Virtual Assistance</span>
-          </div>
+        <h2 class="section-title fade-up"><span class="icon">⚡</span> Skills <span class="accent">·</span></h2>
+        <div class="section-sub fade-up">Core competencies & technical expertise</div>
+        <div class="flex-wrap" style="gap:12px;margin-top:8px;">
+          <span class="skill-chip"><span class="skill-icon">📊</span> CRM</span>
+          <span class="skill-chip"><span class="skill-icon">📚</span> Teaching</span>
+          <span class="skill-chip"><span class="skill-icon">💬</span> Customer Service</span>
+          <span class="skill-chip"><span class="skill-icon">🌐</span> English</span>
+          <span class="skill-chip"><span class="skill-icon">🏥</span> Healthcare Professionals</span>
+          <span class="skill-chip"><span class="skill-icon">👶</span> Midwifery</span>
+          <span class="skill-chip"><span class="skill-icon">🗣️</span> Communication</span>
+          <span class="skill-chip"><span class="skill-icon">🏥</span> Healthcare</span>
+          <span class="skill-chip"><span class="skill-icon">📚</span> English Teaching</span>
+          <span class="skill-chip"><span class="skill-icon">📄</span> Invoicing</span>
+          <span class="skill-chip"><span class="skill-icon">📋</span> Project Management</span>
+          <span class="skill-chip"><span class="skill-icon">⚠️</span> Risk Management</span>
+          <span class="skill-chip"><span class="skill-icon">🏗️</span> Construction Coordination</span>
+          <span class="skill-chip"><span class="skill-icon">🧠</span> AI Fluency</span>
+          <span class="skill-chip"><span class="skill-icon">🤖</span> Virtual Assistance</span>
         </div>
       </section>
 
@@ -2296,11 +1808,11 @@
         <h2 class="section-title fade-up"><span class="icon">⭐</span> Recommendations <span class="accent">·</span></h2>
         <div class="section-sub fade-up">What colleagues & partners say</div>
         <div class="rec-card fade-up">
-          <div class="quote">“Rachel quickly became my trusted go-to person… Her attention to detail, relentless follow-through, problem-solving abilities, and dedication to the work allow her to operate at a higher level than most.”</div>
+          <div class="quote">"Rachel quickly became my trusted go-to person… Her attention to detail, relentless follow-through, problem-solving abilities, and dedication to the work allow her to operate at a higher level than most."</div>
           <div class="author">— Jacob Reiner <small style="font-weight:400;color:#6b6b60;">Senior Principal, A/B Consulting</small></div>
         </div>
         <div class="rec-card fade-up">
-          <div class="quote">“Rachel is the ultimate multitasker… her ability to manage multiple markets across different time zones with ease is unparalleled. Rachel's contributions were critical in building Zoomo's customer service business.”</div>
+          <div class="quote">"Rachel is the ultimate multitasker… her ability to manage multiple markets across different time zones with ease is unparalleled. Rachel's contributions were critical in building Zoomo's customer service business."</div>
           <div class="author">— Hussain Alam <small style="font-weight:400;color:#6b6b60;">Product & Strategy, WeWork</small></div>
         </div>
       </section>
@@ -2309,111 +1821,65 @@
       <section id="gallery" class="gallery-section">
         <h2 class="section-title fade-up"><span class="icon">🖼️</span> Villa Arcadia <span class="accent">Gallery</span></h2>
         <div class="section-sub fade-up">Explore the beauty and luxury of Villa Arcadia</div>
-        
         <div class="gallery-container fade-up">
           <div class="gallery-slider" id="gallerySlider">
-            <!-- Slide 1 -->
             <div class="gallery-slide active" data-index="0">
               <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&h=500&fit=crop" alt="Villa Exterior" />
-              <div class="slide-overlay">
-                <div class="slide-title">🏡 Villa Exterior</div>
-                <div class="slide-sub">Stunning modern architecture with tropical landscaping</div>
-              </div>
+              <div class="slide-overlay"><div class="slide-title">🏡 Villa Exterior</div><div class="slide-sub">Stunning modern architecture with tropical landscaping</div></div>
             </div>
-            <!-- Slide 2 -->
             <div class="gallery-slide" data-index="1">
               <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=500&fit=crop" alt="Infinity Pool" />
-              <div class="slide-overlay">
-                <div class="slide-title">🏊 Infinity Pool</div>
-                <div class="slide-sub">Panoramic ocean views from our signature infinity pool</div>
-              </div>
+              <div class="slide-overlay"><div class="slide-title">🏊 Infinity Pool</div><div class="slide-sub">Panoramic ocean views from our signature infinity pool</div></div>
             </div>
-            <!-- Slide 3 -->
             <div class="gallery-slide" data-index="2">
               <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=500&fit=crop" alt="Luxury Bedroom" />
-              <div class="slide-overlay">
-                <div class="slide-title">🛏️ Master Suite</div>
-                <div class="slide-sub">Elegant bedroom with panoramic glass walls</div>
-              </div>
+              <div class="slide-overlay"><div class="slide-title">🛏️ Master Suite</div><div class="slide-sub">Elegant bedroom with panoramic glass walls</div></div>
             </div>
-            <!-- Slide 4 -->
             <div class="gallery-slide" data-index="3">
               <img src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=800&h=500&fit=crop" alt="Living Room" />
-              <div class="slide-overlay">
-                <div class="slide-title">🛋️ Grand Living Room</div>
-                <div class="slide-sub">Spacious open-plan design with natural light</div>
-              </div>
+              <div class="slide-overlay"><div class="slide-title">🛋️ Grand Living Room</div><div class="slide-sub">Spacious open-plan design with natural light</div></div>
             </div>
-            <!-- Slide 5 -->
             <div class="gallery-slide" data-index="4">
               <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=500&fit=crop" alt="Garden" />
-              <div class="slide-overlay">
-                <div class="slide-title">🌿 Tropical Garden</div>
-                <div class="slide-sub">Lush gardens with native plants and water features</div>
-              </div>
+              <div class="slide-overlay"><div class="slide-title">🌿 Tropical Garden</div><div class="slide-sub">Lush gardens with native plants and water features</div></div>
             </div>
-            <!-- Slide 6 -->
             <div class="gallery-slide" data-index="5">
               <img src="https://images.unsplash.com/photo-1571896349842-33c89434de2d?w=800&h=500&fit=crop" alt="Dining Area" />
-              <div class="slide-overlay">
-                <div class="slide-title">🍽️ Al Fresco Dining</div>
-                <div class="slide-sub">Outdoor dining with breathtaking sunset views</div>
-              </div>
+              <div class="slide-overlay"><div class="slide-title">🍽️ Al Fresco Dining</div><div class="slide-sub">Outdoor dining with breathtaking sunset views</div></div>
             </div>
-            <!-- Slide 7 -->
             <div class="gallery-slide" data-index="6">
               <video autoplay muted loop playsinline>
                 <source src="https://cdn.pixabay.com/video/2023/07/04/170581-846644295_large.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
               </video>
-              <div class="slide-overlay">
-                <div class="slide-title">🎬 Villa Tour</div>
-                <div class="slide-sub">Virtual walkthrough of Villa Arcadia's main areas</div>
-              </div>
+              <div class="slide-overlay"><div class="slide-title">🎬 Villa Tour</div><div class="slide-sub">Virtual walkthrough of Villa Arcadia's main areas</div></div>
             </div>
-            <!-- Slide 8 -->
             <div class="gallery-slide" data-index="7">
               <img src="https://images.unsplash.com/photo-1559599077-95605dcc7a6c?w=800&h=500&fit=crop" alt="Spa Area" />
-              <div class="slide-overlay">
-                <div class="slide-title">💆 Spa & Wellness</div>
-                <div class="slide-sub">Private spa with massage pavilion and sauna</div>
-              </div>
+              <div class="slide-overlay"><div class="slide-title">💆 Spa & Wellness</div><div class="slide-sub">Private spa with massage pavilion and sauna</div></div>
             </div>
-            <!-- Slide 9 -->
             <div class="gallery-slide" data-index="8">
               <img src="https://images.unsplash.com/photo-1590069261209-f8e9b80d8cd3?w=800&h=500&fit=crop" alt="Sunset View" />
-              <div class="slide-overlay">
-                <div class="slide-title">🌅 Sunset Lounge</div>
-                <div class="slide-sub">Perfect spot to watch the sunset over the horizon</div>
-              </div>
+              <div class="slide-overlay"><div class="slide-title">🌅 Sunset Lounge</div><div class="slide-sub">Perfect spot to watch the sunset over the horizon</div></div>
             </div>
-            <!-- Slide 10 -->
             <div class="gallery-slide" data-index="9">
               <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&h=500&fit=crop" alt="Night View" />
-              <div class="slide-overlay">
-                <div class="slide-title">✨ Night Ambiance</div>
-                <div class="slide-sub">Magical lighting and starry skies at Villa Arcadia</div>
-              </div>
+              <div class="slide-overlay"><div class="slide-title">✨ Night Ambiance</div><div class="slide-sub">Magical lighting and starry skies at Villa Arcadia</div></div>
             </div>
           </div>
-          
-          <!-- Navigation Buttons -->
           <button class="gallery-nav prev" id="galleryPrev" aria-label="Previous slide">‹</button>
           <button class="gallery-nav next" id="galleryNext" aria-label="Next slide">›</button>
-          
-          <!-- Dots -->
           <div class="gallery-dots" id="galleryDots"></div>
         </div>
       </section>
 
       <!-- ===== CONTACT ===== -->
-      <section id="contact" class="section" style="border-bottom: none;">
+      <section id="contact" class="section" style="border-bottom:none;">
         <h2 class="section-title fade-up"><span class="icon">📬</span> Contact <span class="accent">·</span></h2>
-        <div class="glass-box fade-up" style="display: -webkit-flex; display: flex; -webkit-flex-wrap: wrap; flex-wrap: wrap; gap: 20px; -webkit-justify-content: center; justify-content: center; -webkit-align-items: center; align-items: center; text-align: center;">
+        <div class="glass-box fade-up" style="display:flex;flex-wrap:wrap;gap:20px;justify-content:center;align-items:center;text-align:center;">
           <div>
-            <p style="margin: 6px 0;"><strong>📍</strong> Laguna, Calabarzon, Philippines</p>
-            <p style="margin: 6px 0;"><strong>📧</strong> <a href="mailto:rachel.delacruz@example.com" style="color:var(--ink-blue-gray);">rachel.delacruz@example.com</a></p>
-            <p style="margin: 6px 0;"><strong>🔗</strong> <a href="#" style="color:var(--ink-blue-gray);">linkedin.com/in/rachel-delacruz</a></p>
+            <p style="margin:6px 0;"><strong>📍</strong> Laguna, Calabarzon, Philippines</p>
+            <p style="margin:6px 0;"><strong>📧</strong> <a href="mailto:rachel.delacruz@example.com" style="color:var(--ink-blue-gray);">rachel.delacruz@example.com</a></p>
+            <p style="margin:6px 0;"><strong>🔗</strong> <a href="#" style="color:var(--ink-blue-gray);">linkedin.com/in/rachel-delacruz</a></p>
           </div>
           <div>
             <a href="#" class="btn">📄 Download Resume (PDF)</a>
@@ -2426,9 +1892,7 @@
     <footer>
       <div class="container">
         <div class="footer-content">
-          <div class="footer-brand">
-            2026 <span class="highlight">iProfile</span> by <span class="highlight">LJL Digital Hub</span>
-          </div>
+          <div class="footer-brand">2026 <span class="highlight">iProfile</span> by <span class="highlight">LJL Digital Hub</span></div>
           <div class="footer-divider"></div>
           <div class="footer-sub">🤖 Virtual Assistant · Project Management</div>
         </div>
@@ -2437,34 +1901,305 @@
   </div>
 
   <!-- ===== SECURITY BADGE ===== -->
-  <div class="security-badge">
-    <span class="lock-icon">🔒</span> SECURE · v1.0
+  <div class="security-badge"><span class="lock-icon">🔒</span> SECURE · v1.0</div>
+
+  <!-- ===== NFC MODAL ===== -->
+  <div class="nfc-modal" id="nfcModal">
+    <div class="nfc-modal-content">
+      <button class="close-btn" onclick="closeNfcModal()">✕</button>
+      <div class="nfc-icon">📡</div>
+      <h3>NFC Sharing</h3>
+      <p>Bring your phone close to another NFC-enabled device to share Rachel's contact instantly.</p>
+      <div id="nfcStatus" style="font-size:0.85rem;color:#6b6b60;">Waiting for NFC tap...</div>
+      <button class="wallet-btn" onclick="cancelNFCShare()" style="margin-top:16px;">Cancel</button>
+    </div>
   </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" id="toast"></div>
 
   <!-- ===== BACK TO TOP ===== -->
   <button id="backToTop" title="Back to top">↑</button>
 
   <script>
     // ============================================================
-    // ===== TYPING ANIMATION FOR NAME =====
+    // ===== CONTACT DATA (Centralized) =====
+    // ============================================================
+    const contactData = {
+      fullName: "Rachel Dela Cruz",
+      firstName: "Rachel",
+      lastName: "Dela Cruz",
+      organization: "Arcadia Resorts / Villa Arcadia",
+      jobTitle: "Project Manager & Virtual Assistant",
+      phone: "+639171234567",
+      email: "rachel.delacruz@example.com",
+      website: "https://villa-arcadia.example.com",
+      linkedin: "https://linkedin.com/in/rachel-delacruz",
+      address: "Laguna, Calabarzon, Philippines",
+      photoUrl: window.location.origin + "/IMG_20260710_160150_773.jpg",
+      logoUrl: window.location.origin + "/1783726853698~2.jpg"
+    };
+
+    // ============================================================
+    // ===== vCard Generator =====
+    // ============================================================
+    function generateVCardString() {
+      return `BEGIN:VCARD
+VERSION:3.0
+FN:${contactData.fullName}
+N:${contactData.lastName};${contactData.firstName};;;
+ORG:${contactData.organization}
+TITLE:${contactData.jobTitle}
+TEL;TYPE=WORK,VOICE:${contactData.phone}
+EMAIL;TYPE=WORK:${contactData.email}
+URL;TYPE=WORK:${contactData.website}
+URL;TYPE=LinkedIn:${contactData.linkedin}
+ADR;TYPE=WORK:;;${contactData.address};;;
+PHOTO;VALUE=URL:${contactData.photoUrl}
+LOGO;VALUE=URL:${contactData.logoUrl}
+NOTE:Project Manager & Virtual Assistant\\nResort Construction & Management\\n15+ years experience
+REV:${new Date().toISOString()}
+END:VCARD`;
+    }
+
+    // ============================================================
+    // ===== DOWNLOAD vCard =====
+    // ============================================================
+    function downloadVCard() {
+      const vCardString = generateVCardString();
+      downloadFile(vCardString, 'rachel-dela-cruz.vcf', 'text/vcard;charset=utf-8');
+      showToast('✅ Contact saved! Open the file to add to your address book.', 'success');
+    }
+
+    // ============================================================
+    // ===== GOOGLE WALLET =====
+    // ============================================================
+    function addToGoogleWallet() {
+      const vCardString = generateVCardString();
+      const passData = {
+        iss: "villa-arcadia.example.com",
+        aud: "google",
+        typ: "savetowallet",
+        iat: Math.floor(Date.now() / 1000),
+        origins: [window.location.origin],
+        payload: {
+          genericObjects: [{
+            id: `${Date.now()}`,
+            classId: `${Date.now()}_class`,
+            genericType: "GENERIC_TYPE_UNSPECIFIED",
+            cardTitle: contactData.fullName,
+            subheader: contactData.jobTitle,
+            header: contactData.organization,
+            logo: { sourceUri: { uri: contactData.logoUrl } },
+            heroImage: { sourceUri: { uri: contactData.photoUrl } },
+            textModulesData: [
+              { header: "Phone", body: contactData.phone, id: "phone" },
+              { header: "Email", body: contactData.email, id: "email" },
+              { header: "Location", body: contactData.address, id: "location" }
+            ],
+            linksModuleData: {
+              uris: [
+                { uri: contactData.website, description: "Website", id: "website" },
+                { uri: contactData.linkedin, description: "LinkedIn", id: "linkedin" }
+              ]
+            },
+            barcode: { type: "QR_CODE", value: vCardString }
+          }]
+        }
+      };
+
+      showToast('Opening Google Wallet...', 'success');
+      
+      // Try to open Google Wallet via intent
+      const isAndroid = /Android/.test(navigator.userAgent);
+      if (isAndroid) {
+        window.location.href = 'intent://pay.google.com/gp/v/save#Intent;scheme=https;package=com.google.android.apps.walletnfcrel;end';
+      }
+      
+      setTimeout(() => {
+        showToast('Contact downloaded as vCard. Open to save.', 'success');
+        downloadVCard();
+      }, 2000);
+    }
+
+    // ============================================================
+    // ===== APPLE WALLET =====
+    // ============================================================
+    function addToAppleWallet() {
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      
+      showToast('Opening Apple Wallet...', 'success');
+      
+      if (isIOS) {
+        window.location.href = 'shoebox://';
+        setTimeout(() => {
+          downloadApplePassFallback();
+        }, 1500);
+      } else {
+        showToast('Apple Wallet is only on iOS. Downloading contact instead.', 'success');
+        downloadVCard();
+      }
+    }
+
+    function downloadApplePassFallback() {
+      const passContent = JSON.stringify({
+        formatVersion: 1,
+        passTypeIdentifier: "pass.com.villa-arcadia.contact",
+        serialNumber: Date.now().toString(),
+        teamIdentifier: "XXXXXXXXXX",
+        organizationName: "Villa Arcadia",
+        description: "Contact Card",
+        logoText: contactData.fullName,
+        foregroundColor: "#4A4A4A",
+        backgroundColor: "#FFFFE3",
+        labelColor: "#6D8196",
+        generic: {
+          primaryFields: [{ key: "name", label: "Name", value: contactData.fullName }],
+          secondaryFields: [
+            { key: "title", label: "Title", value: contactData.jobTitle },
+            { key: "org", label: "Organization", value: contactData.organization }
+          ],
+          auxiliaryFields: [
+            { key: "phone", label: "Phone", value: contactData.phone },
+            { key: "email", label: "Email", value: contactData.email }
+          ],
+          backFields: [
+            { key: "website", label: "Website", value: contactData.website },
+            { key: "linkedin", label: "LinkedIn", value: contactData.linkedin }
+          ]
+        },
+        barcode: {
+          format: "PKBarcodeFormatQR",
+          message: generateVCardString(),
+          messageEncoding: "iso-8859-1"
+        }
+      });
+      
+      downloadFile(passContent, 'rachel-delacruz-contact.pkpass.json', 'application/json');
+      showToast('Apple Wallet pass downloaded. Open on iOS to add to Wallet.', 'success');
+    }
+
+    // ============================================================
+    // ===== QR CODE =====
+    // ============================================================
+    function downloadQRContact() {
+      const vCardString = generateVCardString();
+      const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(vCardString)}`;
+      window.open(qrUrl, '_blank');
+      showToast('📱 QR Code generated! Right-click to save or scan with camera.', 'success');
+    }
+
+    // ============================================================
+    // ===== NFC SHARING =====
+    // ============================================================
+    let nfcAbortController = null;
+
+    async function shareViaNFC() {
+      if (!('NDEFReader' in window)) {
+        showToast('❌ NFC not supported. Use Chrome on Android.', 'error');
+        downloadQRContact();
+        return;
+      }
+
+      const modal = document.getElementById('nfcModal');
+      const statusEl = document.getElementById('nfcStatus');
+      modal.classList.add('show');
+      statusEl.textContent = '📡 Hold your phone near another device...';
+
+      try {
+        nfcAbortController = new AbortController();
+        const ndef = new NDEFReader();
+        await ndef.scan({ signal: nfcAbortController.signal });
+        statusEl.textContent = '📡 Device detected! Writing contact...';
+        
+        const vCardString = generateVCardString();
+        await ndef.write({
+          records: [
+            { recordType: "mime", mediaType: "text/vcard", data: vCardString },
+            { recordType: "url", data: contactData.website }
+          ]
+        });
+        
+        statusEl.textContent = '✅ Contact shared via NFC!';
+        showToast('✅ Contact shared successfully via NFC!', 'success');
+        setTimeout(() => closeNfcModal(), 2000);
+      } catch (error) {
+        if (error.name === 'AbortError') {
+          statusEl.textContent = 'NFC sharing cancelled.';
+        } else {
+          statusEl.textContent = '❌ NFC sharing failed. Try again or use QR code.';
+        }
+      }
+    }
+
+    function cancelNFCShare() {
+      if (nfcAbortController) { nfcAbortController.abort(); nfcAbortController = null; }
+      closeNfcModal();
+    }
+
+    function closeNfcModal() {
+      document.getElementById('nfcModal').classList.remove('show');
+      if (nfcAbortController) { nfcAbortController.abort(); nfcAbortController = null; }
+    }
+
+    // ============================================================
+    // ===== SHARE CONTACT =====
+    // ============================================================
+    function shareContact() {
+      if (navigator.share) {
+        navigator.share({
+          title: contactData.fullName,
+          text: `${contactData.fullName}\n${contactData.jobTitle}\n${contactData.organization}\n📞 ${contactData.phone}\n📧 ${contactData.email}`,
+          url: window.location.href
+        }).then(() => {
+          showToast('✅ Shared successfully!', 'success');
+        }).catch(() => {});
+      } else {
+        const text = `${contactData.fullName}\n${contactData.jobTitle}\n${contactData.phone}\n${contactData.email}`;
+        navigator.clipboard.writeText(text).then(() => {
+          showToast('📋 Contact copied to clipboard!', 'success');
+        });
+      }
+    }
+
+    // ============================================================
+    // ===== UTILITY FUNCTIONS =====
+    // ============================================================
+    function downloadFile(content, filename, mimeType) {
+      const blob = new Blob([content], { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      link.style.display = 'none';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    function showToast(message, type = '') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = 'toast ' + type + ' show';
+      clearTimeout(toast._timeout);
+      toast._timeout = setTimeout(() => { toast.classList.remove('show'); }, 3000);
+    }
+
+    // ============================================================
+    // ===== TYPING ANIMATION =====
     // ============================================================
     (function typeName() {
-      var nameDisplay = document.getElementById('nameDisplay');
-      var cursor = document.getElementById('cursor');
-      var fullName = 'Rachel Dela Cruz';
-      var index = 0;
-      var speed = 80;
-
+      const nameDisplay = document.getElementById('nameDisplay');
+      const fullName = 'Rachel Dela Cruz';
+      let index = 0;
+      const speed = 80;
       function typeEffect() {
         nameDisplay.textContent = fullName.substring(0, index + 1);
         index++;
-        if (index < fullName.length) {
-          setTimeout(typeEffect, speed);
-        } else {
-          cursor.style.animation = 'cursorBlink 0.8s step-end infinite';
-        }
+        if (index < fullName.length) { setTimeout(typeEffect, speed); }
       }
-
       setTimeout(typeEffect, 300);
     })();
 
@@ -2472,182 +2207,73 @@
     // ===== GALLERY SLIDER =====
     // ============================================================
     (function gallerySlider() {
-      var slides = document.querySelectorAll('.gallery-slide');
-      var dotsContainer = document.getElementById('galleryDots');
-      var prevBtn = document.getElementById('galleryPrev');
-      var nextBtn = document.getElementById('galleryNext');
-      var currentIndex = 0;
-      var totalSlides = slides.length;
-      var autoPlayInterval = null;
-      var isTransitioning = false;
+      const slides = document.querySelectorAll('.gallery-slide');
+      const dotsContainer = document.getElementById('galleryDots');
+      const prevBtn = document.getElementById('galleryPrev');
+      const nextBtn = document.getElementById('galleryNext');
+      let currentIndex = 0;
+      const totalSlides = slides.length;
+      let autoPlayInterval = null;
+      let isTransitioning = false;
 
-      // Create dots
-      slides.forEach(function(slide, index) {
-        var dot = document.createElement('button');
+      slides.forEach((slide, index) => {
+        const dot = document.createElement('button');
         dot.className = 'dot' + (index === 0 ? ' active' : '');
         dot.setAttribute('data-index', index);
         dot.setAttribute('aria-label', 'Go to slide ' + (index + 1));
-        dot.addEventListener('click', function() {
-          goToSlide(index);
-        });
+        dot.addEventListener('click', () => goToSlide(index));
         dotsContainer.appendChild(dot);
       });
 
-      var dots = dotsContainer.querySelectorAll('.dot');
+      const dots = dotsContainer.querySelectorAll('.dot');
 
       function goToSlide(index) {
-        if (isTransitioning) return;
-        if (index === currentIndex) return;
+        if (isTransitioning || index === currentIndex) return;
         if (index < 0) index = totalSlides - 1;
         if (index >= totalSlides) index = 0;
-
         isTransitioning = true;
-        
-        // Remove active class from current slide and dot
         slides[currentIndex].classList.remove('active');
         dots[currentIndex].classList.remove('active');
-        
-        // Add active class to new slide and dot
         slides[index].classList.add('active');
         dots[index].classList.add('active');
-        
         currentIndex = index;
-
-        // Reset auto-play timer
         resetAutoPlay();
-
-        setTimeout(function() {
-          isTransitioning = false;
-        }, 800);
+        setTimeout(() => { isTransitioning = false; }, 800);
       }
 
-      function nextSlide() {
-        goToSlide(currentIndex + 1);
-      }
-
-      function prevSlide() {
-        goToSlide(currentIndex - 1);
-      }
+      function nextSlide() { goToSlide(currentIndex + 1); }
+      function prevSlide() { goToSlide(currentIndex - 1); }
 
       function resetAutoPlay() {
-        if (autoPlayInterval) {
-          clearInterval(autoPlayInterval);
-          autoPlayInterval = null;
-        }
-        startAutoPlay();
-      }
-
-      function startAutoPlay() {
         if (autoPlayInterval) clearInterval(autoPlayInterval);
         autoPlayInterval = setInterval(nextSlide, 4000);
       }
 
-      // Event listeners
-      prevBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        prevSlide();
-      });
+      prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevSlide(); });
+      nextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextSlide(); });
 
-      nextBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        nextSlide();
-      });
-
-      // Touch/swipe support
-      var slider = document.getElementById('gallerySlider');
-      var touchStartX = 0;
-      var touchEndX = 0;
-
-      slider.addEventListener('touchstart', function(e) {
-        touchStartX = e.changedTouches[0].screenX;
+      const slider = document.getElementById('gallerySlider');
+      let touchStartX = 0;
+      slider.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+      slider.addEventListener('touchend', (e) => {
+        const diff = touchStartX - e.changedTouches[0].screenX;
+        if (Math.abs(diff) > 40) { diff > 0 ? nextSlide() : prevSlide(); }
       }, { passive: true });
 
-      slider.addEventListener('touchend', function(e) {
-        touchEndX = e.changedTouches[0].screenX;
-        var diff = touchStartX - touchEndX;
-        if (Math.abs(diff) > 40) {
-          if (diff > 0) {
-            nextSlide();
-          } else {
-            prevSlide();
-          }
-        }
-      }, { passive: true });
-
-      // Keyboard navigation
-      document.addEventListener('keydown', function(e) {
+      document.addEventListener('keydown', (e) => {
         if (e.key === 'ArrowRight') nextSlide();
         if (e.key === 'ArrowLeft') prevSlide();
       });
 
-      // Start auto-play
-      startAutoPlay();
+      resetAutoPlay();
 
-      // Pause on hover
-      var galleryContainer = document.querySelector('.gallery-container');
-      galleryContainer.addEventListener('mouseenter', function() {
-        if (autoPlayInterval) {
-          clearInterval(autoPlayInterval);
-          autoPlayInterval = null;
-        }
-      });
-      galleryContainer.addEventListener('mouseleave', function() {
-        startAutoPlay();
-      });
-
-      // Expose for debugging
-      window.gallery = {
-        goToSlide: goToSlide,
-        next: nextSlide,
-        prev: prevSlide,
-        current: function() { return currentIndex; }
-      };
+      const galleryContainer = document.querySelector('.gallery-container');
+      galleryContainer.addEventListener('mouseenter', () => { if (autoPlayInterval) clearInterval(autoPlayInterval); });
+      galleryContainer.addEventListener('mouseleave', () => resetAutoPlay());
     })();
 
     // ============================================================
-    // ===== SECURITY: Anti-Console Tampering =====
-    // ============================================================
-    (function secureConsole() {
-      if (window.console) {
-        var originalLog = console.log;
-        console.log = function() {
-          if (arguments[0] && typeof arguments[0] === 'string' && arguments[0].includes('boot')) {
-            originalLog.apply(console, arguments);
-          }
-        };
-        console.warn = function() {};
-        console.error = function() {};
-        console.info = function() {};
-      }
-    })();
-
-    // ============================================================
-    // ===== SECURITY: Prevent Right-Click =====
-    // ============================================================
-    document.addEventListener('contextmenu', function(e) {
-      e.preventDefault();
-      return false;
-    });
-
-    // ============================================================
-    // ===== SECURITY: Prevent Keyboard Shortcuts =====
-    // ============================================================
-    document.addEventListener('keydown', function(e) {
-      if (e.ctrlKey && e.key === 'u') { e.preventDefault(); return false; }
-      if (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I')) { e.preventDefault(); return false; }
-      if (e.ctrlKey && e.shiftKey && (e.key === 'j' || e.key === 'J')) { e.preventDefault(); return false; }
-      if (e.key === 'F12') { e.preventDefault(); return false; }
-    });
-
-    // ============================================================
-    // ===== SECURITY: Clickjacking Protection =====
-    // ============================================================
-    if (window.top !== window.self) {
-      window.top.location = window.self.location;
-    }
-
-    // ============================================================
-    // ===== BOOTLOAD SEQUENCE =====
+    // ===== BOOTLOAD =====
     // ============================================================
     (function() {
       const overlay = document.getElementById('bootOverlay');
@@ -2655,9 +2281,7 @@
       const statusText = document.getElementById('bootStatusText');
       const ready = document.getElementById('bootReady');
       const mainContent = document.getElementById('mainContent');
-
       if (!overlay || !fill || !statusText) return;
-
       let progress = 0;
       const interval = setInterval(() => {
         progress += 5 + Math.floor(Math.random() * 5);
@@ -2667,11 +2291,7 @@
           fill.style.width = '100%';
           statusText.textContent = '✓ system ready · 100%';
           ready.classList.add('show');
-          setTimeout(() => {
-            overlay.classList.add('hidden');
-            mainContent.style.opacity = '1';
-            setTimeout(() => overlay.remove(), 700);
-          }, 600);
+          setTimeout(() => { overlay.classList.add('hidden'); mainContent.style.opacity = '1'; setTimeout(() => overlay.remove(), 700); }, 600);
         } else {
           fill.style.width = progress + '%';
           if (progress < 25) statusText.textContent = '⟳ loading neural core ... ' + progress + '%';
@@ -2680,18 +2300,13 @@
           else statusText.textContent = '⟳ finalizing ... ' + progress + '%';
         }
       }, 130);
-
       setTimeout(() => {
         if (!overlay.classList.contains('hidden')) {
           clearInterval(interval);
           fill.style.width = '100%';
           statusText.textContent = '✓ system ready · 100%';
           ready.classList.add('show');
-          setTimeout(() => {
-            overlay.classList.add('hidden');
-            mainContent.style.opacity = '1';
-            setTimeout(() => overlay.remove(), 700);
-          }, 400);
+          setTimeout(() => { overlay.classList.add('hidden'); mainContent.style.opacity = '1'; setTimeout(() => overlay.remove(), 700); }, 400);
         }
       }, 5500);
     })();
@@ -2700,25 +2315,21 @@
     // ===== SCROLL PROGRESS =====
     // ============================================================
     const scrollProgress = document.getElementById('scrollProgress');
-    window.addEventListener('scroll', function() {
-      var scrollTop = window.scrollY || window.pageYOffset;
-      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      var progress = (scrollTop / docHeight) * 100;
-      scrollProgress.style.width = progress + '%';
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY || window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      scrollProgress.style.width = (scrollTop / docHeight) * 100 + '%';
     });
 
     // ============================================================
     // ===== THEME TOGGLE =====
     // ============================================================
-    var themeToggle = document.getElementById('themeToggle');
-    var body = document.body;
-    if (localStorage.getItem('theme') === 'dark') {
-      body.classList.add('dark');
-      themeToggle.textContent = '☀️';
-    }
-    themeToggle.addEventListener('click', function() {
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    if (localStorage.getItem('theme') === 'dark') { body.classList.add('dark'); themeToggle.textContent = '☀️'; }
+    themeToggle.addEventListener('click', () => {
       body.classList.toggle('dark');
-      var isDark = body.classList.contains('dark');
+      const isDark = body.classList.contains('dark');
       themeToggle.textContent = isDark ? '☀️' : '🌙';
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
@@ -2726,44 +2337,31 @@
     // ============================================================
     // ===== HAMBURGER =====
     // ============================================================
-    var hamburger = document.getElementById('hamburger');
-    var mobileNavLinks = document.getElementById('mobileNavLinks');
-    hamburger.addEventListener('click', function(e) {
-      e.stopPropagation();
-      mobileNavLinks.classList.toggle('show');
-    });
-    document.addEventListener('click', function(e) {
-      if (!mobileNavLinks.contains(e.target) && e.target !== hamburger) {
-        mobileNavLinks.classList.remove('show');
-      }
-    });
+    const hamburger = document.getElementById('hamburger');
+    const mobileNavLinks = document.getElementById('mobileNavLinks');
+    hamburger.addEventListener('click', (e) => { e.stopPropagation(); mobileNavLinks.classList.toggle('show'); });
+    document.addEventListener('click', (e) => { if (!mobileNavLinks.contains(e.target) && e.target !== hamburger) mobileNavLinks.classList.remove('show'); });
 
     // ============================================================
     // ===== SMOOTH SCROLL & ACTIVE NAV =====
     // ============================================================
-    var allNavLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
-    allNavLinks.forEach(function(link) {
-      link.addEventListener('click', function(e) {
+    const allNavLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
+    allNavLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
         e.preventDefault();
-        var targetId = link.getAttribute('href').slice(1);
-        var target = document.getElementById(targetId);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
+        const target = document.getElementById(link.getAttribute('href').slice(1));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
         mobileNavLinks.classList.remove('show');
-        allNavLinks.forEach(function(l) { l.classList.remove('active'); });
+        allNavLinks.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
       });
     });
 
-    var sections = document.querySelectorAll('section[id]');
-    window.addEventListener('scroll', function() {
-      var current = '';
-      sections.forEach(function(sec) {
-        var top = sec.offsetTop - 100;
-        if (window.scrollY >= top) current = sec.getAttribute('id');
-      });
-      allNavLinks.forEach(function(link) {
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 100) current = sec.getAttribute('id'); });
+      allNavLinks.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === '#' + current) link.classList.add('active');
       });
@@ -2772,49 +2370,29 @@
     // ============================================================
     // ===== BACK TO TOP =====
     // ============================================================
-    var backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 500) {
-        backToTop.style.display = 'flex';
-        backToTop.style.alignItems = 'center';
-        backToTop.style.justifyContent = 'center';
-      } else {
-        backToTop.style.display = 'none';
-      }
-    });
-    backToTop.addEventListener('click', function() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => { backToTop.style.display = window.scrollY > 500 ? 'flex' : 'none'; });
+    backToTop.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
     // ============================================================
     // ===== FADE UP OBSERVER =====
     // ============================================================
-    var fadeObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        }
-      });
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
     }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
 
-    document.querySelectorAll('.fade-up').forEach(function(el) {
-      fadeObserver.observe(el);
+    // ============================================================
+    // ===== SECURITY =====
+    // ============================================================
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.key === 'u') e.preventDefault();
+      if (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I')) e.preventDefault();
+      if (e.ctrlKey && e.shiftKey && (e.key === 'j' || e.key === 'J')) e.preventDefault();
+      if (e.key === 'F12') e.preventDefault();
     });
-
-    // ============================================================
-    // ===== DETECT PLATFORM =====
-    // ============================================================
-    (function detectPlatform() {
-      var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                  (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      var isAndroid = /Android/.test(navigator.userAgent);
-      
-      if (isIOS || isAndroid) {
-        document.querySelectorAll('.btn, .nav-links a, .hamburger, #themeToggle, .mobile-nav-links a').forEach(function(el) {
-          el.style.webkitTapHighlightColor = 'transparent';
-        });
-      }
-    })();
+    if (window.top !== window.self) window.top.location = window.self.location;
   </script>
 </body>
 </html>
