@@ -128,29 +128,9 @@
     body.dark .rec-card .quote { color: #c0c0b6; }
     body.dark footer { color: #8a8a80; }
     body.dark footer .highlight { color: #6D8196; }
-    body.dark footer .brand { color: #a0a098; }
     body.dark .boot-overlay { background: rgba(26, 26, 22, 0.97); }
     body.dark .glass-border-animate {
       border-color: rgba(255,255,255,0.08);
-    }
-    body.dark .energy-orb {
-      background: radial-gradient(circle at 30% 30%, rgba(109,129,150,0.08), rgba(109,129,150,0.02));
-      box-shadow: 0 0 80px rgba(109,129,150,0.08), inset 0 0 100px rgba(109,129,150,0.02);
-    }
-    body.dark .orb-ring {
-      border-color: rgba(109,129,150,0.12);
-    }
-    body.dark .orb-image-wrapper {
-      border-color: rgba(109,129,150,0.2);
-      box-shadow: 0 0 40px rgba(109,129,150,0.1), inset 0 0 40px rgba(109,129,150,0.05);
-    }
-    body.dark .orb-data {
-      color: rgba(109,129,150,0.7);
-      text-shadow: 0 0 15px rgba(109,129,150,0.3);
-    }
-    body.dark .orb-particle {
-      background: rgba(109,129,150,0.3);
-      box-shadow: 0 0 10px rgba(109,129,150,0.2);
     }
 
     a { text-decoration: none; color: inherit; }
@@ -167,7 +147,7 @@
       will-change: width;
     }
 
-    /* ===== BOOTLOAD ANIMATION - OPTIMIZED ===== */
+    /* ===== BOOTLOAD ANIMATION ===== */
     .boot-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -387,7 +367,7 @@
     }
     body.dark .section-sub { color: #a0a098; }
 
-    /* ===== TOP PROMOTION BAR - SMOOTH SCROLL ===== */
+    /* ===== TOP PROMOTION BAR ===== */
     .top-promo {
       width: 100%;
       overflow: hidden;
@@ -453,7 +433,7 @@
       color: #a0a098;
     }
 
-    /* ===== NAVBAR - SINGLE LANE ===== */
+    /* ===== NAVBAR ===== */
     .navbar {
       display: -webkit-flex;
       display: flex;
@@ -474,7 +454,7 @@
       gap: 12px;
       -webkit-flex-wrap: nowrap;
       flex-wrap: nowrap;
-      transition: background 0.4s ease, border-color 0.4s ease;
+      transition: background 0.4s ease;
     }
     body.dark .navbar {
       background: rgba(26, 26, 22, 0.85);
@@ -827,7 +807,7 @@
       }
     }
 
-    /* ===== GLASS BOX - ENHANCED ===== */
+    /* ===== GLASS BOX ===== */
     .glass-box {
       position: relative;
       background: rgba(255, 255, 227, 0.12);
@@ -861,9 +841,7 @@
       transition: opacity 0.6s ease;
       pointer-events: none;
     }
-    .glass-box:hover::before {
-      opacity: 1;
-    }
+    .glass-box:hover::before { opacity: 1; }
     .glass-box::after {
       content: '';
       position: absolute;
@@ -999,7 +977,7 @@
       z-index: 1;
     }
 
-    /* ===== TYPING ANIMATION FOR HERO TITLE ===== */
+    /* ===== TYPING ANIMATION ===== */
     .hero-content .name-wrapper {
       display: inline-block;
       position: relative;
@@ -1071,273 +1049,96 @@
       box-shadow: 0 4px 15px rgba(109,129,150,0.15);
     }
 
-    /* ===== ENERGY ORB AVATAR ===== */
+    /* ===== SIMPLE PROFILE AVATAR ===== */
     .hero-avatar {
-      -webkit-flex: 0 0 280px;
-      flex: 0 0 280px;
+      -webkit-flex: 0 0 220px;
+      flex: 0 0 220px;
       max-width: 100%;
       text-align: center;
     }
-    .energy-orb {
+    .profile-avatar {
       position: relative;
       display: inline-block;
-      width: 280px;
-      height: 280px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(109, 129, 150, 0.05), rgba(109, 129, 150, 0.02));
-      box-shadow: 0 0 60px rgba(109, 129, 150, 0.06), inset 0 0 80px rgba(109, 129, 150, 0.02);
-      animation: orbFloat 6s ease-in-out infinite;
-    }
-    @keyframes orbFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    .orb-core-glow {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 85%;
-      height: 85%;
-      border-radius: 50%;
-      background: radial-gradient(circle at center, rgba(109, 129, 150, 0.08), transparent 70%);
-      animation: corePulse 3s ease-in-out infinite;
-      pointer-events: none;
-    }
-    @keyframes corePulse {
-      0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.4; }
-      50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.9; }
-    }
-
-    .orb-ring {
-      position: absolute;
-      border-radius: 50%;
-      border: 1.5px solid rgba(109, 129, 150, 0.12);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      animation: ringRotate 20s linear infinite;
-      pointer-events: none;
-      will-change: transform;
-    }
-    .orb-ring:nth-child(2) {
-      width: 260px;
-      height: 260px;
-      border-color: rgba(109, 129, 150, 0.08);
-      animation-duration: 25s;
-    }
-    .orb-ring:nth-child(3) {
-      width: 230px;
-      height: 230px;
-      border-color: rgba(109, 129, 150, 0.1);
-      animation-duration: 18s;
-      animation-direction: reverse;
-    }
-    .orb-ring:nth-child(4) {
-      width: 200px;
-      height: 200px;
-      border-color: rgba(109, 129, 150, 0.12);
-      animation-duration: 22s;
-    }
-    .orb-ring:nth-child(5) {
-      width: 170px;
-      height: 170px;
-      border: 2px dashed rgba(109, 129, 150, 0.08);
-      animation-duration: 30s;
-    }
-    .orb-ring:nth-child(6) {
-      width: 140px;
-      height: 140px;
-      border-color: rgba(109, 129, 150, 0.06);
-      animation-duration: 15s;
-      animation-direction: reverse;
-    }
-    .orb-ring:nth-child(7) {
-      width: 110px;
-      height: 110px;
-      border-color: rgba(109, 129, 150, 0.08);
-      animation-duration: 12s;
-    }
-    @keyframes ringRotate {
-      0% { transform: translate(-50%, -50%) rotate(0deg); }
-      100% { transform: translate(-50%, -50%) rotate(360deg); }
-    }
-
-    .orb-particles {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      overflow: visible;
-    }
-    .orb-particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: rgba(109, 129, 150, 0.25);
-      box-shadow: 0 0 8px rgba(109, 129, 150, 0.15);
-      animation: particleOrbit 8s linear infinite;
-      will-change: transform, opacity;
-    }
-    .orb-particle:nth-child(8) { top: 10%; left: 50%; animation-delay: 0s; }
-    .orb-particle:nth-child(9) { top: 30%; left: 85%; animation-delay: 1s; width: 6px; height: 6px; }
-    .orb-particle:nth-child(10) { top: 60%; left: 5%; animation-delay: 2s; }
-    .orb-particle:nth-child(11) { top: 85%; left: 40%; animation-delay: 0.5s; width: 5px; height: 5px; }
-    .orb-particle:nth-child(12) { top: 20%; left: 10%; animation-delay: 1.5s; width: 7px; height: 7px; }
-    .orb-particle:nth-child(13) { top: 70%; left: 90%; animation-delay: 2.5s; }
-    .orb-particle:nth-child(14) { top: 45%; left: 95%; animation-delay: 3s; width: 5px; height: 5px; }
-    .orb-particle:nth-child(15) { top: 50%; left: 2%; animation-delay: 0.8s; }
-    .orb-particle:nth-child(16) { top: 5%; left: 80%; animation-delay: 1.8s; width: 6px; height: 6px; }
-    .orb-particle:nth-child(17) { top: 90%; left: 70%; animation-delay: 2.8s; }
-    @keyframes particleOrbit {
-      0% { transform: rotate(0deg) translateX(80px) rotate(0deg) scale(1); opacity: 0.6; }
-      25% { opacity: 1; transform: rotate(90deg) translateX(85px) rotate(-90deg) scale(1.2); }
-      50% { transform: rotate(180deg) translateX(75px) rotate(-180deg) scale(0.7); opacity: 0.3; }
-      75% { opacity: 1; transform: rotate(270deg) translateX(85px) rotate(-270deg) scale(1.2); }
-      100% { transform: rotate(360deg) translateX(80px) rotate(-360deg) scale(1); opacity: 0.6; }
-    }
-
-    .orb-radar {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      width: 220px;
+      height: 220px;
       border-radius: 50%;
       overflow: hidden;
-      pointer-events: none;
-    }
-    .orb-radar::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 50%;
-      height: 2px;
-      background: linear-gradient(90deg, rgba(109, 129, 150, 0), rgba(109, 129, 150, 0.5), rgba(109, 129, 150, 0));
-      transform-origin: 0% 50%;
-      animation: radarSweep 4s ease-in-out infinite;
-      box-shadow: 0 0 20px rgba(109, 129, 150, 0.12);
-    }
-    @keyframes radarSweep {
-      0% { transform: rotate(0deg) scaleX(1); opacity: 0.15; }
-      50% { transform: rotate(180deg) scaleX(1.2); opacity: 0.7; }
-      100% { transform: rotate(360deg) scaleX(1); opacity: 0.15; }
-    }
-
-    .orb-data {
-      position: absolute;
-      font-size: 0.5rem;
-      font-family: 'JetBrains Mono', monospace;
-      color: rgba(109, 129, 150, 0.5);
-      letter-spacing: 0.5px;
-      text-shadow: 0 0 10px rgba(109, 129, 150, 0.12);
-      pointer-events: none;
-      animation: dataPulse 2.5s ease-in-out infinite;
-      will-change: transform, opacity;
-    }
-    .orb-data:nth-child(18) { top: 8%; right: 15%; animation-delay: 0s; }
-    .orb-data:nth-child(19) { bottom: 12%; left: 10%; animation-delay: 0.6s; }
-    .orb-data:nth-child(20) { top: 45%; left: 6%; animation-delay: 1.2s; }
-    .orb-data:nth-child(21) { bottom: 30%; right: 8%; animation-delay: 1.8s; }
-    .orb-data:nth-child(22) { top: 20%; left: 12%; animation-delay: 0.9s; }
-    .orb-data:nth-child(23) { bottom: 8%; right: 20%; animation-delay: 1.4s; }
-    @keyframes dataPulse {
-      0%, 100% { opacity: 0.3; transform: scale(0.9); }
-      50% { opacity: 0.9; transform: scale(1.1); }
-    }
-
-    .orb-image-wrapper {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 95px;
-      height: 95px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 2px solid rgba(109, 129, 150, 0.2);
-      box-shadow: 0 0 30px rgba(109, 129, 150, 0.06), inset 0 0 30px rgba(109, 129, 150, 0.04);
+      border: 3px solid rgba(109, 129, 150, 0.25);
+      box-shadow: 0 8px 30px rgba(109, 129, 150, 0.15), 0 0 60px rgba(109, 129, 150, 0.05);
       transition: all 0.5s ease;
-      z-index: 2;
+      animation: avatarFloat 6s ease-in-out infinite;
     }
-    .orb-image-wrapper img {
+    .profile-avatar:hover {
+      transform: scale(1.03);
+      border-color: rgba(109, 129, 150, 0.4);
+      box-shadow: 0 12px 40px rgba(109, 129, 150, 0.2), 0 0 80px rgba(109, 129, 150, 0.08);
+    }
+    .profile-avatar img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
       transition: transform 0.6s ease;
     }
-    .orb-image-wrapper:hover img {
+    .profile-avatar:hover img {
       transform: scale(1.05);
     }
-    .orb-image-wrapper::after {
+    /* Simple glow ring */
+    .profile-avatar::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
       border-radius: 50%;
-      background: radial-gradient(circle at 30% 20%, rgba(109, 129, 150, 0.08), transparent 70%);
-      pointer-events: none;
+      background: conic-gradient(
+        from 0deg,
+        transparent,
+        rgba(109, 129, 150, 0.15),
+        transparent,
+        rgba(109, 129, 150, 0.25),
+        transparent,
+        rgba(109, 129, 150, 0.15),
+        transparent
+      );
+      z-index: -1;
+      animation: glowSpin 8s linear infinite;
+      opacity: 0;
+      transition: opacity 0.6s ease;
     }
-
-    .orb-label {
+    .profile-avatar:hover::before {
+      opacity: 1;
+    }
+    @keyframes glowSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    /* Subtle inner glow */
+    .profile-avatar::after {
+      content: '';
       position: absolute;
-      font-size: 0.45rem;
-      font-family: 'JetBrains Mono', monospace;
-      color: rgba(109, 129, 150, 0.3);
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(109, 129, 150, 0.08), transparent 70%);
       pointer-events: none;
-      animation: labelPulse 4s ease-in-out infinite;
     }
-    .orb-label.tl { top: 5%; left: 8%; animation-delay: 0s; }
-    .orb-label.tr { top: 5%; right: 8%; animation-delay: 1s; }
-    .orb-label.bl { bottom: 5%; left: 8%; animation-delay: 2s; }
-    .orb-label.br { bottom: 5%; right: 8%; animation-delay: 3s; }
-    @keyframes labelPulse {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.7; }
+    @keyframes avatarFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
     @media (max-width: 700px) {
       .hero-avatar {
-        -webkit-flex: 0 0 220px;
-        flex: 0 0 220px;
+        -webkit-flex: 0 0 180px;
+        flex: 0 0 180px;
       }
-      .energy-orb {
-        width: 220px;
-        height: 220px;
-      }
-      .orb-ring:nth-child(2) { width: 200px; height: 200px; }
-      .orb-ring:nth-child(3) { width: 175px; height: 175px; }
-      .orb-ring:nth-child(4) { width: 150px; height: 150px; }
-      .orb-ring:nth-child(5) { width: 125px; height: 125px; }
-      .orb-ring:nth-child(6) { width: 100px; height: 100px; }
-      .orb-ring:nth-child(7) { width: 80px; height: 80px; }
-      .orb-image-wrapper {
-        width: 75px;
-        height: 75px;
-      }
-      .orb-data {
-        font-size: 0.4rem;
-      }
-      .orb-label {
-        font-size: 0.35rem;
-      }
-      .orb-particle {
-        width: 3px;
-        height: 3px;
-      }
-      @keyframes particleOrbit {
-        0% { transform: rotate(0deg) translateX(60px) rotate(0deg) scale(1); }
-        25% { transform: rotate(90deg) translateX(65px) rotate(-90deg) scale(1.2); }
-        50% { transform: rotate(180deg) translateX(55px) rotate(-180deg) scale(0.7); }
-        75% { transform: rotate(270deg) translateX(65px) rotate(-270deg) scale(1.2); }
-        100% { transform: rotate(360deg) translateX(60px) rotate(-360deg) scale(1); }
+      .profile-avatar {
+        width: 180px;
+        height: 180px;
       }
       .hero-content h1 { font-size: 2.1rem; }
     }
@@ -1875,7 +1676,7 @@
       .top-promo {
         padding-top: env(safe-area-inset-top);
       }
-      .energy-orb .orb-image-wrapper img {
+      .profile-avatar img {
         -webkit-user-select: none;
         user-select: none;
       }
@@ -1893,12 +1694,8 @@
     .hero-bg-canvas .data-particle,
     .hero-bg-canvas .code-snippet,
     .logo-img,
-    .energy-orb .orb-ring,
-    .energy-orb .orb-particle {
+    .profile-avatar {
       will-change: transform, opacity;
-    }
-    .orb-image-wrapper img {
-      will-change: transform;
     }
     .timeline-item,
     .skill-chip,
@@ -2000,7 +1797,7 @@
 
   <!-- ===== MAIN CONTENT ===== -->
   <div id="mainContent" style="opacity:0; transition: opacity 0.8s ease;">
-    <!-- ===== NAVBAR - SINGLE LANE ===== -->
+    <!-- ===== NAVBAR ===== -->
     <nav class="navbar">
       <div class="navbar-left">
         <span class="logo-wrapper">
@@ -2087,41 +1884,10 @@
           </div>
         </div>
 
+        <!-- ===== SIMPLE PROFILE AVATAR ===== -->
         <div class="hero-avatar fade-up">
-          <div class="energy-orb">
-            <div class="orb-core-glow"></div>
-            <div class="orb-ring"></div>
-            <div class="orb-ring"></div>
-            <div class="orb-ring"></div>
-            <div class="orb-ring"></div>
-            <div class="orb-ring"></div>
-            <div class="orb-ring"></div>
-            <div class="orb-particles">
-              <div class="orb-particle"></div>
-              <div class="orb-particle"></div>
-              <div class="orb-particle"></div>
-              <div class="orb-particle"></div>
-              <div class="orb-particle"></div>
-              <div class="orb-particle"></div>
-              <div class="orb-particle"></div>
-              <div class="orb-particle"></div>
-              <div class="orb-particle"></div>
-              <div class="orb-particle"></div>
-            </div>
-            <div class="orb-radar"></div>
-            <span class="orb-data">◉ 98%</span>
-            <span class="orb-data">✦ 4.8</span>
-            <span class="orb-data">⬡ 15+</span>
-            <span class="orb-data">◈ 24/7</span>
-            <span class="orb-data">⏣ 5★</span>
-            <span class="orb-data">◐ 100%</span>
-            <span class="orb-label tl">● SYSTEM</span>
-            <span class="orb-label tr">● ONLINE</span>
-            <span class="orb-label bl">● SECURE</span>
-            <span class="orb-label br">● ACTIVE</span>
-            <div class="orb-image-wrapper">
-              <img src="IMG_20260710_160150_773.jpg" alt="Rachel Dela Cruz" />
-            </div>
+          <div class="profile-avatar">
+            <img src="IMG_20260710_160150_773.jpg" alt="Rachel Dela Cruz" />
           </div>
         </div>
       </section>
@@ -2399,28 +2165,21 @@
       var cursor = document.getElementById('cursor');
       var fullName = 'Rachel Dela Cruz';
       var index = 0;
-      var isDeleting = false;
-      var speed = 80; // typing speed in ms
+      var speed = 80;
 
       function typeEffect() {
-        if (!isDeleting) {
-          // Typing
-          nameDisplay.textContent = fullName.substring(0, index + 1);
-          index++;
-          
-          if (index === fullName.length) {
-            // Pause before blinking cursor continues
-            cursor.style.animation = 'cursorBlink 0.8s step-end infinite';
-            setTimeout(function() {
-              // Keep the name fully typed, just show cursor blinking
-            }, 2000);
-          }
+        nameDisplay.textContent = fullName.substring(0, index + 1);
+        index++;
+        if (index < fullName.length) {
           setTimeout(typeEffect, speed);
+        } else {
+          // Keep cursor blinking after typing is done
+          cursor.style.animation = 'cursorBlink 0.8s step-end infinite';
         }
       }
 
-      // Start the typing effect
-      typeEffect();
+      // Small delay before starting
+      setTimeout(typeEffect, 300);
     })();
 
     // ============================================================
