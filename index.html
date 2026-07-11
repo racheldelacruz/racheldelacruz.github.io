@@ -433,7 +433,7 @@
       color: #a0a098;
     }
 
-    /* ===== NAVBAR ===== */
+    /* ===== NAVBAR - ENLARGED & CLEARER ===== */
     .navbar {
       display: -webkit-flex;
       display: flex;
@@ -441,8 +441,8 @@
       align-items: center;
       -webkit-justify-content: space-between;
       justify-content: space-between;
-      padding: 8px 20px;
-      padding-top: calc(8px + var(--safe-area-inset-top));
+      padding: 12px 24px;
+      padding-top: calc(12px + var(--safe-area-inset-top));
       background: rgba(255, 255, 227, 0.45);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
@@ -451,7 +451,7 @@
       position: sticky;
       top: 28px;
       z-index: 50;
-      gap: 12px;
+      gap: 16px;
       -webkit-flex-wrap: nowrap;
       flex-wrap: nowrap;
       transition: background 0.4s ease;
@@ -466,7 +466,7 @@
       display: flex;
       -webkit-align-items: center;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
       -webkit-flex-shrink: 0;
       flex-shrink: 0;
     }
@@ -475,7 +475,7 @@
       position: relative;
       display: inline-block;
       overflow: hidden;
-      border-radius: 6px;
+      border-radius: 8px;
       line-height: 0;
     }
     .logo-wrapper::before {
@@ -497,9 +497,9 @@
     }
 
     .logo-img {
-      height: 30px;
+      height: 42px;
       width: auto;
-      border-radius: 6px;
+      border-radius: 8px;
       object-fit: contain;
       background: transparent !important;
       mix-blend-mode: multiply;
@@ -519,11 +519,11 @@
       display: flex;
       -webkit-align-items: center;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
     .navbar-left .brand-text .name {
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 1.1rem;
       color: var(--ink-charcoal);
       display: inline-block;
       position: relative;
@@ -553,10 +553,11 @@
     .navbar-left .brand-text .divider {
       color: var(--ink-border);
       font-weight: 300;
+      font-size: 1.1rem;
     }
     .navbar-left .brand-text .villa {
       font-weight: 600;
-      font-size: 0.8rem;
+      font-size: 1rem;
       color: #d4a853;
     }
     body.dark .navbar-left .brand-text .name { color: #e0e0d6; }
@@ -578,7 +579,7 @@
     .nav-links {
       display: -webkit-flex;
       display: flex;
-      gap: 2px;
+      gap: 4px;
       list-style: none;
       -webkit-flex-wrap: wrap;
       flex-wrap: wrap;
@@ -586,17 +587,17 @@
       justify-content: center;
     }
     .nav-links a {
-      padding: 4px 10px;
+      padding: 6px 14px;
       border-radius: 40px;
       font-weight: 500;
-      font-size: 0.7rem;
+      font-size: 0.8rem;
       transition: all 0.3s ease;
       color: var(--ink-charcoal);
       display: -webkit-flex;
       display: flex;
       -webkit-align-items: center;
       align-items: center;
-      gap: 3px;
+      gap: 4px;
       -webkit-tap-highlight-color: transparent;
       white-space: nowrap;
       position: relative;
@@ -628,7 +629,7 @@
       display: flex;
       -webkit-align-items: center;
       align-items: center;
-      gap: 4px;
+      gap: 8px;
       -webkit-flex-shrink: 0;
       flex-shrink: 0;
     }
@@ -637,11 +638,11 @@
       display: inline-flex;
       -webkit-align-items: center;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
       background: rgba(109, 129, 150, 0.08);
-      padding: 2px 8px 2px 6px;
+      padding: 4px 14px 4px 10px;
       border-radius: 40px;
-      font-size: 0.55rem;
+      font-size: 0.7rem;
       font-weight: 500;
       color: var(--ink-blue-gray);
       border: 1px solid rgba(109, 129, 150, 0.12);
@@ -655,8 +656,8 @@
     }
     .va-badge .pulse-dot {
       display: inline-block;
-      width: 4px;
-      height: 4px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
       background: #6D8196;
       animation: pulse-dot 1.8s ease-in-out infinite;
@@ -675,9 +676,9 @@
       background: transparent;
       border: 1px solid var(--ink-border);
       border-radius: 40px;
-      width: 30px;
-      height: 30px;
-      font-size: 0.9rem;
+      width: 36px;
+      height: 36px;
+      font-size: 1.1rem;
       cursor: pointer;
       display: -webkit-flex;
       display: flex;
@@ -719,10 +720,10 @@
       100% { opacity: 1; transform: translateY(0); }
     }
     .mobile-nav-links a {
-      padding: 6px 14px;
+      padding: 8px 16px;
       border-radius: 40px;
       font-weight: 500;
-      font-size: 0.8rem;
+      font-size: 0.9rem;
       transition: all 0.3s ease;
       color: var(--ink-charcoal);
       display: -webkit-flex;
@@ -742,8 +743,8 @@
       .navbar {
         -webkit-flex-wrap: wrap;
         flex-wrap: wrap;
-        padding: 6px 12px;
-        gap: 4px;
+        padding: 8px 16px;
+        gap: 6px;
         top: 24px;
       }
       .navbar-center {
@@ -762,22 +763,25 @@
         display: flex;
       }
       .logo-img {
-        height: 24px;
+        height: 32px;
       }
       .navbar-left .brand-text .name {
-        font-size: 0.7rem;
+        font-size: 0.85rem;
       }
       .navbar-left .brand-text .villa {
-        font-size: 0.65rem;
+        font-size: 0.8rem;
+      }
+      .navbar-left .brand-text .divider {
+        font-size: 0.85rem;
       }
       .va-badge {
-        font-size: 0.5rem;
-        padding: 2px 6px 2px 5px;
+        font-size: 0.6rem;
+        padding: 3px 10px 3px 8px;
       }
       #themeToggle {
-        width: 28px;
-        height: 28px;
-        font-size: 0.8rem;
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
       }
       .top-promo .promo-item {
         font-size: 0.6rem;
@@ -786,24 +790,35 @@
       .top-promo .promo-item .promo-icon {
         font-size: 0.7rem;
       }
+      .nav-links a {
+        font-size: 0.7rem;
+        padding: 4px 10px;
+      }
     }
 
     @media (max-width: 480px) {
       .logo-img {
-        height: 20px;
+        height: 28px;
       }
       .navbar-left .brand-text .name {
-        font-size: 0.6rem;
+        font-size: 0.7rem;
       }
       .navbar-left .brand-text .villa {
-        font-size: 0.55rem;
+        font-size: 0.65rem;
       }
       .navbar-left .brand-text .divider {
-        font-size: 0.6rem;
+        font-size: 0.7rem;
+      }
+      .navbar-left .brand-text {
+        gap: 4px;
       }
       .top-promo .promo-item {
         font-size: 0.5rem;
         padding: 0 14px;
+      }
+      .va-badge {
+        font-size: 0.5rem;
+        padding: 2px 8px 2px 6px;
       }
     }
 
@@ -1083,7 +1098,6 @@
     .profile-avatar:hover img {
       transform: scale(1.05);
     }
-    /* Simple glow ring */
     .profile-avatar::before {
       content: '';
       position: absolute;
@@ -1114,7 +1128,6 @@
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    /* Subtle inner glow */
     .profile-avatar::after {
       content: '';
       position: absolute;
@@ -1671,7 +1684,7 @@
     /* ===== iOS SPECIFIC FIXES ===== */
     @supports (-webkit-touch-callout: none) {
       .navbar {
-        padding-top: calc(8px + env(safe-area-inset-top));
+        padding-top: calc(12px + env(safe-area-inset-top));
       }
       .top-promo {
         padding-top: env(safe-area-inset-top);
@@ -2173,12 +2186,10 @@
         if (index < fullName.length) {
           setTimeout(typeEffect, speed);
         } else {
-          // Keep cursor blinking after typing is done
           cursor.style.animation = 'cursorBlink 0.8s step-end infinite';
         }
       }
 
-      // Small delay before starting
       setTimeout(typeEffect, 300);
     })();
 
