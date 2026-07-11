@@ -999,11 +999,31 @@
       z-index: 1;
     }
 
-    .hero-content h1 { 
-      font-size: 2.8rem; 
-      font-weight: 800; 
-      letter-spacing: -0.03em; 
+    /* ===== TYPING ANIMATION FOR HERO TITLE ===== */
+    .hero-content .name-wrapper {
+      display: inline-block;
+      position: relative;
+    }
+    .hero-content .name-wrapper .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background: var(--ink-blue-gray);
+      margin-left: 2px;
+      animation: cursorBlink 0.8s step-end infinite;
+      vertical-align: text-bottom;
+      border-radius: 1px;
+    }
+    @keyframes cursorBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .hero-content h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
       color: var(--ink-charcoal);
+      display: inline;
       animation: heroGlow 4s ease-in-out infinite;
     }
     @keyframes heroGlow {
@@ -1319,6 +1339,7 @@
         75% { transform: rotate(270deg) translateX(65px) rotate(-270deg) scale(1.2); }
         100% { transform: rotate(360deg) translateX(60px) rotate(-360deg) scale(1); }
       }
+      .hero-content h1 { font-size: 2.1rem; }
     }
 
     /* ===== BUTTONS ===== */
@@ -1792,14 +1813,6 @@
     body.dark .footer-divider {
       background: rgba(255,255,255,0.08);
     }
-    footer .footer-year {
-      font-size: 0.85rem;
-      color: var(--ink-charcoal);
-      font-weight: 500;
-    }
-    body.dark .footer-year {
-      color: #e0e0d6;
-    }
 
     /* ===== FADE UP ANIMATION ===== */
     .fade-up {
@@ -1841,7 +1854,6 @@
     /* ===== RESPONSIVE ===== */
     @media (max-width: 700px) {
       .hero { -webkit-flex-direction: column-reverse; flex-direction: column-reverse; text-align: center; }
-      .hero-content h1 { font-size: 2.1rem; }
       .section-title { font-size: 1.6rem; }
       .tl-header { -webkit-flex-direction: column; flex-direction: column; gap: 4px; }
       .boot-terminal { padding: 24px 18px; }
@@ -1929,7 +1941,7 @@
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">secure communication tunnel established</span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">project management framework <span class="accent-text">· Google certified</span></span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">licensed midwife <span class="accent-text">· PRC #0138206</span></span></div>
-        <div class="log-line"><span class="prompt">➜</span> <span class="highlight">✦ virtual assistant ready · Rachel De La Cruz</span></div>
+        <div class="log-line"><span class="prompt">➜</span> <span class="highlight">✦ virtual assistant ready · Rachel Dela Cruz</span></div>
       </div>
       <div class="boot-status-text" id="bootStatusText">initializing ... 0%</div>
       <div class="boot-status-bar"><div class="boot-status-fill" id="bootStatusFill"></div></div>
@@ -2055,7 +2067,12 @@
         </div>
 
         <div class="hero-content fade-up">
-          <h1>Rachel De La Cruz</h1>
+          <h1>
+            <span class="name-wrapper" id="typedName">
+              <span id="nameDisplay"></span>
+              <span class="cursor" id="cursor"></span>
+            </span>
+          </h1>
           <div class="subhead">🎯 Project Manager · Virtual Assistant</div>
           <div class="location">📍 Laguna, Calabarzon, Philippines</div>
           <div class="hero-badge-group">
@@ -2103,7 +2120,7 @@
             <span class="orb-label bl">● SECURE</span>
             <span class="orb-label br">● ACTIVE</span>
             <div class="orb-image-wrapper">
-              <img src="IMG_20260710_160150_773.jpg" alt="Rachel De La Cruz" />
+              <img src="IMG_20260710_160150_773.jpg" alt="Rachel Dela Cruz" />
             </div>
           </div>
         </div>
@@ -2374,6 +2391,38 @@
   <button id="backToTop" title="Back to top">↑</button>
 
   <script>
+    // ============================================================
+    // ===== TYPING ANIMATION FOR NAME =====
+    // ============================================================
+    (function typeName() {
+      var nameDisplay = document.getElementById('nameDisplay');
+      var cursor = document.getElementById('cursor');
+      var fullName = 'Rachel Dela Cruz';
+      var index = 0;
+      var isDeleting = false;
+      var speed = 80; // typing speed in ms
+
+      function typeEffect() {
+        if (!isDeleting) {
+          // Typing
+          nameDisplay.textContent = fullName.substring(0, index + 1);
+          index++;
+          
+          if (index === fullName.length) {
+            // Pause before blinking cursor continues
+            cursor.style.animation = 'cursorBlink 0.8s step-end infinite';
+            setTimeout(function() {
+              // Keep the name fully typed, just show cursor blinking
+            }, 2000);
+          }
+          setTimeout(typeEffect, speed);
+        }
+      }
+
+      // Start the typing effect
+      typeEffect();
+    })();
+
     // ============================================================
     // ===== SECURITY: Anti-Console Tampering =====
     // ============================================================
