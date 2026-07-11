@@ -143,6 +143,9 @@
       background: #2a2a26;
       color: #e0e0d6;
     }
+    body.dark .wallet-section {
+      border-color: rgba(109, 129, 150, 0.12);
+    }
 
     a { text-decoration: none; color: inherit; }
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
@@ -259,8 +262,6 @@
     .boot-logs .log-line:nth-child(10) { animation-delay: 1.9s; }
     .boot-logs .log-line:nth-child(11) { animation-delay: 2.1s; }
     .boot-logs .log-line:nth-child(12) { animation-delay: 2.3s; }
-    .boot-logs .log-line:nth-child(13) { animation-delay: 2.5s; }
-    .boot-logs .log-line:nth-child(14) { animation-delay: 2.7s; }
     @keyframes logSlide { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: translateX(0); } }
     .boot-logs .prompt { color: #6D8196; }
     .boot-logs .ok { color: #6D8196; }
@@ -491,27 +492,6 @@
       font-weight: 700;
       font-size: 1.1rem;
       color: var(--ink-charcoal);
-      display: inline-block;
-      position: relative;
-      overflow: hidden;
-    }
-    .navbar-left .brand-text .name::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -60%;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
-      animation: shine 60s ease-in-out infinite;
-      animation-delay: 10s;
-      pointer-events: none;
-      z-index: 1;
-    }
-    @keyframes shine {
-      0% { left: -60%; }
-      5% { left: 100%; }
-      100% { left: 100%; }
     }
     .navbar-left .brand-text .name .highlight { color: var(--ink-blue-gray); }
     .navbar-left .brand-text .divider {
@@ -760,7 +740,6 @@
       white-space: nowrap;
       pointer-events: none;
       animation: codeFloat 25s ease-in-out infinite;
-      will-change: transform, opacity;
     }
     .hero-bg-canvas .code-snippet:nth-child(13) { top: 5%; left: 2%; animation-delay: 0s; }
     .hero-bg-canvas .code-snippet:nth-child(14) { top: 50%; left: 70%; animation-delay: -6s; }
@@ -798,22 +777,12 @@
       letter-spacing: -0.03em;
       color: var(--ink-charcoal);
       display: inline;
-      animation: heroGlow 4s ease-in-out infinite;
-    }
-    @keyframes heroGlow {
-      0%, 100% { text-shadow: 0 0 0 transparent; }
-      50% { text-shadow: 0 0 20px rgba(109,129,150,0.08); }
     }
     .hero-content .subhead { 
       font-size: 1.2rem; 
       font-weight: 500; 
       color: var(--ink-blue-gray); 
       margin: 4px 0 8px;
-      animation: subheadFloat 6s ease-in-out infinite;
-    }
-    @keyframes subheadFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-4px); }
     }
     .hero-content .location { display: flex; align-items: center; justify-content: center; gap: 6px; color: #6b6b60; font-size: 0.95rem; }
     .hero-badge-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 16px 0 20px; }
@@ -851,61 +820,19 @@
       border-radius: 50%;
       overflow: hidden;
       border: 3px solid rgba(109, 129, 150, 0.25);
-      box-shadow: 0 8px 30px rgba(109, 129, 150, 0.15), 0 0 60px rgba(109, 129, 150, 0.05);
+      box-shadow: 0 8px 30px rgba(109, 129, 150, 0.15);
       transition: all 0.5s ease;
       animation: avatarFloat 6s ease-in-out infinite;
     }
     .profile-avatar:hover {
       transform: scale(1.03);
       border-color: rgba(109, 129, 150, 0.4);
-      box-shadow: 0 12px 40px rgba(109, 129, 150, 0.2), 0 0 80px rgba(109, 129, 150, 0.08);
     }
     .profile-avatar img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.6s ease;
-    }
-    .profile-avatar:hover img { transform: scale(1.05); }
-    .profile-avatar::before {
-      content: '';
-      position: absolute;
-      top: -4px;
-      left: -4px;
-      right: -4px;
-      bottom: -4px;
-      border-radius: 50%;
-      background: conic-gradient(
-        from 0deg,
-        transparent,
-        rgba(109, 129, 150, 0.15),
-        transparent,
-        rgba(109, 129, 150, 0.25),
-        transparent,
-        rgba(109, 129, 150, 0.15),
-        transparent
-      );
-      z-index: -1;
-      animation: glowSpin 8s linear infinite;
-      opacity: 0;
-      transition: opacity 0.6s ease;
-    }
-    .profile-avatar:hover::before { opacity: 1; }
-    @keyframes glowSpin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    .profile-avatar::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(109, 129, 150, 0.08), transparent 70%);
-      pointer-events: none;
     }
     @keyframes avatarFloat {
       0%, 100% { transform: translateY(0); }
@@ -927,29 +854,14 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      position: relative;
-      overflow: hidden;
     }
-    .btn::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.2);
-      transform: translate(-50%, -50%);
-      transition: width 0.6s ease, height 0.6s ease;
-    }
-    .btn:active::after { width: 200px; height: 200px; }
+    .btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 30px rgba(109, 129, 150, 0.25); }
     .btn-outline {
       background: transparent;
       border: 2px solid var(--ink-blue-gray);
       color: var(--ink-blue-gray);
     }
-    .btn-outline:hover { background: var(--ink-blue-gray); color: #fff; transform: translateY(-3px) scale(1.02); }
-    .btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 30px rgba(109, 129, 150, 0.25); }
+    .btn-outline:hover { background: var(--ink-blue-gray); color: #fff; }
 
     /* ===== WALLET BUTTONS ===== */
     .wallet-section {
@@ -1100,8 +1012,6 @@
       margin: 30px 0 20px;
       box-shadow: 0 4px 30px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.3);
       transition: all 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
-      position: relative;
-      overflow: hidden;
       text-align: center;
     }
     .summary-card:hover {
@@ -1128,8 +1038,6 @@
       border-radius: 18px;
       padding: 24px 28px;
       transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position: relative;
-      overflow: hidden;
       opacity: 0;
       transform: translateY(40px) scale(0.96);
       animation: expSlideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -1154,7 +1062,7 @@
     .timeline-item:hover {
       transform: translateY(-8px) scale(1.015) !important;
       border-color: rgba(109, 129, 150, 0.35);
-      box-shadow: 0 16px 40px rgba(109, 129, 150, 0.1), 0 0 60px rgba(109, 129, 150, 0.03);
+      box-shadow: 0 16px 40px rgba(109, 129, 150, 0.1);
     }
     .tl-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; }
     .tl-title { font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 6px; }
@@ -1207,8 +1115,7 @@
       transform: translateY(-6px) scale(1.06) !important;
       box-shadow: 0 12px 35px rgba(109, 129, 150, 0.12);
     }
-    .skill-chip .skill-icon { font-size: 1.1rem; transition: transform 0.4s ease; }
-    .skill-chip:hover .skill-icon { transform: rotate(12deg) scale(1.2); }
+    .skill-chip .skill-icon { font-size: 1.1rem; }
 
     /* ===== EDU / CERT GRID ===== */
     .edu-grid, .cert-grid {
@@ -1226,8 +1133,6 @@
       padding: 18px 20px;
       border: 1.5px solid rgba(109, 129, 150, 0.12);
       transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-      position: relative;
-      overflow: hidden;
       box-shadow: 0 2px 10px rgba(0,0,0,0.02), inset 0 1px 0 rgba(255,255,255,0.15);
     }
     .edu-item:hover, .cert-item:hover {
@@ -1304,7 +1209,6 @@
       object-fit: cover;
       display: block;
     }
-    .gallery-slide video { background: #1a1a16; }
     .gallery-slide .slide-overlay {
       position: absolute;
       bottom: 0;
@@ -1315,7 +1219,7 @@
       color: #fff;
       pointer-events: none;
     }
-    .gallery-slide .slide-overlay .slide-title { font-size: 1.1rem; font-weight: 600; letter-spacing: 0.5px; }
+    .gallery-slide .slide-overlay .slide-title { font-size: 1.1rem; font-weight: 600; }
     .gallery-slide .slide-overlay .slide-sub { font-size: 0.8rem; opacity: 0.85; margin-top: 2px; }
     .gallery-nav {
       position: absolute;
@@ -1336,7 +1240,6 @@
       justify-content: center;
       transition: all 0.4s ease;
       z-index: 10;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
     .gallery-nav:hover { background: rgba(255, 255, 227, 0.6); transform: translateY(-50%) scale(1.1); }
     .gallery-nav.prev { left: 16px; }
@@ -1346,8 +1249,6 @@
       justify-content: center;
       gap: 8px;
       padding: 14px 0;
-      position: relative;
-      z-index: 5;
     }
     .gallery-dots .dot {
       width: 10px;
@@ -1389,10 +1290,7 @@
       transform: translateY(40px);
       transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
     }
-    .fade-up.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .fade-up.show { opacity: 1; transform: translateY(0); }
 
     /* ===== BACK TO TOP ===== */
     #backToTop {
@@ -1412,7 +1310,6 @@
       border: none;
       box-shadow: 0 4px 20px rgba(0,0,0,0.12);
       transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
-      will-change: transform, box-shadow;
     }
     #backToTop:hover { 
       transform: translateY(-4px) scale(1.05); 
@@ -1476,7 +1373,6 @@
         <div class="log-line"><span class="prompt">➜</span> <span class="info">initializing neural core ...</span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">virtual assistant kernel loaded</span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">project management engine <span class="accent-text">v2.4</span></span></div>
-        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">stakeholder communication protocols</span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">NFC & wallet pass modules</span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">cross-functional team synchronization</span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">resort construction intelligence <span class="accent-text">· 15+ years</span></span></div>
@@ -1606,45 +1502,6 @@
           <br><br>
           Over the course of my career, I have accumulated extensive experience across various industries, including customer service, clerical roles, and technical/clinical positions within a healthcare setting. This exposure has equipped me with a versatile skill set and a profound understanding of the intricacies associated with different professional domains.
         </p>
-      </div>
-
-      <!-- ===== NFC & DIGITAL WALLET SECTION ===== -->
-      <div class="summary-card fade-up wallet-section" style="margin:30px 0 20px;">
-        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;">
-          <span class="nfc-indicator"></span>
-          <strong style="font-size:1.1rem;">📱 Tap & Save to Your Phone</strong>
-        </div>
-        <p style="font-size:0.9rem;max-width:600px;margin:0 auto 16px;">
-          Add Rachel's contact to <strong>Google Wallet</strong>, <strong>Apple Wallet</strong>, or share via <strong>NFC</strong>. 
-          Download the vCard directly to your phone's address book.
-        </p>
-        
-        <div class="wallet-btn-container">
-          <button class="wallet-btn google-wallet" onclick="addToGoogleWallet()" title="Add to Google Wallet">
-            <span class="btn-icon">💳</span> Google Wallet
-          </button>
-          <button class="wallet-btn apple-wallet" onclick="addToAppleWallet()" title="Add to Apple Wallet">
-            <span class="btn-icon">📱</span> Apple Wallet
-          </button>
-          <button class="wallet-btn save-contact" onclick="downloadVCard()" title="Download Contact">
-            <span class="btn-icon">📥</span> Save Contact
-          </button>
-          <button class="wallet-btn nfc-share" onclick="shareViaNFC()" title="Share via NFC">
-            <span class="btn-icon">📡</span> NFC Share
-          </button>
-          <button class="wallet-btn qr-code" onclick="downloadQRContact()" title="QR Code">
-            <span class="btn-icon">📱</span> QR Code
-          </button>
-          <button class="wallet-btn share-contact" onclick="shareContact()" title="Share">
-            <span class="btn-icon">🔗</span> Share
-          </button>
-        </div>
-        
-        <div style="margin-top:12px;font-size:0.75rem;color:#6b6b60;">
-          <p>📞 <strong>Phone:</strong> <a href="tel:+639171234567" style="color:var(--ink-blue-gray);">+63 917 123 4567</a></p>
-          <p>📧 <strong>Email:</strong> <a href="mailto:rachel.delacruz@example.com" style="color:var(--ink-blue-gray);">rachel.delacruz@example.com</a></p>
-          <p>🔗 <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/rachel-delacruz" target="_blank" rel="noopener" style="color:var(--ink-blue-gray);">linkedin.com/in/rachel-delacruz</a></p>
-        </div>
       </div>
 
       <!-- ===== EXPERIENCE ===== -->
@@ -1875,6 +1732,7 @@
       <!-- ===== CONTACT ===== -->
       <section id="contact" class="section" style="border-bottom:none;">
         <h2 class="section-title fade-up"><span class="icon">📬</span> Contact <span class="accent">·</span></h2>
+        <div class="section-sub fade-up">Get in touch with Rachel</div>
         <div class="glass-box fade-up" style="display:flex;flex-wrap:wrap;gap:20px;justify-content:center;align-items:center;text-align:center;">
           <div>
             <p style="margin:6px 0;"><strong>📍</strong> Laguna, Calabarzon, Philippines</p>
@@ -1886,6 +1744,46 @@
           </div>
         </div>
       </section>
+
+      <!-- ===== TAP & SAVE TO YOUR PHONE (MOVED BELOW CONTACT) ===== -->
+      <div class="summary-card fade-up wallet-section" style="margin:30px 0 20px;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;">
+          <span class="nfc-indicator"></span>
+          <strong style="font-size:1.1rem;">📱 Tap & Save to Your Phone</strong>
+        </div>
+        <p style="font-size:0.9rem;max-width:600px;margin:0 auto 16px;">
+          Add Rachel's contact to <strong>Google Wallet</strong>, <strong>Apple Wallet</strong>, or share via <strong>NFC</strong>. 
+          Download the vCard directly to your phone's address book.
+        </p>
+        
+        <div class="wallet-btn-container">
+          <button class="wallet-btn google-wallet" onclick="addToGoogleWallet()" title="Add to Google Wallet">
+            <span class="btn-icon">💳</span> Google Wallet
+          </button>
+          <button class="wallet-btn apple-wallet" onclick="addToAppleWallet()" title="Add to Apple Wallet">
+            <span class="btn-icon">📱</span> Apple Wallet
+          </button>
+          <button class="wallet-btn save-contact" onclick="downloadVCard()" title="Download Contact">
+            <span class="btn-icon">📥</span> Save Contact
+          </button>
+          <button class="wallet-btn nfc-share" onclick="shareViaNFC()" title="Share via NFC">
+            <span class="btn-icon">📡</span> NFC Share
+          </button>
+          <button class="wallet-btn qr-code" onclick="downloadQRContact()" title="QR Code">
+            <span class="btn-icon">📱</span> QR Code
+          </button>
+          <button class="wallet-btn share-contact" onclick="shareContact()" title="Share">
+            <span class="btn-icon">🔗</span> Share
+          </button>
+        </div>
+        
+        <div style="margin-top:12px;font-size:0.75rem;color:#6b6b60;">
+          <p>📞 <strong>Phone:</strong> <a href="tel:+639171234567" style="color:var(--ink-blue-gray);">+63 917 123 4567</a></p>
+          <p>📧 <strong>Email:</strong> <a href="mailto:rachel.delacruz@example.com" style="color:var(--ink-blue-gray);">rachel.delacruz@example.com</a></p>
+          <p>🔗 <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/rachel-delacruz" target="_blank" rel="noopener" style="color:var(--ink-blue-gray);">linkedin.com/in/rachel-delacruz</a></p>
+        </div>
+      </div>
+
     </main>
 
     <!-- ===== FOOTER ===== -->
@@ -1975,47 +1873,11 @@ END:VCARD`;
     // ===== GOOGLE WALLET =====
     // ============================================================
     function addToGoogleWallet() {
-      const vCardString = generateVCardString();
-      const passData = {
-        iss: "villa-arcadia.example.com",
-        aud: "google",
-        typ: "savetowallet",
-        iat: Math.floor(Date.now() / 1000),
-        origins: [window.location.origin],
-        payload: {
-          genericObjects: [{
-            id: `${Date.now()}`,
-            classId: `${Date.now()}_class`,
-            genericType: "GENERIC_TYPE_UNSPECIFIED",
-            cardTitle: contactData.fullName,
-            subheader: contactData.jobTitle,
-            header: contactData.organization,
-            logo: { sourceUri: { uri: contactData.logoUrl } },
-            heroImage: { sourceUri: { uri: contactData.photoUrl } },
-            textModulesData: [
-              { header: "Phone", body: contactData.phone, id: "phone" },
-              { header: "Email", body: contactData.email, id: "email" },
-              { header: "Location", body: contactData.address, id: "location" }
-            ],
-            linksModuleData: {
-              uris: [
-                { uri: contactData.website, description: "Website", id: "website" },
-                { uri: contactData.linkedin, description: "LinkedIn", id: "linkedin" }
-              ]
-            },
-            barcode: { type: "QR_CODE", value: vCardString }
-          }]
-        }
-      };
-
       showToast('Opening Google Wallet...', 'success');
-      
-      // Try to open Google Wallet via intent
       const isAndroid = /Android/.test(navigator.userAgent);
       if (isAndroid) {
         window.location.href = 'intent://pay.google.com/gp/v/save#Intent;scheme=https;package=com.google.android.apps.walletnfcrel;end';
       }
-      
       setTimeout(() => {
         showToast('Contact downloaded as vCard. Open to save.', 'success');
         downloadVCard();
@@ -2028,56 +1890,38 @@ END:VCARD`;
     function addToAppleWallet() {
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
                     (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      
       showToast('Opening Apple Wallet...', 'success');
-      
       if (isIOS) {
         window.location.href = 'shoebox://';
         setTimeout(() => {
-          downloadApplePassFallback();
+          downloadFile(JSON.stringify({
+            formatVersion: 1,
+            passTypeIdentifier: "pass.com.villa-arcadia.contact",
+            serialNumber: Date.now().toString(),
+            organizationName: "Villa Arcadia",
+            description: "Contact Card",
+            logoText: contactData.fullName,
+            foregroundColor: "#4A4A4A",
+            backgroundColor: "#FFFFE3",
+            generic: {
+              primaryFields: [{ key: "name", label: "Name", value: contactData.fullName }],
+              secondaryFields: [
+                { key: "title", label: "Title", value: contactData.jobTitle },
+                { key: "org", label: "Organization", value: contactData.organization }
+              ],
+              auxiliaryFields: [
+                { key: "phone", label: "Phone", value: contactData.phone },
+                { key: "email", label: "Email", value: contactData.email }
+              ]
+            },
+            barcode: { format: "PKBarcodeFormatQR", message: generateVCardString(), messageEncoding: "iso-8859-1" }
+          }), 'rachel-delacruz-contact.pkpass.json', 'application/json');
+          showToast('Apple Wallet pass downloaded.', 'success');
         }, 1500);
       } else {
         showToast('Apple Wallet is only on iOS. Downloading contact instead.', 'success');
         downloadVCard();
       }
-    }
-
-    function downloadApplePassFallback() {
-      const passContent = JSON.stringify({
-        formatVersion: 1,
-        passTypeIdentifier: "pass.com.villa-arcadia.contact",
-        serialNumber: Date.now().toString(),
-        teamIdentifier: "XXXXXXXXXX",
-        organizationName: "Villa Arcadia",
-        description: "Contact Card",
-        logoText: contactData.fullName,
-        foregroundColor: "#4A4A4A",
-        backgroundColor: "#FFFFE3",
-        labelColor: "#6D8196",
-        generic: {
-          primaryFields: [{ key: "name", label: "Name", value: contactData.fullName }],
-          secondaryFields: [
-            { key: "title", label: "Title", value: contactData.jobTitle },
-            { key: "org", label: "Organization", value: contactData.organization }
-          ],
-          auxiliaryFields: [
-            { key: "phone", label: "Phone", value: contactData.phone },
-            { key: "email", label: "Email", value: contactData.email }
-          ],
-          backFields: [
-            { key: "website", label: "Website", value: contactData.website },
-            { key: "linkedin", label: "LinkedIn", value: contactData.linkedin }
-          ]
-        },
-        barcode: {
-          format: "PKBarcodeFormatQR",
-          message: generateVCardString(),
-          messageEncoding: "iso-8859-1"
-        }
-      });
-      
-      downloadFile(passContent, 'rachel-delacruz-contact.pkpass.json', 'application/json');
-      showToast('Apple Wallet pass downloaded. Open on iOS to add to Wallet.', 'success');
     }
 
     // ============================================================
@@ -2101,18 +1945,15 @@ END:VCARD`;
         downloadQRContact();
         return;
       }
-
       const modal = document.getElementById('nfcModal');
       const statusEl = document.getElementById('nfcStatus');
       modal.classList.add('show');
       statusEl.textContent = '📡 Hold your phone near another device...';
-
       try {
         nfcAbortController = new AbortController();
         const ndef = new NDEFReader();
         await ndef.scan({ signal: nfcAbortController.signal });
         statusEl.textContent = '📡 Device detected! Writing contact...';
-        
         const vCardString = generateVCardString();
         await ndef.write({
           records: [
@@ -2120,7 +1961,6 @@ END:VCARD`;
             { recordType: "url", data: contactData.website }
           ]
         });
-        
         statusEl.textContent = '✅ Contact shared via NFC!';
         showToast('✅ Contact shared successfully via NFC!', 'success');
         setTimeout(() => closeNfcModal(), 2000);
@@ -2152,14 +1992,10 @@ END:VCARD`;
           title: contactData.fullName,
           text: `${contactData.fullName}\n${contactData.jobTitle}\n${contactData.organization}\n📞 ${contactData.phone}\n📧 ${contactData.email}`,
           url: window.location.href
-        }).then(() => {
-          showToast('✅ Shared successfully!', 'success');
-        }).catch(() => {});
+        }).then(() => showToast('✅ Shared successfully!', 'success')).catch(() => {});
       } else {
-        const text = `${contactData.fullName}\n${contactData.jobTitle}\n${contactData.phone}\n${contactData.email}`;
-        navigator.clipboard.writeText(text).then(() => {
-          showToast('📋 Contact copied to clipboard!', 'success');
-        });
+        navigator.clipboard.writeText(`${contactData.fullName}\n${contactData.jobTitle}\n${contactData.phone}\n${contactData.email}`)
+          .then(() => showToast('📋 Contact copied to clipboard!', 'success'));
       }
     }
 
@@ -2194,11 +2030,10 @@ END:VCARD`;
       const nameDisplay = document.getElementById('nameDisplay');
       const fullName = 'Rachel Dela Cruz';
       let index = 0;
-      const speed = 80;
       function typeEffect() {
         nameDisplay.textContent = fullName.substring(0, index + 1);
         index++;
-        if (index < fullName.length) { setTimeout(typeEffect, speed); }
+        if (index < fullName.length) { setTimeout(typeEffect, 80); }
       }
       setTimeout(typeEffect, 300);
     })();
@@ -2220,11 +2055,9 @@ END:VCARD`;
         const dot = document.createElement('button');
         dot.className = 'dot' + (index === 0 ? ' active' : '');
         dot.setAttribute('data-index', index);
-        dot.setAttribute('aria-label', 'Go to slide ' + (index + 1));
         dot.addEventListener('click', () => goToSlide(index));
         dotsContainer.appendChild(dot);
       });
-
       const dots = dotsContainer.querySelectorAll('.dot');
 
       function goToSlide(index) {
@@ -2243,7 +2076,6 @@ END:VCARD`;
 
       function nextSlide() { goToSlide(currentIndex + 1); }
       function prevSlide() { goToSlide(currentIndex - 1); }
-
       function resetAutoPlay() {
         if (autoPlayInterval) clearInterval(autoPlayInterval);
         autoPlayInterval = setInterval(nextSlide, 4000);
@@ -2266,7 +2098,6 @@ END:VCARD`;
       });
 
       resetAutoPlay();
-
       const galleryContainer = document.querySelector('.gallery-container');
       galleryContainer.addEventListener('mouseenter', () => { if (autoPlayInterval) clearInterval(autoPlayInterval); });
       galleryContainer.addEventListener('mouseleave', () => resetAutoPlay());
