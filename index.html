@@ -133,8 +133,18 @@
     body.dark footer { color: #8a8a80; }
     body.dark footer .highlight { color: #6D8196; }
     body.dark .boot-overlay { background: rgba(26, 26, 22, 0.97); }
+    body.dark .glass-border-animate {
+      border-color: rgba(255,255,255,0.08);
+    }
     body.dark .gallery-slide .slide-overlay {
       background: linear-gradient(180deg, transparent 40%, rgba(26,26,22,0.7));
+    }
+    body.dark .nfc-modal-content {
+      background: #2a2a26;
+      color: #e0e0d6;
+    }
+    body.dark .wallet-section {
+      border-color: rgba(109, 129, 150, 0.12);
     }
 
     a { text-decoration: none; color: inherit; }
@@ -184,7 +194,9 @@
       will-change: transform, box-shadow;
     }
     @supports (-webkit-touch-callout: none) {
-      .boot-terminal { padding: 28px 24px 24px; }
+      .boot-terminal {
+        padding: 28px 24px 24px;
+      }
     }
     .boot-terminal::before {
       content: '';
@@ -535,7 +547,9 @@
       border-radius: 2px;
     }
     .nav-links a:hover::after,
-    .nav-links a.active::after { width: 60%; }
+    .nav-links a.active::after {
+      width: 60%;
+    }
     .nav-links a:hover { background: rgba(109, 129, 150, 0.08); color: var(--ink-blue-gray); }
     .nav-links a.active { background: rgba(109, 129, 150, 0.12); color: var(--ink-blue-gray); font-weight: 600; }
 
@@ -557,6 +571,12 @@
       color: var(--ink-blue-gray);
       border: 1px solid rgba(109, 129, 150, 0.12);
       white-space: nowrap;
+      transition: all 0.3s ease;
+    }
+    .va-badge:hover {
+      background: rgba(109, 129, 150, 0.15);
+      border-color: rgba(109, 129, 150, 0.25);
+      transform: scale(1.02);
     }
     .va-badge .pulse-dot {
       display: inline-block;
@@ -586,7 +606,10 @@
       color: var(--ink-charcoal);
       flex-shrink: 0;
     }
-    .hamburger:hover, #themeToggle:hover { background: rgba(109, 129, 150, 0.08); transform: scale(1.05); }
+    .hamburger:hover, #themeToggle:hover {
+      background: rgba(109, 129, 150, 0.08);
+      transform: scale(1.05);
+    }
     .hamburger { display: none; }
 
     .mobile-nav-links {
@@ -599,7 +622,10 @@
       border-top: 1px solid var(--ink-border);
       margin-top: 4px;
     }
-    .mobile-nav-links.show { display: flex; animation: mobileSlideDown 0.4s cubic-bezier(0.22, 0.61, 0.36, 1); }
+    .mobile-nav-links.show {
+      display: flex;
+      animation: mobileSlideDown 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
     @keyframes mobileSlideDown {
       0% { opacity: 0; transform: translateY(-10px); }
       100% { opacity: 1; transform: translateY(0); }
@@ -614,6 +640,22 @@
       display: flex;
       align-items: center;
       gap: 4px;
+    }
+    .mobile-nav-links a:hover { background: rgba(109, 129, 150, 0.1); color: var(--ink-blue-gray); }
+    .mobile-nav-links a.active { background: rgba(109, 129, 150, 0.12); color: var(--ink-blue-gray); font-weight: 600; }
+
+    /* ===== GLASS BOX ===== */
+    .glass-box {
+      position: relative;
+      background: rgba(255, 255, 227, 0.12);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 28px 26px;
+      border: 1.5px solid rgba(109, 129, 150, 0.2);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.3);
+      transition: all 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+      overflow: hidden;
     }
 
     /* ===== HERO ===== */
@@ -630,19 +672,29 @@
     }
     .hero-bg-canvas {
       position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: 0; pointer-events: none; overflow: hidden;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
     }
     .hero-bg-canvas .grid-line {
       position: absolute;
       background: rgba(109, 129, 150, 0.04);
+      will-change: opacity;
     }
     .hero-bg-canvas .grid-line.horizontal {
-      width: 100%; height: 1px; left: 0;
+      width: 100%;
+      height: 1px;
+      left: 0;
       animation: gridPulse 4s ease-in-out infinite;
     }
     .hero-bg-canvas .grid-line.vertical {
-      height: 100%; width: 1px; top: 0;
+      height: 100%;
+      width: 1px;
+      top: 0;
       animation: gridPulse 4s ease-in-out infinite 0.5s;
     }
     .hero-bg-canvas .grid-line:nth-child(1) { top: 15%; }
@@ -651,9 +703,74 @@
     .hero-bg-canvas .grid-line:nth-child(4) { left: 20%; }
     .hero-bg-canvas .grid-line:nth-child(5) { left: 50%; }
     .hero-bg-canvas .grid-line:nth-child(6) { left: 80%; }
-    @keyframes gridPulse { 0%,100%{opacity:0.15} 50%{opacity:0.6} }
+
+    @keyframes gridPulse {
+      0%, 100% { opacity: 0.15; }
+      50% { opacity: 0.6; }
+    }
+
+    .hero-bg-canvas .data-particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(109, 129, 150, 0.12);
+      animation: particleDrift 14s ease-in-out infinite;
+      will-change: transform, opacity;
+    }
+    .hero-bg-canvas .data-particle:nth-child(7) { top: 10%; left: 5%; animation-delay: 0s; }
+    .hero-bg-canvas .data-particle:nth-child(8) { top: 30%; left: 85%; animation-delay: 1.2s; width: 6px; height: 6px; }
+    .hero-bg-canvas .data-particle:nth-child(9) { top: 60%; left: 10%; animation-delay: 2.4s; }
+    .hero-bg-canvas .data-particle:nth-child(10) { top: 80%; left: 90%; animation-delay: 0.6s; width: 5px; height: 5px; }
+    .hero-bg-canvas .data-particle:nth-child(11) { top: 20%; left: 50%; animation-delay: 1.8s; width: 7px; height: 7px; }
+    .hero-bg-canvas .data-particle:nth-child(12) { top: 70%; left: 40%; animation-delay: 3s; }
+
+    @keyframes particleDrift {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.15; }
+      25% { transform: translate(30px, -40px) scale(1.4); opacity: 0.6; }
+      50% { transform: translate(-20px, -70px) scale(0.8); opacity: 0.25; }
+      75% { transform: translate(40px, -30px) scale(1.2); opacity: 0.5; }
+    }
+
+    .hero-bg-canvas .code-snippet {
+      position: absolute;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      color: rgba(109, 129, 150, 0.05);
+      white-space: nowrap;
+      pointer-events: none;
+      animation: codeFloat 25s ease-in-out infinite;
+    }
+    .hero-bg-canvas .code-snippet:nth-child(13) { top: 5%; left: 2%; animation-delay: 0s; }
+    .hero-bg-canvas .code-snippet:nth-child(14) { top: 50%; left: 70%; animation-delay: -6s; }
+    .hero-bg-canvas .code-snippet:nth-child(15) { top: 85%; left: 15%; animation-delay: -12s; }
+    .hero-bg-canvas .code-snippet:nth-child(16) { top: 25%; left: 80%; animation-delay: -18s; }
+
+    @keyframes codeFloat {
+      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+      50% { transform: translateY(-25px) rotate(2deg); opacity: 0.7; }
+    }
 
     .hero-content, .hero-avatar { position: relative; z-index: 1; }
+
+    .hero-content .name-wrapper {
+      display: inline-block;
+      position: relative;
+    }
+    .hero-content .name-wrapper .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background: var(--ink-blue-gray);
+      margin-left: 2px;
+      animation: cursorBlink 0.8s step-end infinite;
+      vertical-align: text-bottom;
+      border-radius: 1px;
+    }
+    @keyframes cursorBlink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
     .hero-content h1 {
       font-size: 2.8rem;
       font-weight: 800;
@@ -661,7 +778,12 @@
       color: var(--ink-charcoal);
       display: inline;
     }
-    .hero-content .subhead { font-size: 1.2rem; font-weight: 500; color: var(--ink-blue-gray); margin: 4px 0 8px; }
+    .hero-content .subhead { 
+      font-size: 1.2rem; 
+      font-weight: 500; 
+      color: var(--ink-blue-gray); 
+      margin: 4px 0 8px;
+    }
     .hero-content .location { display: flex; align-items: center; justify-content: center; gap: 6px; color: #6b6b60; font-size: 0.95rem; }
     .hero-badge-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 16px 0 20px; }
     .badge {
@@ -672,24 +794,50 @@
       font-size: 0.8rem;
       font-weight: 500;
       color: var(--ink-charcoal);
+      transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
       display: flex;
       align-items: center;
       gap: 4px;
     }
+    .badge:hover {
+      transform: translateY(-3px) scale(1.05);
+      border-color: var(--ink-blue-gray);
+      background: rgba(109, 129, 150, 0.15);
+      box-shadow: 0 4px 15px rgba(109,129,150,0.15);
+    }
 
-    .hero-avatar { flex: 0 0 220px; max-width: 100%; text-align: center; }
+    /* ===== PROFILE AVATAR ===== */
+    .hero-avatar {
+      flex: 0 0 220px;
+      max-width: 100%;
+      text-align: center;
+    }
     .profile-avatar {
       position: relative;
       display: inline-block;
-      width: 220px; height: 220px;
+      width: 220px;
+      height: 220px;
       border-radius: 50%;
       overflow: hidden;
       border: 3px solid rgba(109, 129, 150, 0.25);
       box-shadow: 0 8px 30px rgba(109, 129, 150, 0.15);
+      transition: all 0.5s ease;
       animation: avatarFloat 6s ease-in-out infinite;
     }
-    .profile-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    @keyframes avatarFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+    .profile-avatar:hover {
+      transform: scale(1.03);
+      border-color: rgba(109, 129, 150, 0.4);
+    }
+    .profile-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    @keyframes avatarFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
 
     /* ===== BUTTONS ===== */
     .btn {
@@ -708,8 +856,150 @@
       gap: 8px;
     }
     .btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 30px rgba(109, 129, 150, 0.25); }
-    .btn-outline { background: transparent; border: 2px solid var(--ink-blue-gray); color: var(--ink-blue-gray); }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--ink-blue-gray);
+      color: var(--ink-blue-gray);
+    }
     .btn-outline:hover { background: var(--ink-blue-gray); color: #fff; }
+
+    /* ===== WALLET BUTTONS ===== */
+    .wallet-section {
+      text-align: center;
+      padding: 20px 0;
+    }
+    .wallet-btn-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .wallet-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+      white-space: nowrap;
+    }
+    .wallet-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+    .wallet-btn.google-wallet {
+      background: linear-gradient(135deg, #000, #333);
+    }
+    .wallet-btn.apple-wallet {
+      background: linear-gradient(135deg, #000, #555);
+    }
+    .wallet-btn.save-contact {
+      background: linear-gradient(135deg, #4285f4, #34a853);
+    }
+    .wallet-btn.nfc-share {
+      background: linear-gradient(135deg, #6D8196, #4a5d6d);
+    }
+    .wallet-btn.qr-code {
+      background: linear-gradient(135deg, #333, #666);
+    }
+    .wallet-btn.share-contact {
+      background: linear-gradient(135deg, #6D8196, #4a5d6d);
+    }
+    .wallet-btn .btn-icon { font-size: 1.2rem; }
+
+    /* ===== NFC INDICATOR ===== */
+    .nfc-indicator {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #34a853;
+      animation: nfcPulse 1.5s ease-in-out infinite;
+      margin-right: 4px;
+    }
+    @keyframes nfcPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.6; }
+    }
+
+    /* ===== NFC MODAL ===== */
+    .nfc-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+    }
+    .nfc-modal.show { display: flex; }
+    .nfc-modal-content {
+      background: var(--ink-ivory);
+      border-radius: 24px;
+      padding: 32px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+    }
+    .nfc-modal .nfc-icon {
+      font-size: 4rem;
+      animation: nfcPulse 1.5s ease-in-out infinite;
+    }
+    .nfc-modal h3 { margin: 16px 0 8px; font-size: 1.2rem; }
+    .nfc-modal p { font-size: 0.9rem; color: #6b6b60; margin-bottom: 20px; }
+    .nfc-modal .close-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: inherit;
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #333;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      z-index: 10001;
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      white-space: nowrap;
+      max-width: 90vw;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .toast.success { background: #34a853; }
+    .toast.error { background: #ea4335; }
 
     /* ===== SUMMARY CARD ===== */
     .summary-card {
@@ -721,11 +1011,25 @@
       padding: 32px 28px;
       margin: 30px 0 20px;
       box-shadow: 0 4px 30px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.3);
+      transition: all 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
       text-align: center;
+    }
+    .summary-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 16px 50px rgba(109, 129, 150, 0.1);
+      border-color: rgba(109, 129, 150, 0.35);
     }
 
     /* ===== TIMELINE ===== */
-    .timeline { display: flex; flex-direction: column; gap: 24px; margin-top: 20px; max-width: 800px; margin-left: auto; margin-right: auto; }
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 20px;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
     .timeline-item {
       background: rgba(255, 255, 227, 0.1);
       backdrop-filter: blur(14px);
@@ -733,10 +1037,12 @@
       border: 1.5px solid rgba(109, 129, 150, 0.12);
       border-radius: 18px;
       padding: 24px 28px;
+      transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
       opacity: 0;
       transform: translateY(40px) scale(0.96);
       animation: expSlideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
       text-align: left;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03), inset 0 1px 0 rgba(255,255,255,0.15);
     }
     .timeline-item:nth-child(1) { animation-delay: 0.05s; }
     .timeline-item:nth-child(2) { animation-delay: 0.10s; }
@@ -748,9 +1054,15 @@
     .timeline-item:nth-child(8) { animation-delay: 0.40s; }
     .timeline-item:nth-child(9) { animation-delay: 0.45s; }
     .timeline-item:nth-child(10) { animation-delay: 0.50s; }
+
     @keyframes expSlideIn {
       0% { opacity: 0; transform: translateY(40px) scale(0.96); }
       100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .timeline-item:hover {
+      transform: translateY(-8px) scale(1.015) !important;
+      border-color: rgba(109, 129, 150, 0.35);
+      box-shadow: 0 16px 40px rgba(109, 129, 150, 0.1);
     }
     .tl-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; }
     .tl-title { font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 6px; }
@@ -771,6 +1083,8 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: default;
       opacity: 0;
       transform: translateY(30px) scale(0.95);
       animation: skillPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
@@ -790,14 +1104,27 @@
     .skill-chip:nth-child(13) { animation-delay: 0.65s; }
     .skill-chip:nth-child(14) { animation-delay: 0.70s; }
     .skill-chip:nth-child(15) { animation-delay: 0.75s; }
+
     @keyframes skillPop {
       0% { opacity: 0; transform: translateY(30px) scale(0.95); }
       100% { opacity: 1; transform: translateY(0) scale(1); }
     }
+    .skill-chip:hover {
+      border-color: rgba(109, 129, 150, 0.4);
+      background: rgba(109, 129, 150, 0.06);
+      transform: translateY(-6px) scale(1.06) !important;
+      box-shadow: 0 12px 35px rgba(109, 129, 150, 0.12);
+    }
     .skill-chip .skill-icon { font-size: 1.1rem; }
 
     /* ===== EDU / CERT GRID ===== */
-    .edu-grid, .cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 700px; margin: 0 auto; }
+    .edu-grid, .cert-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
     .edu-item, .cert-item {
       background: rgba(255, 255, 227, 0.1);
       backdrop-filter: blur(10px);
@@ -805,6 +1132,13 @@
       border-radius: 16px;
       padding: 18px 20px;
       border: 1.5px solid rgba(109, 129, 150, 0.12);
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.02), inset 0 1px 0 rgba(255,255,255,0.15);
+    }
+    .edu-item:hover, .cert-item:hover {
+      transform: translateY(-5px) scale(1.02);
+      border-color: rgba(109, 129, 150, 0.35);
+      box-shadow: 0 12px 30px rgba(109, 129, 150, 0.08);
     }
     .edu-item .edu-icon, .cert-item .cert-icon { font-size: 1.4rem; display: block; margin-bottom: 4px; }
     .edu-item strong, .cert-item strong { display: block; font-weight: 600; font-size: 0.95rem; }
@@ -817,11 +1151,18 @@
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-radius: 20px;
-      padding: 24px;
+      padding: 24px 24px;
       border: 1.5px solid rgba(109, 129, 150, 0.12);
       margin-bottom: 16px;
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
       max-width: 700px;
-      margin-left: auto; margin-right: auto;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .rec-card:hover {
+      transform: translateY(-5px) scale(1.01);
+      border-color: rgba(109, 129, 150, 0.35);
+      box-shadow: 0 12px 30px rgba(109, 129, 150, 0.08);
     }
     .rec-card .author { font-weight: 700; color: var(--ink-blue-gray); }
     .rec-card .quote { font-style: italic; color: #4a4a42; }
@@ -840,30 +1181,54 @@
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(109, 129, 150, 0.15);
     }
-    .gallery-slider { position: relative; width: 100%; height: 420px; overflow: hidden; }
+    .gallery-slider {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      overflow: hidden;
+    }
     .gallery-slide {
       position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      opacity: 0; transform: scale(0.95);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transform: scale(0.95);
       transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
       pointer-events: none;
     }
-    .gallery-slide.active { opacity: 1; transform: scale(1); pointer-events: auto; }
-    .gallery-slide img, .gallery-slide video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-slide.active {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+    .gallery-slide img, .gallery-slide video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
     .gallery-slide .slide-overlay {
       position: absolute;
-      bottom: 0; left: 0; right: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
       padding: 30px 24px 20px;
-      background: linear-gradient(180deg, transparent 40%, rgba(74,74,74,0.6));
+      background: linear-gradient(180deg, transparent 40%, rgba(74, 74, 74, 0.6));
       color: #fff;
       pointer-events: none;
     }
+    .gallery-slide .slide-overlay .slide-title { font-size: 1.1rem; font-weight: 600; }
+    .gallery-slide .slide-overlay .slide-sub { font-size: 0.8rem; opacity: 0.85; margin-top: 2px; }
     .gallery-nav {
       position: absolute;
-      top: 50%; transform: translateY(-50%);
-      width: 44px; height: 44px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      background: rgba(255,255,227,0.3);
+      background: rgba(255, 255, 227, 0.3);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border: 1px solid rgba(255,255,255,0.15);
@@ -873,54 +1238,37 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: all 0.4s ease;
       z-index: 10;
     }
+    .gallery-nav:hover { background: rgba(255, 255, 227, 0.6); transform: translateY(-50%) scale(1.1); }
     .gallery-nav.prev { left: 16px; }
     .gallery-nav.next { right: 16px; }
-    .gallery-dots { display: flex; justify-content: center; gap: 8px; padding: 14px 0; }
+    .gallery-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 0;
+    }
     .gallery-dots .dot {
-      width: 10px; height: 10px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background: rgba(109, 129, 150, 0.25);
       border: none;
       cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
       padding: 0;
     }
-    .gallery-dots .dot.active { background: var(--ink-blue-gray); transform: scale(1.2); }
+    .gallery-dots .dot.active {
+      background: var(--ink-blue-gray);
+      transform: scale(1.2);
+      box-shadow: 0 0 12px rgba(109, 129, 150, 0.3);
+    }
 
     /* ===== SECTION ===== */
     .section { padding: 50px 0 30px; border-bottom: 1px solid var(--ink-border); }
     .flex-wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; align-items: center; }
-
-    /* ===== GLASS BOX ===== */
-    .glass-box {
-      background: rgba(255, 255, 227, 0.12);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 24px;
-      padding: 28px 26px;
-      border: 1.5px solid rgba(109, 129, 150, 0.2);
-    }
-
-    /* ===== TOAST ===== */
-    .toast {
-      position: fixed;
-      bottom: 80px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: #333;
-      color: #fff;
-      padding: 12px 24px;
-      border-radius: 40px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      z-index: 10001;
-      opacity: 0;
-      transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
-      white-space: nowrap;
-    }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-    .toast.success { background: #34a853; }
 
     /* ===== FOOTER ===== */
     footer {
@@ -931,20 +1279,27 @@
       margin-top: 20px;
     }
     footer .footer-content { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-    footer .footer-brand { font-size: 1rem; font-weight: 600; color: var(--ink-charcoal); }
+    footer .footer-brand { font-size: 1rem; font-weight: 600; color: var(--ink-charcoal); letter-spacing: 0.5px; }
     footer .footer-brand .highlight { color: var(--ink-blue-gray); font-weight: 700; }
-    footer .footer-sub { font-size: 0.75rem; color: #6b6b60; }
+    footer .footer-sub { font-size: 0.75rem; color: #6b6b60; letter-spacing: 0.3px; }
     footer .footer-divider { width: 40px; height: 2px; background: var(--ink-border); border-radius: 2px; margin: 4px 0; }
 
     /* ===== FADE UP ===== */
-    .fade-up { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1); }
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
     .fade-up.show { opacity: 1; transform: translateY(0); }
 
     /* ===== BACK TO TOP ===== */
     #backToTop {
       position: fixed;
-      bottom: 30px; right: 30px;
-      width: 48px; height: 48px;
+      bottom: 30px;
+      bottom: calc(30px + var(--safe-area-inset-bottom));
+      right: 30px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       background: var(--ink-blue-gray);
       color: #fff;
@@ -953,15 +1308,26 @@
       display: none;
       z-index: 997;
       border: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
     }
-    #backToTop:hover { transform: translateY(-4px) scale(1.05); }
+    #backToTop:hover { 
+      transform: translateY(-4px) scale(1.05); 
+      box-shadow: 0 8px 30px rgba(109, 129, 150, 0.25); 
+    }
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 700px) {
       .hero { flex-direction: column-reverse; text-align: center; }
       .section-title { font-size: 1.6rem; }
       .tl-header { flex-direction: column; gap: 4px; }
+      .boot-terminal { padding: 24px 18px; }
+      .boot-logs { font-size: 0.6rem; max-height: 160px; }
+      #backToTop { bottom: 20px; right: 20px; width: 42px; height: 42px; font-size: 16px; }
+      .glass-box { padding: 20px 18px; }
+      .skill-chip { padding: 10px 18px; font-size: 0.8rem; }
       .edu-grid, .cert-grid { grid-template-columns: 1fr; }
+      .timeline-item { padding: 18px 20px; }
       .navbar { flex-wrap: wrap; padding: 8px 16px; gap: 6px; top: 24px; }
       .navbar-center { order: 3; flex: 1 1 100%; justify-content: center; }
       .nav-links { display: none; }
@@ -974,6 +1340,15 @@
       .gallery-nav { width: 36px; height: 36px; font-size: 1rem; }
       .gallery-nav.prev { left: 10px; }
       .gallery-nav.next { right: 10px; }
+      .wallet-btn { padding: 10px 16px; font-size: 0.75rem; }
+    }
+
+    @media (max-width: 480px) {
+      .logo-img { height: 28px; }
+      .navbar-left .brand-text .name { font-size: 0.7rem; }
+      .navbar-left .brand-text .villa { font-size: 0.65rem; }
+      .wallet-btn-container { gap: 8px; }
+      .wallet-btn { padding: 8px 14px; font-size: 0.7rem; }
     }
   </style>
 </head>
@@ -998,11 +1373,12 @@
         <div class="log-line"><span class="prompt">➜</span> <span class="info">initializing neural core ...</span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">virtual assistant kernel loaded</span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">project management engine <span class="accent-text">v2.4</span></span></div>
-        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">stakeholder communication protocols</span></div>
+        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">NFC & wallet pass modules</span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">cross-functional team synchronization</span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">resort construction intelligence <span class="accent-text">· 15+ years</span></span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">AI fluency &amp; agent skills <span class="accent-text">· Anthropic certified</span></span></div>
         <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">secure communication tunnel established</span></div>
+        <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">digital wallet integration ready</span></div>
         <div class="log-line"><span class="prompt">➜</span> <span class="highlight">✦ virtual assistant ready · Rachel Dela Cruz</span></div>
       </div>
       <div class="boot-status-text" id="bootStatusText">initializing ... 0%</div>
@@ -1081,6 +1457,16 @@
           <div class="grid-line vertical"></div>
           <div class="grid-line vertical"></div>
           <div class="grid-line vertical"></div>
+          <div class="data-particle"></div>
+          <div class="data-particle"></div>
+          <div class="data-particle"></div>
+          <div class="data-particle"></div>
+          <div class="data-particle"></div>
+          <div class="data-particle"></div>
+          <div class="code-snippet">const assistant = new VA()</div>
+          <div class="code-snippet">await initProject("resort")</div>
+          <div class="code-snippet">sync.stakeholders()</div>
+          <div class="code-snippet">optimize.workflow()</div>
         </div>
         <div class="hero-content fade-up">
           <h1>
@@ -1114,7 +1500,7 @@
         <p style="font-size:1rem;max-width:800px;margin:0 auto;">
           <strong>🤖 Versatile Project Manager &amp; Virtual Assistant</strong> with extensive experience across customer service, healthcare (clinical/technical), and project management. Strong background in resort construction, operations, and stakeholder communication. Skilled in risk management, budget control, and cross-functional team leadership.
           <br><br>
-          Over the course of my career, I have accumulated extensive experience across various industries, including customer service, clerical roles, and technical/clinical positions within a healthcare setting.
+          Over the course of my career, I have accumulated extensive experience across various industries, including customer service, clerical roles, and technical/clinical positions within a healthcare setting. This exposure has equipped me with a versatile skill set and a profound understanding of the intricacies associated with different professional domains.
         </p>
       </div>
 
@@ -1129,7 +1515,7 @@
               <span class="tl-org">Arcadia Resorts, Laguna</span>
               <span class="tl-date">Nov 2025 – Present</span>
             </div>
-            <div class="tl-desc">Lead the full lifecycle of resort development projects—from pre‑construction planning to operational handover.</div>
+            <div class="tl-desc">Lead the full lifecycle of resort development projects—from pre‑construction planning to operational handover. Define scope, budget, schedule; coordinate with architects, engineers, designers, and contractors.</div>
           </div>
           <div class="timeline-item">
             <div class="tl-header">
@@ -1257,19 +1643,19 @@
             <span class="cert-icon">🤖</span>
             <strong>Anthropic AI</strong>
             <span class="cert-org">Certificate of Completion</span>
-            <small>Jun 2026 · Agent Skills, AI Fluency</small>
+            <small>Jun 2026 · Introduction to Agent Skills, Claude Cowork, AI Capabilities, AI Fluency</small>
           </div>
           <div class="cert-item fade-up">
             <span class="cert-icon">📊</span>
             <strong>Google Project Management</strong>
-            <span class="cert-org">Project Initiation</span>
-            <small>Jan 2022</small>
+            <span class="cert-org">Project Initiation: Starting a Successful Project</span>
+            <small>Jan 2022 · Foundations of Project Management</small>
           </div>
           <div class="cert-item fade-up">
             <span class="cert-icon">📋</span>
             <strong>Licensed Midwife</strong>
-            <span class="cert-org">PRC</span>
-            <small>Apr 2006 · ID: 0138206</small>
+            <span class="cert-org">Philippine Professional Regulation Commission</span>
+            <small>Apr 2006 · Credential ID: 0138206</small>
           </div>
         </div>
       </section>
@@ -1277,66 +1663,68 @@
       <!-- ===== TESTIMONIALS ===== -->
       <section id="testimonials" class="section">
         <h2 class="section-title fade-up"><span class="icon">⭐</span> Recommendations <span class="accent">·</span></h2>
+        <div class="section-sub fade-up">What colleagues & partners say</div>
         <div class="rec-card fade-up">
-          <div class="quote">"Rachel quickly became my trusted go-to person… Her attention to detail, relentless follow-through, and problem-solving abilities allow her to operate at a higher level than most."</div>
-          <div class="author">— Jacob Reiner <small>Senior Principal, A/B Consulting</small></div>
+          <div class="quote">"Rachel quickly became my trusted go-to person… Her attention to detail, relentless follow-through, problem-solving abilities, and dedication to the work allow her to operate at a higher level than most."</div>
+          <div class="author">— Jacob Reiner <small style="font-weight:400;color:#6b6b60;">Senior Principal, A/B Consulting</small></div>
         </div>
         <div class="rec-card fade-up">
-          <div class="quote">"Rachel is the ultimate multitasker… her ability to manage multiple markets across different time zones is unparalleled."</div>
-          <div class="author">— Hussain Alam <small>Product & Strategy, WeWork</small></div>
+          <div class="quote">"Rachel is the ultimate multitasker… her ability to manage multiple markets across different time zones with ease is unparalleled. Rachel's contributions were critical in building Zoomo's customer service business."</div>
+          <div class="author">— Hussain Alam <small style="font-weight:400;color:#6b6b60;">Product & Strategy, WeWork</small></div>
         </div>
       </section>
 
       <!-- ===== VILLA ARCADIA GALLERY ===== -->
       <section id="gallery" class="gallery-section">
         <h2 class="section-title fade-up"><span class="icon">🖼️</span> Villa Arcadia <span class="accent">Gallery</span></h2>
+        <div class="section-sub fade-up">Explore the beauty and luxury of Villa Arcadia</div>
         <div class="gallery-container fade-up">
           <div class="gallery-slider" id="gallerySlider">
             <div class="gallery-slide active" data-index="0">
               <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&h=500&fit=crop" alt="Villa Exterior" />
-              <div class="slide-overlay"><div class="slide-title">🏡 Villa Exterior</div></div>
+              <div class="slide-overlay"><div class="slide-title">🏡 Villa Exterior</div><div class="slide-sub">Stunning modern architecture with tropical landscaping</div></div>
             </div>
             <div class="gallery-slide" data-index="1">
               <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&h=500&fit=crop" alt="Infinity Pool" />
-              <div class="slide-overlay"><div class="slide-title">🏊 Infinity Pool</div></div>
+              <div class="slide-overlay"><div class="slide-title">🏊 Infinity Pool</div><div class="slide-sub">Panoramic ocean views from our signature infinity pool</div></div>
             </div>
             <div class="gallery-slide" data-index="2">
               <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=800&h=500&fit=crop" alt="Luxury Bedroom" />
-              <div class="slide-overlay"><div class="slide-title">🛏️ Master Suite</div></div>
+              <div class="slide-overlay"><div class="slide-title">🛏️ Master Suite</div><div class="slide-sub">Elegant bedroom with panoramic glass walls</div></div>
             </div>
             <div class="gallery-slide" data-index="3">
               <img src="https://images.unsplash.com/photo-1616137466211-f939a420be84?w=800&h=500&fit=crop" alt="Living Room" />
-              <div class="slide-overlay"><div class="slide-title">🛋️ Grand Living Room</div></div>
+              <div class="slide-overlay"><div class="slide-title">🛋️ Grand Living Room</div><div class="slide-sub">Spacious open-plan design with natural light</div></div>
             </div>
             <div class="gallery-slide" data-index="4">
               <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=500&fit=crop" alt="Garden" />
-              <div class="slide-overlay"><div class="slide-title">🌿 Tropical Garden</div></div>
+              <div class="slide-overlay"><div class="slide-title">🌿 Tropical Garden</div><div class="slide-sub">Lush gardens with native plants and water features</div></div>
             </div>
             <div class="gallery-slide" data-index="5">
               <img src="https://images.unsplash.com/photo-1571896349842-33c89434de2d?w=800&h=500&fit=crop" alt="Dining Area" />
-              <div class="slide-overlay"><div class="slide-title">🍽️ Al Fresco Dining</div></div>
+              <div class="slide-overlay"><div class="slide-title">🍽️ Al Fresco Dining</div><div class="slide-sub">Outdoor dining with breathtaking sunset views</div></div>
             </div>
             <div class="gallery-slide" data-index="6">
               <video autoplay muted loop playsinline>
                 <source src="https://cdn.pixabay.com/video/2023/07/04/170581-846644295_large.mp4" type="video/mp4" />
               </video>
-              <div class="slide-overlay"><div class="slide-title">🎬 Villa Tour</div></div>
+              <div class="slide-overlay"><div class="slide-title">🎬 Villa Tour</div><div class="slide-sub">Virtual walkthrough of Villa Arcadia's main areas</div></div>
             </div>
             <div class="gallery-slide" data-index="7">
               <img src="https://images.unsplash.com/photo-1559599077-95605dcc7a6c?w=800&h=500&fit=crop" alt="Spa Area" />
-              <div class="slide-overlay"><div class="slide-title">💆 Spa & Wellness</div></div>
+              <div class="slide-overlay"><div class="slide-title">💆 Spa & Wellness</div><div class="slide-sub">Private spa with massage pavilion and sauna</div></div>
             </div>
             <div class="gallery-slide" data-index="8">
               <img src="https://images.unsplash.com/photo-1590069261209-f8e9b80d8cd3?w=800&h=500&fit=crop" alt="Sunset View" />
-              <div class="slide-overlay"><div class="slide-title">🌅 Sunset Lounge</div></div>
+              <div class="slide-overlay"><div class="slide-title">🌅 Sunset Lounge</div><div class="slide-sub">Perfect spot to watch the sunset over the horizon</div></div>
             </div>
             <div class="gallery-slide" data-index="9">
               <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=800&h=500&fit=crop" alt="Night View" />
-              <div class="slide-overlay"><div class="slide-title">✨ Night Ambiance</div></div>
+              <div class="slide-overlay"><div class="slide-title">✨ Night Ambiance</div><div class="slide-sub">Magical lighting and starry skies at Villa Arcadia</div></div>
             </div>
           </div>
-          <button class="gallery-nav prev" id="galleryPrev">‹</button>
-          <button class="gallery-nav next" id="galleryNext">›</button>
+          <button class="gallery-nav prev" id="galleryPrev" aria-label="Previous slide">‹</button>
+          <button class="gallery-nav next" id="galleryNext" aria-label="Next slide">›</button>
           <div class="gallery-dots" id="galleryDots"></div>
         </div>
       </section>
@@ -1350,15 +1738,51 @@
             <p style="margin:6px 0;"><strong>📍</strong> Laguna, Calabarzon, Philippines</p>
             <p style="margin:6px 0;"><strong>📧</strong> <a href="mailto:rachel.delacruz@example.com" style="color:var(--ink-blue-gray);">rachel.delacruz@example.com</a></p>
             <p style="margin:6px 0;"><strong>🔗</strong> <a href="#" style="color:var(--ink-blue-gray);">linkedin.com/in/rachel-delacruz</a></p>
-            <p style="margin:6px 0;"><strong>📞</strong> <a href="tel:+639171234567" style="color:var(--ink-blue-gray);">+63 917 123 4567</a></p>
           </div>
-          <div style="display:flex;flex-direction:column;gap:8px;">
+          <div>
             <a href="#" class="btn">📄 Download Resume (PDF)</a>
-            <button class="btn" onclick="downloadVCard()" style="background:#34a853;">📥 Save Contact (vCard)</button>
-            <button class="btn btn-outline" onclick="downloadQRContact()">📱 QR Code</button>
           </div>
         </div>
       </section>
+
+      <!-- ===== TAP & SAVE TO YOUR PHONE (MOVED BELOW CONTACT) ===== -->
+      <div class="summary-card fade-up wallet-section" style="margin:30px 0 20px;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;">
+          <span class="nfc-indicator"></span>
+          <strong style="font-size:1.1rem;">📱 Tap & Save to Your Phone</strong>
+        </div>
+        <p style="font-size:0.9rem;max-width:600px;margin:0 auto 16px;">
+          Add Rachel's contact to <strong>Google Wallet</strong>, <strong>Apple Wallet</strong>, or share via <strong>NFC</strong>. 
+          Download the vCard directly to your phone's address book.
+        </p>
+        
+        <div class="wallet-btn-container">
+          <button class="wallet-btn google-wallet" onclick="addToGoogleWallet()" title="Add to Google Wallet">
+            <span class="btn-icon">💳</span> Google Wallet
+          </button>
+          <button class="wallet-btn apple-wallet" onclick="addToAppleWallet()" title="Add to Apple Wallet">
+            <span class="btn-icon">📱</span> Apple Wallet
+          </button>
+          <button class="wallet-btn save-contact" onclick="downloadVCard()" title="Download Contact">
+            <span class="btn-icon">📥</span> Save Contact
+          </button>
+          <button class="wallet-btn nfc-share" onclick="shareViaNFC()" title="Share via NFC">
+            <span class="btn-icon">📡</span> NFC Share
+          </button>
+          <button class="wallet-btn qr-code" onclick="downloadQRContact()" title="QR Code">
+            <span class="btn-icon">📱</span> QR Code
+          </button>
+          <button class="wallet-btn share-contact" onclick="shareContact()" title="Share">
+            <span class="btn-icon">🔗</span> Share
+          </button>
+        </div>
+        
+        <div style="margin-top:12px;font-size:0.75rem;color:#6b6b60;">
+          <p>📞 <strong>Phone:</strong> <a href="tel:+639171234567" style="color:var(--ink-blue-gray);">+63 917 123 4567</a></p>
+          <p>📧 <strong>Email:</strong> <a href="mailto:rachel.delacruz@example.com" style="color:var(--ink-blue-gray);">rachel.delacruz@example.com</a></p>
+          <p>🔗 <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/rachel-delacruz" target="_blank" rel="noopener" style="color:var(--ink-blue-gray);">linkedin.com/in/rachel-delacruz</a></p>
+        </div>
+      </div>
 
     </main>
 
@@ -1377,6 +1801,18 @@
   <!-- ===== SECURITY BADGE ===== -->
   <div class="security-badge"><span class="lock-icon">🔒</span> SECURE · v1.0</div>
 
+  <!-- ===== NFC MODAL ===== -->
+  <div class="nfc-modal" id="nfcModal">
+    <div class="nfc-modal-content">
+      <button class="close-btn" onclick="closeNfcModal()">✕</button>
+      <div class="nfc-icon">📡</div>
+      <h3>NFC Sharing</h3>
+      <p>Bring your phone close to another NFC-enabled device to share Rachel's contact instantly.</p>
+      <div id="nfcStatus" style="font-size:0.85rem;color:#6b6b60;">Waiting for NFC tap...</div>
+      <button class="wallet-btn" onclick="cancelNFCShare()" style="margin-top:16px;">Cancel</button>
+    </div>
+  </div>
+
   <!-- ===== TOAST ===== -->
   <div class="toast" id="toast"></div>
 
@@ -1384,7 +1820,9 @@
   <button id="backToTop" title="Back to top">↑</button>
 
   <script>
-    // ===== CONTACT DATA =====
+    // ============================================================
+    // ===== CONTACT DATA (Centralized) =====
+    // ============================================================
     const contactData = {
       fullName: "Rachel Dela Cruz",
       firstName: "Rachel",
@@ -1395,9 +1833,14 @@
       email: "rachel.delacruz@example.com",
       website: "https://villa-arcadia.example.com",
       linkedin: "https://linkedin.com/in/rachel-delacruz",
-      address: "Laguna, Calabarzon, Philippines"
+      address: "Laguna, Calabarzon, Philippines",
+      photoUrl: window.location.origin + "/IMG_20260710_160150_773.jpg",
+      logoUrl: window.location.origin + "/1783726853698~2.jpg"
     };
 
+    // ============================================================
+    // ===== vCard Generator =====
+    // ============================================================
     function generateVCardString() {
       return `BEGIN:VCARD
 VERSION:3.0
@@ -1410,30 +1853,166 @@ EMAIL;TYPE=WORK:${contactData.email}
 URL;TYPE=WORK:${contactData.website}
 URL;TYPE=LinkedIn:${contactData.linkedin}
 ADR;TYPE=WORK:;;${contactData.address};;;
+PHOTO;VALUE=URL:${contactData.photoUrl}
+LOGO;VALUE=URL:${contactData.logoUrl}
 NOTE:Project Manager & Virtual Assistant\\nResort Construction & Management\\n15+ years experience
 REV:${new Date().toISOString()}
 END:VCARD`;
     }
 
+    // ============================================================
+    // ===== DOWNLOAD vCard =====
+    // ============================================================
     function downloadVCard() {
       const vCardString = generateVCardString();
-      const blob = new Blob([vCardString], { type: 'text/vcard;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = 'rachel-dela-cruz.vcf';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-      showToast('✅ Contact saved! Open file to add to address book.', 'success');
+      downloadFile(vCardString, 'rachel-dela-cruz.vcf', 'text/vcard;charset=utf-8');
+      showToast('✅ Contact saved! Open the file to add to your address book.', 'success');
     }
 
+    // ============================================================
+    // ===== GOOGLE WALLET =====
+    // ============================================================
+    function addToGoogleWallet() {
+      showToast('Opening Google Wallet...', 'success');
+      const isAndroid = /Android/.test(navigator.userAgent);
+      if (isAndroid) {
+        window.location.href = 'intent://pay.google.com/gp/v/save#Intent;scheme=https;package=com.google.android.apps.walletnfcrel;end';
+      }
+      setTimeout(() => {
+        showToast('Contact downloaded as vCard. Open to save.', 'success');
+        downloadVCard();
+      }, 2000);
+    }
+
+    // ============================================================
+    // ===== APPLE WALLET =====
+    // ============================================================
+    function addToAppleWallet() {
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      showToast('Opening Apple Wallet...', 'success');
+      if (isIOS) {
+        window.location.href = 'shoebox://';
+        setTimeout(() => {
+          downloadFile(JSON.stringify({
+            formatVersion: 1,
+            passTypeIdentifier: "pass.com.villa-arcadia.contact",
+            serialNumber: Date.now().toString(),
+            organizationName: "Villa Arcadia",
+            description: "Contact Card",
+            logoText: contactData.fullName,
+            foregroundColor: "#4A4A4A",
+            backgroundColor: "#FFFFE3",
+            generic: {
+              primaryFields: [{ key: "name", label: "Name", value: contactData.fullName }],
+              secondaryFields: [
+                { key: "title", label: "Title", value: contactData.jobTitle },
+                { key: "org", label: "Organization", value: contactData.organization }
+              ],
+              auxiliaryFields: [
+                { key: "phone", label: "Phone", value: contactData.phone },
+                { key: "email", label: "Email", value: contactData.email }
+              ]
+            },
+            barcode: { format: "PKBarcodeFormatQR", message: generateVCardString(), messageEncoding: "iso-8859-1" }
+          }), 'rachel-delacruz-contact.pkpass.json', 'application/json');
+          showToast('Apple Wallet pass downloaded.', 'success');
+        }, 1500);
+      } else {
+        showToast('Apple Wallet is only on iOS. Downloading contact instead.', 'success');
+        downloadVCard();
+      }
+    }
+
+    // ============================================================
+    // ===== QR CODE =====
+    // ============================================================
     function downloadQRContact() {
       const vCardString = generateVCardString();
       const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(vCardString)}`;
       window.open(qrUrl, '_blank');
-      showToast('📱 QR Code opened! Scan with camera or save image.', 'success');
+      showToast('📱 QR Code generated! Right-click to save or scan with camera.', 'success');
+    }
+
+    // ============================================================
+    // ===== NFC SHARING =====
+    // ============================================================
+    let nfcAbortController = null;
+
+    async function shareViaNFC() {
+      if (!('NDEFReader' in window)) {
+        showToast('❌ NFC not supported. Use Chrome on Android.', 'error');
+        downloadQRContact();
+        return;
+      }
+      const modal = document.getElementById('nfcModal');
+      const statusEl = document.getElementById('nfcStatus');
+      modal.classList.add('show');
+      statusEl.textContent = '📡 Hold your phone near another device...';
+      try {
+        nfcAbortController = new AbortController();
+        const ndef = new NDEFReader();
+        await ndef.scan({ signal: nfcAbortController.signal });
+        statusEl.textContent = '📡 Device detected! Writing contact...';
+        const vCardString = generateVCardString();
+        await ndef.write({
+          records: [
+            { recordType: "mime", mediaType: "text/vcard", data: vCardString },
+            { recordType: "url", data: contactData.website }
+          ]
+        });
+        statusEl.textContent = '✅ Contact shared via NFC!';
+        showToast('✅ Contact shared successfully via NFC!', 'success');
+        setTimeout(() => closeNfcModal(), 2000);
+      } catch (error) {
+        if (error.name === 'AbortError') {
+          statusEl.textContent = 'NFC sharing cancelled.';
+        } else {
+          statusEl.textContent = '❌ NFC sharing failed. Try again or use QR code.';
+        }
+      }
+    }
+
+    function cancelNFCShare() {
+      if (nfcAbortController) { nfcAbortController.abort(); nfcAbortController = null; }
+      closeNfcModal();
+    }
+
+    function closeNfcModal() {
+      document.getElementById('nfcModal').classList.remove('show');
+      if (nfcAbortController) { nfcAbortController.abort(); nfcAbortController = null; }
+    }
+
+    // ============================================================
+    // ===== SHARE CONTACT =====
+    // ============================================================
+    function shareContact() {
+      if (navigator.share) {
+        navigator.share({
+          title: contactData.fullName,
+          text: `${contactData.fullName}\n${contactData.jobTitle}\n${contactData.organization}\n📞 ${contactData.phone}\n📧 ${contactData.email}`,
+          url: window.location.href
+        }).then(() => showToast('✅ Shared successfully!', 'success')).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(`${contactData.fullName}\n${contactData.jobTitle}\n${contactData.phone}\n${contactData.email}`)
+          .then(() => showToast('📋 Contact copied to clipboard!', 'success'));
+      }
+    }
+
+    // ============================================================
+    // ===== UTILITY FUNCTIONS =====
+    // ============================================================
+    function downloadFile(content, filename, mimeType) {
+      const blob = new Blob([content], { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = filename;
+      link.style.display = 'none';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
     }
 
     function showToast(message, type = '') {
@@ -1444,33 +2023,39 @@ END:VCARD`;
       toast._timeout = setTimeout(() => { toast.classList.remove('show'); }, 3000);
     }
 
+    // ============================================================
     // ===== TYPING ANIMATION =====
-    (function() {
+    // ============================================================
+    (function typeName() {
       const nameDisplay = document.getElementById('nameDisplay');
       const fullName = 'Rachel Dela Cruz';
       let index = 0;
       function typeEffect() {
         nameDisplay.textContent = fullName.substring(0, index + 1);
         index++;
-        if (index < fullName.length) setTimeout(typeEffect, 80);
+        if (index < fullName.length) { setTimeout(typeEffect, 80); }
       }
       setTimeout(typeEffect, 300);
     })();
 
+    // ============================================================
     // ===== GALLERY SLIDER =====
-    (function() {
+    // ============================================================
+    (function gallerySlider() {
       const slides = document.querySelectorAll('.gallery-slide');
       const dotsContainer = document.getElementById('galleryDots');
       const prevBtn = document.getElementById('galleryPrev');
       const nextBtn = document.getElementById('galleryNext');
       let currentIndex = 0;
       const totalSlides = slides.length;
-      let autoPlayInterval, isTransitioning = false;
+      let autoPlayInterval = null;
+      let isTransitioning = false;
 
-      slides.forEach((_, i) => {
+      slides.forEach((slide, index) => {
         const dot = document.createElement('button');
-        dot.className = 'dot' + (i === 0 ? ' active' : '');
-        dot.addEventListener('click', () => goToSlide(i));
+        dot.className = 'dot' + (index === 0 ? ' active' : '');
+        dot.setAttribute('data-index', index);
+        dot.addEventListener('click', () => goToSlide(index));
         dotsContainer.appendChild(dot);
       });
       const dots = dotsContainer.querySelectorAll('.dot');
@@ -1496,19 +2081,38 @@ END:VCARD`;
         autoPlayInterval = setInterval(nextSlide, 4000);
       }
 
-      prevBtn.addEventListener('click', prevSlide);
-      nextBtn.addEventListener('click', nextSlide);
+      prevBtn.addEventListener('click', (e) => { e.stopPropagation(); prevSlide(); });
+      nextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextSlide(); });
+
+      const slider = document.getElementById('gallerySlider');
+      let touchStartX = 0;
+      slider.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+      slider.addEventListener('touchend', (e) => {
+        const diff = touchStartX - e.changedTouches[0].screenX;
+        if (Math.abs(diff) > 40) { diff > 0 ? nextSlide() : prevSlide(); }
+      }, { passive: true });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight') nextSlide();
+        if (e.key === 'ArrowLeft') prevSlide();
+      });
+
       resetAutoPlay();
+      const galleryContainer = document.querySelector('.gallery-container');
+      galleryContainer.addEventListener('mouseenter', () => { if (autoPlayInterval) clearInterval(autoPlayInterval); });
+      galleryContainer.addEventListener('mouseleave', () => resetAutoPlay());
     })();
 
+    // ============================================================
     // ===== BOOTLOAD =====
+    // ============================================================
     (function() {
       const overlay = document.getElementById('bootOverlay');
       const fill = document.getElementById('bootStatusFill');
       const statusText = document.getElementById('bootStatusText');
       const ready = document.getElementById('bootReady');
       const mainContent = document.getElementById('mainContent');
-      if (!overlay) return;
+      if (!overlay || !fill || !statusText) return;
       let progress = 0;
       const interval = setInterval(() => {
         progress += 5 + Math.floor(Math.random() * 5);
@@ -1521,6 +2125,10 @@ END:VCARD`;
           setTimeout(() => { overlay.classList.add('hidden'); mainContent.style.opacity = '1'; setTimeout(() => overlay.remove(), 700); }, 600);
         } else {
           fill.style.width = progress + '%';
+          if (progress < 25) statusText.textContent = '⟳ loading neural core ... ' + progress + '%';
+          else if (progress < 50) statusText.textContent = '⟳ syncing modules ... ' + progress + '%';
+          else if (progress < 75) statusText.textContent = '⟳ optimizing AI fluency ... ' + progress + '%';
+          else statusText.textContent = '⟳ finalizing ... ' + progress + '%';
         }
       }, 130);
       setTimeout(() => {
@@ -1529,34 +2137,45 @@ END:VCARD`;
           fill.style.width = '100%';
           statusText.textContent = '✓ system ready · 100%';
           ready.classList.add('show');
-          setTimeout(() => { overlay.classList.add('hidden'); mainContent.style.opacity = '1'; }, 400);
+          setTimeout(() => { overlay.classList.add('hidden'); mainContent.style.opacity = '1'; setTimeout(() => overlay.remove(), 700); }, 400);
         }
       }, 5500);
     })();
 
+    // ============================================================
     // ===== SCROLL PROGRESS =====
+    // ============================================================
+    const scrollProgress = document.getElementById('scrollProgress');
     window.addEventListener('scroll', () => {
-      const p = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-      document.getElementById('scrollProgress').style.width = p + '%';
+      const scrollTop = window.scrollY || window.pageYOffset;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      scrollProgress.style.width = (scrollTop / docHeight) * 100 + '%';
     });
 
+    // ============================================================
     // ===== THEME TOGGLE =====
+    // ============================================================
     const themeToggle = document.getElementById('themeToggle');
-    if (localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark'); themeToggle.textContent = '☀️'; }
+    const body = document.body;
+    if (localStorage.getItem('theme') === 'dark') { body.classList.add('dark'); themeToggle.textContent = '☀️'; }
     themeToggle.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      const isDark = document.body.classList.contains('dark');
+      body.classList.toggle('dark');
+      const isDark = body.classList.contains('dark');
       themeToggle.textContent = isDark ? '☀️' : '🌙';
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
     });
 
+    // ============================================================
     // ===== HAMBURGER =====
+    // ============================================================
     const hamburger = document.getElementById('hamburger');
     const mobileNavLinks = document.getElementById('mobileNavLinks');
     hamburger.addEventListener('click', (e) => { e.stopPropagation(); mobileNavLinks.classList.toggle('show'); });
     document.addEventListener('click', (e) => { if (!mobileNavLinks.contains(e.target) && e.target !== hamburger) mobileNavLinks.classList.remove('show'); });
 
+    // ============================================================
     // ===== SMOOTH SCROLL & ACTIVE NAV =====
+    // ============================================================
     const allNavLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
     allNavLinks.forEach(link => {
       link.addEventListener('click', (e) => {
@@ -1569,23 +2188,42 @@ END:VCARD`;
       });
     });
 
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 100) current = sec.getAttribute('id'); });
+      allNavLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+      });
+    });
+
+    // ============================================================
     // ===== BACK TO TOP =====
+    // ============================================================
     const backToTop = document.getElementById('backToTop');
     window.addEventListener('scroll', () => { backToTop.style.display = window.scrollY > 500 ? 'flex' : 'none'; });
     backToTop.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
 
+    // ============================================================
     // ===== FADE UP OBSERVER =====
+    // ============================================================
     const fadeObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
-    }, { threshold: 0.1 });
+    }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
     document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
 
+    // ============================================================
     // ===== SECURITY =====
+    // ============================================================
     document.addEventListener('contextmenu', e => e.preventDefault());
     document.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey && (e.key === 'u' || e.key === 'U')) || e.key === 'F12' ||
-          (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I' || e.key === 'j' || e.key === 'J'))) e.preventDefault();
+      if (e.ctrlKey && e.key === 'u') e.preventDefault();
+      if (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I')) e.preventDefault();
+      if (e.ctrlKey && e.shiftKey && (e.key === 'j' || e.key === 'J')) e.preventDefault();
+      if (e.key === 'F12') e.preventDefault();
     });
+    if (window.top !== window.self) window.top.location = window.self.location;
   </script>
 </body>
 </html>
