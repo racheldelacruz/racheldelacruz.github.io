@@ -645,11 +645,20 @@
       color: var(--ink-charcoal);
       flex-shrink: 0;
     }
+    .hamburger {
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
     .hamburger:hover, #themeToggle:hover {
       background: rgba(109, 129, 150, 0.08);
       transform: scale(1.05);
     }
     .hamburger { display: none; }
+    .hamburger[aria-expanded="true"] {
+      background: rgba(109, 129, 150, 0.12);
+      transform: rotate(90deg);
+    }
 
     .mobile-nav-links {
       display: none;
@@ -1460,31 +1469,31 @@
         </div>
       </div>
       <div class="navbar-center">
-        <ul class="nav-links" id="navLinks">
-          <li><a href="#profile" class="active" aria-current="page">👤 Profile</a></li>
-          <li><a href="#experience">💼 Experience</a></li>
-          <li><a href="#skills">⚡ Skills</a></li>
-          <li><a href="#education">🎓 Education</a></li>
-          <li><a href="#certifications">📜 Certifications</a></li>
-          <li><a href="#testimonials">⭐ Testimonials</a></li>
-          <li><a href="#gallery">🖼️ Gallery</a></li>
-          <li><a href="#contact">📬 Contact</a></li>
+        <ul class="nav-links" id="navLinks" role="menubar">
+          <li role="none"><a href="#profile" class="active" role="menuitem" aria-current="page">👤 Profile</a></li>
+          <li role="none"><a href="#experience" role="menuitem">💼 Experience</a></li>
+          <li role="none"><a href="#skills" role="menuitem">⚡ Skills</a></li>
+          <li role="none"><a href="#education" role="menuitem">🎓 Education</a></li>
+          <li role="none"><a href="#certifications" role="menuitem">📜 Certifications</a></li>
+          <li role="none"><a href="#testimonials" role="menuitem">⭐ Testimonials</a></li>
+          <li role="none"><a href="#gallery" role="menuitem">🖼️ Gallery</a></li>
+          <li role="none"><a href="#contact" role="menuitem">📬 Contact</a></li>
         </ul>
       </div>
       <div class="navbar-right">
         <span class="va-badge"><span class="pulse-dot" aria-hidden="true"></span> VA active</span>
-        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+        <button class="hamburger" id="hamburger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileNavLinks">☰</button>
         <button id="themeToggle" aria-label="Toggle dark mode">🌙</button>
       </div>
-      <ul class="mobile-nav-links" id="mobileNavLinks">
-        <li><a href="#profile" class="active">👤 Profile</a></li>
-        <li><a href="#experience">💼 Experience</a></li>
-        <li><a href="#skills">⚡ Skills</a></li>
-        <li><a href="#education">🎓 Education</a></li>
-        <li><a href="#certifications">📜 Certifications</a></li>
-        <li><a href="#testimonials">⭐ Testimonials</a></li>
-        <li><a href="#gallery">🖼️ Gallery</a></li>
-        <li><a href="#contact">📬 Contact</a></li>
+      <ul class="mobile-nav-links" id="mobileNavLinks" role="menu" aria-label="Mobile navigation">
+        <li role="none"><a href="#profile" class="active" role="menuitem" aria-current="page">👤 Profile</a></li>
+        <li role="none"><a href="#experience" role="menuitem">💼 Experience</a></li>
+        <li role="none"><a href="#skills" role="menuitem">⚡ Skills</a></li>
+        <li role="none"><a href="#education" role="menuitem">🎓 Education</a></li>
+        <li role="none"><a href="#certifications" role="menuitem">📜 Certifications</a></li>
+        <li role="none"><a href="#testimonials" role="menuitem">⭐ Testimonials</a></li>
+        <li role="none"><a href="#gallery" role="menuitem">🖼️ Gallery</a></li>
+        <li role="none"><a href="#contact" role="menuitem">📬 Contact</a></li>
       </ul>
     </nav>
 
@@ -2085,6 +2094,135 @@ END:VCARD`;
     })();
 
     // ============================================================
+    // ===== HAMBURGER - IMPROVED =====
+    // ============================================================
+    const hamburger = document.getElementById('hamburger');
+    const mobileNavLinks = document.getElementById('mobileNavLinks');
+
+    // Toggle mobile menu
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = mobileNavLinks.classList.toggle('show');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      hamburger.textContent = isOpen ? '✕' : '☰';
+      hamburger.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!mobileNavLinks.contains(e.target) && e.target !== hamburger && mobileNavLinks.classList.contains('show')) {
+        mobileNavLinks.classList.remove('show');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.textContent = '☰';
+        hamburger.setAttribute('aria-label', 'Open navigation menu');
+      }
+    });
+
+    // Close mobile menu with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileNavLinks.classList.contains('show')) {
+        mobileNavLinks.classList.remove('show');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.textContent = '☰';
+        hamburger.setAttribute('aria-label', 'Open navigation menu');
+        hamburger.focus();
+      }
+    });
+
+    // ============================================================
+    // ===== SMOOTH SCROLL & ACTIVE NAV - IMPROVED =====
+    // ============================================================
+    const allNavLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
+    let isProgrammaticScroll = false;
+
+    allNavLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        const targetId = link.getAttribute('href').slice(1);
+        const target = document.getElementById(targetId);
+        
+        if (target) {
+          // Mark programmatic scroll
+          isProgrammaticScroll = true;
+          
+          // Close mobile menu immediately
+          if (mobileNavLinks.classList.contains('show')) {
+            mobileNavLinks.classList.remove('show');
+            hamburger.setAttribute('aria-expanded', 'false');
+            hamburger.textContent = '☰';
+            hamburger.setAttribute('aria-label', 'Open navigation menu');
+          }
+          
+          // Update all matching links (both desktop and mobile)
+          allNavLinks.forEach(l => {
+            l.classList.remove('active');
+            l.removeAttribute('aria-current');
+          });
+          
+          const allMatchingLinks = document.querySelectorAll(`a[href="#${targetId}"]`);
+          allMatchingLinks.forEach(matchingLink => {
+            matchingLink.classList.add('active');
+            matchingLink.setAttribute('aria-current', 'page');
+          });
+          
+          // Calculate offset for sticky elements
+          const navbar = document.querySelector('.navbar');
+          const topPromo = document.querySelector('.top-promo');
+          const navbarHeight = navbar ? navbar.offsetHeight : 60;
+          const promoHeight = topPromo ? topPromo.offsetHeight : 28;
+          const totalOffset = navbarHeight + promoHeight + 20;
+          
+          const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - totalOffset;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+          
+          // Reset flag after scroll animation completes
+          setTimeout(() => {
+            isProgrammaticScroll = false;
+          }, 1000);
+        }
+      });
+    });
+
+    // ============================================================
+    // ===== SCROLL SPY - IMPROVED =====
+    // ============================================================
+    const sections = document.querySelectorAll('section[id]');
+    
+    window.addEventListener('scroll', () => {
+      if (isProgrammaticScroll) return;
+      
+      let current = '';
+      const navbar = document.querySelector('.navbar');
+      const topPromo = document.querySelector('.top-promo');
+      const navbarHeight = navbar ? navbar.offsetHeight : 60;
+      const promoHeight = topPromo ? topPromo.offsetHeight : 28;
+      const scrollOffset = navbarHeight + promoHeight + 100;
+      
+      sections.forEach(sec => {
+        const sectionTop = sec.offsetTop - scrollOffset;
+        if (window.pageYOffset >= sectionTop) {
+          current = sec.getAttribute('id');
+        }
+      });
+      
+      if (current) {
+        allNavLinks.forEach(link => {
+          link.classList.remove('active');
+          link.removeAttribute('aria-current');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+            link.setAttribute('aria-current', 'page');
+          }
+        });
+      }
+    }, { passive: true });
+
+    // ============================================================
     // ===== GALLERY SLIDER =====
     // ============================================================
     (function gallerySlider() {
@@ -2200,7 +2338,9 @@ END:VCARD`;
     window.addEventListener('scroll', () => {
       const scrollTop = window.scrollY || window.pageYOffset;
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      scrollProgress.style.width = (scrollTop / docHeight) * 100 + '%';
+      if (docHeight > 0) {
+        scrollProgress.style.width = (scrollTop / docHeight) * 100 + '%';
+      }
     }, { passive: true });
 
     // ============================================================
@@ -2208,7 +2348,11 @@ END:VCARD`;
     // ============================================================
     const themeToggle = document.getElementById('themeToggle');
     const body = document.body;
-    if (localStorage.getItem('theme') === 'dark') { body.classList.add('dark'); themeToggle.textContent = '☀️'; themeToggle.setAttribute('aria-label', 'Toggle light mode'); }
+    if (localStorage.getItem('theme') === 'dark') { 
+      body.classList.add('dark'); 
+      themeToggle.textContent = '☀️'; 
+      themeToggle.setAttribute('aria-label', 'Toggle light mode'); 
+    }
     themeToggle.addEventListener('click', () => {
       body.classList.toggle('dark');
       const isDark = body.classList.contains('dark');
@@ -2218,59 +2362,15 @@ END:VCARD`;
     });
 
     // ============================================================
-    // ===== HAMBURGER =====
-    // ============================================================
-    const hamburger = document.getElementById('hamburger');
-    const mobileNavLinks = document.getElementById('mobileNavLinks');
-    hamburger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const isOpen = mobileNavLinks.classList.toggle('show');
-      hamburger.setAttribute('aria-expanded', isOpen);
-    });
-    document.addEventListener('click', (e) => {
-      if (!mobileNavLinks.contains(e.target) && e.target !== hamburger) {
-        mobileNavLinks.classList.remove('show');
-        hamburger.setAttribute('aria-expanded', 'false');
-      }
-    });
-
-    // ============================================================
-    // ===== SMOOTH SCROLL & ACTIVE NAV =====
-    // ============================================================
-    const allNavLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
-    allNavLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = document.getElementById(link.getAttribute('href').slice(1));
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
-        mobileNavLinks.classList.remove('show');
-        hamburger.setAttribute('aria-expanded', 'false');
-        allNavLinks.forEach(l => { l.classList.remove('active'); l.removeAttribute('aria-current'); });
-        link.classList.add('active');
-        link.setAttribute('aria-current', 'page');
-      });
-    });
-
-    const sections = document.querySelectorAll('section[id]');
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 100) current = sec.getAttribute('id'); });
-      allNavLinks.forEach(link => {
-        link.classList.remove('active');
-        link.removeAttribute('aria-current');
-        if (link.getAttribute('href') === '#' + current) {
-          link.classList.add('active');
-          link.setAttribute('aria-current', 'page');
-        }
-      });
-    }, { passive: true });
-
-    // ============================================================
     // ===== BACK TO TOP =====
     // ============================================================
     const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => { backToTop.style.display = window.scrollY > 500 ? 'flex' : 'none'; }, { passive: true });
-    backToTop.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    window.addEventListener('scroll', () => { 
+      backToTop.style.display = window.scrollY > 500 ? 'flex' : 'none'; 
+    }, { passive: true });
+    backToTop.addEventListener('click', () => { 
+      window.scrollTo({ top: 0, behavior: 'smooth' }); 
+    });
 
     // ============================================================
     // ===== FADE UP OBSERVER =====
