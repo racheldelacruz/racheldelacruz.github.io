@@ -1096,12 +1096,6 @@
     .timeline-item:nth-child(2) { animation-delay: 0.10s; }
     .timeline-item:nth-child(3) { animation-delay: 0.15s; }
     .timeline-item:nth-child(4) { animation-delay: 0.20s; }
-    .timeline-item:nth-child(5) { animation-delay: 0.25s; }
-    .timeline-item:nth-child(6) { animation-delay: 0.30s; }
-    .timeline-item:nth-child(7) { animation-delay: 0.35s; }
-    .timeline-item:nth-child(8) { animation-delay: 0.40s; }
-    .timeline-item:nth-child(9) { animation-delay: 0.45s; }
-    .timeline-item:nth-child(10) { animation-delay: 0.50s; }
 
     @keyframes expSlideIn {
       0% { opacity: 0; transform: translateY(40px) scale(0.96); }
@@ -1117,6 +1111,33 @@
     .tl-org { font-weight: 500; color: var(--ink-blue-gray); }
     .tl-date { font-size: 0.8rem; color: #6b6b60; background: rgba(109, 129, 150, 0.06); padding: 4px 12px; border-radius: 40px; border: 1px solid rgba(109, 129, 150, 0.08); }
     .tl-desc { margin-top: 8px; color: #4a4a42; font-size: 0.92rem; }
+
+    /* ===== SHOW MORE TOGGLE ===== */
+    #showMoreContainer {
+      text-align: center;
+      margin-top: 8px;
+    }
+    #showMoreBtn {
+      transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    #showMoreBtn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(109, 129, 150, 0.2);
+    }
+    #showMoreArrow {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    #moreExperience {
+      overflow: hidden;
+      display: none;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    #moreExperience .timeline-item {
+      animation: none;
+    }
 
     /* ===== SKILL CHIPS ===== */
     .skill-chip {
@@ -1548,17 +1569,49 @@
       <!-- ===== ABOUT ===== -->
       <div class="summary-card fade-up">
         <p style="font-size:1rem;max-width:800px;margin:0 auto;">
-          <strong>🤖 Versatile Project Manager &amp; Virtual Assistant</strong> with extensive experience across customer service, healthcare (clinical/technical), and project management. Strong background in resort construction, operations, and stakeholder communication. Skilled in risk management, budget control, and cross-functional team leadership.
+          <strong>🤖 Versatile Project Manager &amp; Virtual Assistant</strong> with extensive experience across customer service, healthcare (clinical/technical), project management, and operations automation. Strong background in resort construction, eCommerce customer support, workflow automation, and stakeholder communication. Skilled in risk management, budget control, and cross-functional team leadership.
           <br><br>
-          Over the course of my career, I have accumulated extensive experience across various industries, including customer service, clerical roles, and technical/clinical positions within a healthcare setting. This exposure has equipped me with a versatile skill set and a profound understanding of the intricacies associated with different professional domains.
+          Over the course of my career, I have accumulated extensive experience across various industries, including customer service, clerical roles, technical/clinical positions within a healthcare setting, and operations automation. This exposure has equipped me with a versatile skill set and a profound understanding of the intricacies associated with different professional domains.
         </p>
       </div>
 
       <!-- ===== EXPERIENCE ===== -->
       <section id="experience" class="section" aria-labelledby="experience-heading">
         <h2 class="section-title fade-up" id="experience-heading"><span class="icon" aria-hidden="true">💼</span> Experience <span class="accent">·</span></h2>
-        <div class="section-sub fade-up">Full project lifecycle & cross-functional leadership</div>
+        <div class="section-sub fade-up">Full project lifecycle, operations automation & cross-functional leadership</div>
         <div class="timeline">
+          
+          <!-- A/B Consulting Strategy -->
+          <div class="timeline-item">
+            <div class="tl-header">
+              <span class="tl-title">⚙️ Operations Support & Automation Contractor</span>
+              <span class="tl-org">A/B Consulting Strategy, USA</span>
+              <span class="tl-date">Aug 2025 – Present</span>
+            </div>
+            <div class="tl-desc">
+              <strong>Process Documentation & Analysis:</strong> Shadow and document current operational workflows step-by-step. Create detailed process maps for consultant onboarding, financial operations, and administrative tasks. Identify inefficiencies, bottlenecks, and automation opportunities. Interview team members to capture institutional knowledge.<br><br>
+              <strong>Automation Development & Implementation:</strong> Build workflow automation using Zapier, Microsoft Power Automate, Claude, and native tool integrations. Create automated consultant onboarding pipelines (email setup, system access, documentation). Develop financial operations automation (invoice processing, vendor management, payment flows). Implement document management and filing automation.<br><br>
+              <strong>Operations Support:</strong> Execute routine operational tasks, handle consultant onboarding tasks, process invoices and manage vendor communications, support client project setup and administrative functions.<br><br>
+              <strong>Performance Monitoring & Optimization:</strong> Track automation performance and error rates. Generate weekly progress reports with metrics and recommendations. Identify additional optimization opportunities. Test and refine automated workflows.
+            </div>
+          </div>
+
+          <!-- Health with Bec -->
+          <div class="timeline-item">
+            <div class="tl-header">
+              <span class="tl-title">💊 Customer Support Specialist (eCommerce)</span>
+              <span class="tl-org">Health with Bec, Australia</span>
+              <span class="tl-date">May 2025 – Mar 2026</span>
+            </div>
+            <div class="tl-desc">
+              <strong>Facebook Group Moderation & Administration:</strong> Daily screening and processing of pending Facebook group membership requests. Validated applicants against predefined group entry questions and criteria. Monitored queue to filter out promotional or non-compliant accounts prior to approval.<br><br>
+              <strong>Customer Support Services (Intercom):</strong> Managed and resolved incoming customer queries through the Intercom platform. Assisted users experiencing credential errors, password reset issues, and general account access barriers. Processed subscription cancellation requests efficiently while adhering to retention and refund policies. Handled start date adjustments including shifting dates, delaying enrollment, or accommodating immediate starts.<br><br>
+              <strong>Application Review & Quality Assurance:</strong> Executed manual walk-throughs of newly built applications to identify UI glitches, broken links, or performance lags. Logged usability issues, bugs, and overall user-experience observations. Compiled and delivered structured feedback reports to the product/development team.<br><br>
+              <strong>Escalation Management:</strong> Routed complex technical bugs or billing disputes to the appropriate internal team members.
+            </div>
+          </div>
+
+          <!-- Project Manager -->
           <div class="timeline-item">
             <div class="tl-header">
               <span class="tl-title">🏗️ Project Manager – Resort Construction & Management</span>
@@ -1567,6 +1620,8 @@
             </div>
             <div class="tl-desc">Lead the full lifecycle of resort development projects—from pre‑construction planning to operational handover. Define scope, budget, schedule; coordinate with architects, engineers, designers, and contractors.</div>
           </div>
+
+          <!-- Zoomo Team Lead -->
           <div class="timeline-item">
             <div class="tl-header">
               <span class="tl-title">👥 Customer Support Team Lead</span>
@@ -1575,69 +1630,89 @@
             </div>
             <div class="tl-desc">Led support teams and oversaw escalation management for the North American region.</div>
           </div>
-          <div class="timeline-item">
-            <div class="tl-header">
-              <span class="tl-title">🛡️ Customer Support Specialist – Escalation</span>
-              <span class="tl-org">Zoomo</span>
-              <span class="tl-date">Jan 2021 – Jan 2024</span>
-            </div>
-            <div class="tl-desc">Specialized in North America customer support, handling complex escalated cases.</div>
+
+          <!-- Show More Toggle Button -->
+          <div id="showMoreContainer">
+            <button id="showMoreBtn" class="btn btn-outline" onclick="toggleMoreExperience()" aria-expanded="false">
+              📋 Show More Experience <span id="showMoreArrow">↓</span>
+            </button>
           </div>
-          <div class="timeline-item">
-            <div class="tl-header">
-              <span class="tl-title">🌏 Online English Teacher</span>
-              <span class="tl-org">Engoo</span>
-              <span class="tl-date">Dec 2016 – Jan 2021</span>
+
+          <!-- Hidden Earlier Positions -->
+          <div id="moreExperience" style="display:none;">
+            
+            <div class="timeline-item">
+              <div class="tl-header">
+                <span class="tl-title">🛡️ Customer Support Specialist – Escalation</span>
+                <span class="tl-org">Zoomo</span>
+                <span class="tl-date">Jan 2021 – Jan 2024</span>
+              </div>
+              <div class="tl-desc">Specialized in North America customer support, handling complex escalated cases.</div>
             </div>
-            <div class="tl-desc">Taught English to students from Japan, Korea, Vietnam, Taiwan, Russia, and other nationalities.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="tl-header">
-              <span class="tl-title">📞 Customer Service Representative</span>
-              <span class="tl-org">TeleTech Philippines</span>
-              <span class="tl-date">Nov 2015 – Apr 2017</span>
+
+            <div class="timeline-item">
+              <div class="tl-header">
+                <span class="tl-title">🌏 Online English Teacher</span>
+                <span class="tl-org">Engoo</span>
+                <span class="tl-date">Dec 2016 – Jan 2021</span>
+              </div>
+              <div class="tl-desc">Taught English to students from Japan, Korea, Vietnam, Taiwan, Russia, and other nationalities.</div>
             </div>
-            <div class="tl-desc">Managed Telstra AU residential billing, mobility, and sales.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="tl-header">
-              <span class="tl-title">📞 Customer Service Representative</span>
-              <span class="tl-org">SYKES Philippines</span>
-              <span class="tl-date">Sep 2014 – Oct 2015</span>
+
+            <div class="timeline-item">
+              <div class="tl-header">
+                <span class="tl-title">📞 Customer Service Representative</span>
+                <span class="tl-org">TeleTech Philippines</span>
+                <span class="tl-date">Nov 2015 – Apr 2017</span>
+              </div>
+              <div class="tl-desc">Managed Telstra AU residential billing, mobility, and sales.</div>
             </div>
-            <div class="tl-desc">Handled AT&T Prepaid Mobility.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="tl-header">
-              <span class="tl-title">🩺 Monitor Clerk Assistant / Telemetrist</span>
-              <span class="tl-org">American Hospital Dubai</span>
-              <span class="tl-date">Feb 2010 – Feb 2011</span>
+
+            <div class="timeline-item">
+              <div class="tl-header">
+                <span class="tl-title">📞 Customer Service Representative</span>
+                <span class="tl-org">SYKES Philippines</span>
+                <span class="tl-date">Sep 2014 – Oct 2015</span>
+              </div>
+              <div class="tl-desc">Handled AT&T Prepaid Mobility.</div>
             </div>
-            <div class="tl-desc">Performed telemetry monitoring (Basic ECG) for ICU, CICU, and WARD.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="tl-header">
-              <span class="tl-title">🩺 Healthcare Assistant</span>
-              <span class="tl-org">American Hospital Dubai</span>
-              <span class="tl-date">Feb 2009 – Feb 2010</span>
+
+            <div class="timeline-item">
+              <div class="tl-header">
+                <span class="tl-title">🩺 Monitor Clerk Assistant / Telemetrist</span>
+                <span class="tl-org">American Hospital Dubai</span>
+                <span class="tl-date">Feb 2010 – Feb 2011</span>
+              </div>
+              <div class="tl-desc">Performed telemetry monitoring (Basic ECG) for ICU, CICU, and WARD.</div>
             </div>
-            <div class="tl-desc">Provided support in Intensive Care and Cardiac Intensive Care Units.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="tl-header">
-              <span class="tl-title">📋 Sales Representative / Secretary</span>
-              <span class="tl-org">Time General Trading LLC, Sharjah, UAE</span>
-              <span class="tl-date">Aug 2008 – Jan 2009</span>
+
+            <div class="timeline-item">
+              <div class="tl-header">
+                <span class="tl-title">🩺 Healthcare Assistant</span>
+                <span class="tl-org">American Hospital Dubai</span>
+                <span class="tl-date">Feb 2009 – Feb 2010</span>
+              </div>
+              <div class="tl-desc">Provided support in Intensive Care and Cardiac Intensive Care Units.</div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="tl-header">
+                <span class="tl-title">📋 Sales Representative / Secretary</span>
+                <span class="tl-org">Time General Trading LLC, Sharjah, UAE</span>
+                <span class="tl-date">Aug 2008 – Jan 2009</span>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="tl-header">
+                <span class="tl-title">🏥 Nursing Attendant</span>
+                <span class="tl-org">Philippine General Hospital</span>
+                <span class="tl-date">Jul 2006 – Jun 2008</span>
+              </div>
+              <div class="tl-desc">Served in the Post‑Anesthesia Care Unit, OB Admitting Section, and OB ER.</div>
             </div>
           </div>
-          <div class="timeline-item">
-            <div class="tl-header">
-              <span class="tl-title">🏥 Nursing Attendant</span>
-              <span class="tl-org">Philippine General Hospital</span>
-              <span class="tl-date">Jul 2006 – Jun 2008</span>
-            </div>
-            <div class="tl-desc">Served in the Post‑Anesthesia Care Unit, OB Admitting Section, and OB ER.</div>
-          </div>
+
         </div>
       </section>
 
@@ -1661,6 +1736,11 @@
           <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🏗️</span> Construction Coordination</span>
           <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🧠</span> AI Fluency</span>
           <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🤖</span> Virtual Assistance</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">⚡</span> Workflow Automation</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🔧</span> Zapier</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">💻</span> Intercom</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">✅</span> QA Testing</span>
+          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">📱</span> Community Moderation</span>
         </div>
       </section>
 
@@ -1843,7 +1923,7 @@
         <div class="footer-content">
           <div class="footer-brand">2026 <span class="highlight">iProfile</span> by <span class="highlight">LJL Digital Hub</span></div>
           <div class="footer-divider" aria-hidden="true"></div>
-          <div class="footer-sub">🤖 Virtual Assistant · Project Management</div>
+          <div class="footer-sub">🤖 Virtual Assistant · Project Management · Operations Automation</div>
         </div>
       </div>
     </footer>
@@ -2094,12 +2174,52 @@ END:VCARD`;
     })();
 
     // ============================================================
+    // ===== SHOW MORE / LESS EXPERIENCE TOGGLE =====
+    // ============================================================
+    function toggleMoreExperience() {
+      const moreSection = document.getElementById('moreExperience');
+      const btn = document.getElementById('showMoreBtn');
+      const arrow = document.getElementById('showMoreArrow');
+      
+      if (moreSection.style.display === 'none' || moreSection.style.display === '') {
+        // Show more
+        moreSection.style.display = 'flex';
+        
+        // Re-trigger fade animations
+        const hiddenItems = moreSection.querySelectorAll('.timeline-item');
+        hiddenItems.forEach((item, index) => {
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(40px) scale(0.96)';
+          item.style.animation = 'none';
+          item.offsetHeight; // Force reflow
+          item.style.animation = `expSlideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards`;
+          item.style.animationDelay = `${index * 0.05}s`;
+        });
+        
+        btn.innerHTML = '📋 Show Less <span id="showMoreArrow">↑</span>';
+        btn.setAttribute('aria-expanded', 'true');
+        
+        // Scroll to show beginning of older experience
+        setTimeout(() => {
+          moreSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 200);
+      } else {
+        // Hide
+        moreSection.style.display = 'none';
+        btn.innerHTML = '📋 Show More Experience <span id="showMoreArrow">↓</span>';
+        btn.setAttribute('aria-expanded', 'false');
+        
+        // Scroll back to button
+        btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    // ============================================================
     // ===== HAMBURGER - IMPROVED =====
     // ============================================================
     const hamburger = document.getElementById('hamburger');
     const mobileNavLinks = document.getElementById('mobileNavLinks');
 
-    // Toggle mobile menu
     hamburger.addEventListener('click', (e) => {
       e.stopPropagation();
       const isOpen = mobileNavLinks.classList.toggle('show');
@@ -2108,7 +2228,6 @@ END:VCARD`;
       hamburger.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
     });
 
-    // Close mobile menu when clicking outside
     document.addEventListener('click', (e) => {
       if (!mobileNavLinks.contains(e.target) && e.target !== hamburger && mobileNavLinks.classList.contains('show')) {
         mobileNavLinks.classList.remove('show');
@@ -2118,7 +2237,6 @@ END:VCARD`;
       }
     });
 
-    // Close mobile menu with Escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && mobileNavLinks.classList.contains('show')) {
         mobileNavLinks.classList.remove('show');
@@ -2143,10 +2261,8 @@ END:VCARD`;
         const target = document.getElementById(targetId);
         
         if (target) {
-          // Mark programmatic scroll
           isProgrammaticScroll = true;
           
-          // Close mobile menu immediately
           if (mobileNavLinks.classList.contains('show')) {
             mobileNavLinks.classList.remove('show');
             hamburger.setAttribute('aria-expanded', 'false');
@@ -2154,7 +2270,6 @@ END:VCARD`;
             hamburger.setAttribute('aria-label', 'Open navigation menu');
           }
           
-          // Update all matching links (both desktop and mobile)
           allNavLinks.forEach(l => {
             l.classList.remove('active');
             l.removeAttribute('aria-current');
@@ -2166,7 +2281,6 @@ END:VCARD`;
             matchingLink.setAttribute('aria-current', 'page');
           });
           
-          // Calculate offset for sticky elements
           const navbar = document.querySelector('.navbar');
           const topPromo = document.querySelector('.top-promo');
           const navbarHeight = navbar ? navbar.offsetHeight : 60;
@@ -2180,7 +2294,6 @@ END:VCARD`;
             behavior: 'smooth'
           });
           
-          // Reset flag after scroll animation completes
           setTimeout(() => {
             isProgrammaticScroll = false;
           }, 1000);
