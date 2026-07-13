@@ -207,7 +207,7 @@
     .hero-content .name-wrapper { display: inline-block; position: relative; }
     .hero-content .name-wrapper .cursor { display: inline-block; width: 2px; height: 1.1em; background: var(--ink-blue-gray); margin-left: 2px; animation: cursorBlink 0.8s step-end infinite; vertical-align: text-bottom; border-radius: 1px; }
     @keyframes cursorBlink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
-    .hero-content h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: -0.03em; color: var(--ink-charcoal); display: inline; }
+    .hero-content h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: -0.03em; color: var(--ink-charcoal); display: inline; min-height: 1.2em; }
     .hero-content .subhead { font-size: 1.2rem; font-weight: 500; color: var(--ink-blue-gray); margin: 4px 0 8px; }
     .hero-content .location { display: flex; align-items: center; justify-content: center; gap: 6px; color: #6b6b60; font-size: 0.95rem; }
     .hero-badge-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 16px 0 20px; }
@@ -231,18 +231,15 @@
     .wallet-btn.google-wallet { background: linear-gradient(135deg, #000, #333); }
     .wallet-btn.apple-wallet { background: linear-gradient(135deg, #000, #555); }
     .wallet-btn.save-contact { background: linear-gradient(135deg, #4285f4, #34a853); }
-    .wallet-btn.nfc-share { background: linear-gradient(135deg, #6D8196, #4a5d6d); }
     .wallet-btn.qr-code { background: linear-gradient(135deg, #333, #666); }
     .wallet-btn.share-contact { background: linear-gradient(135deg, #6D8196, #4a5d6d); }
     .wallet-btn .btn-icon { font-size: 1.2rem; }
-
-    .nfc-indicator { display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #34a853; animation: nfcPulse 1.5s ease-in-out infinite; margin-right: 4px; }
-    @keyframes nfcPulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.3); opacity: 0.6; } }
 
     .nfc-modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 10000; justify-content: center; align-items: center; }
     .nfc-modal.show { display: flex; }
     .nfc-modal-content { background: var(--ink-ivory); border-radius: 24px; padding: 32px; max-width: 400px; width: 90%; text-align: center; position: relative; }
     .nfc-modal .nfc-icon { font-size: 4rem; animation: nfcPulse 1.5s ease-in-out infinite; }
+    @keyframes nfcPulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.3); opacity: 0.6; } }
     .nfc-modal h3 { margin: 16px 0 8px; font-size: 1.2rem; }
     .nfc-modal p { font-size: 0.9rem; color: #6b6b60; margin-bottom: 20px; }
     .nfc-modal .close-btn { position: absolute; top: 12px; right: 12px; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: inherit; }
@@ -584,7 +581,6 @@
           <button class="wallet-btn google-wallet" onclick="addToGoogleWallet()" aria-label="Add to Google Wallet"><span class="btn-icon" aria-hidden="true">💳</span> Google Wallet</button>
           <button class="wallet-btn apple-wallet" onclick="addToAppleWallet()" aria-label="Add to Apple Wallet"><span class="btn-icon" aria-hidden="true">📱</span> Apple Wallet</button>
           <button class="wallet-btn save-contact" onclick="downloadVCard()" aria-label="Download contact"><span class="btn-icon" aria-hidden="true">📥</span> Save Contact</button>
-          <button class="wallet-btn nfc-share" onclick="shareViaNFC()" aria-label="Share via NFC"><span class="btn-icon" aria-hidden="true">📡</span> NFC Share</button>
           <button class="wallet-btn qr-code" onclick="downloadQRContact()" aria-label="QR Code"><span class="btn-icon" aria-hidden="true">📱</span> QR Code</button>
           <button class="wallet-btn share-contact" onclick="shareContact()" aria-label="Share contact"><span class="btn-icon" aria-hidden="true">🔗</span> Share</button>
         </div>
@@ -631,7 +627,8 @@
     function downloadFile(content,filename,mimeType){const blob=new Blob([content],{type:mimeType}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=filename;link.style.display='none';document.body.appendChild(link);link.click();document.body.removeChild(link);setTimeout(()=>URL.revokeObjectURL(url),1000);}
     function showToast(message,type=''){const toast=document.getElementById('toast');toast.textContent=message;toast.className='toast '+type+' show';clearTimeout(toast._timeout);toast._timeout=setTimeout(()=>{toast.classList.remove('show');},3000);}
 
-    (function typeName(){const nameDisplay=document.getElementById('nameDisplay'),fullName='Rachel Dela Cruz';let index=0;function typeEffect(){nameDisplay.textContent=fullName.substring(0,index+1);index++;if(index<fullName.length)setTimeout(typeEffect,80);}setTimeout(typeEffect,300);})();
+    // ===== TYPING ANIMATION WITH 30-SECOND LOOP =====
+    (function typeName(){const nameDisplay=document.getElementById('nameDisplay'),cursor=document.getElementById('cursor'),fullName='Rachel Dela Cruz';let index=0,isDeleting=false,loopTimer=null;function typeEffect(){if(!isDeleting){nameDisplay.textContent=fullName.substring(0,index+1);index++;cursor.style.display='inline-block';if(index<fullName.length){setTimeout(typeEffect,80);}else{cursor.style.display='none';loopTimer=setTimeout(()=>{isDeleting=true;cursor.style.display='inline-block';typeEffect();},30000);}}else{nameDisplay.textContent=fullName.substring(0,index-1);index--;if(index>0){setTimeout(typeEffect,40);}else{isDeleting=false;nameDisplay.textContent='';cursor.style.display='inline-block';setTimeout(typeEffect,1000);}}}setTimeout(typeEffect,300);})();
 
     function toggleReadMore(btn){const parent=btn.parentElement,shortDiv=parent.querySelector('.tl-short'),fullDiv=parent.querySelector('.tl-full');if(fullDiv.style.display==='none'||fullDiv.style.display===''){shortDiv.style.display='none';fullDiv.style.display='block';btn.textContent='Read Less ↑';btn.setAttribute('aria-expanded','true');}else{shortDiv.style.display='block';fullDiv.style.display='none';btn.textContent='Read More ↓';btn.setAttribute('aria-expanded','false');}}
 
