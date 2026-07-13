@@ -162,7 +162,10 @@
     .navbar-left .brand-text .name { font-weight: 700; font-size: 1.1rem; color: var(--ink-charcoal); }
     .navbar-left .brand-text .name .highlight { color: var(--ink-blue-gray); }
     .navbar-left .brand-text .divider { color: var(--ink-border); font-weight: 300; font-size: 1.1rem; }
-    .navbar-left .brand-text .villa { font-weight: 600; font-size: 1rem; color: #d4a853; }
+    .navbar-left .brand-text .villa-logo-wrapper { display: inline-flex; align-items: center; line-height: 0; }
+    .villa-logo-img { height: 32px; width: auto; border-radius: 6px; object-fit: contain; display: block; transition: transform 0.3s ease; }
+    .villa-logo-img:hover { transform: scale(1.05); }
+    body.dark .villa-logo-img { filter: brightness(1.1); }
     .navbar-center { display: flex; align-items: center; gap: 4px; flex: 1; justify-content: center; min-width: 0; overflow: hidden; }
     .nav-links { display: flex; gap: 4px; list-style: none; flex-wrap: wrap; justify-content: center; }
     .nav-links a { padding: 6px 14px; border-radius: 40px; font-weight: 500; font-size: 0.8rem; transition: all 0.3s ease; color: var(--ink-charcoal); display: flex; align-items: center; gap: 4px; white-space: nowrap; position: relative; }
@@ -326,13 +329,15 @@
       .skill-chip-compact { padding: 5px 12px; font-size: 0.75rem; } .edu-grid, .cert-grid { grid-template-columns: 1fr; }
       .timeline-item { padding: 18px 20px; } .navbar { flex-wrap: wrap; padding: 8px 16px; gap: 6px; top: 24px; }
       .navbar-center { order: 3; flex: 1 1 100%; justify-content: center; } .nav-links { display: none; } .hamburger { display: flex; }
-      .logo-img { height: 32px; } .hero-avatar { flex: 0 0 180px; } .profile-avatar { width: 180px; height: 180px; }
+      .logo-img { height: 32px; } .villa-logo-img { height: 26px; }
+      .hero-avatar { flex: 0 0 180px; } .profile-avatar { width: 180px; height: 180px; }
       .hero-content h1 { font-size: 2.1rem; } .gallery-slider { height: 280px; } .gallery-nav { width: 36px; height: 36px; font-size: 1rem; }
       .gallery-nav.prev { left: 10px; } .gallery-nav.next { right: 10px; } .wallet-btn { padding: 10px 16px; font-size: 0.75rem; }
     }
     @media (max-width: 480px) {
-      .logo-img { height: 28px; } .navbar-left .brand-text .name { font-size: 0.7rem; }
-      .navbar-left .brand-text .villa { font-size: 0.65rem; } .wallet-btn-container { gap: 8px; } .wallet-btn { padding: 8px 14px; font-size: 0.7rem; }
+      .logo-img { height: 28px; } .villa-logo-img { height: 22px; }
+      .navbar-left .brand-text .name { font-size: 0.7rem; }
+      .wallet-btn-container { gap: 8px; } .wallet-btn { padding: 8px 14px; font-size: 0.7rem; }
     }
   </style>
 </head>
@@ -382,7 +387,13 @@
     <nav class="navbar" role="navigation" aria-label="Main navigation">
       <div class="navbar-left">
         <span class="logo-wrapper"><img src="1783726853698~2.jpg" alt="Rachel Dela Cruz Logo" class="logo-img" width="42" height="42" /></span>
-        <div class="brand-text"><span class="name">i<span class="highlight">Profile</span></span><span class="divider" aria-hidden="true">·</span><span class="villa">Villa Arcadia</span></div>
+        <div class="brand-text">
+          <span class="name">i<span class="highlight">Profile</span></span>
+          <span class="divider" aria-hidden="true">·</span>
+          <span class="villa-logo-wrapper">
+            <img src="Screenshot_20260711_081521_Instagram.jpg" alt="Villa Arcadia" class="villa-logo-img" />
+          </span>
+        </div>
       </div>
       <div class="navbar-center">
         <ul class="nav-links" id="navLinks" role="menubar">
@@ -627,7 +638,6 @@
     function downloadFile(content,filename,mimeType){const blob=new Blob([content],{type:mimeType}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=filename;link.style.display='none';document.body.appendChild(link);link.click();document.body.removeChild(link);setTimeout(()=>URL.revokeObjectURL(url),1000);}
     function showToast(message,type=''){const toast=document.getElementById('toast');toast.textContent=message;toast.className='toast '+type+' show';clearTimeout(toast._timeout);toast._timeout=setTimeout(()=>{toast.classList.remove('show');},3000);}
 
-    // ===== TYPING ANIMATION WITH 30-SECOND LOOP =====
     (function typeName(){const nameDisplay=document.getElementById('nameDisplay'),cursor=document.getElementById('cursor'),fullName='Rachel Dela Cruz';let index=0,isDeleting=false,loopTimer=null;function typeEffect(){if(!isDeleting){nameDisplay.textContent=fullName.substring(0,index+1);index++;cursor.style.display='inline-block';if(index<fullName.length){setTimeout(typeEffect,80);}else{cursor.style.display='none';loopTimer=setTimeout(()=>{isDeleting=true;cursor.style.display='inline-block';typeEffect();},30000);}}else{nameDisplay.textContent=fullName.substring(0,index-1);index--;if(index>0){setTimeout(typeEffect,40);}else{isDeleting=false;nameDisplay.textContent='';cursor.style.display='inline-block';setTimeout(typeEffect,1000);}}}setTimeout(typeEffect,300);})();
 
     function toggleReadMore(btn){const parent=btn.parentElement,shortDiv=parent.querySelector('.tl-short'),fullDiv=parent.querySelector('.tl-full');if(fullDiv.style.display==='none'||fullDiv.style.display===''){shortDiv.style.display='none';fullDiv.style.display='block';btn.textContent='Read Less ↑';btn.setAttribute('aria-expanded','true');}else{shortDiv.style.display='block';fullDiv.style.display='none';btn.textContent='Read More ↓';btn.setAttribute('aria-expanded','false');}}
