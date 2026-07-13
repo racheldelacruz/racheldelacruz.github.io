@@ -190,11 +190,20 @@
 
     .glass-box { position: relative; background: rgba(255,255,227,0.12); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 24px; padding: 28px 26px; border: 1.5px solid rgba(109,129,150,0.2); box-shadow: 0 4px 30px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.3); transition: all 0.6s cubic-bezier(0.22,0.61,0.36,1); overflow: hidden; }
 
-    .hero { padding: 40px 0 30px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 40px; text-align: center; position: relative; overflow: hidden; }
-    .hero-bg-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden; }
-    /* More visible grid lines */
+    /* HERO WITH CLEAR BACKGROUND ANIMATIONS */
+    .hero { padding: 60px 0 50px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 40px; text-align: center; position: relative; overflow: hidden; }
+    .hero-bg-canvas {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+      pointer-events: none; overflow: hidden;
+      background: radial-gradient(circle at 50% 50%, rgba(109,129,150,0.06) 0%, transparent 70%);
+      animation: canvasPulse 6s ease-in-out infinite alternate;
+    }
+    @keyframes canvasPulse {
+      0% { background-size: 100% 100%; opacity: 0.8; }
+      100% { background-size: 120% 120%; opacity: 1; }
+    }
     .hero-bg-canvas .grid-line {
-      background: rgba(109, 129, 150, 0.08);
+      background: rgba(109, 129, 150, 0.25);
     }
     @keyframes gridPulse {
       0%, 100% { opacity: 0.4; }
@@ -205,12 +214,11 @@
     .hero-bg-canvas .grid-line:nth-child(1) { top: 15%; } .hero-bg-canvas .grid-line:nth-child(2) { top: 45%; } .hero-bg-canvas .grid-line:nth-child(3) { top: 75%; }
     .hero-bg-canvas .grid-line:nth-child(4) { left: 20%; } .hero-bg-canvas .grid-line:nth-child(5) { left: 50%; } .hero-bg-canvas .grid-line:nth-child(6) { left: 80%; }
 
-    /* Brighter, larger data particles */
     .hero-bg-canvas .data-particle {
-      width: 6px; height: 6px;
-      background: rgba(109, 129, 150, 0.4);
-      box-shadow: 0 0 8px rgba(109, 129, 150, 0.3);
-      animation: particleDrift 10s ease-in-out infinite;
+      width: 8px; height: 8px;
+      background: rgba(109, 129, 150, 0.6);
+      box-shadow: 0 0 12px rgba(109, 129, 150, 0.5);
+      animation: particleDrift 8s ease-in-out infinite;
       will-change: transform, opacity;
     }
     .hero-bg-canvas .data-particle:nth-child(7) { top: 10%; left: 5%; animation-delay: 0s; }
@@ -220,25 +228,25 @@
     .hero-bg-canvas .data-particle:nth-child(11) { top: 20%; left: 50%; animation-delay: 1.8s; }
     .hero-bg-canvas .data-particle:nth-child(12) { top: 70%; left: 40%; animation-delay: 3s; }
     @keyframes particleDrift {
-      0%, 100% { transform: translate(0,0) scale(1); opacity: 0.4; }
-      25% { transform: translate(40px,-50px) scale(1.5); opacity: 0.9; }
-      50% { transform: translate(-30px,-80px) scale(0.7); opacity: 0.5; }
-      75% { transform: translate(50px,-30px) scale(1.3); opacity: 0.8; }
+      0%, 100% { transform: translate(0,0) scale(1); opacity: 0.5; }
+      25% { transform: translate(40px,-50px) scale(1.5); opacity: 1; }
+      50% { transform: translate(-30px,-80px) scale(0.7); opacity: 0.6; }
+      75% { transform: translate(50px,-30px) scale(1.3); opacity: 0.9; }
     }
 
-    /* More visible code snippets */
     .hero-bg-canvas .code-snippet {
-      font-size: 0.75rem;
-      color: rgba(109, 129, 150, 0.2);
-      animation: codeFloat 15s ease-in-out infinite;
+      font-size: 0.85rem;
+      color: rgba(109, 129, 150, 0.3);
+      animation: codeFloat 12s ease-in-out infinite;
+      text-shadow: 0 0 8px rgba(109,129,150,0.2);
     }
     .hero-bg-canvas .code-snippet:nth-child(13) { top: 5%; left: 2%; animation-delay: 0s; }
     .hero-bg-canvas .code-snippet:nth-child(14) { top: 50%; left: 70%; animation-delay: -6s; }
     .hero-bg-canvas .code-snippet:nth-child(15) { top: 85%; left: 15%; animation-delay: -12s; }
     .hero-bg-canvas .code-snippet:nth-child(16) { top: 25%; left: 80%; animation-delay: -18s; }
     @keyframes codeFloat {
-      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
-      50% { transform: translateY(-30px) rotate(3deg); opacity: 0.9; }
+      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
+      50% { transform: translateY(-30px) rotate(3deg); opacity: 1; }
     }
 
     .hero-content, .hero-avatar { position: relative; z-index: 1; }
