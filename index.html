@@ -157,7 +157,7 @@
     body.dark .cert-item,
     body.dark .edu-item,
     body.dark .rec-card,
-    body.dark .skill-chip,
+    body.dark .skill-chip-compact,
     body.dark .glass-card {
       background: rgba(30, 30, 26, 0.6);
       border-color: rgba(109, 129, 150, 0.15);
@@ -184,6 +184,15 @@
     }
     body.dark .wallet-section {
       border-color: rgba(109, 129, 150, 0.12);
+    }
+    body.dark .skill-chip-compact {
+      background: rgba(30, 30, 26, 0.6);
+      border-color: rgba(109, 129, 150, 0.15);
+      color: #e0e0d6;
+    }
+    body.dark .skill-chip-compact:hover {
+      border-color: rgba(109, 129, 150, 0.35);
+      background: rgba(109, 129, 150, 0.15);
     }
 
     a { text-decoration: none; color: inherit; }
@@ -1129,7 +1138,6 @@
       transition: transform 0.3s ease;
     }
     #moreExperience {
-      overflow: hidden;
       display: none;
       display: flex;
       flex-direction: column;
@@ -1139,52 +1147,30 @@
       animation: none;
     }
 
-    /* ===== SKILL CHIPS ===== */
-    .skill-chip {
+    /* ===== SKILL CHIPS - COMPACT ===== */
+    .skill-chip-compact {
       background: rgba(255, 255, 227, 0.1);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      border: 1.5px solid rgba(109, 129, 150, 0.12);
-      border-radius: 60px;
-      padding: 12px 24px;
+      border: 1px solid rgba(109, 129, 150, 0.12);
+      border-radius: 30px;
+      padding: 6px 14px;
       font-weight: 500;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      gap: 4px;
+      transition: all 0.3s ease;
       cursor: default;
-      opacity: 0;
-      transform: translateY(30px) scale(0.95);
-      animation: skillPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      color: var(--ink-charcoal);
+      white-space: nowrap;
     }
-    .skill-chip:nth-child(1) { animation-delay: 0.05s; }
-    .skill-chip:nth-child(2) { animation-delay: 0.10s; }
-    .skill-chip:nth-child(3) { animation-delay: 0.15s; }
-    .skill-chip:nth-child(4) { animation-delay: 0.20s; }
-    .skill-chip:nth-child(5) { animation-delay: 0.25s; }
-    .skill-chip:nth-child(6) { animation-delay: 0.30s; }
-    .skill-chip:nth-child(7) { animation-delay: 0.35s; }
-    .skill-chip:nth-child(8) { animation-delay: 0.40s; }
-    .skill-chip:nth-child(9) { animation-delay: 0.45s; }
-    .skill-chip:nth-child(10) { animation-delay: 0.50s; }
-    .skill-chip:nth-child(11) { animation-delay: 0.55s; }
-    .skill-chip:nth-child(12) { animation-delay: 0.60s; }
-    .skill-chip:nth-child(13) { animation-delay: 0.65s; }
-    .skill-chip:nth-child(14) { animation-delay: 0.70s; }
-    .skill-chip:nth-child(15) { animation-delay: 0.75s; }
-
-    @keyframes skillPop {
-      0% { opacity: 0; transform: translateY(30px) scale(0.95); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
+    .skill-chip-compact:hover {
+      border-color: rgba(109, 129, 150, 0.35);
+      background: rgba(109, 129, 150, 0.08);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(109, 129, 150, 0.1);
     }
-    .skill-chip:hover {
-      border-color: rgba(109, 129, 150, 0.4);
-      background: rgba(109, 129, 150, 0.06);
-      transform: translateY(-6px) scale(1.06) !important;
-      box-shadow: 0 12px 35px rgba(109, 129, 150, 0.12);
-    }
-    .skill-chip .skill-icon { font-size: 1.1rem; }
 
     /* ===== EDU / CERT GRID ===== */
     .edu-grid, .cert-grid {
@@ -1337,7 +1323,6 @@
 
     /* ===== SECTION ===== */
     .section { padding: 50px 0 30px; border-bottom: 1px solid var(--ink-border); }
-    .flex-wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; align-items: center; }
 
     /* ===== FOOTER ===== */
     footer {
@@ -1396,7 +1381,7 @@
       .boot-logs { font-size: 0.6rem; max-height: 160px; }
       #backToTop { bottom: 20px; right: 20px; width: 42px; height: 42px; font-size: 16px; }
       .glass-box { padding: 20px 18px; }
-      .skill-chip { padding: 10px 18px; font-size: 0.8rem; }
+      .skill-chip-compact { padding: 5px 12px; font-size: 0.75rem; }
       .edu-grid, .cert-grid { grid-template-columns: 1fr; }
       .timeline-item { padding: 18px 20px; }
       .navbar { flex-wrap: wrap; padding: 8px 16px; gap: 6px; top: 24px; }
@@ -1716,31 +1701,29 @@
         </div>
       </section>
 
-      <!-- ===== SKILLS ===== -->
+      <!-- ===== SKILLS (COMPACT) ===== -->
       <section id="skills" class="section" aria-labelledby="skills-heading">
         <h2 class="section-title fade-up" id="skills-heading"><span class="icon" aria-hidden="true">⚡</span> Skills <span class="accent">·</span></h2>
         <div class="section-sub fade-up">Core competencies & technical expertise</div>
-        <div class="flex-wrap" style="gap:12px;margin-top:8px;">
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">📊</span> CRM</span>
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">📚</span> Teaching</span>
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">💬</span> Customer Service</span>
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🌐</span> English</span>
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🏥</span> Healthcare Professionals</span>
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">👶</span> Midwifery</span>
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🗣️</span> Communication</span>
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🏥</span> Healthcare</span>
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">📚</span> English Teaching</span>
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">📄</span> Invoicing</span>
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">📋</span> Project Management</span>
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">⚠️</span> Risk Management</span>
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🏗️</span> Construction Coordination</span>
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🧠</span> AI Fluency</span>
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🤖</span> Virtual Assistance</span>
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">⚡</span> Workflow Automation</span>
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">🔧</span> Zapier</span>
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">💻</span> Intercom</span>
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">✅</span> QA Testing</span>
-          <span class="skill-chip"><span class="skill-icon" aria-hidden="true">📱</span> Community Moderation</span>
+        <div style="max-width:800px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
+          <span class="skill-chip-compact">📊 CRM</span>
+          <span class="skill-chip-compact">💬 Customer Service</span>
+          <span class="skill-chip-compact">📋 Project Management</span>
+          <span class="skill-chip-compact">🤖 Virtual Assistance</span>
+          <span class="skill-chip-compact">⚡ Workflow Automation</span>
+          <span class="skill-chip-compact">🔧 Zapier</span>
+          <span class="skill-chip-compact">💻 Intercom</span>
+          <span class="skill-chip-compact">🧠 AI Fluency</span>
+          <span class="skill-chip-compact">🏗️ Construction Coordination</span>
+          <span class="skill-chip-compact">⚠️ Risk Management</span>
+          <span class="skill-chip-compact">📄 Invoicing</span>
+          <span class="skill-chip-compact">✅ QA Testing</span>
+          <span class="skill-chip-compact">📱 Community Moderation</span>
+          <span class="skill-chip-compact">📚 Teaching</span>
+          <span class="skill-chip-compact">🌐 English</span>
+          <span class="skill-chip-compact">🏥 Healthcare</span>
+          <span class="skill-chip-compact">👶 Midwifery</span>
+          <span class="skill-chip-compact">🗣️ Communication</span>
         </div>
       </section>
 
@@ -2179,19 +2162,16 @@ END:VCARD`;
     function toggleMoreExperience() {
       const moreSection = document.getElementById('moreExperience');
       const btn = document.getElementById('showMoreBtn');
-      const arrow = document.getElementById('showMoreArrow');
       
       if (moreSection.style.display === 'none' || moreSection.style.display === '') {
-        // Show more
         moreSection.style.display = 'flex';
         
-        // Re-trigger fade animations
         const hiddenItems = moreSection.querySelectorAll('.timeline-item');
         hiddenItems.forEach((item, index) => {
           item.style.opacity = '0';
           item.style.transform = 'translateY(40px) scale(0.96)';
           item.style.animation = 'none';
-          item.offsetHeight; // Force reflow
+          item.offsetHeight;
           item.style.animation = `expSlideIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards`;
           item.style.animationDelay = `${index * 0.05}s`;
         });
@@ -2199,23 +2179,19 @@ END:VCARD`;
         btn.innerHTML = '📋 Show Less <span id="showMoreArrow">↑</span>';
         btn.setAttribute('aria-expanded', 'true');
         
-        // Scroll to show beginning of older experience
         setTimeout(() => {
           moreSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 200);
       } else {
-        // Hide
         moreSection.style.display = 'none';
         btn.innerHTML = '📋 Show More Experience <span id="showMoreArrow">↓</span>';
         btn.setAttribute('aria-expanded', 'false');
-        
-        // Scroll back to button
         btn.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
     }
 
     // ============================================================
-    // ===== HAMBURGER - IMPROVED =====
+    // ===== HAMBURGER =====
     // ============================================================
     const hamburger = document.getElementById('hamburger');
     const mobileNavLinks = document.getElementById('mobileNavLinks');
@@ -2248,7 +2224,7 @@ END:VCARD`;
     });
 
     // ============================================================
-    // ===== SMOOTH SCROLL & ACTIVE NAV - IMPROVED =====
+    // ===== SMOOTH SCROLL & ACTIVE NAV =====
     // ============================================================
     const allNavLinks = document.querySelectorAll('.nav-links a, .mobile-nav-links a');
     let isProgrammaticScroll = false;
@@ -2302,7 +2278,7 @@ END:VCARD`;
     });
 
     // ============================================================
-    // ===== SCROLL SPY - IMPROVED =====
+    // ===== SCROLL SPY =====
     // ============================================================
     const sections = document.querySelectorAll('section[id]');
     
