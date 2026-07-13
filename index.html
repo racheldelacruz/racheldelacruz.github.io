@@ -91,7 +91,6 @@
     body.dark .boot-overlay { background: rgba(26, 26, 22, 0.97); }
     body.dark .gallery-slide .slide-overlay { background: linear-gradient(180deg, transparent 40%, rgba(26,26,22,0.7)); }
     body.dark .nfc-modal-content { background: #2a2a26; color: #e0e0d6; }
-    body.dark .wallet-section { border-color: rgba(109, 129, 150, 0.12); }
     body.dark .skill-chip-compact { background: rgba(30, 30, 26, 0.6); border-color: rgba(109, 129, 150, 0.15); color: #e0e0d6; }
     body.dark .skill-chip-compact:hover { border-color: rgba(109, 129, 150, 0.35); background: rgba(109, 129, 150, 0.15); }
     body.dark .read-more-btn { border-color: rgba(109, 129, 150, 0.4); color: #6D8196; }
@@ -226,8 +225,7 @@
     .btn-outline { background: transparent; border: 2px solid var(--ink-blue-gray); color: var(--ink-blue-gray); }
     .btn-outline:hover { background: var(--ink-blue-gray); color: #fff; }
 
-    .wallet-section { text-align: center; padding: 20px 0; }
-    .wallet-btn-container { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin: 20px 0; }
+    .wallet-btn-container { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
     .wallet-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 40px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.4s cubic-bezier(0.22,0.61,0.36,1); color: #fff; border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.2); text-decoration: none; -webkit-tap-highlight-color: transparent; white-space: nowrap; }
     .wallet-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
     .wallet-btn.google-wallet { background: linear-gradient(135deg, #000, #333); }
@@ -456,53 +454,31 @@
         <h2 class="section-title fade-up" id="experience-heading"><span class="icon" aria-hidden="true">💼</span> Experience <span class="accent">·</span></h2>
         <div class="section-sub fade-up">Full project lifecycle, operations automation & cross-functional leadership</div>
         <div class="timeline">
-          
           <div class="timeline-item">
             <div class="tl-header"><span class="tl-title">⚙️ Operations Support & Automation Contractor</span><span class="tl-org">A/B Consulting Strategy, USA</span><span class="tl-date">Aug 2025 – Present</span></div>
             <div class="tl-desc">
-              <div class="tl-short">
-                <strong>Process Documentation & Automation:</strong> Build workflow automation using Zapier, Microsoft Power Automate, Claude, and native tool integrations. Create automated consultant onboarding pipelines and financial operations automation.<br><br>
-                <strong>Operations Support:</strong> Execute routine operational tasks, handle consultant onboarding, process invoices, manage vendor communications, and support client project setup.
-              </div>
-              <div class="tl-full" style="display:none;">
-                <strong>Process Documentation & Analysis:</strong> Shadow and document current operational workflows step-by-step. Create detailed process maps for consultant onboarding, financial operations, and administrative tasks. Identify inefficiencies, bottlenecks, and automation opportunities. Interview team members to capture institutional knowledge.<br><br>
-                <strong>Automation Development & Implementation:</strong> Build workflow automation using Zapier, Microsoft Power Automate, Claude, and native tool integrations. Create automated consultant onboarding pipelines (email setup, system access, documentation). Develop financial operations automation (invoice processing, vendor management, payment flows). Implement document management and filing automation.<br><br>
-                <strong>Operations Support:</strong> Execute routine operational tasks, handle consultant onboarding tasks, process invoices and manage vendor communications, support client project setup and administrative functions.<br><br>
-                <strong>Performance Monitoring & Optimization:</strong> Track automation performance and error rates. Generate weekly progress reports with metrics and recommendations. Identify additional optimization opportunities. Test and refine automated workflows.
-              </div>
+              <div class="tl-short"><strong>Process Documentation & Automation:</strong> Build workflow automation using Zapier, Microsoft Power Automate, Claude, and native tool integrations. Create automated consultant onboarding pipelines and financial operations automation.<br><br><strong>Operations Support:</strong> Execute routine operational tasks, handle consultant onboarding, process invoices, manage vendor communications, and support client project setup.</div>
+              <div class="tl-full" style="display:none;"><strong>Process Documentation & Analysis:</strong> Shadow and document current operational workflows step-by-step. Create detailed process maps for consultant onboarding, financial operations, and administrative tasks. Identify inefficiencies, bottlenecks, and automation opportunities. Interview team members to capture institutional knowledge.<br><br><strong>Automation Development & Implementation:</strong> Build workflow automation using Zapier, Microsoft Power Automate, Claude, and native tool integrations. Create automated consultant onboarding pipelines (email setup, system access, documentation). Develop financial operations automation (invoice processing, vendor management, payment flows). Implement document management and filing automation.<br><br><strong>Operations Support:</strong> Execute routine operational tasks, handle consultant onboarding tasks, process invoices and manage vendor communications, support client project setup and administrative functions.<br><br><strong>Performance Monitoring & Optimization:</strong> Track automation performance and error rates. Generate weekly progress reports with metrics and recommendations. Identify additional optimization opportunities. Test and refine automated workflows.</div>
               <button class="read-more-btn" onclick="toggleReadMore(this)" aria-expanded="false">Read More ↓</button>
             </div>
           </div>
-
           <div class="timeline-item">
             <div class="tl-header"><span class="tl-title">💊 Customer Support Specialist (eCommerce)</span><span class="tl-org">Health with Bec, Australia</span><span class="tl-date">May 2025 – Mar 2026</span></div>
             <div class="tl-desc">
-              <div class="tl-short">
-                <strong>Facebook Group Moderation & Customer Support:</strong> Daily screening of membership requests, managed inbound customer queries through Intercom, handled access troubleshooting, cancellations, and enrollment adjustments.<br><br>
-                <strong>Application QA Testing:</strong> Executed manual walk-throughs of newly built applications to identify UI glitches and bugs. Routed complex issues to appropriate teams.
-              </div>
-              <div class="tl-full" style="display:none;">
-                <strong>Facebook Group Moderation & Administration:</strong> Daily screening and processing of pending Facebook group membership requests. Validated applicants against predefined group entry questions and criteria. Monitored queue to filter out promotional or non-compliant accounts prior to approval.<br><br>
-                <strong>Customer Support Services (Intercom):</strong> Managed and resolved incoming customer queries through the Intercom platform. Assisted users experiencing credential errors, password reset issues, and general account access barriers. Processed subscription cancellation requests efficiently while adhering to retention and refund policies. Handled start date adjustments including shifting dates, delaying enrollment, or accommodating immediate starts.<br><br>
-                <strong>Application Review & Quality Assurance:</strong> Executed manual walk-throughs of newly built applications to identify UI glitches, broken links, or performance lags. Logged usability issues, bugs, and overall user-experience observations. Compiled and delivered structured feedback reports to the product/development team.<br><br>
-                <strong>Escalation Management:</strong> Routed complex technical bugs or billing disputes to the appropriate internal team members.
-              </div>
+              <div class="tl-short"><strong>Facebook Group Moderation & Customer Support:</strong> Daily screening of membership requests, managed inbound customer queries through Intercom, handled access troubleshooting, cancellations, and enrollment adjustments.<br><br><strong>Application QA Testing:</strong> Executed manual walk-throughs of newly built applications to identify UI glitches and bugs. Routed complex issues to appropriate teams.</div>
+              <div class="tl-full" style="display:none;"><strong>Facebook Group Moderation & Administration:</strong> Daily screening and processing of pending Facebook group membership requests. Validated applicants against predefined group entry questions and criteria. Monitored queue to filter out promotional or non-compliant accounts prior to approval.<br><br><strong>Customer Support Services (Intercom):</strong> Managed and resolved incoming customer queries through the Intercom platform. Assisted users experiencing credential errors, password reset issues, and general account access barriers. Processed subscription cancellation requests efficiently while adhering to retention and refund policies. Handled start date adjustments including shifting dates, delaying enrollment, or accommodating immediate starts.<br><br><strong>Application Review & Quality Assurance:</strong> Executed manual walk-throughs of newly built applications to identify UI glitches, broken links, or performance lags. Logged usability issues, bugs, and overall user-experience observations. Compiled and delivered structured feedback reports to the product/development team.<br><br><strong>Escalation Management:</strong> Routed complex technical bugs or billing disputes to the appropriate internal team members.</div>
               <button class="read-more-btn" onclick="toggleReadMore(this)" aria-expanded="false">Read More ↓</button>
             </div>
           </div>
-
           <div class="timeline-item">
             <div class="tl-header"><span class="tl-title">🏗️ Project Manager – Resort Construction & Management</span><span class="tl-org">Arcadia Resorts, Laguna</span><span class="tl-date">Nov 2025 – Present</span></div>
             <div class="tl-desc">Lead the full lifecycle of resort development projects—from pre‑construction planning to operational handover. Define scope, budget, schedule; coordinate with architects, engineers, designers, and contractors.</div>
           </div>
-
           <div class="timeline-item">
             <div class="tl-header"><span class="tl-title">👥 Customer Support Team Lead</span><span class="tl-org">Zoomo</span><span class="tl-date">Jan 2024 – Present</span></div>
             <div class="tl-desc">Led support teams and oversaw escalation management for the North American region.</div>
           </div>
-
           <div id="showMoreContainer"><button id="showMoreBtn" class="btn btn-outline" onclick="toggleMoreExperience()" aria-expanded="false">📋 Show More Experience <span id="showMoreArrow">↓</span></button></div>
-
           <div id="moreExperience" style="display:none;">
             <div class="timeline-item"><div class="tl-header"><span class="tl-title">🛡️ Customer Support Specialist – Escalation</span><span class="tl-org">Zoomo</span><span class="tl-date">Jan 2021 – Jan 2024</span></div><div class="tl-desc">Specialized in North America customer support, handling complex escalated cases.</div></div>
             <div class="timeline-item"><div class="tl-header"><span class="tl-title">🌏 Online English Teacher</span><span class="tl-org">Engoo</span><span class="tl-date">Dec 2016 – Jan 2021</span></div><div class="tl-desc">Taught English to students from Japan, Korea, Vietnam, Taiwan, Russia, and other nationalities.</div></div>
@@ -577,15 +553,9 @@
         </div>
       </section>
 
-      <!-- ===== VILLA ARCADIA BOOKING LINKS ===== -->
       <div class="summary-card fade-up" style="margin:30px 0 20px;">
-        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;">
-          <span style="font-size:1.5rem;">🏖️</span>
-          <strong style="font-size:1.1rem;">Villa Arcadia · Book Your Stay</strong>
-        </div>
-        <p style="font-size:0.9rem;max-width:600px;margin:0 auto 16px;">
-          Experience luxury and comfort at Villa Arcadia. Book now through our partner platforms:
-        </p>
+        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;"><span style="font-size:1.5rem;">🏖️</span><strong style="font-size:1.1rem;">Villa Arcadia · Book Your Stay</strong></div>
+        <p style="font-size:0.9rem;max-width:600px;margin:0 auto 16px;">Experience luxury and comfort at Villa Arcadia. Book now through our partner platforms:</p>
         <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:16px 0;">
           <a href="https://www.airbnb.com/rooms/1506210734462676054?unique_share_id=aa4beec1-4ad2-41cb-b359-d8190ecf1931&viralityEntryPoint=1&s=76" target="_blank" rel="noopener" class="btn" style="background:linear-gradient(135deg, #FF5A5F, #E31C5F);">🏠 Airbnb · Couple's Suite</a>
           <a href="https://www.airbnb.com/rooms/1556975864881769723?unique_share_id=67ab6843-dcba-4eef-a416-87bc77e8af3e&viralityEntryPoint=1&s=76" target="_blank" rel="noopener" class="btn" style="background:linear-gradient(135deg, #FF5A5F, #E31C5F);">👨‍👩‍👧‍👦 Airbnb · Family Villa</a>
@@ -609,22 +579,14 @@
         </div>
       </section>
 
-      <div class="summary-card fade-up wallet-section" style="margin:30px 0 20px;">
-        <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;"><span class="nfc-indicator" aria-hidden="true"></span><strong style="font-size:1.1rem;">📱 Tap & Save to Your Phone</strong></div>
-        <p style="font-size:0.9rem;max-width:600px;margin:0 auto 16px;">Add Rachel's contact to <strong>Google Wallet</strong>, <strong>Apple Wallet</strong>, or share via <strong>NFC</strong>. Download the vCard directly to your phone's address book.</p>
-        <div class="wallet-btn-container">
+      <div class="summary-card fade-up" style="margin:30px 0 20px;padding:20px 28px;">
+        <div class="wallet-btn-container" style="margin:0;">
           <button class="wallet-btn google-wallet" onclick="addToGoogleWallet()" aria-label="Add to Google Wallet"><span class="btn-icon" aria-hidden="true">💳</span> Google Wallet</button>
           <button class="wallet-btn apple-wallet" onclick="addToAppleWallet()" aria-label="Add to Apple Wallet"><span class="btn-icon" aria-hidden="true">📱</span> Apple Wallet</button>
           <button class="wallet-btn save-contact" onclick="downloadVCard()" aria-label="Download contact"><span class="btn-icon" aria-hidden="true">📥</span> Save Contact</button>
           <button class="wallet-btn nfc-share" onclick="shareViaNFC()" aria-label="Share via NFC"><span class="btn-icon" aria-hidden="true">📡</span> NFC Share</button>
           <button class="wallet-btn qr-code" onclick="downloadQRContact()" aria-label="QR Code"><span class="btn-icon" aria-hidden="true">📱</span> QR Code</button>
           <button class="wallet-btn share-contact" onclick="shareContact()" aria-label="Share contact"><span class="btn-icon" aria-hidden="true">🔗</span> Share</button>
-        </div>
-        <div style="margin-top:12px;font-size:0.75rem;color:#6b6b60;">
-          <p>📞 <strong>Phone:</strong> <a href="tel:+639055716447" style="color:var(--ink-blue-gray);">+63 905 571 6447</a></p>
-          <p>📧 <strong>Email:</strong> <a href="mailto:drzrachel05@gmail.com" style="color:var(--ink-blue-gray);">drzrachel05@gmail.com</a></p>
-          <p>💬 <strong>WhatsApp:</strong> <a href="https://wa.me/639055716447" target="_blank" rel="noopener" style="color:var(--ink-blue-gray);">+63 905 571 6447</a></p>
-          <p>🔗 <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/rachel-delacruz" target="_blank" rel="noopener" style="color:var(--ink-blue-gray);">linkedin.com/in/rachel-delacruz</a></p>
         </div>
       </div>
     </main>
