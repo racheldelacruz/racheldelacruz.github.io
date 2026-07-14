@@ -1506,6 +1506,34 @@
             color: #4a4a42;
             font-size: 0.92rem;
         }
+        .tl-desc ul {
+            margin: 6px 0 0 18px;
+            padding-left: 0;
+            list-style: none;
+        }
+        .tl-desc ul li {
+            position: relative;
+            padding-left: 18px;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+        .tl-desc ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--ink-blue-gray);
+            font-weight: 600;
+        }
+        .tl-desc .sub-section {
+            font-weight: 600;
+            margin-top: 10px;
+            margin-bottom: 4px;
+            color: var(--ink-blue-gray);
+            font-size: 0.92rem;
+        }
+        .tl-desc .sub-section:first-of-type {
+            margin-top: 6px;
+        }
 
         .read-more-btn {
             display: inline-block;
@@ -2278,7 +2306,42 @@
                 <div class="section-sub fade-up">Full project lifecycle, operations automation & cross-functional leadership</div>
                 <div class="timeline">
                     <div class="timeline-item"><div class="tl-header"><span class="tl-title">⚙️ Operations Support & Automation Contractor</span><span class="tl-org">A/B Consulting Strategy, USA</span><span class="tl-date">Aug 2025 – Present</span></div><div class="tl-desc"><div class="tl-short">Build workflow automation using Zapier, Microsoft Power Automate, Claude. Create automated consultant onboarding pipelines.</div><div class="tl-full" style="display:none;">Full description...</div><button class="read-more-btn" onclick="toggleReadMore(this)">Read More ↓</button></div></div>
-                    <div class="timeline-item"><div class="tl-header"><span class="tl-title">💊 Customer Support Specialist (eCommerce)</span><span class="tl-org">Health with Bec, Australia</span><span class="tl-date">May 2025 – Mar 2026</span></div><div class="tl-desc"><div class="tl-short">Daily screening, managed queries through Intercom, handled cancellations, QA testing of applications.</div><div class="tl-full" style="display:none;">Full description...</div><button class="read-more-btn" onclick="toggleReadMore(this)">Read More ↓</button></div></div>
+
+                    <!-- ===== UPDATED HEALTH WITH BEC ===== -->
+                    <div class="timeline-item">
+                        <div class="tl-header">
+                            <span class="tl-title">💊 Customer Support Specialist (eCommerce)</span>
+                            <span class="tl-org">Health with Bec, Australia</span>
+                            <span class="tl-date">May 2025 – Mar 2026</span>
+                        </div>
+                        <div class="tl-desc">
+                            <!-- Short preview -->
+                            <div class="tl-short">
+                                <p>Facebook Group moderation &amp; administration, plus customer support via Intercom — handling member screenings, rule enforcement, access/login troubleshooting, membership cancellations, and start date adjustments for a health &amp; weight loss eCommerce company.</p>
+                            </div>
+                            <!-- Full content (hidden initially) -->
+                            <div class="tl-full" style="display:none;">
+                                <p><strong>Core Deliverables &amp; Services</strong></p>
+
+                                <div class="sub-section">A. Facebook Group Moderation &amp; Administration</div>
+                                <ul>
+                                    <li><strong>Member Request Screenings:</strong> Review and process pending Facebook group membership requests daily.</li>
+                                    <li><strong>Rule Enforcement:</strong> Validate applicants against predefined group entry questions and criteria.</li>
+                                    <li><strong>Spam Prevention:</strong> Monitor the queue to filter out promotional or non-compliant accounts prior to approval.</li>
+                                </ul>
+
+                                <div class="sub-section">B. Customer Support Services (via Intercom)</div>
+                                <ul>
+                                    <li><strong>Inbound Ticket Triage:</strong> Manage and resolve incoming customer queries through the Intercom platform.</li>
+                                    <li><strong>Access &amp; Login Troubleshooting:</strong> Assist users experiencing credential errors, password reset issues, and general account access barriers.</li>
+                                    <li><strong>Membership Cancellations:</strong> Process subscription cancellation requests efficiently and professionally, adhering strictly to the company's retention or refund policies.</li>
+                                    <li><strong>Start Date Adjustments:</strong> Handle member requests regarding program start date changes.</li>
+                                </ul>
+                            </div>
+                            <button class="read-more-btn" onclick="toggleReadMore(this)">Read More ↓</button>
+                        </div>
+                    </div>
+
                     <div class="timeline-item"><div class="tl-header"><span class="tl-title">🏗️ Project Manager – Resort Construction & Management</span><span class="tl-org">Arcadia Resorts, Laguna</span><span class="tl-date">Nov 2025 – Present</span></div><div class="tl-desc">Lead full lifecycle of resort projects.</div></div>
                     <div class="timeline-item"><div class="tl-header"><span class="tl-title">👥 Customer Support Team Lead</span><span class="tl-org">Zoomo</span><span class="tl-date">Jan 2024 – Present</span></div><div class="tl-desc">Led support teams, escalation management.</div></div>
                     <div id="showMoreContainer"><button id="showMoreBtn" class="btn btn-outline" onclick="toggleMoreExperience()" aria-expanded="false">📋 Show More Experience <span id="showMoreArrow">↓</span></button></div>
