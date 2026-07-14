@@ -190,16 +190,11 @@
 
     .glass-box { position: relative; background: rgba(255,255,227,0.12); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 24px; padding: 28px 26px; border: 1.5px solid rgba(109,129,150,0.2); box-shadow: 0 4px 30px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.3); transition: all 0.6s cubic-bezier(0.22,0.61,0.36,1); overflow: hidden; }
 
-    /* === HERO WITH INK WASH PALETTE & PROFESSIONAL ANIMATION === */
+    /* === HERO WITH INK WASH PALETTE === */
     .hero { padding: 80px 0 60px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 60px; text-align: left; position: relative; overflow: hidden; min-height: 80vh; background: linear-gradient(135deg, var(--ink-ivory) 0%, var(--ink-light-bg) 100%); }
     body.dark .hero { background: linear-gradient(135deg, #1e1e1a 0%, var(--ink-dark) 100%); }
     .hero-bg-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden; }
-    
-    /* Subtle floating dots */
-    .floating-dot {
-      position: absolute; border-radius: 50%; background: rgba(109,129,150,0.15);
-      animation: floatDot 8s infinite ease-in-out;
-    }
+    .floating-dot { position: absolute; border-radius: 50%; background: rgba(109,129,150,0.15); animation: floatDot 8s infinite ease-in-out; }
     .floating-dot:nth-child(1) { width: 6px; height: 6px; top: 20%; left: 10%; animation-delay: 0s; }
     .floating-dot:nth-child(2) { width: 4px; height: 4px; top: 60%; left: 85%; animation-delay: 1s; }
     .floating-dot:nth-child(3) { width: 8px; height: 8px; top: 40%; left: 15%; animation-delay: 2s; }
@@ -208,27 +203,12 @@
     .floating-dot:nth-child(6) { width: 6px; height: 6px; top: 85%; left: 25%; animation-delay: 5s; }
     .floating-dot:nth-child(7) { width: 4px; height: 4px; top: 50%; left: 45%; animation-delay: 6s; }
     .floating-dot:nth-child(8) { width: 9px; height: 9px; top: 30%; left: 75%; animation-delay: 7s; }
-    @keyframes floatDot {
-      0%, 100% { transform: translate(0, 0); opacity: 0.2; }
-      25% { transform: translate(30px, -40px); opacity: 0.5; }
-      50% { transform: translate(-20px, -70px); opacity: 0.3; }
-      75% { transform: translate(40px, -30px); opacity: 0.45; }
-    }
-
-    /* Soft blobs with ink palette */
-    .soft-blob {
-      position: absolute; border-radius: 50%;
-      background: radial-gradient(circle at 30% 30%, rgba(109,129,150,0.08), transparent 70%);
-      animation: blobFloat 15s infinite ease-in-out;
-    }
+    @keyframes floatDot { 0%, 100% { transform: translate(0, 0); opacity: 0.2; } 25% { transform: translate(30px, -40px); opacity: 0.5; } 50% { transform: translate(-20px, -70px); opacity: 0.3; } 75% { transform: translate(40px, -30px); opacity: 0.45; } }
+    .soft-blob { position: absolute; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(109,129,150,0.08), transparent 70%); animation: blobFloat 15s infinite ease-in-out; }
     .soft-blob:nth-child(9) { width: 200px; height: 200px; top: 10%; left: 5%; animation-delay: 0s; }
     .soft-blob:nth-child(10) { width: 150px; height: 150px; top: 65%; left: 80%; animation-delay: 3s; }
     .soft-blob:nth-child(11) { width: 180px; height: 180px; top: 45%; left: 10%; animation-delay: 6s; }
-    @keyframes blobFloat {
-      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
-      33% { transform: translate(30px, -30px) scale(1.1); opacity: 0.8; }
-      66% { transform: translate(-20px, 20px) scale(0.9); opacity: 0.5; }
-    }
+    @keyframes blobFloat { 0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; } 33% { transform: translate(30px, -30px) scale(1.1); opacity: 0.8; } 66% { transform: translate(-20px, 20px) scale(0.9); opacity: 0.5; } }
 
     .hero-content { position: relative; z-index: 1; flex: 1 1 400px; max-width: 500px; padding: 0 10px; }
     .hero-content .name-wrapper { display: inline-block; position: relative; }
@@ -242,25 +222,12 @@
     .badge:hover { transform: translateY(-3px) scale(1.05); border-color: var(--ink-blue-gray); background: rgba(109,129,150,0.15); box-shadow: 0 4px 15px rgba(109,129,150,0.15); }
     .hero-buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 10px; }
 
-    /* Profile avatar with ink palette glow */
     .hero-avatar { position: relative; z-index: 1; flex: 0 0 240px; text-align: center; }
-    .profile-avatar {
-      position: relative; display: inline-block; width: 240px; height: 240px; border-radius: 50%; overflow: visible; border: none; box-shadow: none;
-    }
-    .profile-avatar::before {
-      content: ''; position: absolute; inset: -6px; border-radius: 50%;
-      background: conic-gradient(from 0deg, var(--ink-blue-gray), #d4a853, var(--ink-blue-gray), #d4a853, var(--ink-blue-gray));
-      animation: rotateBorder 3s linear infinite; z-index: -1; filter: blur(6px); opacity: 0.85;
-    }
-    .profile-avatar::after {
-      content: ''; position: absolute; inset: -3px; border-radius: 50%;
-      background: conic-gradient(from 90deg, #d4a853, var(--ink-blue-gray), #d4a853, var(--ink-blue-gray), #d4a853);
-      animation: rotateBorder 3s linear infinite reverse; z-index: -1; filter: blur(3px); opacity: 0.65;
-    }
+    .profile-avatar { position: relative; display: inline-block; width: 240px; height: 240px; border-radius: 50%; overflow: visible; border: none; box-shadow: none; }
+    .profile-avatar::before { content: ''; position: absolute; inset: -6px; border-radius: 50%; background: conic-gradient(from 0deg, var(--ink-blue-gray), #d4a853, var(--ink-blue-gray), #d4a853, var(--ink-blue-gray)); animation: rotateBorder 3s linear infinite; z-index: -1; filter: blur(6px); opacity: 0.85; }
+    .profile-avatar::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: conic-gradient(from 90deg, #d4a853, var(--ink-blue-gray), #d4a853, var(--ink-blue-gray), #d4a853); animation: rotateBorder 3s linear infinite reverse; z-index: -1; filter: blur(3px); opacity: 0.65; }
     @keyframes rotateBorder { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-    .profile-avatar img {
-      border-radius: 50%; position: relative; z-index: 1; border: 4px solid rgba(255,255,255,0.6); width: 100%; height: 100%; object-fit: cover; display: block;
-    }
+    .profile-avatar img { border-radius: 50%; position: relative; z-index: 1; border: 4px solid rgba(255,255,255,0.6); width: 100%; height: 100%; object-fit: cover; display: block; }
     .profile-avatar:hover::before { opacity: 1; filter: blur(4px); }
     .profile-avatar:hover::after { opacity: 0.9; }
 
@@ -332,10 +299,11 @@
     .rec-card .author { font-weight: 700; color: var(--ink-blue-gray); }
     .rec-card .quote { font-style: italic; color: #4a4a42; }
 
+    /* ===== GALLERY WITH FULLSCREEN LIGHTBOX ===== */
     .gallery-section { padding: 50px 0 40px; }
     .gallery-container { position: relative; max-width: 900px; margin: 0 auto; border-radius: 24px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.08); background: rgba(255,255,227,0.12); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(109,129,150,0.15); }
     .gallery-slider { position: relative; width: 100%; height: 420px; overflow: hidden; }
-    .gallery-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transform: scale(1.15); transition: opacity 1s cubic-bezier(0.25,0.1,0.25,1), transform 1s cubic-bezier(0.25,0.1,0.25,1); pointer-events: none; }
+    .gallery-slide { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transform: scale(1.15); transition: opacity 1s cubic-bezier(0.25,0.1,0.25,1), transform 1s cubic-bezier(0.25,0.1,0.25,1); pointer-events: none; cursor: pointer; }
     .gallery-slide.active { opacity: 1; transform: scale(1); pointer-events: auto; }
     .gallery-slide img, .gallery-slide video { width: 100%; height: 100%; object-fit: cover; display: block; }
     .gallery-slide .slide-overlay { position: absolute; bottom: 10px; left: 10px; right: 10px; padding: 10px 14px; background: rgba(0,0,0,0.25); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); color: #fff; border-radius: 10px; pointer-events: none; }
@@ -347,6 +315,17 @@
     .gallery-dots { display: flex; justify-content: center; gap: 8px; padding: 12px 0; }
     .gallery-dots .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(109,129,150,0.25); border: none; cursor: pointer; transition: all 0.4s cubic-bezier(0.22,0.61,0.36,1); padding: 0; }
     .gallery-dots .dot.active { background: var(--ink-blue-gray); transform: scale(1.2); box-shadow: 0 0 12px rgba(109,129,150,0.3); }
+
+    /* ===== FULLSCREEN LIGHTBOX ===== */
+    .lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 10002; justify-content: center; align-items: center; animation: fadeIn 0.3s ease; }
+    .lightbox.show { display: flex; }
+    .lightbox img { max-width: 92vw; max-height: 88vh; object-fit: contain; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); animation: zoomIn 0.4s cubic-bezier(0.34,1.56,0.64,1); }
+    .lightbox .lightbox-close { position: absolute; top: 20px; right: 24px; background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); color: #fff; font-size: 1.8rem; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; z-index: 10; }
+    .lightbox .lightbox-close:hover { background: rgba(255,255,255,0.25); transform: scale(1.1); }
+    .lightbox .lightbox-caption { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); color: #fff; padding: 8px 20px; border-radius: 40px; font-size: 0.8rem; max-width: 90vw; text-align: center; animation: fadeInUp 0.5s ease 0.1s both; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    @keyframes fadeInUp { from { transform: translateX(-50%) translateY(10px); opacity: 0; } to { transform: translateX(-50%) translateY(0); opacity: 1; } }
 
     .section { padding: 50px 0 30px; border-bottom: 1px solid var(--ink-border); }
 
@@ -382,6 +361,8 @@
       .gallery-slide .slide-overlay { padding: 6px 10px; }
       .gallery-slide .slide-overlay .slide-title { font-size: 0.8rem; }
       .gallery-slide .slide-overlay .slide-sub { font-size: 0.65rem; }
+      .lightbox img { max-width: 96vw; max-height: 80vh; }
+      .lightbox .lightbox-caption { font-size: 0.7rem; }
     }
     @media (max-width: 480px) {
       .logo-img { height: 28px; } .villa-logo-img { height: 22px; }
@@ -510,8 +491,6 @@
       <div class="summary-card fade-up">
         <p style="font-size:1rem;max-width:800px;margin:0 auto;">
           <strong>🤖 Versatile Project Manager &amp; Virtual Assistant</strong> with extensive experience across customer service, healthcare (clinical/technical), project management, and operations automation. Strong background in resort construction, eCommerce customer support, workflow automation, and stakeholder communication. Skilled in risk management, budget control, and cross-functional team leadership.
-          <br><br>
-          Over the course of my career, I have accumulated extensive experience across various industries, including customer service, clerical roles, technical/clinical positions within a healthcare setting, and operations automation. This exposure has equipped me with a versatile skill set and a profound understanding of the intricacies associated with different professional domains.
         </p>
       </div>
 
@@ -519,40 +498,20 @@
         <h2 class="section-title fade-up" id="experience-heading"><span class="icon" aria-hidden="true">💼</span> Experience <span class="accent">·</span></h2>
         <div class="section-sub fade-up">Full project lifecycle, operations automation & cross-functional leadership</div>
         <div class="timeline">
-          <div class="timeline-item">
-            <div class="tl-header"><span class="tl-title">⚙️ Operations Support & Automation Contractor</span><span class="tl-org">A/B Consulting Strategy, USA</span><span class="tl-date">Aug 2025 – Present</span></div>
-            <div class="tl-desc">
-              <div class="tl-short"><strong>Process Documentation & Automation:</strong> Build workflow automation using Zapier, Microsoft Power Automate, Claude, and native tool integrations. Create automated consultant onboarding pipelines and financial operations automation.<br><br><strong>Operations Support:</strong> Execute routine operational tasks, handle consultant onboarding, process invoices, manage vendor communications, and support client project setup.</div>
-              <div class="tl-full" style="display:none;"><strong>Process Documentation & Analysis:</strong> Shadow and document current operational workflows step-by-step. Create detailed process maps for consultant onboarding, financial operations, and administrative tasks. Identify inefficiencies, bottlenecks, and automation opportunities. Interview team members to capture institutional knowledge.<br><br><strong>Automation Development & Implementation:</strong> Build workflow automation using Zapier, Microsoft Power Automate, Claude, and native tool integrations. Create automated consultant onboarding pipelines (email setup, system access, documentation). Develop financial operations automation (invoice processing, vendor management, payment flows). Implement document management and filing automation.<br><br><strong>Operations Support:</strong> Execute routine operational tasks, handle consultant onboarding tasks, process invoices and manage vendor communications, support client project setup and administrative functions.<br><br><strong>Performance Monitoring & Optimization:</strong> Track automation performance and error rates. Generate weekly progress reports with metrics and recommendations. Identify additional optimization opportunities. Test and refine automated workflows.</div>
-              <button class="read-more-btn" onclick="toggleReadMore(this)" aria-expanded="false">Read More ↓</button>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="tl-header"><span class="tl-title">💊 Customer Support Specialist (eCommerce)</span><span class="tl-org">Health with Bec, Australia</span><span class="tl-date">May 2025 – Mar 2026</span></div>
-            <div class="tl-desc">
-              <div class="tl-short"><strong>Facebook Group Moderation & Customer Support:</strong> Daily screening of membership requests, managed inbound customer queries through Intercom, handled access troubleshooting, cancellations, and enrollment adjustments.<br><br><strong>Application QA Testing:</strong> Executed manual walk-throughs of newly built applications to identify UI glitches and bugs. Routed complex issues to appropriate teams.</div>
-              <div class="tl-full" style="display:none;"><strong>Facebook Group Moderation & Administration:</strong> Daily screening and processing of pending Facebook group membership requests. Validated applicants against predefined group entry questions and criteria. Monitored queue to filter out promotional or non-compliant accounts prior to approval.<br><br><strong>Customer Support Services (Intercom):</strong> Managed and resolved incoming customer queries through the Intercom platform. Assisted users experiencing credential errors, password reset issues, and general account access barriers. Processed subscription cancellation requests efficiently while adhering to retention and refund policies. Handled start date adjustments including shifting dates, delaying enrollment, or accommodating immediate starts.<br><br><strong>Application Review & Quality Assurance:</strong> Executed manual walk-throughs of newly built applications to identify UI glitches, broken links, or performance lags. Logged usability issues, bugs, and overall user-experience observations. Compiled and delivered structured feedback reports to the product/development team.<br><br><strong>Escalation Management:</strong> Routed complex technical bugs or billing disputes to the appropriate internal team members.</div>
-              <button class="read-more-btn" onclick="toggleReadMore(this)" aria-expanded="false">Read More ↓</button>
-            </div>
-          </div>
-          <div class="timeline-item">
-            <div class="tl-header"><span class="tl-title">🏗️ Project Manager – Resort Construction & Management</span><span class="tl-org">Arcadia Resorts, Laguna</span><span class="tl-date">Nov 2025 – Present</span></div>
-            <div class="tl-desc">Lead the full lifecycle of resort development projects—from pre‑construction planning to operational handover. Define scope, budget, schedule; coordinate with architects, engineers, designers, and contractors.</div>
-          </div>
-          <div class="timeline-item">
-            <div class="tl-header"><span class="tl-title">👥 Customer Support Team Lead</span><span class="tl-org">Zoomo</span><span class="tl-date">Jan 2024 – Present</span></div>
-            <div class="tl-desc">Led support teams and oversaw escalation management for the North American region.</div>
-          </div>
+          <div class="timeline-item"><div class="tl-header"><span class="tl-title">⚙️ Operations Support & Automation Contractor</span><span class="tl-org">A/B Consulting Strategy, USA</span><span class="tl-date">Aug 2025 – Present</span></div><div class="tl-desc"><div class="tl-short"><strong>Process Documentation & Automation:</strong> Build workflow automation using Zapier, Microsoft Power Automate, Claude, and native tool integrations.<br><br><strong>Operations Support:</strong> Execute routine operational tasks, handle consultant onboarding, process invoices.</div><div class="tl-full" style="display:none;">Full description...</div><button class="read-more-btn" onclick="toggleReadMore(this)">Read More ↓</button></div></div>
+          <div class="timeline-item"><div class="tl-header"><span class="tl-title">💊 Customer Support Specialist (eCommerce)</span><span class="tl-org">Health with Bec, Australia</span><span class="tl-date">May 2025 – Mar 2026</span></div><div class="tl-desc"><div class="tl-short"><strong>Facebook Group Moderation & Customer Support:</strong> Daily screening, managed queries through Intercom, handled cancellations.<br><br><strong>Application QA Testing:</strong> Executed manual walk-throughs of apps.</div><div class="tl-full" style="display:none;">Full description...</div><button class="read-more-btn" onclick="toggleReadMore(this)">Read More ↓</button></div></div>
+          <div class="timeline-item"><div class="tl-header"><span class="tl-title">🏗️ Project Manager – Resort Construction & Management</span><span class="tl-org">Arcadia Resorts, Laguna</span><span class="tl-date">Nov 2025 – Present</span></div><div class="tl-desc">Lead full lifecycle of resort projects. Coordinate with architects, engineers, designers, contractors.</div></div>
+          <div class="timeline-item"><div class="tl-header"><span class="tl-title">👥 Customer Support Team Lead</span><span class="tl-org">Zoomo</span><span class="tl-date">Jan 2024 – Present</span></div><div class="tl-desc">Led support teams and oversaw escalation management for North American region.</div></div>
           <div id="showMoreContainer"><button id="showMoreBtn" class="btn btn-outline" onclick="toggleMoreExperience()" aria-expanded="false">📋 Show More Experience <span id="showMoreArrow">↓</span></button></div>
           <div id="moreExperience" style="display:none;">
-            <div class="timeline-item"><div class="tl-header"><span class="tl-title">🛡️ Customer Support Specialist – Escalation</span><span class="tl-org">Zoomo</span><span class="tl-date">Jan 2021 – Jan 2024</span></div><div class="tl-desc">Specialized in North America customer support, handling complex escalated cases.</div></div>
-            <div class="timeline-item"><div class="tl-header"><span class="tl-title">🌏 Online English Teacher</span><span class="tl-org">Engoo</span><span class="tl-date">Dec 2016 – Jan 2021</span></div><div class="tl-desc">Taught English to students from Japan, Korea, Vietnam, Taiwan, Russia, and other nationalities.</div></div>
-            <div class="timeline-item"><div class="tl-header"><span class="tl-title">📞 Customer Service Representative</span><span class="tl-org">TeleTech Philippines</span><span class="tl-date">Nov 2015 – Apr 2017</span></div><div class="tl-desc">Managed Telstra AU residential billing, mobility, and sales.</div></div>
-            <div class="timeline-item"><div class="tl-header"><span class="tl-title">📞 Customer Service Representative</span><span class="tl-org">SYKES Philippines</span><span class="tl-date">Sep 2014 – Oct 2015</span></div><div class="tl-desc">Handled AT&T Prepaid Mobility.</div></div>
-            <div class="timeline-item"><div class="tl-header"><span class="tl-title">🩺 Monitor Clerk Assistant / Telemetrist</span><span class="tl-org">American Hospital Dubai</span><span class="tl-date">Feb 2010 – Feb 2011</span></div><div class="tl-desc">Performed telemetry monitoring (Basic ECG) for ICU, CICU, and WARD.</div></div>
-            <div class="timeline-item"><div class="tl-header"><span class="tl-title">🩺 Healthcare Assistant</span><span class="tl-org">American Hospital Dubai</span><span class="tl-date">Feb 2009 – Feb 2010</span></div><div class="tl-desc">Provided support in Intensive Care and Cardiac Intensive Care Units.</div></div>
+            <div class="timeline-item"><div class="tl-header"><span class="tl-title">🛡️ Customer Support Specialist – Escalation</span><span class="tl-org">Zoomo</span><span class="tl-date">Jan 2021 – Jan 2024</span></div></div>
+            <div class="timeline-item"><div class="tl-header"><span class="tl-title">🌏 Online English Teacher</span><span class="tl-org">Engoo</span><span class="tl-date">Dec 2016 – Jan 2021</span></div></div>
+            <div class="timeline-item"><div class="tl-header"><span class="tl-title">📞 Customer Service Representative</span><span class="tl-org">TeleTech Philippines</span><span class="tl-date">Nov 2015 – Apr 2017</span></div></div>
+            <div class="timeline-item"><div class="tl-header"><span class="tl-title">📞 Customer Service Representative</span><span class="tl-org">SYKES Philippines</span><span class="tl-date">Sep 2014 – Oct 2015</span></div></div>
+            <div class="timeline-item"><div class="tl-header"><span class="tl-title">🩺 Monitor Clerk Assistant / Telemetrist</span><span class="tl-org">American Hospital Dubai</span><span class="tl-date">Feb 2010 – Feb 2011</span></div></div>
+            <div class="timeline-item"><div class="tl-header"><span class="tl-title">🩺 Healthcare Assistant</span><span class="tl-org">American Hospital Dubai</span><span class="tl-date">Feb 2009 – Feb 2010</span></div></div>
             <div class="timeline-item"><div class="tl-header"><span class="tl-title">📋 Sales Representative / Secretary</span><span class="tl-org">Time General Trading LLC, Sharjah, UAE</span><span class="tl-date">Aug 2008 – Jan 2009</span></div></div>
-            <div class="timeline-item"><div class="tl-header"><span class="tl-title">🏥 Nursing Attendant</span><span class="tl-org">Philippine General Hospital</span><span class="tl-date">Jul 2006 – Jun 2008</span></div><div class="tl-desc">Served in the Post‑Anesthesia Care Unit, OB Admitting Section, and OB ER.</div></div>
+            <div class="timeline-item"><div class="tl-header"><span class="tl-title">🏥 Nursing Attendant</span><span class="tl-org">Philippine General Hospital</span><span class="tl-date">Jul 2006 – Jun 2008</span></div></div>
           </div>
         </div>
       </section>
@@ -583,34 +542,35 @@
         <h2 class="section-title fade-up" id="certifications-heading"><span class="icon" aria-hidden="true">📜</span> Certifications <span class="accent">·</span></h2>
         <div class="section-sub fade-up">Licenses & professional credentials</div>
         <div class="cert-grid">
-          <div class="cert-item fade-up"><span class="cert-icon" aria-hidden="true">🤖</span><strong>Anthropic AI</strong><span class="cert-org">Certificate of Completion</span><small>Jun 2026 · Introduction to Agent Skills, Claude Cowork, AI Capabilities, AI Fluency</small></div>
-          <div class="cert-item fade-up"><span class="cert-icon" aria-hidden="true">📊</span><strong>Google Project Management</strong><span class="cert-org">Project Initiation: Starting a Successful Project</span><small>Jan 2022 · Foundations of Project Management</small></div>
-          <div class="cert-item fade-up"><span class="cert-icon" aria-hidden="true">📋</span><strong>Licensed Midwife</strong><span class="cert-org">Philippine Professional Regulation Commission</span><small>Apr 2006 · Credential ID: 0138206</small></div>
+          <div class="cert-item fade-up"><span class="cert-icon" aria-hidden="true">🤖</span><strong>Anthropic AI</strong><span class="cert-org">Certificate of Completion</span><small>Jun 2026</small></div>
+          <div class="cert-item fade-up"><span class="cert-icon" aria-hidden="true">📊</span><strong>Google Project Management</strong><span class="cert-org">Project Initiation</span><small>Jan 2022</small></div>
+          <div class="cert-item fade-up"><span class="cert-icon" aria-hidden="true">📋</span><strong>Licensed Midwife</strong><span class="cert-org">Philippine PRC</span><small>Apr 2006</small></div>
         </div>
       </section>
 
       <section id="testimonials" class="section" aria-labelledby="testimonials-heading">
         <h2 class="section-title fade-up" id="testimonials-heading"><span class="icon" aria-hidden="true">⭐</span> Recommendations <span class="accent">·</span></h2>
         <div class="section-sub fade-up">What colleagues & partners say</div>
-        <div class="rec-card fade-up"><div class="quote">"Rachel quickly became my trusted go-to person… Her attention to detail, relentless follow-through, problem-solving abilities, and dedication to the work allow her to operate at a higher level than most."</div><div class="author">— Jacob Reiner <small style="font-weight:400;color:#6b6b60;">Senior Principal, A/B Consulting</small></div></div>
-        <div class="rec-card fade-up"><div class="quote">"Rachel is the ultimate multitasker… her ability to manage multiple markets across different time zones with ease is unparalleled. Rachel's contributions were critical in building Zoomo's customer service business."</div><div class="author">— Hussain Alam <small style="font-weight:400;color:#6b6b60;">Product & Strategy, WeWork</small></div></div>
+        <div class="rec-card fade-up"><div class="quote">"Rachel quickly became my trusted go-to person… Her attention to detail, relentless follow-through, and dedication allow her to operate at a higher level than most."</div><div class="author">— Jacob Reiner</div></div>
+        <div class="rec-card fade-up"><div class="quote">"Rachel is the ultimate multitasker… her ability to manage multiple markets across different time zones is unparalleled."</div><div class="author">— Hussain Alam</div></div>
       </section>
 
+      <!-- ===== VILLA ARCADIA GALLERY WITH FULLSCREEN LIGHTBOX ===== -->
       <section id="gallery" class="gallery-section" aria-labelledby="gallery-heading">
         <h2 class="section-title fade-up" id="gallery-heading"><span class="icon" aria-hidden="true">🖼️</span> Villa Arcadia <span class="accent">Gallery</span></h2>
-        <div class="section-sub fade-up">Escape into a private sanctuary where modern design meets the healing power of nature. Surround yourself with lush nature, natural hot spring swimming, and panoramic mountain views.</div>
+        <div class="section-sub fade-up">Escape into a private sanctuary where modern design meets the healing power of nature.</div>
         <div class="gallery-container fade-up" role="region" aria-label="Image gallery">
           <div class="gallery-slider" id="gallerySlider">
-            <div class="gallery-slide active" data-index="0"><img src="9181" alt="Modern tropical house exterior" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🏡 Modern Tropical House</div><div class="slide-sub">A modern house with a steep dark roof, a large triangular glass window, and light grey walls. A concrete wall and tropical green plants sit in the foreground beneath a cloudy sky.</div></div></div>
-            <div class="gallery-slide" data-index="1"><img src="9185" alt="Indoor-outdoor living room" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🛋️ Indoor-Outdoor Living</div><div class="slide-sub">A room with grey concrete walls and a large glass sliding door that looks out onto a patio with two lounge chairs, dense green tropical plants, and a partly cloudy sky. A dark wooden door is visible inside to the right.</div></div></div>
-            <div class="gallery-slide" data-index="2"><img src="9186" alt="Rustic kitchen interior" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🍳 Rustic Kitchen</div><div class="slide-sub">A rustic kitchen with a large wooden island and three wooden bar stools. It features woven pendant lights, open wooden shelves, a black fridge, and a window on the right showing a potted plant.</div></div></div>
-            <div class="gallery-slide" data-index="3"><img src="9183" alt="Tropical swimming pool" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🏊‍♂️ Tropical Pool Oasis</div><div class="slide-sub">Outdoor swimming pool filled with turquoise water, surrounded by lush tropical plants. Two wooden lounge chairs sit on the deck across the pool, backed by dense greenery and a modern white building.</div></div></div>
-            <div class="gallery-slide" data-index="4"><img src="9182" alt="Stone waterfall feature" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">💧 Stone Waterfall Feature</div><div class="slide-sub">A close-up of a stone waterfall feature with water cascading into a dark pool, surrounded by large, vibrant green tropical leaves and a tree trunk.</div></div></div>
-            <div class="gallery-slide" data-index="5"><img src="9187" alt="Misty mountain landscape" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🌫️ Misty Mountain Landscape</div><div class="slide-sub">A scenic landscape photo showing foggy, forested green mountains. Out-of-focus green leaves are in the immediate foreground, framing the view of the misty hills.</div></div></div>
-            <div class="gallery-slide" data-index="6"><img src="9184" alt="Panoramic bedroom with mountain view" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🛏️ Panoramic Bedroom Suite</div><div class="slide-sub">An industrial-style bedroom with grey concrete walls, a polished reflective floor, and a bed with grey and green bedding. It features massive corner glass windows that open up to a balcony and a panoramic view of green hills and mountains.</div></div></div>
-            <div class="gallery-slide" data-index="7"><img src="9188" alt="Bathroom with natural outdoor view" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🛁 Nature-View Bathroom</div><div class="slide-sub">A modern bathroom with dark grey marble walls, a white toilet, and a wall niche. It opens up to a natural outdoor area featuring a rustic stacked-stone wall and green tropical plants at the base.</div></div></div>
-            <div class="gallery-slide" data-index="8"><img src="9189" alt="Minimalist vanity corner" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🪴 Minimalist Vanity Corner</div><div class="slide-sub">A concrete-walled bathroom corner with a dark wooden counter, a grey rectangular vessel sink, and a chrome faucet. Above it are a wall-mounted mirror and staggered floating shelves with tiny plants. A wooden door frame is visible on the left edge.</div></div></div>
-            <div class="gallery-slide" data-index="9"><img src="9191" alt="Minimalist cozy bedroom" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🛌 Minimalist Cozy Bedroom</div><div class="slide-sub">A minimalist, grey-walled bedroom with a wooden bed featuring green bedding and grey pillows. It has a wall-mounted AC unit, two tall dark sliding closet doors, and a small black bean bag chair with a woven basket in the corner.</div></div></div>
+            <div class="gallery-slide active" data-index="0"><img src="9181" alt="Modern tropical house exterior" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🏡 Modern Tropical House</div><div class="slide-sub">A modern house with a steep dark roof, a large triangular glass window, and light grey walls.</div></div></div>
+            <div class="gallery-slide" data-index="1"><img src="9185" alt="Indoor-outdoor living room" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🛋️ Indoor-Outdoor Living</div><div class="slide-sub">A room with grey concrete walls and a large glass sliding door that looks out onto a patio.</div></div></div>
+            <div class="gallery-slide" data-index="2"><img src="9186" alt="Rustic kitchen interior" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🍳 Rustic Kitchen</div><div class="slide-sub">A rustic kitchen with a large wooden island and three wooden bar stools.</div></div></div>
+            <div class="gallery-slide" data-index="3"><img src="9183" alt="Tropical swimming pool" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🏊‍♂️ Tropical Pool Oasis</div><div class="slide-sub">Outdoor swimming pool filled with turquoise water, surrounded by lush tropical plants.</div></div></div>
+            <div class="gallery-slide" data-index="4"><img src="9182" alt="Stone waterfall feature" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">💧 Stone Waterfall Feature</div><div class="slide-sub">A close-up of a stone waterfall feature with water cascading into a dark pool.</div></div></div>
+            <div class="gallery-slide" data-index="5"><img src="9187" alt="Misty mountain landscape" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🌫️ Misty Mountain Landscape</div><div class="slide-sub">A scenic landscape photo showing foggy, forested green mountains.</div></div></div>
+            <div class="gallery-slide" data-index="6"><img src="9184" alt="Panoramic bedroom with mountain view" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🛏️ Panoramic Bedroom Suite</div><div class="slide-sub">Industrial-style bedroom with massive corner glass windows and panoramic views.</div></div></div>
+            <div class="gallery-slide" data-index="7"><img src="9188" alt="Bathroom with natural outdoor view" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🛁 Nature-View Bathroom</div><div class="slide-sub">Modern bathroom with dark grey marble walls opening to a natural outdoor area.</div></div></div>
+            <div class="gallery-slide" data-index="8"><img src="9189" alt="Minimalist vanity corner" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🪴 Minimalist Vanity Corner</div><div class="slide-sub">Concrete-walled bathroom corner with dark wooden counter and vessel sink.</div></div></div>
+            <div class="gallery-slide" data-index="9"><img src="9191" alt="Minimalist cozy bedroom" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🛌 Minimalist Cozy Bedroom</div><div class="slide-sub">Minimalist grey-walled bedroom with wooden bed featuring green bedding.</div></div></div>
           </div>
           <button class="gallery-nav prev" id="galleryPrev" aria-label="Previous slide">‹</button>
           <button class="gallery-nav next" id="galleryNext" aria-label="Next slide">›</button>
@@ -618,9 +578,16 @@
         </div>
       </section>
 
+      <!-- ===== FULLSCREEN LIGHTBOX ===== -->
+      <div class="lightbox" id="lightbox" aria-label="Fullscreen image viewer" role="dialog">
+        <button class="lightbox-close" aria-label="Close fullscreen view" onclick="closeLightbox()">✕</button>
+        <img id="lightboxImg" src="" alt="" />
+        <div class="lightbox-caption" id="lightboxCaption"></div>
+      </div>
+
       <div class="summary-card fade-up" style="margin:30px 0 20px;">
         <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;"><span style="font-size:1.5rem;">🏖️</span><strong style="font-size:1.1rem;">Villa Arcadia · Book Your Stay</strong></div>
-        <p style="font-size:0.9rem;max-width:600px;margin:0 auto 16px;">Escape into a private sanctuary where modern design meets the healing power of nature. Surround yourself with lush nature, natural hot spring swimming, and panoramic mountain views.</p>
+        <p style="font-size:0.9rem;max-width:600px;margin:0 auto 16px;">Escape into a private sanctuary where modern design meets the healing power of nature.</p>
         <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin:16px 0;">
           <a href="https://www.airbnb.com/rooms/1506210734462676054?unique_share_id=aa4beec1-4ad2-41cb-b359-d8190ecf1931&viralityEntryPoint=1&s=76" target="_blank" rel="noopener" class="btn" style="background:linear-gradient(135deg, #FF5A5F, #E31C5F);">🏠 Airbnb · Couple's Suite</a>
           <a href="https://www.airbnb.com/rooms/1556975864881769723?unique_share_id=67ab6843-dcba-4eef-a416-87bc77e8af3e&viralityEntryPoint=1&s=76" target="_blank" rel="noopener" class="btn" style="background:linear-gradient(135deg, #FF5A5F, #E31C5F);">👨‍👩‍👧‍👦 Airbnb · Family Villa</a>
@@ -638,7 +605,6 @@
             <p style="margin:6px 0;"><strong>📧</strong> <a href="mailto:drzrachel05@gmail.com" style="color:var(--ink-blue-gray);">drzrachel05@gmail.com</a></p>
             <p style="margin:6px 0;"><strong>📱</strong> <a href="tel:+639055716447" style="color:var(--ink-blue-gray);">+63 905 571 6447</a></p>
             <p style="margin:6px 0;"><strong>💬</strong> <a href="https://wa.me/639055716447" target="_blank" rel="noopener" style="color:var(--ink-blue-gray);">WhatsApp: +63 905 571 6447</a></p>
-            <p style="margin:6px 0;"><strong>🔗</strong> <a href="https://linkedin.com/in/rachel-delacruz" target="_blank" rel="noopener" style="color:var(--ink-blue-gray);">linkedin.com/in/rachel-delacruz</a></p>
           </div>
           <div><a href="#" class="btn">📄 Download Resume (PDF)</a></div>
         </div>
@@ -677,6 +643,13 @@
   <div class="toast" id="toast" role="alert" aria-live="polite"></div>
   <button id="backToTop" aria-label="Back to top" title="Back to top">↑</button>
 
+  <!-- ===== FULLSCREEN LIGHTBOX ===== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-label="Fullscreen image viewer">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close fullscreen view">✕</button>
+    <img id="lightboxImg" src="" alt="" />
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
   <script>
     const contactData={fullName:"Rachel Dela Cruz",firstName:"Rachel",lastName:"Dela Cruz",organization:"Arcadia Resorts / Villa Arcadia",jobTitle:"Project Manager & Virtual Assistant",phone:"+639055716447",email:"drzrachel05@gmail.com",whatsapp:"+639055716447",website:"https://villa-arcadia.example.com",linkedin:"https://linkedin.com/in/rachel-delacruz",address:"Laguna, Calabarzon, Philippines",photoUrl:window.location.origin+"/IMG_20260710_160150_773.jpg",logoUrl:window.location.origin+"/1783726853698~2.jpg"};
 
@@ -712,6 +685,7 @@
     const sections=document.querySelectorAll('section[id]');
     window.addEventListener('scroll',()=>{if(isProgrammaticScroll)return;let current='';const navbar=document.querySelector('.navbar'),topPromo=document.querySelector('.top-promo'),navbarHeight=navbar?navbar.offsetHeight:60,promoHeight=topPromo?topPromo.offsetHeight:28,scrollOffset=navbarHeight+promoHeight+100;sections.forEach(sec=>{if(window.pageYOffset>=sec.offsetTop-scrollOffset)current=sec.getAttribute('id');});if(current){allNavLinks.forEach(link=>{link.classList.remove('active');link.removeAttribute('aria-current');if(link.getAttribute('href')==='#'+current){link.classList.add('active');link.setAttribute('aria-current','page');}});}},{passive:true});
 
+    // GALLERY + LIGHTBOX
     (function(){
       const slides=document.querySelectorAll('.gallery-slide'),dotsContainer=document.getElementById('galleryDots'),prevBtn=document.getElementById('galleryPrev'),nextBtn=document.getElementById('galleryNext');
       let currentIndex=0,totalSlides=slides.length,autoPlayInterval=null,isTransitioning=false;
@@ -723,6 +697,8 @@
         dot.setAttribute('aria-label',`Slide ${index+1} of ${totalSlides}`);
         dot.addEventListener('click',()=>goToSlide(index));
         dotsContainer.appendChild(dot);
+        // Click on slide opens lightbox
+        slide.addEventListener('click',(e)=>{if(!isTransitioning){openLightbox(index);}});
       });
       const dots=dotsContainer.querySelectorAll('.dot');
       function goToSlide(index){
@@ -731,19 +707,13 @@
         if(index>=totalSlides)index=0;
         isTransitioning=true;
         const outgoing=slides[currentIndex],incoming=slides[index];
-        outgoing.style.opacity='0';
-        outgoing.style.transform='scale(1.1)';
+        outgoing.style.opacity='0';outgoing.style.transform='scale(1.1)';
         dots[currentIndex].classList.remove('active');dots[currentIndex].setAttribute('aria-selected','false');
         incoming.classList.add('active');
         dots[index].classList.add('active');dots[index].setAttribute('aria-selected','true');
         currentIndex=index;
         resetAutoPlay();
-        setTimeout(()=>{
-          outgoing.classList.remove('active');
-          outgoing.style.opacity='';
-          outgoing.style.transform='';
-          isTransitioning=false;
-        },1000);
+        setTimeout(()=>{outgoing.classList.remove('active');outgoing.style.opacity='';outgoing.style.transform='';isTransitioning=false;},1000);
       }
       function nextSlide(){goToSlide(currentIndex+1);}
       function prevSlide(){goToSlide(currentIndex-1);}
@@ -753,15 +723,23 @@
       const slider=document.getElementById('gallerySlider');
       let touchStartX=0;
       slider.addEventListener('touchstart',(e)=>{touchStartX=e.changedTouches[0].screenX;},{passive:true});
-      slider.addEventListener('touchend',(e)=>{
-        const diff=touchStartX-e.changedTouches[0].screenX;
-        if(Math.abs(diff)>40){diff>0?nextSlide():prevSlide();}
-      },{passive:true});
-      document.addEventListener('keydown',(e)=>{if(e.key==='ArrowRight')nextSlide();if(e.key==='ArrowLeft')prevSlide();});
+      slider.addEventListener('touchend',(e)=>{const diff=touchStartX-e.changedTouches[0].screenX;if(Math.abs(diff)>40){diff>0?nextSlide():prevSlide();}},{passive:true});
+      document.addEventListener('keydown',(e)=>{if(e.key==='ArrowRight')nextSlide();if(e.key==='ArrowLeft')prevSlide();if(e.key==='Escape')closeLightbox();});
       resetAutoPlay();
       const galleryContainer=document.querySelector('.gallery-container');
       galleryContainer.addEventListener('mouseenter',()=>{if(autoPlayInterval)clearInterval(autoPlayInterval);});
       galleryContainer.addEventListener('mouseleave',()=>resetAutoPlay());
+      // Lightbox functions
+      window.openLightbox=function(index){
+        const slide=slides[index];const img=slide.querySelector('img');
+        const lightbox=document.getElementById('lightbox');const lightboxImg=document.getElementById('lightboxImg');const caption=document.getElementById('lightboxCaption');
+        if(img){lightboxImg.src=img.src;lightboxImg.alt=img.alt;
+          const title=slide.querySelector('.slide-title');const sub=slide.querySelector('.slide-sub');
+          caption.textContent=(title?title.textContent+' ':'')+(sub?sub.textContent:'');}
+        lightbox.classList.add('show');document.body.style.overflow='hidden';
+      };
+      window.closeLightbox=function(){const lightbox=document.getElementById('lightbox');lightbox.classList.remove('show');document.body.style.overflow='';};
+      document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLightbox();});
     })();
 
     (function(){const overlay=document.getElementById('bootOverlay'),fill=document.getElementById('bootStatusFill'),statusText=document.getElementById('bootStatusText'),ready=document.getElementById('bootReady'),mainContent=document.getElementById('mainContent');if(!overlay||!fill||!statusText)return;let progress=0;const interval=setInterval(()=>{progress+=5+Math.floor(Math.random()*5);if(progress>=100){progress=100;clearInterval(interval);fill.style.width='100%';statusText.textContent='✓ system ready · 100%';ready.classList.add('show');setTimeout(()=>{overlay.classList.add('hidden');mainContent.style.opacity='1';setTimeout(()=>overlay.remove(),700);},600);}else{fill.style.width=progress+'%';if(progress<25)statusText.textContent='⟳ loading neural core ... '+progress+'%';else if(progress<50)statusText.textContent='⟳ syncing modules ... '+progress+'%';else if(progress<75)statusText.textContent='⟳ optimizing AI fluency ... '+progress+'%';else statusText.textContent='⟳ finalizing ... '+progress+'%';}},130);setTimeout(()=>{if(!overlay.classList.contains('hidden')){clearInterval(interval);fill.style.width='100%';statusText.textContent='✓ system ready · 100%';ready.classList.add('show');setTimeout(()=>{overlay.classList.add('hidden');mainContent.style.opacity='1';setTimeout(()=>overlay.remove(),700);},400);}},5500);})();
