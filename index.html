@@ -190,63 +190,63 @@
 
     .glass-box { position: relative; background: rgba(255,255,227,0.12); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 24px; padding: 28px 26px; border: 1.5px solid rgba(109,129,150,0.2); box-shadow: 0 4px 30px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.3); transition: all 0.6s cubic-bezier(0.22,0.61,0.36,1); overflow: hidden; }
 
-    /* HERO WITH CLEAR BACKGROUND ANIMATIONS */
-    .hero { padding: 60px 0 50px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 40px; text-align: center; position: relative; overflow: hidden; }
+    /* === HERO SECTION WITH PROFESSIONAL ANIMATION === */
+    .hero { padding: 60px 0 50px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 40px; text-align: center; position: relative; overflow: hidden; min-height: 70vh; background: linear-gradient(135deg, #fdfdf5 0%, #f5f5e9 100%); }
+    body.dark .hero { background: linear-gradient(135deg, #1e1e1a 0%, #1a1a16 100%); }
     .hero-bg-canvas {
-      position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
-      pointer-events: none; overflow: hidden;
-      background: radial-gradient(circle at 50% 50%, rgba(109,129,150,0.06) 0%, transparent 70%);
-      animation: canvasPulse 6s ease-in-out infinite alternate;
-    }
-    @keyframes canvasPulse {
-      0% { background-size: 100% 100%; opacity: 0.8; }
-      100% { background-size: 120% 120%; opacity: 1; }
-    }
-    .hero-bg-canvas .grid-line {
-      background: rgba(109, 129, 150, 0.25);
-    }
-    @keyframes gridPulse {
-      0%, 100% { opacity: 0.4; }
-      50% { opacity: 1; }
-    }
-    .hero-bg-canvas .grid-line.horizontal { width: 100%; height: 1px; left: 0; animation: gridPulse 4s ease-in-out infinite; }
-    .hero-bg-canvas .grid-line.vertical { height: 100%; width: 1px; top: 0; animation: gridPulse 4s ease-in-out infinite 0.5s; }
-    .hero-bg-canvas .grid-line:nth-child(1) { top: 15%; } .hero-bg-canvas .grid-line:nth-child(2) { top: 45%; } .hero-bg-canvas .grid-line:nth-child(3) { top: 75%; }
-    .hero-bg-canvas .grid-line:nth-child(4) { left: 20%; } .hero-bg-canvas .grid-line:nth-child(5) { left: 50%; } .hero-bg-canvas .grid-line:nth-child(6) { left: 80%; }
-
-    .hero-bg-canvas .data-particle {
-      width: 8px; height: 8px;
-      background: rgba(109, 129, 150, 0.6);
-      box-shadow: 0 0 12px rgba(109, 129, 150, 0.5);
-      animation: particleDrift 8s ease-in-out infinite;
-      will-change: transform, opacity;
-    }
-    .hero-bg-canvas .data-particle:nth-child(7) { top: 10%; left: 5%; animation-delay: 0s; }
-    .hero-bg-canvas .data-particle:nth-child(8) { top: 30%; left: 85%; animation-delay: 1.2s; }
-    .hero-bg-canvas .data-particle:nth-child(9) { top: 60%; left: 10%; animation-delay: 2.4s; }
-    .hero-bg-canvas .data-particle:nth-child(10) { top: 80%; left: 90%; animation-delay: 0.6s; }
-    .hero-bg-canvas .data-particle:nth-child(11) { top: 20%; left: 50%; animation-delay: 1.8s; }
-    .hero-bg-canvas .data-particle:nth-child(12) { top: 70%; left: 40%; animation-delay: 3s; }
-    @keyframes particleDrift {
-      0%, 100% { transform: translate(0,0) scale(1); opacity: 0.5; }
-      25% { transform: translate(40px,-50px) scale(1.5); opacity: 1; }
-      50% { transform: translate(-30px,-80px) scale(0.7); opacity: 0.6; }
-      75% { transform: translate(50px,-30px) scale(1.3); opacity: 0.9; }
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden;
     }
 
-    .hero-bg-canvas .code-snippet {
-      font-size: 0.85rem;
-      color: rgba(109, 129, 150, 0.3);
-      animation: codeFloat 12s ease-in-out infinite;
-      text-shadow: 0 0 8px rgba(109,129,150,0.2);
+    /* Floating geometric shapes */
+    .floating-shape {
+      position: absolute; border-radius: 50%; opacity: 0.25; will-change: transform;
+      background: radial-gradient(circle at 30% 30%, var(--ink-blue-gray), transparent 70%);
+      animation: floatShape 12s infinite ease-in-out;
     }
-    .hero-bg-canvas .code-snippet:nth-child(13) { top: 5%; left: 2%; animation-delay: 0s; }
-    .hero-bg-canvas .code-snippet:nth-child(14) { top: 50%; left: 70%; animation-delay: -6s; }
-    .hero-bg-canvas .code-snippet:nth-child(15) { top: 85%; left: 15%; animation-delay: -12s; }
-    .hero-bg-canvas .code-snippet:nth-child(16) { top: 25%; left: 80%; animation-delay: -18s; }
-    @keyframes codeFloat {
-      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
-      50% { transform: translateY(-30px) rotate(3deg); opacity: 1; }
+    .floating-shape:nth-child(1) { width: 120px; height: 120px; top: 10%; left: 5%; animation-delay: 0s; }
+    .floating-shape:nth-child(2) { width: 80px; height: 80px; top: 60%; left: 85%; animation-delay: 2s; }
+    .floating-shape:nth-child(3) { width: 100px; height: 100px; top: 40%; left: 15%; animation-delay: 4s; }
+    .floating-shape:nth-child(4) { width: 60px; height: 60px; top: 80%; left: 75%; animation-delay: 6s; }
+    .floating-shape:nth-child(5) { width: 90px; height: 90px; top: 20%; left: 50%; animation-delay: 8s; }
+    .floating-shape:nth-child(6) { width: 70px; height: 70px; top: 70%; left: 30%; animation-delay: 10s; }
+
+    @keyframes floatShape {
+      0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.2; }
+      25% { transform: translate(30px, -40px) scale(1.2); opacity: 0.4; }
+      50% { transform: translate(-20px, -70px) scale(0.9); opacity: 0.3; }
+      75% { transform: translate(40px, -30px) scale(1.1); opacity: 0.35; }
+    }
+
+    /* Glowing tech grid */
+    .tech-grid {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background-image: 
+        linear-gradient(rgba(109,129,150,0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(109,129,150,0.15) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridMove 20s linear infinite;
+    }
+    @keyframes gridMove {
+      0% { transform: translate(0,0); }
+      100% { transform: translate(60px,60px); }
+    }
+
+    /* Glowing nodes on the grid */
+    .grid-node {
+      position: absolute; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--ink-blue-gray); box-shadow: 0 0 12px var(--ink-blue-gray);
+      animation: nodePulse 3s infinite ease-in-out;
+    }
+    .grid-node:nth-child(1) { top: 15%; left: 20%; animation-delay: 0s; }
+    .grid-node:nth-child(2) { top: 45%; left: 80%; animation-delay: 0.5s; }
+    .grid-node:nth-child(3) { top: 75%; left: 10%; animation-delay: 1s; }
+    .grid-node:nth-child(4) { top: 25%; left: 60%; animation-delay: 1.5s; }
+    .grid-node:nth-child(5) { top: 55%; left: 40%; animation-delay: 2s; }
+    .grid-node:nth-child(6) { top: 85%; left: 70%; animation-delay: 2.5s; }
+
+    @keyframes nodePulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.8); opacity: 0.3; }
     }
 
     .hero-content, .hero-avatar { position: relative; z-index: 1; }
@@ -275,24 +275,24 @@
     .profile-avatar::before {
       content: '';
       position: absolute;
-      inset: -5px;
+      inset: -6px;
       border-radius: 50%;
-      background: conic-gradient(#6D8196, #d4a853, #6D8196, #d4a853, #6D8196);
-      animation: rotateBorder 4s linear infinite;
+      background: conic-gradient(from 0deg, #6D8196, #d4a853, #6D8196, #d4a853, #6D8196);
+      animation: rotateBorder 3s linear infinite;
       z-index: -1;
-      filter: blur(4px);
-      opacity: 0.7;
+      filter: blur(6px);
+      opacity: 0.9;
     }
     .profile-avatar::after {
       content: '';
       position: absolute;
-      inset: -2px;
+      inset: -3px;
       border-radius: 50%;
-      background: conic-gradient(#6D8196, #d4a853, #6D8196, #d4a853, #6D8196);
-      animation: rotateBorder 4s linear infinite reverse;
+      background: conic-gradient(from 90deg, #d4a853, #6D8196, #d4a853, #6D8196, #d4a853);
+      animation: rotateBorder 3s linear infinite reverse;
       z-index: -1;
-      filter: blur(2px);
-      opacity: 0.5;
+      filter: blur(3px);
+      opacity: 0.7;
     }
     @keyframes rotateBorder {
       0% { transform: rotate(0deg); }
@@ -302,7 +302,7 @@
       border-radius: 50%;
       position: relative;
       z-index: 1;
-      border: 3px solid rgba(255,255,255,0.4);
+      border: 3px solid rgba(255,255,255,0.5);
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -310,10 +310,10 @@
     }
     .profile-avatar:hover::before {
       opacity: 1;
-      filter: blur(2px);
+      filter: blur(4px);
     }
     .profile-avatar:hover::after {
-      opacity: 0.8;
+      opacity: 0.9;
     }
 
     .btn { display: inline-block; padding: 12px 28px; border-radius: 40px; font-weight: 600; font-size: 0.9rem; border: none; cursor: pointer; transition: all 0.4s cubic-bezier(0.22,0.61,0.36,1); background: var(--ink-blue-gray); color: #fff; display: inline-flex; align-items: center; gap: 8px; }
@@ -384,7 +384,7 @@
     .rec-card .author { font-weight: 700; color: var(--ink-blue-gray); }
     .rec-card .quote { font-style: italic; color: #4a4a42; }
 
-    /* ===== REFINED GALLERY (ZOOM TRANSITIONS, SMALLER OVERLAY) ===== */
+    /* Gallery styles unchanged */
     .gallery-section { padding: 50px 0 40px; }
     .gallery-container { position: relative; max-width: 900px; margin: 0 auto; border-radius: 24px; overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,0.08); background: rgba(255,255,227,0.12); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(109,129,150,0.15); }
     .gallery-slider { position: relative; width: 100%; height: 420px; overflow: hidden; }
@@ -417,7 +417,7 @@
     #backToTop:hover { transform: translateY(-4px) scale(1.05); box-shadow: 0 8px 30px rgba(109,129,150,0.25); }
 
     @media (max-width: 700px) {
-      .hero { flex-direction: column-reverse; text-align: center; } .section-title { font-size: 1.6rem; }
+      .hero { flex-direction: column-reverse; text-align: center; min-height: auto; } .section-title { font-size: 1.6rem; }
       .tl-header { flex-direction: column; gap: 4px; } .boot-terminal { padding: 24px 18px; } .boot-logs { font-size: 0.6rem; max-height: 160px; }
       #backToTop { bottom: 20px; right: 20px; width: 42px; height: 42px; font-size: 16px; } .glass-box { padding: 20px 18px; }
       .skill-chip-compact { padding: 5px 12px; font-size: 0.75rem; } .edu-grid, .cert-grid { grid-template-columns: 1fr; }
@@ -530,12 +530,15 @@
     <main class="container">
       <section id="profile" class="hero" aria-labelledby="hero-heading">
         <div class="hero-bg-canvas" aria-hidden="true">
-          <div class="grid-line horizontal"></div><div class="grid-line horizontal"></div><div class="grid-line horizontal"></div>
-          <div class="grid-line vertical"></div><div class="grid-line vertical"></div><div class="grid-line vertical"></div>
-          <div class="data-particle"></div><div class="data-particle"></div><div class="data-particle"></div>
-          <div class="data-particle"></div><div class="data-particle"></div><div class="data-particle"></div>
-          <div class="code-snippet">const assistant = new VA()</div><div class="code-snippet">await initProject("resort")</div>
-          <div class="code-snippet">sync.stakeholders()</div><div class="code-snippet">optimize.workflow()</div>
+          <div class="tech-grid"></div>
+          <div class="floating-shape"></div><div class="floating-shape"></div><div class="floating-shape"></div>
+          <div class="floating-shape"></div><div class="floating-shape"></div><div class="floating-shape"></div>
+          <div class="grid-node" style="top:15%;left:20%;"></div>
+          <div class="grid-node" style="top:45%;left:80%;"></div>
+          <div class="grid-node" style="top:75%;left:10%;"></div>
+          <div class="grid-node" style="top:25%;left:60%;"></div>
+          <div class="grid-node" style="top:55%;left:40%;"></div>
+          <div class="grid-node" style="top:85%;left:70%;"></div>
         </div>
         <div class="hero-content fade-up">
           <h1 id="hero-heading"><span class="name-wrapper" id="typedName"><span id="nameDisplay"></span><span class="cursor" id="cursor" aria-hidden="true"></span></span></h1>
@@ -651,56 +654,16 @@
         <div class="section-sub fade-up">Escape into a private sanctuary where modern design meets the healing power of nature. Surround yourself with lush nature, natural hot spring swimming, and panoramic mountain views.</div>
         <div class="gallery-container fade-up" role="region" aria-label="Image gallery">
           <div class="gallery-slider" id="gallerySlider">
-            <!-- Slide 1 -->
-            <div class="gallery-slide active" data-index="0">
-              <img src="9181" alt="Modern tropical house exterior" loading="lazy" decoding="async" width="800" height="500" />
-              <div class="slide-overlay"><div class="slide-title">🏡 Modern Tropical House</div><div class="slide-sub">A modern house with a steep dark roof, a large triangular glass window, and light grey walls. A concrete wall and tropical green plants sit in the foreground beneath a cloudy sky.</div></div>
-            </div>
-            <!-- Slide 2 -->
-            <div class="gallery-slide" data-index="1">
-              <img src="9185" alt="Indoor-outdoor living room" loading="lazy" decoding="async" width="800" height="500" />
-              <div class="slide-overlay"><div class="slide-title">🛋️ Indoor-Outdoor Living</div><div class="slide-sub">A room with grey concrete walls and a large glass sliding door that looks out onto a patio with two lounge chairs, dense green tropical plants, and a partly cloudy sky. A dark wooden door is visible inside to the right.</div></div>
-            </div>
-            <!-- Slide 3 -->
-            <div class="gallery-slide" data-index="2">
-              <img src="9186" alt="Rustic kitchen interior" loading="lazy" decoding="async" width="800" height="500" />
-              <div class="slide-overlay"><div class="slide-title">🍳 Rustic Kitchen</div><div class="slide-sub">A rustic kitchen with a large wooden island and three wooden bar stools. It features woven pendant lights, open wooden shelves, a black fridge, and a window on the right showing a potted plant.</div></div>
-            </div>
-            <!-- Slide 4 -->
-            <div class="gallery-slide" data-index="3">
-              <img src="9183" alt="Tropical swimming pool" loading="lazy" decoding="async" width="800" height="500" />
-              <div class="slide-overlay"><div class="slide-title">🏊‍♂️ Tropical Pool Oasis</div><div class="slide-sub">Outdoor swimming pool filled with turquoise water, surrounded by lush tropical plants. Two wooden lounge chairs sit on the deck across the pool, backed by dense greenery and a modern white building.</div></div>
-            </div>
-            <!-- Slide 5 -->
-            <div class="gallery-slide" data-index="4">
-              <img src="9182" alt="Stone waterfall feature" loading="lazy" decoding="async" width="800" height="500" />
-              <div class="slide-overlay"><div class="slide-title">💧 Stone Waterfall Feature</div><div class="slide-sub">A close-up of a stone waterfall feature with water cascading into a dark pool, surrounded by large, vibrant green tropical leaves and a tree trunk.</div></div>
-            </div>
-            <!-- Slide 6 -->
-            <div class="gallery-slide" data-index="5">
-              <img src="9187" alt="Misty mountain landscape" loading="lazy" decoding="async" width="800" height="500" />
-              <div class="slide-overlay"><div class="slide-title">🌫️ Misty Mountain Landscape</div><div class="slide-sub">A scenic landscape photo showing foggy, forested green mountains. Out-of-focus green leaves are in the immediate foreground, framing the view of the misty hills.</div></div>
-            </div>
-            <!-- Slide 7 -->
-            <div class="gallery-slide" data-index="6">
-              <img src="9184" alt="Panoramic bedroom with mountain view" loading="lazy" decoding="async" width="800" height="500" />
-              <div class="slide-overlay"><div class="slide-title">🛏️ Panoramic Bedroom Suite</div><div class="slide-sub">An industrial-style bedroom with grey concrete walls, a polished reflective floor, and a bed with grey and green bedding. It features massive corner glass windows that open up to a balcony and a panoramic view of green hills and mountains.</div></div>
-            </div>
-            <!-- Slide 8 -->
-            <div class="gallery-slide" data-index="7">
-              <img src="9188" alt="Bathroom with natural outdoor view" loading="lazy" decoding="async" width="800" height="500" />
-              <div class="slide-overlay"><div class="slide-title">🛁 Nature-View Bathroom</div><div class="slide-sub">A modern bathroom with dark grey marble walls, a white toilet, and a wall niche. It opens up to a natural outdoor area featuring a rustic stacked-stone wall and green tropical plants at the base.</div></div>
-            </div>
-            <!-- Slide 9 -->
-            <div class="gallery-slide" data-index="8">
-              <img src="9189" alt="Minimalist vanity corner" loading="lazy" decoding="async" width="800" height="500" />
-              <div class="slide-overlay"><div class="slide-title">🪴 Minimalist Vanity Corner</div><div class="slide-sub">A concrete-walled bathroom corner with a dark wooden counter, a grey rectangular vessel sink, and a chrome faucet. Above it are a wall-mounted mirror and staggered floating shelves with tiny plants. A wooden door frame is visible on the left edge.</div></div>
-            </div>
-            <!-- Slide 10 -->
-            <div class="gallery-slide" data-index="9">
-              <img src="9191" alt="Minimalist cozy bedroom" loading="lazy" decoding="async" width="800" height="500" />
-              <div class="slide-overlay"><div class="slide-title">🛌 Minimalist Cozy Bedroom</div><div class="slide-sub">A minimalist, grey-walled bedroom with a wooden bed featuring green bedding and grey pillows. It has a wall-mounted AC unit, two tall dark sliding closet doors, and a small black bean bag chair with a woven basket in the corner.</div></div>
-            </div>
+            <div class="gallery-slide active" data-index="0"><img src="9181" alt="Modern tropical house exterior" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🏡 Modern Tropical House</div><div class="slide-sub">A modern house with a steep dark roof, a large triangular glass window, and light grey walls. A concrete wall and tropical green plants sit in the foreground beneath a cloudy sky.</div></div></div>
+            <div class="gallery-slide" data-index="1"><img src="9185" alt="Indoor-outdoor living room" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🛋️ Indoor-Outdoor Living</div><div class="slide-sub">A room with grey concrete walls and a large glass sliding door that looks out onto a patio with two lounge chairs, dense green tropical plants, and a partly cloudy sky. A dark wooden door is visible inside to the right.</div></div></div>
+            <div class="gallery-slide" data-index="2"><img src="9186" alt="Rustic kitchen interior" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🍳 Rustic Kitchen</div><div class="slide-sub">A rustic kitchen with a large wooden island and three wooden bar stools. It features woven pendant lights, open wooden shelves, a black fridge, and a window on the right showing a potted plant.</div></div></div>
+            <div class="gallery-slide" data-index="3"><img src="9183" alt="Tropical swimming pool" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🏊‍♂️ Tropical Pool Oasis</div><div class="slide-sub">Outdoor swimming pool filled with turquoise water, surrounded by lush tropical plants. Two wooden lounge chairs sit on the deck across the pool, backed by dense greenery and a modern white building.</div></div></div>
+            <div class="gallery-slide" data-index="4"><img src="9182" alt="Stone waterfall feature" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">💧 Stone Waterfall Feature</div><div class="slide-sub">A close-up of a stone waterfall feature with water cascading into a dark pool, surrounded by large, vibrant green tropical leaves and a tree trunk.</div></div></div>
+            <div class="gallery-slide" data-index="5"><img src="9187" alt="Misty mountain landscape" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🌫️ Misty Mountain Landscape</div><div class="slide-sub">A scenic landscape photo showing foggy, forested green mountains. Out-of-focus green leaves are in the immediate foreground, framing the view of the misty hills.</div></div></div>
+            <div class="gallery-slide" data-index="6"><img src="9184" alt="Panoramic bedroom with mountain view" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🛏️ Panoramic Bedroom Suite</div><div class="slide-sub">An industrial-style bedroom with grey concrete walls, a polished reflective floor, and a bed with grey and green bedding. It features massive corner glass windows that open up to a balcony and a panoramic view of green hills and mountains.</div></div></div>
+            <div class="gallery-slide" data-index="7"><img src="9188" alt="Bathroom with natural outdoor view" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🛁 Nature-View Bathroom</div><div class="slide-sub">A modern bathroom with dark grey marble walls, a white toilet, and a wall niche. It opens up to a natural outdoor area featuring a rustic stacked-stone wall and green tropical plants at the base.</div></div></div>
+            <div class="gallery-slide" data-index="8"><img src="9189" alt="Minimalist vanity corner" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🪴 Minimalist Vanity Corner</div><div class="slide-sub">A concrete-walled bathroom corner with a dark wooden counter, a grey rectangular vessel sink, and a chrome faucet. Above it are a wall-mounted mirror and staggered floating shelves with tiny plants. A wooden door frame is visible on the left edge.</div></div></div>
+            <div class="gallery-slide" data-index="9"><img src="9191" alt="Minimalist cozy bedroom" loading="lazy" decoding="async" width="800" height="500" /><div class="slide-overlay"><div class="slide-title">🛌 Minimalist Cozy Bedroom</div><div class="slide-sub">A minimalist, grey-walled bedroom with a wooden bed featuring green bedding and grey pillows. It has a wall-mounted AC unit, two tall dark sliding closet doors, and a small black bean bag chair with a woven basket in the corner.</div></div></div>
           </div>
           <button class="gallery-nav prev" id="galleryPrev" aria-label="Previous slide">‹</button>
           <button class="gallery-nav next" id="galleryNext" aria-label="Next slide">›</button>
