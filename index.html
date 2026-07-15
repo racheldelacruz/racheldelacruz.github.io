@@ -34,6 +34,7 @@
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
         font-src 'self' https://fonts.gstatic.com;
         img-src 'self' data: blob: https:;
+        media-src 'self' data: blob: https:;
         connect-src 'self' https://api.qrserver.com;
         frame-ancestors 'none';
         base-uri 'self';
@@ -1728,6 +1729,9 @@
             object-fit: cover;
             display: block;
         }
+        .gallery-slide video {
+            background: #000;
+        }
         .gallery-slide .slide-overlay {
             position: absolute;
             bottom: 10px;
@@ -1749,6 +1753,52 @@
         .gallery-slide .slide-overlay .slide-sub {
             font-size: 0.7rem;
             opacity: 0.9;
+        }
+        /* Video play button overlay */
+        .gallery-slide .video-play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .gallery-slide .video-play-overlay .play-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            animation: pulsePlay 2s ease-in-out infinite;
+        }
+        @keyframes pulsePlay {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+        .gallery-slide video.playing + .video-play-overlay {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .gallery-slide video.playing + .video-play-overlay .play-icon {
+            animation: none;
         }
         .gallery-nav {
             position: absolute;
@@ -1818,7 +1868,8 @@
         .lightbox.show {
             display: flex;
         }
-        .lightbox img {
+        .lightbox img,
+        .lightbox video {
             max-width: 92vw;
             max-height: 85vh;
             object-fit: contain;
@@ -2115,7 +2166,13 @@
             .gallery-slide .slide-overlay .slide-sub {
                 font-size: 0.65rem;
             }
-            .lightbox img {
+            .gallery-slide .video-play-overlay .play-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+            .lightbox img,
+            .lightbox video {
                 max-width: 96vw;
                 max-height: 80vh;
             }
@@ -2449,22 +2506,37 @@
                 <div class="rec-card fade-up"><div class="quote">"Rachel is the ultimate multitasker…"</div><div class="author">— Hussain Alam</div></div>
             </section>
 
-            <!-- GALLERY SECTION -->
+            <!-- GALLERY SECTION WITH VIDEO AS FIRST SLIDE -->
             <section id="gallery" class="gallery-section" aria-labelledby="gallery-heading">
                 <h2 class="section-title fade-up" id="gallery-heading"><span class="icon" aria-hidden="true">🖼️</span> Villa Arcadia <span class="accent">Gallery</span></h2>
                 <div class="section-sub fade-up">Escape into a private sanctuary where modern design meets the healing power of nature.</div>
                 <div class="gallery-container fade-up" role="region" aria-label="Image gallery">
                     <div class="gallery-slider" id="gallerySlider">
-                        <div class="gallery-slide active" data-index="0"><img src="9181" alt="Modern tropical house exterior" loading="lazy" /><div class="slide-overlay"><div class="slide-title">🏡 Modern Tropical House</div><div class="slide-sub">A modern house with a steep dark roof, a large triangular glass window, and light grey walls.</div></div></div>
-                        <div class="gallery-slide" data-index="1"><img src="9185" alt="Indoor-outdoor living room" loading="lazy" /><div class="slide-overlay"><div class="slide-title">🛋️ Indoor-Outdoor Living</div><div class="slide-sub">A room with grey concrete walls and a large glass sliding door that looks out onto a patio.</div></div></div>
-                        <div class="gallery-slide" data-index="2"><img src="9186" alt="Rustic kitchen interior" loading="lazy" /><div class="slide-overlay"><div class="slide-title">🍳 Rustic Kitchen</div><div class="slide-sub">A rustic kitchen with a large wooden island and three wooden bar stools.</div></div></div>
-                        <div class="gallery-slide" data-index="3"><img src="9183" alt="Tropical swimming pool" loading="lazy" /><div class="slide-overlay"><div class="slide-title">🏊‍♂️ Tropical Pool Oasis</div><div class="slide-sub">Outdoor swimming pool filled with turquoise water, surrounded by lush tropical plants.</div></div></div>
-                        <div class="gallery-slide" data-index="4"><img src="9182" alt="Stone waterfall feature" loading="lazy" /><div class="slide-overlay"><div class="slide-title">💧 Stone Waterfall Feature</div><div class="slide-sub">A close-up of a stone waterfall feature with water cascading into a dark pool.</div></div></div>
-                        <div class="gallery-slide" data-index="5"><img src="9187" alt="Misty mountain landscape" loading="lazy" /><div class="slide-overlay"><div class="slide-title">🌫️ Misty Mountain Landscape</div><div class="slide-sub">A scenic landscape photo showing foggy, forested green mountains.</div></div></div>
-                        <div class="gallery-slide" data-index="6"><img src="9184" alt="Panoramic bedroom with mountain view" loading="lazy" /><div class="slide-overlay"><div class="slide-title">🛏️ Panoramic Bedroom Suite</div><div class="slide-sub">Industrial-style bedroom with massive corner glass windows and panoramic views.</div></div></div>
-                        <div class="gallery-slide" data-index="7"><img src="9188" alt="Bathroom with natural outdoor view" loading="lazy" /><div class="slide-overlay"><div class="slide-title">🛁 Nature-View Bathroom</div><div class="slide-sub">Modern bathroom with dark grey marble walls opening to a natural outdoor area.</div></div></div>
-                        <div class="gallery-slide" data-index="8"><img src="9189" alt="Minimalist vanity corner" loading="lazy" /><div class="slide-overlay"><div class="slide-title">🪴 Minimalist Vanity Corner</div><div class="slide-sub">Concrete-walled bathroom corner with dark wooden counter and vessel sink.</div></div></div>
-                        <div class="gallery-slide" data-index="9"><img src="9191" alt="Minimalist cozy bedroom" loading="lazy" /><div class="slide-overlay"><div class="slide-title">🛌 Minimalist Cozy Bedroom</div><div class="slide-sub">Minimalist grey-walled bedroom with wooden bed featuring green bedding.</div></div></div>
+                        <!-- VIDEO SLIDE (Index 0) -->
+                        <div class="gallery-slide active" data-index="0">
+                            <video id="galleryVideo" muted loop playsinline preload="metadata">
+                                <source src="video-output-A2991763-6470-4023-AF88-666F0952F970-1.mov" type="video/quicktime">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-play-overlay" id="videoPlayOverlay">
+                                <div class="play-icon" id="videoPlayIcon">▶</div>
+                            </div>
+                            <div class="slide-overlay">
+                                <div class="slide-title">🎬 Villa Arcadia Tour</div>
+                                <div class="slide-sub">Experience the beauty of Villa Arcadia in motion</div>
+                            </div>
+                        </div>
+                        <!-- IMAGE SLIDES -->
+                        <div class="gallery-slide" data-index="1"><img src="9181" alt="Modern tropical house exterior" loading="lazy" /><div class="slide-overlay"><div class="slide-title">🏡 Modern Tropical House</div><div class="slide-sub">A modern house with a steep dark roof, a large triangular glass window, and light grey walls.</div></div></div>
+                        <div class="gallery-slide" data-index="2"><img src="9185" alt="Indoor-outdoor living room" loading="lazy" /><div class="slide-overlay"><div class="slide-title">🛋️ Indoor-Outdoor Living</div><div class="slide-sub">A room with grey concrete walls and a large glass sliding door that looks out onto a patio.</div></div></div>
+                        <div class="gallery-slide" data-index="3"><img src="9186" alt="Rustic kitchen interior" loading="lazy" /><div class="slide-overlay"><div class="slide-title">🍳 Rustic Kitchen</div><div class="slide-sub">A rustic kitchen with a large wooden island and three wooden bar stools.</div></div></div>
+                        <div class="gallery-slide" data-index="4"><img src="9183" alt="Tropical swimming pool" loading="lazy" /><div class="slide-overlay"><div class="slide-title">🏊‍♂️ Tropical Pool Oasis</div><div class="slide-sub">Outdoor swimming pool filled with turquoise water, surrounded by lush tropical plants.</div></div></div>
+                        <div class="gallery-slide" data-index="5"><img src="9182" alt="Stone waterfall feature" loading="lazy" /><div class="slide-overlay"><div class="slide-title">💧 Stone Waterfall Feature</div><div class="slide-sub">A close-up of a stone waterfall feature with water cascading into a dark pool.</div></div></div>
+                        <div class="gallery-slide" data-index="6"><img src="9187" alt="Misty mountain landscape" loading="lazy" /><div class="slide-overlay"><div class="slide-title">🌫️ Misty Mountain Landscape</div><div class="slide-sub">A scenic landscape photo showing foggy, forested green mountains.</div></div></div>
+                        <div class="gallery-slide" data-index="7"><img src="9184" alt="Panoramic bedroom with mountain view" loading="lazy" /><div class="slide-overlay"><div class="slide-title">🛏️ Panoramic Bedroom Suite</div><div class="slide-sub">Industrial-style bedroom with massive corner glass windows and panoramic views.</div></div></div>
+                        <div class="gallery-slide" data-index="8"><img src="9188" alt="Bathroom with natural outdoor view" loading="lazy" /><div class="slide-overlay"><div class="slide-title">🛁 Nature-View Bathroom</div><div class="slide-sub">Modern bathroom with dark grey marble walls opening to a natural outdoor area.</div></div></div>
+                        <div class="gallery-slide" data-index="9"><img src="9189" alt="Minimalist vanity corner" loading="lazy" /><div class="slide-overlay"><div class="slide-title">🪴 Minimalist Vanity Corner</div><div class="slide-sub">Concrete-walled bathroom corner with dark wooden counter and vessel sink.</div></div></div>
+                        <div class="gallery-slide" data-index="10"><img src="9191" alt="Minimalist cozy bedroom" loading="lazy" /><div class="slide-overlay"><div class="slide-title">🛌 Minimalist Cozy Bedroom</div><div class="slide-sub">Minimalist grey-walled bedroom with wooden bed featuring green bedding.</div></div></div>
                     </div>
                     <button class="gallery-nav prev" id="galleryPrev" aria-label="Previous slide">‹</button>
                     <button class="gallery-nav next" id="galleryNext" aria-label="Next slide">›</button>
@@ -2477,8 +2549,11 @@
                 <button class="lightbox-close" aria-label="Close fullscreen view" onclick="closeLightbox()">✕</button>
                 <button class="lightbox-nav prev-lb" aria-label="Previous image" onclick="lightboxPrev()">‹</button>
                 <button class="lightbox-nav next-lb" aria-label="Next image" onclick="lightboxNext()">›</button>
-                <div class="slide-counter" id="slideCounter">1 / 10</div>
-                <img id="lightboxImg" src="" alt="" />
+                <div class="slide-counter" id="slideCounter">1 / 11</div>
+                <div id="lightboxMediaContainer" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;">
+                    <img id="lightboxImg" src="" alt="" style="display:none;" />
+                    <video id="lightboxVideo" controls style="max-width:92vw;max-height:85vh;border-radius:12px;display:none;"></video>
+                </div>
                 <div class="lightbox-caption" id="lightboxCaption"></div>
             </div>
 
@@ -2558,7 +2633,6 @@
         (function securityEnhancements() {
             'use strict';
 
-            // 1. Prevent XSS via URL parameters
             function sanitizeInput(input) {
                 if (!input) return '';
                 const element = document.createElement('div');
@@ -2566,7 +2640,6 @@
                 return element.innerHTML;
             }
 
-            // 2. Rate limiting for form submissions and repeated actions
             const rateLimiter = {
                 timestamps: {},
                 check(action, limit = 5, windowMs = 60000) {
@@ -2588,7 +2661,6 @@
             window.sanitizeInput = sanitizeInput;
             window.rateLimiter = rateLimiter;
 
-            // 3. Prevent console manipulation
             if (window.console) {
                 const originalLog = console.log;
                 console.log = function() {
@@ -2606,7 +2678,6 @@
                 };
             }
 
-            // 4. Prevent automatic form submissions
             document.addEventListener('submit', function(e) {
                 const form = e.target;
                 if (form) {
@@ -2620,7 +2691,6 @@
                 }
             });
 
-            // 5. Keyboard shortcut to clear sensitive data (Ctrl+Shift+Q)
             document.addEventListener('keydown', function(e) {
                 if (e.ctrlKey && e.shiftKey && e.key === 'Q') {
                     e.preventDefault();
@@ -2631,7 +2701,6 @@
                 }
             });
 
-            // 6. Warn if page is loaded in an iframe
             if (window.top !== window.self) {
                 document.body.innerHTML = `
                     <div style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:#f5f5f5;padding:20px;text-align:center;">
@@ -3068,7 +3137,7 @@
             }
         }, { passive: true });
 
-        // ===== GALLERY =====
+        // ===== GALLERY WITH VIDEO SUPPORT =====
         (function() {
             const slides = document.querySelectorAll('.gallery-slide'),
                 dotsContainer = document.getElementById('galleryDots'),
@@ -3079,6 +3148,50 @@
                 autoPlayInterval = null,
                 isTransitioning = false;
 
+            // Get video elements
+            const video = document.getElementById('galleryVideo');
+            const videoPlayOverlay = document.getElementById('videoPlayOverlay');
+            const videoPlayIcon = document.getElementById('videoPlayIcon');
+            let isVideoPlaying = false;
+
+            // Video click handler
+            if (video && videoPlayOverlay) {
+                video.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    toggleVideoPlay();
+                });
+                
+                videoPlayOverlay.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    toggleVideoPlay();
+                });
+            }
+
+            function toggleVideoPlay() {
+                if (!video) return;
+                if (video.paused) {
+                    video.play();
+                    isVideoPlaying = true;
+                    videoPlayIcon.textContent = '⏸';
+                    video.classList.add('playing');
+                } else {
+                    video.pause();
+                    isVideoPlaying = false;
+                    videoPlayIcon.textContent = '▶';
+                    video.classList.remove('playing');
+                }
+            }
+
+            // Pause video when sliding away
+            function pauseVideo() {
+                if (video && !video.paused) {
+                    video.pause();
+                    isVideoPlaying = false;
+                    videoPlayIcon.textContent = '▶';
+                    video.classList.remove('playing');
+                }
+            }
+
             slides.forEach((slide, index) => {
                 const dot = document.createElement('button');
                 dot.className = 'dot' + (index === 0 ? ' active' : '');
@@ -3088,7 +3201,16 @@
                 dot.setAttribute('aria-label', `Slide ${index + 1} of ${totalSlides}`);
                 dot.addEventListener('click', () => goToSlide(index));
                 dotsContainer.appendChild(dot);
-                slide.addEventListener('click', (e) => { if (!isTransitioning) openLightbox(index); });
+                slide.addEventListener('click', (e) => {
+                    if (!isTransitioning) {
+                        // If it's the video slide and video exists, toggle play instead of opening lightbox
+                        if (index === 0 && video) {
+                            toggleVideoPlay();
+                            return;
+                        }
+                        openLightbox(index);
+                    }
+                });
             });
             const dots = dotsContainer.querySelectorAll('.dot');
 
@@ -3096,6 +3218,12 @@
                 if (isTransitioning || index === currentIndex) return;
                 if (index < 0) index = totalSlides - 1;
                 if (index >= totalSlides) index = 0;
+                
+                // Pause video if leaving video slide
+                if (currentIndex === 0) {
+                    pauseVideo();
+                }
+                
                 isTransitioning = true;
                 const outgoing = slides[currentIndex],
                     incoming = slides[index];
@@ -3122,10 +3250,12 @@
 
             function resetAutoPlay() { if (autoPlayInterval) clearInterval(autoPlayInterval);
                 autoPlayInterval = setInterval(nextSlide, 5000); }
+            
             prevBtn.addEventListener('click', (e) => { e.stopPropagation();
                 prevSlide(); });
             nextBtn.addEventListener('click', (e) => { e.stopPropagation();
                 nextSlide(); });
+            
             const slider = document.getElementById('gallerySlider');
             let touchStartX = 0;
             slider.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
@@ -3133,59 +3263,97 @@
                 const diff = touchStartX - e.changedTouches[0].screenX;
                 if (Math.abs(diff) > 40) { diff > 0 ? nextSlide() : prevSlide(); }
             }, { passive: true });
+            
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'ArrowRight') nextSlide();
                 if (e.key === 'ArrowLeft') prevSlide();
                 if (e.key === 'Escape') closeLightbox();
+                if (e.key === ' ' && currentIndex === 0 && video) {
+                    e.preventDefault();
+                    toggleVideoPlay();
+                }
             });
+            
             resetAutoPlay();
             const galleryContainer = document.querySelector('.gallery-container');
             galleryContainer.addEventListener('mouseenter', () => { if (autoPlayInterval) clearInterval(autoPlayInterval); });
             galleryContainer.addEventListener('mouseleave', () => resetAutoPlay());
 
+            // ===== LIGHTBOX WITH VIDEO SUPPORT =====
             let lightboxIndex = 0;
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxVideo = document.getElementById('lightboxVideo');
+            const lightboxCaption = document.getElementById('lightboxCaption');
+            const slideCounter = document.getElementById('slideCounter');
+            const lightboxMediaContainer = document.getElementById('lightboxMediaContainer');
+
             window.openLightbox = function(index) {
                 lightboxIndex = index;
-                updateLightboxImage();
+                updateLightboxMedia();
                 document.getElementById('lightbox').classList.add('show');
                 document.body.style.overflow = 'hidden';
             };
+            
             window.closeLightbox = function() {
+                // Pause video if playing
+                if (lightboxVideo && !lightboxVideo.paused) {
+                    lightboxVideo.pause();
+                }
                 document.getElementById('lightbox').classList.remove('show');
                 document.body.style.overflow = '';
             };
+            
             window.lightboxNext = function() {
                 lightboxIndex = (lightboxIndex + 1) % totalSlides;
-                updateLightboxImage();
+                updateLightboxMedia();
             };
+            
             window.lightboxPrev = function() {
                 lightboxIndex = (lightboxIndex - 1 + totalSlides) % totalSlides;
-                updateLightboxImage();
+                updateLightboxMedia();
             };
 
-            function updateLightboxImage() {
+            function updateLightboxMedia() {
                 const slide = slides[lightboxIndex];
-                const img = slide.querySelector('img');
-                const lightboxImg = document.getElementById('lightboxImg');
-                const caption = document.getElementById('lightboxCaption');
-                const counter = document.getElementById('slideCounter');
-                if (img) {
-                    lightboxImg.src = img.src;
-                    lightboxImg.alt = img.alt;
-                    const title = slide.querySelector('.slide-title');
-                    const sub = slide.querySelector('.slide-sub');
-                    caption.textContent = (title ? title.textContent + ' ' : '') + (sub ? sub.textContent : '');
+                const isVideoSlide = lightboxIndex === 0 && video;
+                
+                // Hide both first
+                lightboxImg.style.display = 'none';
+                lightboxVideo.style.display = 'none';
+                
+                if (isVideoSlide) {
+                    // Show video in lightbox
+                    lightboxVideo.style.display = 'block';
+                    lightboxVideo.src = video ? video.src : '';
+                    lightboxVideo.load();
+                    lightboxVideo.play().catch(() => {});
+                    lightboxCaption.textContent = '🎬 Villa Arcadia Tour - Experience the beauty in motion';
+                } else {
+                    // Show image
+                    const img = slide.querySelector('img');
+                    if (img) {
+                        lightboxImg.style.display = 'block';
+                        lightboxImg.src = img.src;
+                        lightboxImg.alt = img.alt;
+                        const title = slide.querySelector('.slide-title');
+                        const sub = slide.querySelector('.slide-sub');
+                        lightboxCaption.textContent = (title ? title.textContent + ' ' : '') + (sub ? sub.textContent : '');
+                    }
                 }
-                counter.textContent = `${lightboxIndex + 1} / ${totalSlides}`;
+                slideCounter.textContent = `${lightboxIndex + 1} / ${totalSlides}`;
             }
-            document.getElementById('lightbox').addEventListener('click', function(e) { if (e.target === this) closeLightbox(
-                ); });
+
+            document.getElementById('lightbox').addEventListener('click', function(e) { 
+                if (e.target === this) closeLightbox(); 
+            });
+            
             document.addEventListener('keydown', (e) => {
                 if (!document.getElementById('lightbox').classList.contains('show')) return;
                 if (e.key === 'ArrowRight') lightboxNext();
                 if (e.key === 'ArrowLeft') lightboxPrev();
                 if (e.key === 'Escape') closeLightbox();
             });
+            
             let touchStartX2 = 0;
             document.getElementById('lightbox').addEventListener('touchstart', (e) => { touchStartX2 = e.changedTouches[0]
                     .screenX; }, { passive: true });
