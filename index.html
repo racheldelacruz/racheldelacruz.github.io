@@ -27,7 +27,8 @@
 
     <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlJhY2hlbCBEZWxhIENydXoiLAogICJzaG9ydF9uYW1lIjogIlJhY2hlbCBEQyIsCiAgImRlc2NyaXB0aW9uIjogIlByb2plY3QgTWFuYWdlciAmIFZpcnR1YWwgQXNzaXN0YW50IiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiNGRkZGRTMiLAogICJ0aGVtZV9jb2xvciI6ICIjNkQ4MTk2IiwKICAiaWNvbnMiOiBbeyJzcmMiOiAiMTc4MzcyNjg1MzY5OH4yLmpwZyIsICJzaXplcyI6ICIxOTJ4MTkyIn1dCn0=" />
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://api.qrserver.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://api.qrserver.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';" />
+    <!-- Fixed CSP with unsafe-inline for scripts -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google.com https://api.qrserver.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://api.qrserver.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self';" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="X-Frame-Options" content="DENY" />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
@@ -1426,6 +1427,18 @@
             border-color: rgba(109, 129, 150, 0.35);
         }
 
+        /* About section text alignment - centered */
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+        .about-content p {
+            margin-bottom: 12px;
+        }
+
         .timeline {
             display: flex;
             flex-direction: column;
@@ -2277,11 +2290,11 @@
                 </div>
             </section>
 
-            <!-- ===== ABOUT SECTION WITH READ MORE ===== -->
+            <!-- ===== ABOUT SECTION WITH CENTERED TEXT ===== -->
             <section id="about" class="section" aria-labelledby="about-heading">
                 <h2 class="section-title fade-up" id="about-heading"><span class="icon" aria-hidden="true">📖</span> About <span class="accent">·</span></h2>
                 <div class="summary-card fade-up">
-                    <div style="max-width:800px;margin:0 auto;line-height:1.7;text-align:left;font-size:0.95rem;">
+                    <div class="about-content">
                         <!-- Short preview -->
                         <div class="about-short">
                             <p>Over the course of my career, I have accumulated extensive experience across various industries, including customer service, clerical roles, and technical and clinical positions within a healthcare setting. This exposure has equipped me with a versatile skill set and a profound understanding of the intricacies associated with different professional domains.</p>
@@ -2490,7 +2503,6 @@
                         <p style="margin:6px 0;"><strong>💬</strong> <a href="https://wa.me/639055716447" target="_blank" rel="noopener" style="color:var(--ink-blue-gray);">WhatsApp: +63 905 571 6447</a></p>
                     </div>
                     <div>
-                        <!-- UPDATED: Direct link to Resume.pdf -->
                         <a href="Resume.pdf" class="btn" download>📄 Download Resume (PDF)</a>
                     </div>
                 </div>
