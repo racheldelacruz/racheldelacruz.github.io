@@ -246,10 +246,11 @@
         .badge:hover { transform: translateY(-3px) scale(1.05); border-color: var(--ink-blue-gray); background: rgba(109, 129, 150, 0.15); box-shadow: 0 4px 15px rgba(109, 129, 150, 0.15); }
         .hero-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 10px; }
         .profile-avatar { position: relative; display: inline-block; width: 240px; height: 240px; border-radius: 50%; overflow: visible; border: none; box-shadow: none; }
-        .profile-avatar::before { content: ''; position: absolute; inset: -6px; border-radius: 50%; background: conic-gradient(from 0deg, var(--ink-blue-gray), #d4a853, var(--ink-blue-gray), #d4a853, var(--ink-blue-gray)); animation: rotateBorder 3s linear infinite; z-index: -1; filter: blur(6px); opacity: 0.85; }
-        .profile-avatar::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: conic-gradient(from 90deg, #d4a853, var(--ink-blue-gray), #d4a853, var(--ink-blue-gray), #d4a853); animation: rotateBorder 3s linear infinite reverse; z-index: -1; filter: blur(3px); opacity: 0.65; }
+        .profile-avatar::before { content: ''; position: absolute; inset: -6px; border-radius: 50%; background: conic-gradient(from 0deg, var(--ink-blue-gray), #d4a853, var(--ink-blue-gray), #d4a853, var(--ink-blue-gray)); animation: rotateBorder 3s linear infinite; z-index: 0; filter: blur(6px); opacity: 0.85; }
+        .profile-avatar::after { content: ''; position: absolute; inset: -3px; border-radius: 50%; background: conic-gradient(from 90deg, #d4a853, var(--ink-blue-gray), #d4a853, var(--ink-blue-gray), #d4a853); animation: rotateBorder 3s linear infinite reverse; z-index: 0; filter: blur(3px); opacity: 0.65; }
         @keyframes rotateBorder { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .profile-avatar img { border-radius: 50%; position: relative; z-index: 1; border: 4px solid rgba(255, 255, 255, 0.6); width: 100%; height: 100%; object-fit: cover; display: block; }
+        .profile-avatar .profile-img-rotator { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; z-index: 1; border: 4px solid rgba(255, 255, 255, 0.6); transition: opacity 1s ease-in-out; }
+        .profile-avatar .profile-img-rotator.active { z-index: 2; }
         .profile-avatar:hover::before { opacity: 1; filter: blur(4px); }
         .profile-avatar:hover::after { opacity: 0.9; }
         .btn { display: inline-block; padding: 12px 28px; border-radius: 40px; font-weight: 600; font-size: 0.9rem; border: none; cursor: pointer; transition: all 0.4s cubic-bezier(0.22, 0.61, 0.36, 1); background: var(--ink-blue-gray); color: #fff; display: inline-flex; align-items: center; gap: 8px; }
@@ -482,8 +483,10 @@
                     <div class="soft-blob"></div><div class="soft-blob"></div><div class="soft-blob"></div>
                 </div>
                 <div class="hero-avatar fade-up">
-                    <div class="profile-avatar">
-                        <img src="IMG_20260710_160150_773.jpg" alt="Rachel Dela Cruz portrait" width="240" height="240" />
+                    <div class="profile-avatar" id="profileAvatar">
+                        <img src="IMG_20260710_160150_773.jpg" alt="Rachel Dela Cruz portrait" class="profile-img-rotator active" data-index="0" />
+                        <img src="9291" alt="Rachel Dela Cruz portrait 2" class="profile-img-rotator" data-index="1" style="opacity: 0;" />
+                        <img src="9292" alt="Rachel Dela Cruz portrait 3" class="profile-img-rotator" data-index="2" style="opacity: 0;" />
                     </div>
                 </div>
                 <div class="hero-content fade-up">
@@ -1198,6 +1201,85 @@
                 }
             }
             setTimeout(typeEffect, 300);
+        })();
+
+        // ===== PROFILE PICTURE ROTATION =====
+        (function() {
+            const avatarContainer = document.getElementById('profileAvatar');
+            const images = avatarContainer.querySelectorAll('.profile-img-rotator');
+            let currentImageIndex = 0;
+            let rotationInterval = null;
+            let isHovering = false;
+
+            function rotateImage() {
+                if (isHovering) return;
+
+                const currentImage = images[currentImageIndex];
+                const nextIndex = (currentImageIndex + 1) % images.length;
+                const nextImage = images[nextIndex];
+
+                // Fade out current image
+                currentImage.style.opacity = '0';
+                currentImage.classList.remove('active');
+
+                // Fade in next image
+                nextImage.style.opacity = '1';
+                nextImage.classList.add('active');
+
+                currentImageIndex = nextIndex;
+            }
+
+            function startRotation() {
+                if (rotationInterval) clearInterval(rotationInterval);
+                rotationInterval = setInterval(rotateImage, 5000);
+            }
+
+            function stopRotation() {
+                if (rotationInterval) {
+                    clearInterval(rotationInterval);
+                    rotationInterval = null;
+                }
+            }
+
+            // Hover handlers
+            avatarContainer.addEventListener('mouseenter', function() {
+                isHovering = true;
+                stopRotation();
+            });
+
+            avatarContainer.addEventListener('mouseleave', function() {
+                isHovering = false;
+                startRotation();
+            });
+
+            // Touch handlers for mobile
+            avatarContainer.addEventListener('touchstart', function() {
+                isHovering = true;
+                stopRotation();
+            }, { passive: true });
+
+            avatarContainer.addEventListener('touchend', function() {
+                setTimeout(function() {
+                    isHovering = false;
+                    startRotation();
+                }, 2000);
+            }, { passive: true });
+
+            // Initial preload check
+            images.forEach(function(img, index) {
+                if (index > 0) {
+                    const testImage = new Image();
+                    testImage.src = img.src;
+                    testImage.onerror = function() {
+                        console.warn('Image preload failed:', img.src);
+                    };
+                }
+            });
+
+            // Start rotation
+            startRotation();
+
+            console.log('✅ Profile picture rotation active (3 images, 5s interval)');
         })();
 
         // ===== NAVIGATION =====
